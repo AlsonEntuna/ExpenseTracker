@@ -9,6 +9,16 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/MainStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <Grid>
@@ -16,8 +26,15 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Open Budget" />
-
+                <Button
+                    Grid.Column="0"
+                    Content="Open Budget"
+                    Style="{StaticResource ButtonStyle.Main}" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding CreateVariableExpenseCommand}"
+                    Content="Create Variable Expense"
+                    Style="{StaticResource ButtonStyle.Main}" />
             </Grid>
         </StackPanel>
     </Grid>

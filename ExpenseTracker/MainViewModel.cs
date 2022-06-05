@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ExpenseTracker.View;
+using System.Diagnostics;
 using System.Windows.Input;
 using WPFWrappers;
 using WPFWrappers.Command;
@@ -14,7 +13,11 @@ namespace ExpenseTracker
 
         private void CreateVariableExpense()
         {
-
+            CreateVariableExpenseWindow window = new CreateVariableExpenseWindow();
+            if (window.ShowDialog() ?? true)
+            {
+                Debug.WriteLine("Done");
+            }
         }
     }
 }

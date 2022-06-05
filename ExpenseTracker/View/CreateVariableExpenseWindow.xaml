@@ -6,9 +6,58 @@
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Create Variable Expense"
-    Width="800"
-    Height="450"
-    ResizeMode="CanResizeWithGrip"
+    Width="400"
+    Closing="Window_Closing"
+    ResizeMode="CanResize"
+    SizeToContent="Height"
     mc:Ignorable="d">
-    <Grid />
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MainStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Expense Details">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Description:" />
+                        <TextBox Grid.Row="0" Grid.Column="1" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Category" />
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" />
+                            <Button Grid.Column="1" Content="+" />
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <Button
+                Click="Button_Click"
+                Content="Add"
+                Style="{StaticResource ButtonStyle.Main}" />
+            <Separator Height="20" />
+        </StackPanel>
+    </Grid>
 </Window>

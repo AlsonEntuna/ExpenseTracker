@@ -2,4 +2,9 @@
     <Style x:Key="ButtonStyle.Main" TargetType="Button">
         <Setter Property="Height" Value="30" />
     </Style>
+
+    <!--  TextBlock  -->
+    <Style x:Key="TextBlockStyle.Form" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
 </ResourceDictionary>
