@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.View;
+﻿using ExpenseTracker.Data;
+using ExpenseTracker.View;
 using System.Diagnostics;
 using System.Windows.Input;
 using WPFWrappers;
@@ -9,7 +10,11 @@ namespace ExpenseTracker
     class MainViewModel : ViewModel
     {
         public ICommand CreateVariableExpenseCommand => new RelayCommand(f => { CreateVariableExpense(); }, f => true);
-        public MainViewModel() { }
+        public MainViewModel() 
+        {
+            // Load the data...
+            DataHandler.Instance.LoadData();
+        }
 
         private void CreateVariableExpense()
         {

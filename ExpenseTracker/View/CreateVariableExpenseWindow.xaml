@@ -48,7 +48,11 @@
                                 <ColumnDefinition Width="20" />
                             </Grid.ColumnDefinitions>
                             <ComboBox Grid.Column="0" />
-                            <Button Grid.Column="1" Content="+" />
+                            <Button
+                                x:Name="BtnCreateCategory"
+                                Grid.Column="1"
+                                Click="BtnCreateCategory_Click"
+                                Content="+" />
                         </Grid>
                     </Grid>
                 </StackPanel>

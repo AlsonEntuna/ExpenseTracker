@@ -14,7 +14,7 @@ namespace ExpenseTracker.Utils
             {
                 try
                 {
-                    JArray o = (JArray)JToken.ReadFrom(reader);
+                    JObject o = (JObject)JToken.ReadFrom(reader);
                     return o.ToObject<T>();
                 }
                 catch (Exception e)
@@ -26,7 +26,7 @@ namespace ExpenseTracker.Utils
 
         public static void Serialize<T>(string pFilePath, T pObject)
         {
-            JArray tabData = (JArray)JToken.FromObject(pObject);
+            JObject tabData = (JObject)JToken.FromObject(pObject);
             using (StreamWriter file = File.CreateText(pFilePath))
             using (JsonTextWriter writer = new JsonTextWriter(file))
             {

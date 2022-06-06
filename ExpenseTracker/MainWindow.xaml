@@ -36,6 +36,11 @@
                     Content="Create Variable Expense"
                     Style="{StaticResource ButtonStyle.Main}" />
             </Grid>
+            <GroupBox Header="Entry">
+                <StackPanel>
+                    <DataGrid />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Window>

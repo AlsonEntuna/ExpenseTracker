@@ -22,5 +22,10 @@ namespace ExpenseTracker.View
             // TODO: build the data here....
             Close();
         }
+
+        private void BtnCreateCategory_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
