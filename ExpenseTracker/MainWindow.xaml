@@ -10,7 +10,7 @@
     Height="450"
     mc:Ignorable="d">
     <Window.DataContext>
-        <local:MainViewModel />
+        <local:MainWindowViewModel />
     </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary>
@@ -38,6 +38,7 @@
             </Grid>
             <GroupBox Header="Entry">
                 <StackPanel>
+                    <Button Content="Save" Style="{StaticResource ButtonStyle.Main}" />
                     <DataGrid />
                 </StackPanel>
             </GroupBox>

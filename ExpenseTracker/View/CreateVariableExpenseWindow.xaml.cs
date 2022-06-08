@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ExpenseTracker.Data;
+using System.Windows;
 
 namespace ExpenseTracker.View
 {
@@ -7,9 +8,11 @@ namespace ExpenseTracker.View
     /// </summary>
     public partial class CreateVariableExpenseWindow : Window
     {
+        public VariableExpense Expense;
         public CreateVariableExpenseWindow()
         {
             InitializeComponent();
+            DPicker_ExpenseDate.SelectedDate = System.DateTime.Now;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -19,13 +22,13 @@ namespace ExpenseTracker.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: build the data here....
+            Expense = new VariableExpense()
+            {
+                Name = Txtbox_Name.Text,
+                Description = Txtbox_Description.Text,
+                CycleEndDate = DPicker_ExpenseDate.SelectedDate.Value
+            };
             Close();
-        }
-
-        private void BtnCreateCategory_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

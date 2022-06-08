@@ -7,13 +7,19 @@ using WPFWrappers.Command;
 
 namespace ExpenseTracker
 {
-    class MainViewModel : ViewModel
+    class MainWindowViewModel : ViewModel
     {
+        private VariableExpense _currentVarExpense;
+        public VariableExpense CurrentVarExpense
+        {
+            get => _currentVarExpense;
+            set => SetProperty(ref _currentVarExpense, value);
+        }
         public ICommand CreateVariableExpenseCommand => new RelayCommand(f => { CreateVariableExpense(); }, f => true);
-        public MainViewModel() 
+        public MainWindowViewModel()
         {
             // Load the data...
-            DataHandler.Instance.LoadData();
+            DataHandler.LoadAppConfiguration();
         }
 
         private void CreateVariableExpense()
@@ -21,7 +27,7 @@ namespace ExpenseTracker
             CreateVariableExpenseWindow window = new CreateVariableExpenseWindow();
             if (window.ShowDialog() ?? true)
             {
-                Debug.WriteLine("Done");
+                CurrentVarExpense = window.Expense;
             }
         }
     }

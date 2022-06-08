@@ -5,13 +5,20 @@ using WPFWrappers;
 namespace ExpenseTracker.Data
 {
     [Serializable]
-    class VariableExpense : ViewModel
+    public class VariableExpense : ViewModel
     {
         private string _name;
         public string Name
         {
             get => _name;
             set => SetProperty(ref _name, value);
+        }
+
+        private string _desc;
+        public string Description
+        {
+            get => _desc;
+            set => SetProperty(ref _desc, value);
         }
 
         private DateTime _cycleEndDate;

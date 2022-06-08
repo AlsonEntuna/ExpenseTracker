@@ -6,32 +6,21 @@ using System.Reflection;
 namespace ExpenseTracker.Data
 {
 
-    public class DataHandler
+    public static class DataHandler
     {
-        private static readonly Lazy<DataHandler> lazy = new Lazy<DataHandler>(() => new DataHandler());
-        public static DataHandler Instance => lazy.Value;
-        private Configuration _config;
+        public static Configuration Config;
         public static string CONFIG_FILE => "config.cfg";
-        
-        public DataHandler()
-        {
 
-        }
-        public void LoadData()
+        public static void LoadAppConfiguration()
         {
             string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string configFile = Path.Combine(assemblyPath, CONFIG_FILE);
             if (File.Exists(configFile))
-                _config = JsonUtils.Deserialize<Configuration>(configFile);
+                Config = JsonUtils.Deserialize<Configuration>(configFile);
             else
             {
-                _config = Configuration.GenerateConfigFile(configFile);
+                Config = Configuration.GenerateConfigFile(configFile);
             }
-        }
-
-        public void SaveData()
-        {
-
         }
     }
 }

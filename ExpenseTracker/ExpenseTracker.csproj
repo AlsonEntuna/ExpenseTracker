@@ -15,4 +15,17 @@
     <ProjectReference Include="..\WPFWrappers\WPFWrappers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="View\CreateExpenseEntry.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\CreateExpenseEntry.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>
