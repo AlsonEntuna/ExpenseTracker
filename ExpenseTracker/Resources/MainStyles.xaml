@@ -7,4 +7,13 @@
     <Style x:Key="TextBlockStyle.Form" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
+    <Style x:Key="TextBlockStyle.Header1.Bold" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
+    </Style>
+    <Style x:Key="TextBlockStyle.Header1" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
+    </Style>
 </ResourceDictionary>

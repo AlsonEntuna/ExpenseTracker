@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExpenseTracker"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
     Width="800"
     Height="450"
@@ -12,13 +13,6 @@
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/MainStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <StackPanel>
             <Grid>
@@ -39,7 +33,7 @@
             <GroupBox Header="Entry">
                 <StackPanel>
                     <Button Content="Save" Style="{StaticResource ButtonStyle.Main}" />
-                    <DataGrid />
+                    <view:VariableExpenseView />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
