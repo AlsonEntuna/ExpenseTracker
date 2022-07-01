@@ -30,10 +30,10 @@
                     Content="Create Variable Expense"
                     Style="{StaticResource ButtonStyle.Main}" />
             </Grid>
-            <GroupBox Header="Entry">
+            <GroupBox Header="Entry" Style="{StaticResource GroupBoxStyle.Main}">
                 <StackPanel>
-                    <Button Content="Save" Style="{StaticResource ButtonStyle.Main}" />
-                    <view:VariableExpenseView />
+
+                    <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>

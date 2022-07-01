@@ -20,7 +20,7 @@
     </Window.Resources>
     <Grid>
         <StackPanel>
-            <GroupBox Header="Details">
+            <GroupBox Header="Info">
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>

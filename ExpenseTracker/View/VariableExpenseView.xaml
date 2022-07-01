@@ -13,9 +13,11 @@
     mc:Ignorable="d">
     <Grid>
         <StackPanel>
+            <Button Content="Save" Style="{StaticResource ButtonStyle.Main}" />
+            <Separator Height="10" />
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock
@@ -25,7 +27,7 @@
                 <TextBlock
                     Grid.Column="1"
                     Style="{StaticResource TextBlockStyle.Header1}"
-                    Text="TEST" />
+                    Text="{Binding Expense.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
         </StackPanel>
     </Grid>
