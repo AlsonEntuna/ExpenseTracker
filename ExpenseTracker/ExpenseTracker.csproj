@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Fonts\JetBrainsMono-Medium.ttf" />
-    <None Remove="Resources\Fonts\JetBrainsMonoNL-Regular.ttf" />
+    <None Remove="Fonts\JetBrainsMono-Medium.ttf" />
+    <None Remove="Fonts\JetBrainsMonoNL-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Fonts\JetBrainsMono-Medium.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Fonts\JetBrainsMono-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Fonts\JetBrainsMonoNL-Regular.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Fonts\JetBrainsMonoNL-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

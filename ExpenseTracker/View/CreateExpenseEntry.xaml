@@ -30,6 +30,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <TextBlock
@@ -55,6 +56,12 @@
                                 Click="BtnCreateCategory_Click"
                                 Content="+" />
                         </Grid>
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Amount:" />
+                        <TextBox Grid.Row="2" Grid.Column="1" />
                     </Grid>
                 </StackPanel>
             </GroupBox>

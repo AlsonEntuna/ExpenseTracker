@@ -29,6 +29,11 @@
                     Style="{StaticResource TextBlockStyle.Header1}"
                     Text="{Binding Expense.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
+            <Button
+                Command="{Binding AddEntryCommand}"
+                Content="Add Enry"
+                Style="{StaticResource ButtonStyle.Main}" />
+            <DataGrid Height="300" />
         </StackPanel>
     </Grid>
 </UserControl>

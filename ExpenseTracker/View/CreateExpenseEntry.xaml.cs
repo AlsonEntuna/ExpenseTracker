@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ExpenseTracker.Data;
+using System.Windows;
 
 namespace ExpenseTracker.View
 {
@@ -7,6 +8,7 @@ namespace ExpenseTracker.View
     /// </summary>
     public partial class CreateExpenseEntry : Window
     {
+        public VariableExpense Expense { get; set; }
         public CreateExpenseEntry()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace ExpenseTracker.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // TODO: build the data here....
+            this.DialogResult = true;
             Close();
         }
 

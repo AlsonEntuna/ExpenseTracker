@@ -16,7 +16,7 @@ namespace WPFWrappers.Dialog
 
         public NameDialog(string title)
         {
-            this.Title = title;
+            Title = title;
             InitializeComponent();
         }
 
@@ -34,7 +34,7 @@ namespace WPFWrappers.Dialog
 
         private void InputTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (e.Key == Key.Enter || e.Key == Key.Return)
             {
                 DialogResult = true;
                 Close();

@@ -8,7 +8,7 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
     Width="800"
-    Height="450"
+    Height="650"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />

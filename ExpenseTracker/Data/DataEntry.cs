@@ -6,6 +6,13 @@ namespace ExpenseTracker.Data
     [Serializable]
     public class DataEntry : ViewModel
     {
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set => SetProperty(ref _description, value);
+        }
+
         private float _amount;
         public float Amount
         {

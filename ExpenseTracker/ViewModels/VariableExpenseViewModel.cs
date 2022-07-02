@@ -1,5 +1,9 @@
 ﻿using ExpenseTracker.Data;
+using ExpenseTracker.View;
+using System;
+using System.Windows.Input;
 using WPFWrappers;
+using WPFWrappers.Command;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -11,9 +15,23 @@ namespace ExpenseTracker.ViewModels
             get => _expense;
             set => SetProperty(ref _expense, value);
         }
+
+        #region Commands
+        public ICommand AddEntryCommand => new RelayCommand(f => { AddEntry(); }, f => true);
+        #endregion
+
         public VariableExpenseViewModel()
         {
 
+        }
+
+        private void AddEntry()
+        {
+            CreateExpenseEntry entryWindow = new CreateExpenseEntry();
+            if (entryWindow.ShowDialog() ?? true)
+            {
+
+            }
         }
     }
 }
