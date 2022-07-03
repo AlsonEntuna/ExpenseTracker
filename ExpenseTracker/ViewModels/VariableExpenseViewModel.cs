@@ -1,6 +1,5 @@
 ﻿using ExpenseTracker.Data;
 using ExpenseTracker.View;
-using System;
 using System.Windows.Input;
 using WPFWrappers;
 using WPFWrappers.Command;
@@ -18,6 +17,7 @@ namespace ExpenseTracker.ViewModels
 
         #region Commands
         public ICommand AddEntryCommand => new RelayCommand(f => { AddEntry(); }, f => true);
+        public ICommand GenerateExpenseDataCommand => new RelayCommand(f => { GenerateExpenseData(); }, f => true);
         #endregion
 
         public VariableExpenseViewModel()
@@ -32,6 +32,11 @@ namespace ExpenseTracker.ViewModels
             {
 
             }
+        }
+
+        private void GenerateExpenseData()
+        {
+
         }
     }
 }

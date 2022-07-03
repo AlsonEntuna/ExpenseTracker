@@ -49,7 +49,10 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="20" />
                             </Grid.ColumnDefinitions>
-                            <ComboBox Grid.Column="0" />
+                            <ComboBox
+                                x:Name="CmbBox_Category"
+                                Grid.Column="0"
+                                SelectedIndex="0" />
                             <Button
                                 x:Name="BtnCreateCategory"
                                 Grid.Column="1"

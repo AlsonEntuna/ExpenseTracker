@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Data;
 using System.Windows;
+using WPFWrappers.Dialog;
 
 namespace ExpenseTracker.View
 {
@@ -12,6 +13,13 @@ namespace ExpenseTracker.View
         public CreateExpenseEntry()
         {
             InitializeComponent();
+            // Initialize the value
+            UpdateCategoryList();
+        }
+
+        private void UpdateCategoryList()
+        {
+            CmbBox_Category.ItemsSource = DataHandler.EntryCategories.ToArray();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -28,7 +36,14 @@ namespace ExpenseTracker.View
 
         private void BtnCreateCategory_Click(object sender, RoutedEventArgs e)
         {
-
+            NameDialog dialog = new NameDialog("Enter new Category:");
+            if (dialog.ShowDialog() ?? true)
+            {
+                if (DataHandler.AddCategory(dialog.InputText))
+                {
+                    UpdateCategoryList();
+                }
+            }
         }
     }
 }
