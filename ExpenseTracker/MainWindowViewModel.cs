@@ -18,7 +18,7 @@ namespace ExpenseTracker
         public ICommand CreateVariableExpenseCommand => new RelayCommand(f => { CreateVariableExpense(); }, f => true);
         public ICommand OpenVariableExpenseCommand => new RelayCommand(f => { OpenVariableExpense(); }, f => true);
         #endregion
-        
+
         public MainWindowViewModel()
         {
             // Load the data...
@@ -30,13 +30,13 @@ namespace ExpenseTracker
             CreateVariableExpenseWindow window = new();
             if (window.ShowDialog() ?? true)
             {
-                variableExpenseViewModel.Expense = window.Expense;
+                VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
             }
         }
 
         private void OpenVariableExpense()
         {
-
+            VariableExpenseViewModel.OpenVariableExpense();
         }
     }
 }

@@ -33,6 +33,16 @@
         <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
     </Style>
 
+    <Style x:Key="TextBlockStyle.Header2.Bold" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
+    </Style>
+    <Style x:Key="TextBlockStyle.Header2" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
+    </Style>
+
 
     <Style x:Key="GroupBoxStyle.Main" TargetType="GroupBox">
         <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />

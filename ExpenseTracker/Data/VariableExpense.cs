@@ -46,6 +46,9 @@ namespace ExpenseTracker.Data
 
         public void AddEntry(DataEntry Entry)
         {
+            if (Entry == null)
+                return;
+
             if (!Entries.Contains(Entry))
             {
                 Entries.Add(Entry);

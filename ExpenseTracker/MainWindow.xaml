@@ -8,7 +8,7 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
     Width="800"
-    Height="650"
+    Height="800"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
@@ -22,6 +22,7 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Grid.Column="0"
+                    Command="{Binding OpenVariableExpenseCommand}"
                     Content="Open Budget"
                     Style="{StaticResource ButtonStyle.Main}" />
                 <Button
@@ -32,7 +33,6 @@
             </Grid>
             <GroupBox Header="Entry" Style="{StaticResource GroupBoxStyle.Main}">
                 <StackPanel>
-
                     <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
                 </StackPanel>
             </GroupBox>
