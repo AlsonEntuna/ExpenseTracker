@@ -30,7 +30,7 @@ namespace ExpenseTracker.ViewModels
             CreateExpenseEntry entryWindow = new CreateExpenseEntry();
             if (entryWindow.ShowDialog() ?? true)
             {
-
+                Expense.Entries.Add(entryWindow.Entry);
             }
         }
 

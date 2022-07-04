@@ -9,7 +9,7 @@ namespace ExpenseTracker.View
     /// </summary>
     public partial class CreateExpenseEntry : Window
     {
-        public VariableExpense Expense { get; set; }
+        public DataEntry Entry { get; set; }
         public CreateExpenseEntry()
         {
             InitializeComponent();
@@ -30,7 +30,14 @@ namespace ExpenseTracker.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // TODO: build the data here....
-            this.DialogResult = true;
+            Entry = new DataEntry()
+            {
+                Description = TxtBox_Description.Text,
+                Amount = float.Parse(TxtBox_Amount.Text, System.Globalization.NumberStyles.Float),
+                Category = CmbBox_Category.SelectedItem as DataCategory
+            };
+
+            DialogResult = true;
             Close();
         }
 

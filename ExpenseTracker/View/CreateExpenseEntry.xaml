@@ -38,7 +38,10 @@
                             Grid.Column="0"
                             Style="{StaticResource TextBlockStyle.Form}"
                             Text="Description:" />
-                        <TextBox Grid.Row="0" Grid.Column="1" />
+                        <TextBox
+                            x:Name="TxtBox_Description"
+                            Grid.Row="0"
+                            Grid.Column="1" />
                         <TextBlock
                             Grid.Row="1"
                             Grid.Column="0"
@@ -64,7 +67,10 @@
                             Grid.Column="0"
                             Style="{StaticResource TextBlockStyle.Form}"
                             Text="Amount:" />
-                        <TextBox Grid.Row="2" Grid.Column="1" />
+                        <TextBox
+                            x:Name="TxtBox_Amount"
+                            Grid.Row="2"
+                            Grid.Column="1" />
                     </Grid>
                 </StackPanel>
             </GroupBox>
