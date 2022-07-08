@@ -20,8 +20,8 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _amount, value);
         }
 
-        private DataCategory _category;
-        public DataCategory Category
+        private string _category;
+        public string Category
         {
             get => _category;
             set => SetProperty(ref _category, value);

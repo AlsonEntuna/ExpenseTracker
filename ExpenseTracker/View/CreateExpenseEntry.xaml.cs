@@ -34,7 +34,7 @@ namespace ExpenseTracker.View
             {
                 Description = TxtBox_Description.Text,
                 Amount = float.Parse(TxtBox_Amount.Text, System.Globalization.NumberStyles.Float),
-                Category = CmbBox_Category.SelectedItem as DataCategory
+                Category = CmbBox_Category.SelectedItem as string
             };
 
             DialogResult = true;

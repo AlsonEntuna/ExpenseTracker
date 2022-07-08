@@ -27,6 +27,11 @@ namespace ExpenseTracker.Data
             LoadCategories();
         }
 
+        public static void SaveAppConfiguration()
+        {
+
+        }
+
         private static void LoadCategories()
         {
             string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
