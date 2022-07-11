@@ -11,13 +11,6 @@
     ResizeMode="CanResize"
     SizeToContent="Height"
     mc:Ignorable="d">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/MainStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <StackPanel>
             <GroupBox Header="Info">

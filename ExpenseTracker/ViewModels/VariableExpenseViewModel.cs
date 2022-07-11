@@ -2,6 +2,7 @@
 using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -23,8 +24,9 @@ namespace ExpenseTracker.ViewModels
 
         #region Commands
         public ICommand AddEntryCommand => new RelayCommand(f => { AddEntry(); }, f => true);
-        public ICommand GenerateExpenseDataCommand => new RelayCommand(f => { GenerateExpenseData(); }, f => true);
         public ICommand SaveVariableExpenseCommand => new RelayCommand(f => { SaveVariableExepense(); }, f => true);
+        public ICommand GenerateExpenseReportCommand => new RelayCommand(f => { GenerateExportReport(); }, f => true);
+
         #endregion
 
         public VariableExpenseViewModel()
@@ -39,11 +41,6 @@ namespace ExpenseTracker.ViewModels
             {
                 CurrentDisplayedExpense.Entries.Add(entryWindow.Entry);
             }
-        }
-
-        private void GenerateExpenseData()
-        {
-
         }
 
         internal void OpenVariableExpense()
@@ -63,6 +60,7 @@ namespace ExpenseTracker.ViewModels
             {
                 CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 DataHandler.Config.DataLocation = dialog.FileName;
+                DataHandler.SaveAppConfiguration();
             }
         }
 
@@ -84,12 +82,32 @@ namespace ExpenseTracker.ViewModels
                 {
                     JsonUtils.Serialize(dialog.FileName, CurrentDisplayedExpense);
                     DataHandler.Config.DataLocation = dialog.FileName;
+                    DataHandler.SaveAppConfiguration();
                 }
             }
             else
             {
                 JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentDisplayedExpense);
             }
+        }
+
+        private void GenerateExportReport()
+        {
+            ExpenseDataReportViewModel reportVm = new ExpenseDataReportViewModel();
+            reportVm.Report = GenerateExpenseDataReport();
+            ExpenseDataReportWindow reportWindow = new ExpenseDataReportWindow();
+            reportWindow.DataContext = reportVm;
+            if (reportWindow.ShowDialog() ?? true)
+            {
+                // TODO: Do anything here...
+            }
+
+        }
+        
+        private ExpenseDataReport GenerateExpenseDataReport()
+        {
+            ExpenseDataReport report = new();
+            return report;
         }
 
         private void SaveVariableExepense()

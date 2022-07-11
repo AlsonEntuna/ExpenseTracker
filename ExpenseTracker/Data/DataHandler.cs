@@ -12,11 +12,10 @@ namespace ExpenseTracker.Data
         public static Configuration Config;
         public static List<string> EntryCategories = new();
         private static string _categFile;
-
+        private static readonly string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); 
+        private static readonly string configFile = Path.Combine(assemblyPath, Constants.CONFIG_FILE);
         public static void LoadAppConfiguration()
         {
-            string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string configFile = Path.Combine(assemblyPath, Constants.CONFIG_FILE);
             if (File.Exists(configFile))
                 Config = JsonUtils.Deserialize<Configuration>(configFile);
             else
@@ -29,7 +28,12 @@ namespace ExpenseTracker.Data
 
         public static void SaveAppConfiguration()
         {
+            if (!File.Exists(configFile))
+            {
+                return;
+            }
 
+            JsonUtils.Serialize(configFile, Config);
         }
 
         private static void LoadCategories()

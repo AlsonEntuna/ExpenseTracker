@@ -11,8 +11,10 @@ namespace ExpenseTracker.Data
 
         public static Configuration GenerateConfigFile(string path)
         {
-            Configuration config = new Configuration();
-            config.DataLocation = "";
+            Configuration config = new()
+            {
+                DataLocation = ""
+            };
             JsonUtils.Serialize(path, config);
             return config;
         }

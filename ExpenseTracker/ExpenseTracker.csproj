@@ -21,15 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Fonts\JetBrainsMono-Medium.ttf">
+    <Resource Include="Fonts\JetBrainsMono-Medium.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Fonts\JetBrainsMonoNL-Regular.ttf">
+    <Resource Include="Fonts\JetBrainsMonoNL-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

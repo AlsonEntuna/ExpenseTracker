@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.Data;
+using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
 using System.Windows.Input;
@@ -23,6 +24,15 @@ namespace ExpenseTracker
         {
             // Load the data...
             DataHandler.LoadAppConfiguration();
+            InitializeData();
+        }
+
+        private void InitializeData()
+        {
+            if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
+            {
+                VariableExpenseViewModel.CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
+            }
         }
 
         private void CreateVariableExpense()
