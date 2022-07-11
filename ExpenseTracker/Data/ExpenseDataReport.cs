@@ -10,6 +10,8 @@ namespace ExpenseTracker.Data
         public bool Paid;
         public float Amount;
     }
+
+    [Serializable]
     public class CategoryReport : ViewModel
     {
         public string CategoryName { get; set; }
@@ -27,6 +29,7 @@ namespace ExpenseTracker.Data
             }
         }
 
+        [NonSerialized]
         public EventHandler<PaidEventArgs> PaidEvent;
 
         public CategoryReport(string category, float amount)
@@ -36,6 +39,7 @@ namespace ExpenseTracker.Data
         }
     }
 
+    [Serializable]
     public class ExpenseDataReport : ViewModel
     {
         private float _totalAmount;
@@ -70,6 +74,7 @@ namespace ExpenseTracker.Data
 
         public ExpenseDataReport()
         {
+            // TODO: find a way to rebind eveything from the loaded data.
             CategoryReports = new List<CategoryReport>();
 
             // Inits

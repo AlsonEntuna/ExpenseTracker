@@ -34,6 +34,8 @@ namespace ExpenseTracker.Data
             get => _entires;
             set => SetProperty(ref _entires, value);
         }
+
+        public ExpenseDataReport Report { get; set; }
         public override string ToString()
         {
             return Name;

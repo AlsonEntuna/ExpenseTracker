@@ -24,8 +24,8 @@ namespace ExpenseTracker.ViewModels
         #region Commands
         public ICommand AddEntryCommand => new RelayCommand(AddEntry);
         public ICommand SaveVariableExpenseCommand => new RelayCommand(SaveVariableExepense);
-        public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExportReport);
-
+        public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExpenseReport);
+        public ICommand OpenReportCommand => new RelayCommand(OpenReport);
         #endregion
 
         public VariableExpenseViewModel()
@@ -90,17 +90,29 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        private void GenerateExportReport()
+        private void GenerateExpenseReport()
         {
-            ExpenseDataReportViewModel reportVm = new ExpenseDataReportViewModel();
-            reportVm.Report = GenerateExpenseDataReport();
-            ExpenseDataReportWindow reportWindow = new ExpenseDataReportWindow();
-            reportWindow.DataContext = reportVm;
-            if (reportWindow.ShowDialog() ?? true)
-            {
-                // TODO: Do anything here...
-            }
+            CurrentDisplayedExpense.Report = GenerateExpenseDataReport();
+            OpenExpenseReport(CurrentDisplayedExpense.Report);
+        }
 
+        private void OpenReport()
+        {
+            OpenExpenseReport(CurrentDisplayedExpense.Report);
+        }
+
+        private void OpenExpenseReport(ExpenseDataReport report)
+        {
+            ExpenseDataReportViewModel reportVm = new ExpenseDataReportViewModel
+            {
+                Report = report
+            };
+
+            ExpenseDataReportWindow reportWindow = new ExpenseDataReportWindow
+            {
+                DataContext = reportVm
+            };
+            reportWindow.ShowDialog();
         }
         
         private ExpenseDataReport GenerateExpenseDataReport()

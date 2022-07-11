@@ -29,7 +29,6 @@ namespace ExpenseTracker.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: build the data here....
             Entry = new DataEntry()
             {
                 Description = TxtBox_Description.Text,

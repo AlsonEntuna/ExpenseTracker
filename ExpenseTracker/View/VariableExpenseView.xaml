@@ -71,10 +71,23 @@
                 Command="{Binding AddEntryCommand}"
                 Content="Add Enry"
                 Style="{StaticResource ButtonStyle.Main}" />
-            <Button
-                Command="{Binding GenerateExpenseReportCommand}"
-                Content="Generate Expsense Report"
-                Style="{StaticResource ButtonStyle.Main}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding OpenReportCommand}"
+                    Content="Open Expsense Report"
+                    IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}"
+                    Style="{StaticResource ButtonStyle.Main}" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding GenerateExpenseReportCommand}"
+                    Content="Generate Expsense Report"
+                    Style="{StaticResource ButtonStyle.Main}" />
+            </Grid>
             <DataGrid
                 Height="300"
                 AutoGenerateColumns="False"
@@ -82,7 +95,7 @@
                 ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Command="{Binding }" Header="Remove" />
+                        <MenuItem Command="{Binding}" Header="Remove" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.Columns>
