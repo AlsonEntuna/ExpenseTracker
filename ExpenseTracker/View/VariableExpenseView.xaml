@@ -75,7 +75,16 @@
                 Command="{Binding GenerateExpenseReportCommand}"
                 Content="Generate Expsense Report"
                 Style="{StaticResource ButtonStyle.Main}" />
-            <DataGrid Height="300" ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid
+                Height="300"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding }" Header="Remove" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Description}" Header="Description" />
                     <DataGridTemplateColumn Header="Category">

@@ -2,9 +2,9 @@
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.Windows.Input;
 using WPFWrappers;
-using WPFWrappers.Command;
 
 namespace ExpenseTracker
 {
@@ -16,8 +16,8 @@ namespace ExpenseTracker
         #endregion
 
         #region Commands
-        public ICommand CreateVariableExpenseCommand => new RelayCommand(f => { CreateVariableExpense(); }, f => true);
-        public ICommand OpenVariableExpenseCommand => new RelayCommand(f => { OpenVariableExpense(); }, f => true);
+        public ICommand CreateVariableExpenseCommand => new RelayCommand(CreateVariableExpense);
+        public ICommand OpenVariableExpenseCommand => new RelayCommand(OpenVariableExpense);
         #endregion
 
         public MainWindowViewModel()

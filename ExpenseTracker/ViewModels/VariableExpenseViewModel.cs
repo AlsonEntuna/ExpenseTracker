@@ -2,12 +2,11 @@
 using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
-using System;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
 using WPFWrappers;
-using WPFWrappers.Command;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -23,9 +22,9 @@ namespace ExpenseTracker.ViewModels
         public List<string> Categories => DataHandler.EntryCategories;
 
         #region Commands
-        public ICommand AddEntryCommand => new RelayCommand(f => { AddEntry(); }, f => true);
-        public ICommand SaveVariableExpenseCommand => new RelayCommand(f => { SaveVariableExepense(); }, f => true);
-        public ICommand GenerateExpenseReportCommand => new RelayCommand(f => { GenerateExportReport(); }, f => true);
+        public ICommand AddEntryCommand => new RelayCommand(AddEntry);
+        public ICommand SaveVariableExpenseCommand => new RelayCommand(SaveVariableExepense);
+        public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExportReport);
 
         #endregion
 
@@ -107,6 +106,11 @@ namespace ExpenseTracker.ViewModels
         private ExpenseDataReport GenerateExpenseDataReport()
         {
             ExpenseDataReport report = new();
+            foreach (DataEntry entry in CurrentDisplayedExpense.Entries)
+            {
+                report.TotalAmount += entry.Amount;
+                report.AddCategoryReport(entry.Category, entry.Amount);
+            }
             return report;
         }
 

@@ -45,7 +45,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource TextBlockStyle.Header2}"
-                        Text="{Binding Report.PaidAmount, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Report.PaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
@@ -55,10 +55,14 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource TextBlockStyle.Header2}"
-                        Text="{Binding Report.UnPaidAmount, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
-            <DataGrid Height="500" ItemsSource="{Binding Report.CategoryReports}">
+            <DataGrid
+                Height="500"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                ItemsSource="{Binding Report.CategoryReports}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CategoryName}" Header="Category" />
                     <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
