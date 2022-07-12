@@ -11,6 +11,7 @@
     Height="700"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
+    Background="{StaticResource Brush.Main.Background}"
     SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>

@@ -28,6 +28,7 @@ namespace ExpenseTracker.ViewModels
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
         #endregion
 
+        public bool IsNewExpense { get; set; }
         public VariableExpenseViewModel()
         {
 
@@ -60,12 +61,13 @@ namespace ExpenseTracker.ViewModels
                 CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 DataHandler.Config.DataLocation = dialog.FileName;
                 DataHandler.SaveAppConfiguration();
+                IsNewExpense = false;
             }
         }
 
         internal void SaveCurrentExpenseData()
         {
-            if (string.IsNullOrEmpty(DataHandler.Config.DataLocation))
+            if (string.IsNullOrEmpty(DataHandler.Config.DataLocation) || IsNewExpense)
             {
                 SaveFileDialog dialog = new()
                 {
@@ -82,6 +84,7 @@ namespace ExpenseTracker.ViewModels
                     JsonUtils.Serialize(dialog.FileName, CurrentDisplayedExpense);
                     DataHandler.Config.DataLocation = dialog.FileName;
                     DataHandler.SaveAppConfiguration();
+                    IsNewExpense = false;
                 }
             }
             else
@@ -133,7 +136,7 @@ namespace ExpenseTracker.ViewModels
 
         public void UpdateEventListeners()
         {
-            CurrentDisplayedExpense.Report.UpdatePaidEventListeners();
+            CurrentDisplayedExpense?.Report?.UpdatePaidEventListeners();
         }
     }
 }

@@ -43,6 +43,7 @@ namespace ExpenseTracker
             if (window.ShowDialog() ?? true)
             {
                 VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
+                VariableExpenseViewModel.IsNewExpense = true;
             }
         }
 
