@@ -9,6 +9,9 @@
     Title="Expense Tracker"
     Width="800"
     Height="800"
+    Background="{StaticResource Brush.Main.Background}"
+    Closing="Window_Closing"
+    SizeToContent="Height"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
@@ -31,11 +34,7 @@
                     Content="Create Variable Expense"
                     Style="{StaticResource ButtonStyle.Main}" />
             </Grid>
-            <GroupBox Header="Entry" Style="{StaticResource GroupBoxStyle.Main}">
-                <StackPanel>
-                    <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
-                </StackPanel>
-            </GroupBox>
+            <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
         </StackPanel>
     </Grid>
 </Window>

@@ -7,9 +7,16 @@ namespace ExpenseTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _vm;
         public MainWindow()
         {
             InitializeComponent();
+            _vm = DataContext as MainWindowViewModel;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _vm?.SaveData();
         }
     }
 }

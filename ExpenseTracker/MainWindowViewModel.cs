@@ -3,6 +3,7 @@ using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
 using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Windows.Input;
 using WPFWrappers;
 
@@ -48,6 +49,11 @@ namespace ExpenseTracker
         private void OpenVariableExpense()
         {
             VariableExpenseViewModel.OpenVariableExpense();
+        }
+
+        internal void SaveData()
+        {
+            VariableExpenseViewModel.SaveCurrentExpenseData();
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
     <!--  Button  -->
     <Style x:Key="ButtonStyle.Main" TargetType="Button">
         <Setter Property="Height" Value="30" />
@@ -31,20 +34,24 @@
     <Style x:Key="TextBlockStyle.Header1.Bold" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="28" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
     </Style>
     <Style x:Key="TextBlockStyle.Header1" TargetType="TextBlock">
         <Setter Property="FontSize" Value="28" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
     </Style>
 
     <Style x:Key="TextBlockStyle.Header2.Bold" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontSize" Value="24" />
         <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
     </Style>
     <Style x:Key="TextBlockStyle.Header2" TargetType="TextBlock">
         <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Regular}" />
     </Style>
 

@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+    <Compile Remove="Command\**" />
+    <EmbeddedResource Remove="Command\**" />
+    <None Remove="Command\**" />
+    <Page Remove="Command\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Command\" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
   </ItemGroup>
 
 </Project>
