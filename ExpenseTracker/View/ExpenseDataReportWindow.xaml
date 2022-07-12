@@ -59,7 +59,7 @@
                 </Grid>
             </GroupBox>
             <DataGrid
-                Height="500"
+                Height="300"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 ItemsSource="{Binding Report.CategoryReports}">
@@ -78,7 +78,7 @@
             <Button
                 Click="Button_Click"
                 Content="Done"
-                Style="{StaticResource ButtonStyle.Main}" />
+                Style="{StaticResource ButtonStyle.Main.Large}" />
         </StackPanel>
     </Grid>
 </Window>

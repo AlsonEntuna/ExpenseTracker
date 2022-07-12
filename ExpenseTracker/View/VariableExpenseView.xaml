@@ -64,7 +64,7 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource TextBlockStyle.Header2}"
-                        Text="{Binding CurrentDisplayedExpense.CycleEndDate, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding CurrentDisplayedExpense.EndDate, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
             <Button

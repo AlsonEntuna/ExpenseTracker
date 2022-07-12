@@ -32,6 +32,7 @@ namespace ExpenseTracker
             if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
             {
                 VariableExpenseViewModel.CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
+                variableExpenseViewModel.UpdateEventListeners();
             }
         }
 

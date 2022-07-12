@@ -74,7 +74,6 @@ namespace ExpenseTracker.Data
 
         public ExpenseDataReport()
         {
-            // TODO: find a way to rebind eveything from the loaded data.
             CategoryReports = new List<CategoryReport>();
 
             // Inits
@@ -117,6 +116,14 @@ namespace ExpenseTracker.Data
                 {
                     report.Amount += amount;
                 }
+            }
+        }
+
+        public void UpdatePaidEventListeners()
+        {
+            foreach (CategoryReport report in CategoryReports)
+            {
+                report.PaidEvent += OnPaidEvent;
             }
         }
 

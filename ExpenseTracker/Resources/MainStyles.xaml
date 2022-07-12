@@ -19,6 +19,11 @@
         </Setter>-->
     </Style>
 
+    <Style x:Key="ButtonStyle.Main.Large" TargetType="Button">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="FontFamily" Value="{StaticResource Jetbrains-Mono-Medium}" />
+    </Style>
+
     <!--  TextBlock  -->
     <Style x:Key="TextBlockStyle.Form" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />

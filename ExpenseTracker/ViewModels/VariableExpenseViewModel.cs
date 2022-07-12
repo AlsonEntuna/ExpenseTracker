@@ -130,5 +130,10 @@ namespace ExpenseTracker.ViewModels
         {
             SaveCurrentExpenseData();
         }
+
+        public void UpdateEventListeners()
+        {
+            CurrentDisplayedExpense.Report.UpdatePaidEventListeners();
+        }
     }
 }

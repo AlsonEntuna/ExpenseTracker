@@ -28,6 +28,8 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _cycleEndDate, value);
         }
 
+        public string EndDate => CycleEndDate.ToLongDateString();
+
         private ObservableCollection<DataEntry> _entires = new ObservableCollection<DataEntry>();
         public ObservableCollection<DataEntry> Entries
         {
