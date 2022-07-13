@@ -63,7 +63,8 @@
                 Height="300"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
-                ItemsSource="{Binding Report.CategoryReports}">
+                ItemsSource="{Binding Report.CategoryReports}"
+                Style="{StaticResource DataGridStyle.Main}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CategoryName}" Header="Category" />
                     <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
@@ -77,6 +78,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button
+                Margin="5"
                 Click="Button_Click"
                 Content="Done"
                 Style="{StaticResource ButtonStyle.Main.Large}" />

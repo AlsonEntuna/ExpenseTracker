@@ -12,12 +12,34 @@
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     SizeToContent="Height"
+    WindowStyle="ThreeDBorderWindow"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
         <StackPanel>
+            <Grid Background="{StaticResource Brush.Main.Header_Alt}">
+                <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="Expense Tracker" />
+            </Grid>
+            <Border
+                Width="500"
+                Height="5"
+                Margin="3"
+                HorizontalAlignment="Left"
+                Background="{StaticResource Brush.Main.Text}" />
+            <Border
+                Width="600"
+                Height="5"
+                Margin="3"
+                HorizontalAlignment="Left"
+                Background="{StaticResource Brush.Main.Text}" />
+            <Border
+                Width="700"
+                Height="5"
+                Margin="3"
+                HorizontalAlignment="Left"
+                Background="{StaticResource Brush.Main.Text}" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -25,11 +47,13 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Grid.Column="0"
+                    Margin="5"
                     Command="{Binding OpenVariableExpenseCommand}"
                     Content="Open Budget"
                     Style="{StaticResource ButtonStyle.Main}" />
                 <Button
                     Grid.Column="1"
+                    Margin="5"
                     Command="{Binding CreateVariableExpenseCommand}"
                     Content="Create Variable Expense"
                     Style="{StaticResource ButtonStyle.Main}" />
