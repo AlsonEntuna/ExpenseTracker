@@ -12,12 +12,15 @@
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
     SizeToContent="Height"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <GroupBox>
-                <Grid>
+            <Border Background="{StaticResource Brush.Main.Background.Alt}" CornerRadius="10">
+                <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
@@ -58,25 +61,31 @@
                         Style="{StaticResource TextBlockStyle.Header2}"
                         Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
-            </GroupBox>
-            <DataGrid
-                Height="300"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False"
-                ItemsSource="{Binding Report.CategoryReports}"
-                Style="{StaticResource DataGridStyle.Main}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding CategoryName}" Header="Category" />
-                    <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
-                    <DataGridTemplateColumn Header="Paid">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+            </Border>
+            <Border
+                Margin="0,10,0,0"
+                Background="{StaticResource Brush.Border.Background}"
+                CornerRadius="10">
+                <DataGrid
+                    Height="300"
+                    Margin="30"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    ItemsSource="{Binding Report.CategoryReports}"
+                    Style="{StaticResource DataGridStyle.Main}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding CategoryName}" Header="Category" />
+                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                        <DataGridTemplateColumn Header="Paid">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
             <Button
                 Margin="5"
                 Click="Button_Click"

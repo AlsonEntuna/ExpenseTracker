@@ -1,5 +1,6 @@
 ﻿using ExpenseTracker.Data;
 using System.Windows;
+using System.Windows.Input;
 using WPFWrappers.Dialog;
 
 namespace ExpenseTracker.View
@@ -20,11 +21,6 @@ namespace ExpenseTracker.View
         private void UpdateCategoryList()
         {
             CmbBox_Category.ItemsSource = DataHandler.EntryCategories.ToArray();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            DialogResult = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,6 +46,18 @@ namespace ExpenseTracker.View
                     UpdateCategoryList();
                 }
             }
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
+
+        private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
         }
     }
 }

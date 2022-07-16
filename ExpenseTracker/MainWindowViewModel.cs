@@ -40,7 +40,8 @@ namespace ExpenseTracker
         private void CreateVariableExpense()
         {
             CreateVariableExpenseWindow window = new();
-            if (window.ShowDialog() ?? true)
+            window.ShowDialog();
+            if (window.DialogResult == true)
             {
                 VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
                 VariableExpenseViewModel.IsNewExpense = true;

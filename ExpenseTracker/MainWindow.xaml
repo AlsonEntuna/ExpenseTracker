@@ -7,39 +7,60 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
-    Width="800"
-    Height="800"
+    Width="1720"
+    Height="1000"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
-    SizeToContent="Height"
-    WindowStyle="ThreeDBorderWindow"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
-        <StackPanel>
-            <Grid Background="{StaticResource Brush.Main.Header_Alt}">
-                <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="Expense Tracker" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Border Panel.ZIndex="-1" Background="{StaticResource Brush.Main.Background.Alt}" />
+            <Grid Grid.Column="0" Panel.ZIndex="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <Button
+                    x:Name="Btn_Exit"
+                    Grid.Row="15"
+                    Width="80"
+                    Height="80"
+                    Click="Btn_Exit_Click"
+                    Style="{StaticResource ButtonStyle.Main}">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{StaticResource ExitIcon}" />
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
             </Grid>
-            <Border
-                Width="500"
-                Height="5"
-                Margin="3"
-                HorizontalAlignment="Left"
-                Background="{StaticResource Brush.Main.Text}" />
-            <Border
-                Width="600"
-                Height="5"
-                Margin="3"
-                HorizontalAlignment="Left"
-                Background="{StaticResource Brush.Main.Text}" />
-            <Border
-                Width="700"
-                Height="5"
-                Margin="3"
-                HorizontalAlignment="Left"
-                Background="{StaticResource Brush.Main.Text}" />
+        </Grid>
+        <StackPanel Grid.Column="1" Margin="20">
+            <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="Expense Tracker" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

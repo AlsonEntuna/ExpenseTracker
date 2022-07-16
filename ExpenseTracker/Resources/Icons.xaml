@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Grid x:Key="ExitIcon">
+        <Grid
+            Width="64"
+            Height="64"
+            Visibility="Collapsed" />
+        <Path
+            Width="64"
+            Height="64"
+            Margin="0,0,0,0"
+            Data="M12.300049,9.3000031L16,13 19.700012,9.3000031 22.700012,12.300003 19,16 22.700012,19.699997 19.700012,22.699997 16,19 12.300049,22.699997 9.3000488,19.699997 13,16 9.3000488,12.300003z M16,3.5999985C9.2000122,3.5999985 3.6000366,9.1999969 3.6000366,16 3.6000366,22.800003 9.2000122,28.400002 16,28.400002 22.800049,28.400002 28.400024,22.900002 28.400024,16 28.400024,9.0999985 22.800049,3.5999985 16,3.5999985z M16,0C24.800049,0 32,7.1999969 32,16 32,24.800003 24.800049,32 16,32 7.2000122,32 0,24.800003 0,16 0,7.1999969 7.2000122,0 16,0z"
+            Fill="{StaticResource Brush.Main.Text}"
+            RenderTransformOrigin="0.5,0.5"
+            Stretch="Uniform">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <RotateTransform Angle="0" />
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+    </Grid>
+</ResourceDictionary>

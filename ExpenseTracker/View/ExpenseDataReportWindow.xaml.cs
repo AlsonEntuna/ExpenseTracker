@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker.View
 {
@@ -16,6 +17,12 @@ namespace ExpenseTracker.View
         {
             DialogResult = true;
             Close();
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

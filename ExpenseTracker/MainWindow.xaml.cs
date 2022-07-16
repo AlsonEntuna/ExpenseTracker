@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker
 {
@@ -17,6 +18,17 @@ namespace ExpenseTracker
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _vm?.SaveData();
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void Btn_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

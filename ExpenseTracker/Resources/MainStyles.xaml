@@ -4,8 +4,8 @@
     </ResourceDictionary.MergedDictionaries>
     <!--  Button  -->
     <Style x:Key="ButtonStyle.Main" TargetType="Button">
-        <Setter Property="Height" Value="30" />
-        <Setter Property="Background" Value="{StaticResource Brush.Main.Header}" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="TextElement.FontFamily" Value="/Fonts/#JetBrains Mono NL" />
         <Setter Property="Template">
@@ -13,7 +13,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border
                         Width="auto"
-                        Height="30"
+                        Height="{TemplateBinding Height}"
                         Background="{TemplateBinding Background}"
                         CornerRadius="12"
                         TextBlock.Foreground="{TemplateBinding Foreground}">
@@ -25,14 +25,14 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource Brush.Main.Header_Alt}" />
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Alt}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="ButtonStyle.Main.Large" TargetType="Button">
         <Setter Property="Height" Value="50" />
-        <Setter Property="Background" Value="{StaticResource Brush.Main.Header}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="TextElement.FontFamily" Value="/Fonts/#JetBrains Mono NL" />
         <Setter Property="Template">
@@ -58,8 +58,16 @@
     </Style>
 
     <!--  TextBlock  -->
+    <Style x:Key="TextBlockStyle.Title" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+    </Style>
     <Style x:Key="TextBlockStyle.Form" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
     </Style>
     <Style x:Key="TextBlockStyle.Header1.Bold" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
