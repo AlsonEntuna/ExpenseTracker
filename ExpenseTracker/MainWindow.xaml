@@ -27,28 +27,53 @@
             <Border Panel.ZIndex="-1" Background="{StaticResource Brush.Main.Background.Alt}" />
             <Grid Grid.Column="0" Panel.ZIndex="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition Height="80" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+                <Button
+                    x:Name="Btn_Open"
+                    Grid.Row="1"
+                    Width="70"
+                    Height="70"
+                    Click="Btn_Open_Click"
+                    Style="{StaticResource ButtonStyle.Main}">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{StaticResource OpenIcon}" />
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+
+                <Button
+                    x:Name="Btn_New"
+                    Grid.Row="2"
+                    Width="70"
+                    Height="70"
+                    Click="Btn_New_Click"
+                    Style="{StaticResource ButtonStyle.Main}">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{StaticResource NewIcon}" />
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+
                 <Button
                     x:Name="Btn_Exit"
                     Grid.Row="15"
-                    Width="80"
-                    Height="80"
+                    Width="70"
+                    Height="70"
                     Click="Btn_Exit_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>
@@ -61,24 +86,6 @@
         </Grid>
         <StackPanel Grid.Column="1" Margin="20">
             <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="Expense Tracker" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button
-                    Grid.Column="0"
-                    Margin="5"
-                    Command="{Binding OpenVariableExpenseCommand}"
-                    Content="Open Budget"
-                    Style="{StaticResource ButtonStyle.Main}" />
-                <Button
-                    Grid.Column="1"
-                    Margin="5"
-                    Command="{Binding CreateVariableExpenseCommand}"
-                    Content="Create Variable Expense"
-                    Style="{StaticResource ButtonStyle.Main}" />
-            </Grid>
             <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
         </StackPanel>
     </Grid>

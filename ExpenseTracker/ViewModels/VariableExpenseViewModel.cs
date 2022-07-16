@@ -3,6 +3,7 @@ using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -19,6 +20,13 @@ namespace ExpenseTracker.ViewModels
             set => SetProperty(ref _currentDisplayedExpense, value);
         }
 
+        private DataEntry _selectedDataEntry;
+        public DataEntry SelectedDataEntry
+        {
+            get => _selectedDataEntry;
+            set => SetProperty(ref _selectedDataEntry, value);
+        }
+
         public List<string> Categories => DataHandler.EntryCategories;
 
         #region Commands
@@ -26,6 +34,7 @@ namespace ExpenseTracker.ViewModels
         public ICommand SaveVariableExpenseCommand => new RelayCommand(SaveVariableExepense);
         public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExpenseReport);
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
+        public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         #endregion
 
         public bool IsNewExpense { get; set; }
@@ -127,6 +136,14 @@ namespace ExpenseTracker.ViewModels
                 report.AddCategoryReport(entry.Category, entry.Amount);
             }
             return report;
+        }
+
+        private void RemoveEntry()
+        {
+            if (SelectedDataEntry != null)
+            {
+                CurrentDisplayedExpense.Entries.Remove(SelectedDataEntry);
+            }
         }
 
         private void SaveVariableExepense()

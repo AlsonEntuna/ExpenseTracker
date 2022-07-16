@@ -30,5 +30,15 @@ namespace ExpenseTracker
         {
             Close();
         }
+
+        private void Btn_Open_Click(object sender, RoutedEventArgs e)
+        {
+            _vm?.OpenVariableExpense();
+        }
+
+        private void Btn_New_Click(object sender, RoutedEventArgs e)
+        {
+            _vm?.CreateVariableExpense();
+        }
     }
 }
