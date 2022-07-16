@@ -34,7 +34,8 @@
                     <TextBox
                         x:Name="Txtbox_Name"
                         Grid.Row="0"
-                        Grid.Column="1" />
+                        Grid.Column="1"
+                        Style="{StaticResource TextBoxkStyle.Title}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
@@ -44,7 +45,8 @@
                     <TextBox
                         x:Name="Txtbox_Description"
                         Grid.Row="1"
-                        Grid.Column="1" />
+                        Grid.Column="1"
+                        Style="{StaticResource TextBoxkStyle.Title}" />
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"

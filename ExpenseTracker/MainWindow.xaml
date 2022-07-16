@@ -12,7 +12,7 @@
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
-    ResizeMode="NoResize"
+    ResizeMode="CanResizeWithGrip"
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.DataContext>
