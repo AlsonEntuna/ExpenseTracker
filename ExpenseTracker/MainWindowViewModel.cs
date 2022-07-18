@@ -2,6 +2,7 @@
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
+using System;
 using WPFWrappers;
 
 namespace ExpenseTracker
@@ -24,8 +25,19 @@ namespace ExpenseTracker
         {
             if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
             {
-                VariableExpenseViewModel.CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
-                variableExpenseViewModel.UpdateEventListeners();
+                try
+                {
+                    VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
+                    if (deserializedData == null)
+                        return;
+                    VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
+                    variableExpenseViewModel.UpdateEventListeners();
+                }
+                catch(Exception e)
+                {
+                    DataHandler.Config.DataLocation = string.Empty;
+                    // TODO: have a logging system here...
+                }
             }
         }
 
