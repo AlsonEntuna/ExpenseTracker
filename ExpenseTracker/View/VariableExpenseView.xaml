@@ -118,10 +118,10 @@
                 <TextBlock
                     Margin="15,15,0,0"
                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                    Text="Entries" />
+                    Text="Expenses/Bills" />
                 <Button
                     Width="200"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Left"
                     Command="{Binding AddEntryCommand}"
                     Content="Add Entry"
                     Style="{StaticResource ButtonStyle.Main}" />
