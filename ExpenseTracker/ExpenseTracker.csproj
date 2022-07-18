@@ -6,11 +6,22 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>logo.ico</ApplicationIcon>
+    <StartupObject>ExpenseTracker.App</StartupObject>
+    <Authors>John Alson Entuna</Authors>
+    <PackageProjectUrl>https://github.com/AlsonEntuna/ExpenseTracker</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/AlsonEntuna/ExpenseTracker</RepositoryUrl>
+    <RepositoryType />
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Fonts\MonoMedium.ttf" />
     <None Remove="Fonts\MonoRegular.ttf" />
+    <None Include="..\Assets\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
