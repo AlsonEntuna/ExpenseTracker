@@ -56,12 +56,14 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
     <!--  TexBox  -->
     <Style x:Key="TextBoxkStyle.Title" TargetType="TextBox">
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
         <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono Regular" />
     </Style>
+
     <!--  TextBlock  -->
     <Style x:Key="TextBlockStyle.Title" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
@@ -107,5 +109,31 @@
     <Style x:Key="DataGridStyle.Main" TargetType="DataGrid">
         <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono Medium" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
+    </Style>
+    <Style TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Border
+                            Padding="0"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border Background="{StaticResource Brush.Button.Main}">
+                                <ContentPresenter
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

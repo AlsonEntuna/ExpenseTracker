@@ -134,6 +134,7 @@
                         Margin="30"
                         AutoGenerateColumns="False"
                         CanUserAddRows="False"
+                        GridLinesVisibility="None"
                         ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
                         SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource DataGridStyle.Main}">
