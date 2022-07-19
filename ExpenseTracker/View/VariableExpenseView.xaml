@@ -7,9 +7,10 @@
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
+    x:Name="RootWindow"
     d:DataContext="{d:DesignInstance viewmodel:VariableExpenseViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="600"
+    d:DesignHeight="800"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -130,40 +131,61 @@
                     Margin="5"
                     Background="{StaticResource Brush.Border.Background}"
                     CornerRadius="20">
-                    <DataGrid
-                        Height="300"
-                        Margin="30"
-                        AutoGenerateColumns="False"
-                        CanUserAddRows="False"
-                        CanUserResizeColumns="True"
-                        GridLinesVisibility="None"
-                        HeadersVisibility="Column"
-                        ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
-                        SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource DataGridStyle.Main}">
-                        <DataGrid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem
-                                    Command="{Binding RemoveEntryCommand}"
-                                    CommandParameter="{}"
-                                    Header="Remove" />
-                            </ContextMenu>
-                        </DataGrid.ContextMenu>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                                Width="200"
-                                Binding="{Binding Description}"
-                                Header="Description" />
-                            <DataGridTemplateColumn Width="150" Header="Category">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <StackPanel>
+                        <Grid Margin="30,30,30,-15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Search:" />
+                            <TextBox
+                                x:Name="TxtBox_Search"
+                                Grid.Column="1"
+                                VerticalContentAlignment="Center"
+                                Style="{StaticResource TextBoxkStyle.Title}"
+                                TextChanged="TxtBox_Search_TextChanged">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Return" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
+                                    <KeyBinding Key="Enter" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </Grid>
+                        <DataGrid
+                            x:Name="DataGrid_Expenses"
+                            Height="500"
+                            Margin="30"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            CanUserResizeColumns="True"
+                            GridLinesVisibility="None"
+                            HeadersVisibility="Column"
+                            ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource DataGridStyle.Main}">
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem
+                                        Command="{Binding RemoveEntryCommand}"
+                                        CommandParameter="{}"
+                                        Header="Remove" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="200"
+                                    Binding="{Binding Description}"
+                                    Header="Description" />
+                                <DataGridTemplateColumn Width="150" Header="Category">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
                 </Border>
             </StackPanel>
         </Border>

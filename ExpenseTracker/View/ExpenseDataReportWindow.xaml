@@ -13,13 +13,13 @@
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"
     MouseDown="Window_MouseDown"
-    ResizeMode="NoResize"
+    ResizeMode="CanResizeWithGrip"
     SizeToContent="Height"
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <Border Background="{StaticResource Brush.Main.Background}" CornerRadius="10">
+            <Border Background="{StaticResource Brush.Main.Background.Alt}" CornerRadius="10">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />

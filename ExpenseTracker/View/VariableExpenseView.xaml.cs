@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using ExpenseTracker.Data;
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExpenseTracker.View
 {
@@ -23,6 +15,32 @@ namespace ExpenseTracker.View
         public VariableExpenseView()
         {
             InitializeComponent();
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (string.IsNullOrEmpty(TxtBox_Search.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return (item as DataEntry).Description.Contains(TxtBox_Search.Text, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        public ICommand SearchCommand => new RelayCommand(Search);
+
+        private void Search()
+        {
+            CollectionView collectionView = (CollectionView)CollectionViewSource.GetDefaultView(DataGrid_Expenses.ItemsSource);
+            collectionView.Filter = UserFilter;
+            CollectionViewSource.GetDefaultView(DataGrid_Expenses.ItemsSource).Refresh();
+        }
+
+        private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Search();
         }
     }
 }
