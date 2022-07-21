@@ -13,6 +13,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/AlsonEntuna/ExpenseTracker</RepositoryUrl>
     <RepositoryType />
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
