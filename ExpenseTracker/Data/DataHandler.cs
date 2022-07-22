@@ -1,6 +1,5 @@
 ﻿using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -13,20 +12,14 @@ namespace ExpenseTracker.Data
         public static Configuration Config;
         public static List<string> EntryCategories = new();
         private static string _categFile;
-        private static readonly string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExpenseTracker");
-        private static readonly string configFile = Path.Combine(appDataPath, Constants.CONFIG_FILE);
+        private static readonly string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); 
+        private static readonly string configFile = Path.Combine(assemblyPath, Constants.CONFIG_FILE);
         public static void LoadAppConfiguration()
         {
             if (File.Exists(configFile))
-            {
                 Config = JsonUtils.Deserialize<Configuration>(configFile);
-            }
             else
             {
-                if (!Directory.Exists(appDataPath))
-                {
-                    Directory.CreateDirectory(appDataPath);
-                }
                 Config = Configuration.GenerateConfigFile(configFile);
             }
 
@@ -45,7 +38,8 @@ namespace ExpenseTracker.Data
 
         private static void LoadCategories()
         {
-            _categFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+            string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            _categFile = Path.Combine(assemblyPath, Constants.CATEGORIES_FILE);
             if (File.Exists(_categFile))
                 EntryCategories = JsonUtils.DeserializeArray<List<string>>(_categFile);
             else
@@ -64,7 +58,8 @@ namespace ExpenseTracker.Data
         {
             if (string.IsNullOrEmpty(_categFile))
             {
-                _categFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+                string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                _categFile = Path.Combine(assemblyPath, Constants.CATEGORIES_FILE);
             }
             
             if (!EntryCategories.Contains(category))
