@@ -25,6 +25,11 @@ namespace ExpenseTracker.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtBox_Description.Text == string.Empty || TxtBox_Amount.Text == string.Empty)
+            {
+                MessageBox.Show("Please supply all necessary information", "Input Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
             Entry = new DataEntry()
             {
                 Description = TxtBox_Description.Text,
