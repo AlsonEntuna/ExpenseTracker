@@ -72,6 +72,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
                     ItemsSource="{Binding Report.CategoryReports}"
+                    SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource DataGridStyle.Main}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding CategoryName}" Header="Category" />
@@ -80,6 +81,24 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Comments">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Comments, UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Partial Payments">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--  TODO: Fix This  -->
+                                    <Button
+                                        Command="{Binding Path=DataContext.Report.AddPartialPaymentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                        Content="Add Partial Payment"
+                                        Style="{StaticResource ButtonStyle.Element}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

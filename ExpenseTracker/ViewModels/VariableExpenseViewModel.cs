@@ -3,7 +3,6 @@ using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
