@@ -58,7 +58,7 @@ namespace ExpenseTracker.Data
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {
-                PartialPayment += float.Parse(numDialog.Txt_Input.Text);
+                PartialPayment += float.Parse(numDialog.Txt_Value.Text);
             }
         }
     }

@@ -13,7 +13,7 @@ namespace ExpenseTracker.Dialog
             InitializeComponent();
         }
 
-        private void Txt_Input_KeyDown(object sender, KeyEventArgs e)
+        private void Input_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {

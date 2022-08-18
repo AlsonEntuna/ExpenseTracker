@@ -91,10 +91,9 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Partial Payments">
+                        <DataGridTemplateColumn Header="Add Partial">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <!--  TODO: Fix This  -->
                                     <Button
                                         Command="{Binding Path=DataContext.Report.AddPartialPaymentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
                                         Content="Add Partial Payment"
@@ -102,6 +101,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>

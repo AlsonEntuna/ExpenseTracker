@@ -15,13 +15,16 @@
     <Grid>
         <StackPanel>
             <TextBlock
-                x:Name="Txt_Input"
-                KeyDown="Txt_Input_KeyDown"
+                KeyDown="Input_KeyDown"
                 Style="{StaticResource TextBlockStyle.Form}"
-                Text="Enter Value" />
-            <TextBox />
+                Text="Enter Value:" />
+            <TextBox
+                x:Name="Txt_Value"
+                Height="30"
+                VerticalContentAlignment="Center" />
             <Button
                 x:Name="Btn_Done"
+                Margin="0,10,0,0"
                 Click="Btn_Done_Click"
                 Content="Done"
                 Style="{StaticResource ButtonStyle.Main}" />
