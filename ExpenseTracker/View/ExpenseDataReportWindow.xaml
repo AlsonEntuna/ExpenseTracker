@@ -75,33 +75,33 @@
                     SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}"
                     Style="{StaticResource DataGridStyle.Main}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding CategoryName}" Header="Category" />
-                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
-                        <DataGridTemplateColumn Header="Paid">
+                        <DataGridTextColumn Width="100" Binding="{Binding CategoryName}" Header="Category" />
+                        <DataGridTextColumn Width="100" Binding="{Binding Amount}" Header="Amount" />
+                        <DataGridTemplateColumn Width="100" Header="Paid">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Comments">
+                        <DataGridTemplateColumn Width="100" Header="Comments">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Comments, UpdateSourceTrigger=PropertyChanged}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Add Partial">
+                        <DataGridTemplateColumn Width="100" Header="Add Partial">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
                                         Command="{Binding Path=DataContext.Report.AddPartialPaymentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                        Content="Add Partial Payment"
+                                        Content="Add"
                                         Style="{StaticResource ButtonStyle.Element}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
+                        <DataGridTextColumn  Binding="{Binding PartialPayment}" Header="Partial Payment" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>

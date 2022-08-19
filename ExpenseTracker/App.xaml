@@ -7,9 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/MainStyles.xaml" />
-                <ResourceDictionary Source="Resources/Brushes.xaml" />
-                <ResourceDictionary Source="Resources/Icons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WPFWrappers;component/Resources/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

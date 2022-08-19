@@ -1,9 +1,9 @@
-﻿using ExpenseTracker.Dialog;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using WpfWrappers.Dialog;
 using WPFWrappers;
 
 namespace ExpenseTracker.Data
@@ -58,7 +58,7 @@ namespace ExpenseTracker.Data
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {
-                PartialPayment += float.Parse(numDialog.Txt_Value.Text);
+                PartialPayment += float.Parse(numDialog.TextValue);
             }
         }
     }

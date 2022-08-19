@@ -1,13 +1,14 @@
 ﻿using System.Windows;
  using System.Windows.Input;
 
-namespace ExpenseTracker.Dialog
+namespace WpfWrappers.Dialog
 {
     /// <summary>
     /// Interaction logic for NumDialog.xaml
     /// </summary>
     public partial class NumDialog : Window
     {
+        public string TextValue => Txt_Value.Text;
         public NumDialog()
         {
             InitializeComponent();

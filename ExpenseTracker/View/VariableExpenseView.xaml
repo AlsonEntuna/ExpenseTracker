@@ -154,6 +154,7 @@
                             x:Name="DataGrid_Expenses"
                             Height="500"
                             Margin="30"
+                            CanUserSortColumns="True"
                             AutoGenerateColumns="False"
                             CanUserAddRows="False"
                             CanUserResizeColumns="True"
