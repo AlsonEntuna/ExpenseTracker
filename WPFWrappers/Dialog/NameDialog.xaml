@@ -7,13 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="NameDialog"
     Width="300"
+    Background="{StaticResource Brush.Main.Background}"
     Height="70"
     Closing="Window_Closing"
     ResizeMode="NoResize"
     SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
-        <GroupBox x:Name="TitleHeader" Header="Enter Name Here...">
+        <GroupBox Style="{StaticResource GroupBoxStyle.Main}" x:Name="TitleHeader" Header="Enter Name Here...">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -26,6 +27,8 @@
                     VerticalContentAlignment="Center"
                     KeyDown="InputTextBox_KeyDown" />
                 <Button
+                    Height="30"
+                    Style="{StaticResource ButtonStyle.Main}"
                     Grid.Column="1"
                     Click="Button_Click"
                     Content="Enter" />

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using WpfWrappers.Dialog;
 using WPFWrappers;
 
 namespace ExpenseTracker.Data
@@ -16,8 +19,9 @@ namespace ExpenseTracker.Data
     {
         public string CategoryName { get; set; }
         public float Amount { get; set; }
+        public string Comments { get; set; }
         private bool _paid;
-        public bool Paid 
+        public bool Paid
         {
             get => _paid;
             set
@@ -29,6 +33,13 @@ namespace ExpenseTracker.Data
             }
         }
 
+        private float _partialPayment;
+        public float PartialPayment
+        {
+            get => _partialPayment;
+            set => SetProperty(ref _partialPayment, value);
+        }
+
         [NonSerialized]
         public EventHandler<PaidEventArgs> PaidEvent;
 
@@ -37,13 +48,26 @@ namespace ExpenseTracker.Data
             CategoryName = category;
             Amount = amount;
         }
+
+        public void AddPartialPayment()
+        {
+            NumDialog numDialog = new NumDialog()
+            {
+                Title = "Enter Partial Payment"
+            };
+            numDialog.ShowDialog();
+            if (numDialog.DialogResult == true)
+            {
+                PartialPayment += float.Parse(numDialog.TextValue);
+            }
+        }
     }
 
     [Serializable]
     public class ExpenseDataReport : ViewModel
     {
         private float _totalAmount;
-        public float TotalAmount 
+        public float TotalAmount
         {
             get => _totalAmount;
             set => SetProperty(ref _totalAmount, value);
@@ -64,13 +88,22 @@ namespace ExpenseTracker.Data
         }
 
         private bool _completed;
-        public bool Completed 
+        public bool Completed
         {
             get => _completed;
             set => SetProperty(ref _completed, value);
         }
         public List<CategoryReport> CategoryReports { get; set; }
         private List<string> categIds = new List<string>();
+
+        private CategoryReport _selectedReport;
+        public CategoryReport SelectedReport
+        {
+            get => _selectedReport;
+            set => SetProperty(ref _selectedReport, value);
+        }
+
+        public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
 
         public ExpenseDataReport()
         {
@@ -79,6 +112,11 @@ namespace ExpenseTracker.Data
             // Inits
             PaidAmount = 0;
             UnPaidAmount = TotalAmount - PaidAmount;
+        }
+
+        private void AddPartialPayment()
+        {
+            SelectedReport?.AddPartialPayment();
         }
 
         public void AssessCompletion()

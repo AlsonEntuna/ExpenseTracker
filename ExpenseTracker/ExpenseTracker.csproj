@@ -13,22 +13,13 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/AlsonEntuna/ExpenseTracker</RepositoryUrl>
     <RepositoryType />
-    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\MonoMedium.ttf" />
-    <None Remove="Fonts\MonoRegular.ttf" />
     <None Include="..\Assets\logo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Fonts\MonoMedium.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -37,12 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WPFWrappers\WPFWrappers.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Fonts\MonoRegular.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>

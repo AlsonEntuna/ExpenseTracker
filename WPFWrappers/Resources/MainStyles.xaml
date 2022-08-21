@@ -7,7 +7,7 @@
         <Setter Property="Height" Value="40" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="TextElement.FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -29,12 +29,39 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="ButtonStyle.Element" TargetType="Button">
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
+        <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+        <Setter Property="TextElement.FontSize" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Width="auto"
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="5"
+                        TextBlock.Foreground="{TemplateBinding Foreground}">
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Alt}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="ButtonStyle.Main.Large" TargetType="Button">
         <Setter Property="Height" Value="50" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="TextElement.FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -61,7 +88,7 @@
     <Style x:Key="TextBoxkStyle.Title" TargetType="TextBox">
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono Regular" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Regular" />
     </Style>
 
     <!--  TextBlock  -->
@@ -69,45 +96,46 @@
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="50" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
     <Style x:Key="TextBlockStyle.Form" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
     <Style x:Key="TextBlockStyle.Header1.Bold" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="28" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
     <Style x:Key="TextBlockStyle.Header1" TargetType="TextBlock">
         <Setter Property="FontSize" Value="28" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
 
     <Style x:Key="TextBlockStyle.Header2.Bold" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontSize" Value="22" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
     <Style x:Key="TextBlockStyle.Header2" TargetType="TextBlock">
         <Setter Property="FontSize" Value="22" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
 
     <!--  GroupBox  -->
     <Style x:Key="GroupBoxStyle.Main" TargetType="GroupBox">
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
     </Style>
 
     <!--  DataGrid  -->
     <Style x:Key="DataGridStyle.Main" TargetType="DataGrid">
-        <Setter Property="FontFamily" Value="/Fonts/#JetBrains Mono Medium" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Medium" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
     </Style>
     <Style TargetType="{x:Type DataGridColumnHeader}">
