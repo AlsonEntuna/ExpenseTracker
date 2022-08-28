@@ -27,6 +27,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _category, value);
         }
 
+        private string _comments;
+        public string Comments
+        {
+            get => _comments;
+            set => SetProperty(ref _comments, value);
+        }
+
         public DataEntry() { }
     }
 }

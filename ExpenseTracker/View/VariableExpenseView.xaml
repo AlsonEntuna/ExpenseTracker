@@ -11,7 +11,7 @@
     d:DataContext="{d:DesignInstance viewmodel:VariableExpenseViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="800"
-    d:DesignWidth="800"
+    d:DesignWidth="1500"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -154,10 +154,10 @@
                             x:Name="DataGrid_Expenses"
                             Height="500"
                             Margin="30"
-                            CanUserSortColumns="True"
                             AutoGenerateColumns="False"
                             CanUserAddRows="False"
                             CanUserResizeColumns="True"
+                            CanUserSortColumns="True"
                             GridLinesVisibility="None"
                             HeadersVisibility="Column"
                             ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
@@ -165,10 +165,7 @@
                             Style="{StaticResource DataGridStyle.Main}">
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem
-                                        Command="{Binding RemoveEntryCommand}"
-                                        CommandParameter="{}"
-                                        Header="Remove" />
+                                    <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                             <DataGrid.Columns>
@@ -183,7 +180,14 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Amount}"
+                                    Header="Amount" />
+                                <DataGridTextColumn
+                                    Width="200"
+                                    Binding="{Binding Comments}"
+                                    Header="Comments" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>

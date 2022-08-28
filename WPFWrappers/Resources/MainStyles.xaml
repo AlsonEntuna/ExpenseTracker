@@ -34,7 +34,7 @@
         <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
-        <Setter Property="TextElement.FontSize" Value="12"/>
+        <Setter Property="TextElement.FontSize" Value="12" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
