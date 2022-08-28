@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 
-namespace WPFWrappers.Converters
+namespace ExpenseTracker.Wpf.Converters
 {
     class EnumToBoolConverter : IValueConverter
     {

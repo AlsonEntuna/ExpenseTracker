@@ -2,7 +2,6 @@
     x:Class="ExpenseTracker.View.VariableExpenseView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converter="clr-namespace:WPFWrappers.Converters;assembly=WPFWrappers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -13,11 +12,6 @@
     d:DesignHeight="800"
     d:DesignWidth="1500"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <converter:BooleanFromObjectConverter x:Key="BoolFromObjectConverter" />
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -152,7 +146,7 @@
                         </Grid>
                         <DataGrid
                             x:Name="DataGrid_Expenses"
-                            Height="500"
+                            Height="600"
                             Margin="30"
                             AutoGenerateColumns="False"
                             CanUserAddRows="False"

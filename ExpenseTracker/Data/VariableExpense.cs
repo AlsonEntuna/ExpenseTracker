@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using WPFWrappers;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {

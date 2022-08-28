@@ -1,20 +1,23 @@
 ﻿<Window
-    x:Class="WPFWrappers.Dialog.NameDialog"
+    x:Class="ExpenseTracker.Wpf.Dialog.NameDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFWrappers.Dialog"
+    xmlns:local="clr-namespace:ExpenseTracker.Wpf.Dialog"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="NameDialog"
     Width="300"
-    Background="{StaticResource Brush.Main.Background}"
     Height="70"
+    Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     ResizeMode="NoResize"
     SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
-        <GroupBox Style="{StaticResource GroupBoxStyle.Main}" x:Name="TitleHeader" Header="Enter Name Here...">
+        <GroupBox
+            x:Name="TitleHeader"
+            Header="Enter Name Here..."
+            Style="{StaticResource GroupBoxStyle.Main}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -27,11 +30,11 @@
                     VerticalContentAlignment="Center"
                     KeyDown="InputTextBox_KeyDown" />
                 <Button
-                    Height="30"
-                    Style="{StaticResource ButtonStyle.Main}"
                     Grid.Column="1"
+                    Height="30"
                     Click="Button_Click"
-                    Content="Enter" />
+                    Content="Enter"
+                    Style="{StaticResource ButtonStyle.Main}" />
             </Grid>
         </GroupBox>
     </Grid>

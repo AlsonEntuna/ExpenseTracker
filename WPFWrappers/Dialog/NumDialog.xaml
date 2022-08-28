@@ -1,9 +1,9 @@
 ﻿<Window
-    x:Class="WpfWrappers.Dialog.NumDialog"
+    x:Class="ExpenseTracker.Wpf.Dialog.NumDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WpfWrappers.Dialog"
+    xmlns:local="clr-namespace:ExpenseTracker.Wpf.Dialog"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="NumDialog"
     Width="300"

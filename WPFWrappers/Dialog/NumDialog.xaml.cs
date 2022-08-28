@@ -1,7 +1,7 @@
 ﻿using System.Windows;
  using System.Windows.Input;
 
-namespace WpfWrappers.Dialog
+namespace ExpenseTracker.Wpf.Dialog
 {
     /// <summary>
     /// Interaction logic for NumDialog.xaml

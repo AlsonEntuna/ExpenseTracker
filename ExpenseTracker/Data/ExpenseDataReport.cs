@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using WpfWrappers.Dialog;
-using WPFWrappers;
+using ExpenseTracker.Wpf.Dialog;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {

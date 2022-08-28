@@ -2,13 +2,15 @@
     x:Class="ExpenseTracker.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:ExpenseTracker.Wpf.Converters;assembly=ExpenseTracker.Wpf"
     xmlns:local="clr-namespace:ExpenseTracker"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WPFWrappers;component/Resources/Resources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ExpenseTracker.Wpf;component/Resources/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanFromObjectConverter x:Key="BoolFromObjectConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

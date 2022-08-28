@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace WPFWrappers.Converters
+namespace ExpenseTracker.Wpf.Converters
 {
     public class BooleanFromObjectConverter : IValueConverter
     {
