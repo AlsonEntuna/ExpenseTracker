@@ -33,6 +33,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock
                             Grid.Row="0"
@@ -66,9 +67,33 @@
                             Grid.ColumnSpan="2"
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                            Text="Budget:" />
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="110" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                Command="{Binding EditBudgetCommand}"
+                                Content="Edit"
+                                Style="{StaticResource ButtonStyle.Main}" />
+                        </Grid>
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Due Date:" />
                         <TextBlock
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Grid.Column="2"
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2}"

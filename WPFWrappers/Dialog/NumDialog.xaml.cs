@@ -9,6 +9,7 @@ namespace ExpenseTracker.Wpf.Dialog
     public partial class NumDialog : Window
     {
         public string TextValue => Txt_Value.Text;
+        public float NumValue => float.Parse(Txt_Value.Text);
         public NumDialog()
         {
             InitializeComponent();

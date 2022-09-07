@@ -28,9 +28,16 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _cycleEndDate, value);
         }
 
+        private float _budget = 0;
+        public float Budget
+        {
+            get => _budget;
+            set => SetProperty(ref _budget, value);
+        }
+
         public string EndDate => CycleEndDate.ToLongDateString();
 
-        private ObservableCollection<DataEntry> _entires = new ObservableCollection<DataEntry>();
+        private ObservableCollection<DataEntry> _entires = new();
         public ObservableCollection<DataEntry> Entries
         {
             get => _entires;
@@ -38,16 +45,9 @@ namespace ExpenseTracker.Data
         }
 
         public ExpenseDataReport Report { get; set; }
-        public override string ToString()
-        {
-            return Name;
-        }
+       
 
-        public VariableExpense()
-        {
-
-        }
-
+        public VariableExpense() { }
         public void AddEntry(DataEntry Entry)
         {
             if (Entry == null)
@@ -57,6 +57,11 @@ namespace ExpenseTracker.Data
             {
                 Entries.Add(Entry);
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

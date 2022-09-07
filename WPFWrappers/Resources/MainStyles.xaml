@@ -137,6 +137,7 @@
     <Style x:Key="DataGridStyle.Main" TargetType="DataGrid">
         <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Medium" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
+        <Setter Property="CanUserSortColumns" Value="True"/>
     </Style>
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center" />
