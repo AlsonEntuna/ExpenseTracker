@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WPFWrappers
+namespace ExpenseTracker.Wpf
 {
     public class ViewModel : INotifyPropertyChanged
     {

@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WPFWrappers\WPFWrappers.csproj" />
+    <ProjectReference Include="..\WPFWrappers\ExpenseTracker.Wpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>

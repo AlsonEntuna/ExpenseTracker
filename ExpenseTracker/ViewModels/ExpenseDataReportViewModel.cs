@@ -1,5 +1,5 @@
 ﻿using ExpenseTracker.Data;
-using WPFWrappers;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.ViewModels
 {

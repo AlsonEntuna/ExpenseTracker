@@ -1,5 +1,5 @@
 ﻿using System;
-using WPFWrappers;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -25,6 +25,13 @@ namespace ExpenseTracker.Data
         {
             get => _category;
             set => SetProperty(ref _category, value);
+        }
+
+        private string _comments;
+        public string Comments
+        {
+            get => _comments;
+            set => SetProperty(ref _comments, value);
         }
 
         public DataEntry() { }

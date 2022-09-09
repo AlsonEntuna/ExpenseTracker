@@ -1,7 +1,7 @@
 ﻿using System.Windows;
  using System.Windows.Input;
 
-namespace WpfWrappers.Dialog
+namespace ExpenseTracker.Wpf.Dialog
 {
     /// <summary>
     /// Interaction logic for NumDialog.xaml
@@ -9,6 +9,7 @@ namespace WpfWrappers.Dialog
     public partial class NumDialog : Window
     {
         public string TextValue => Txt_Value.Text;
+        public float NumValue => float.Parse(Txt_Value.Text);
         public NumDialog()
         {
             InitializeComponent();

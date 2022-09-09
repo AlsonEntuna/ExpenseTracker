@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using WpfWrappers.Dialog;
-using WPFWrappers;
+using ExpenseTracker.Wpf.Dialog;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -58,7 +58,7 @@ namespace ExpenseTracker.Data
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {
-                PartialPayment += float.Parse(numDialog.TextValue);
+                PartialPayment += numDialog.NumValue;
             }
         }
     }
@@ -111,7 +111,6 @@ namespace ExpenseTracker.Data
 
             // Inits
             PaidAmount = 0;
-            UnPaidAmount = TotalAmount - PaidAmount;
         }
 
         private void AddPartialPayment()

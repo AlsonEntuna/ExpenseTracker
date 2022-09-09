@@ -1,7 +1,7 @@
 ﻿using ExpenseTracker.Data;
 using System.Windows;
 using System.Windows.Input;
-using WPFWrappers.Dialog;
+using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.View
 {

@@ -6,7 +6,8 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
-using WPFWrappers;
+using ExpenseTracker.Wpf;
+using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -34,6 +35,7 @@ namespace ExpenseTracker.ViewModels
         public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExpenseReport);
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
         public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
+        public ICommand EditBudgetCommand => new RelayCommand(EditBudget);
         #endregion
 
         public bool IsNewExpense { get; set; }
@@ -134,6 +136,7 @@ namespace ExpenseTracker.ViewModels
                 report.TotalAmount += entry.Amount;
                 report.AddCategoryReport(entry.Category, entry.Amount);
             }
+            report.UnPaidAmount = report.TotalAmount;
             return report;
         }
 
@@ -148,6 +151,16 @@ namespace ExpenseTracker.ViewModels
         private void SaveVariableExepense()
         {
             SaveCurrentExpenseData();
+        }
+
+        private void EditBudget()
+        {
+            NumDialog numDialog = new NumDialog();
+            numDialog.ShowDialog();
+            if (numDialog.DialogResult == true)
+            {
+                CurrentDisplayedExpense.Budget = numDialog.NumValue;
+            }
         }
 
         public void UpdateEventListeners()

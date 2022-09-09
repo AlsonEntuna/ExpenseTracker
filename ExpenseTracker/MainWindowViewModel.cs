@@ -3,7 +3,7 @@ using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
 using System;
-using WPFWrappers;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker
 {
