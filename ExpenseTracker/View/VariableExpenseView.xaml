@@ -18,7 +18,6 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel>
-
             <Border
                 Margin="10"
                 Background="{StaticResource Brush.Border.Background.Alt}"

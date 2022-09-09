@@ -10,7 +10,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ExpenseTracker.Wpf;component/Resources/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converter:BooleanFromObjectConverter x:Key="BoolFromObjectConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
