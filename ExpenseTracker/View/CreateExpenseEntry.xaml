@@ -64,7 +64,6 @@
                         Style="{StaticResource TextBlockStyle.Form}"
                         Text="Amount:" />
                     <TextBox
-                        PreviewTextInput="TxtBox_Amount_PreviewTextInput"
                         x:Name="TxtBox_Amount"
                         Grid.Row="2"
                         Grid.Column="1"

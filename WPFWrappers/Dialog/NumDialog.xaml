@@ -23,8 +23,7 @@
                     x:Name="Txt_Value"
                     Grid.Column="0"
                     Height="30"
-                    VerticalContentAlignment="Center"
-                    PreviewTextInput="Txt_Value_PreviewTextInput" />
+                    VerticalContentAlignment="Center" />
                 <Button
                     x:Name="Btn_Done"
                     Grid.Column="1"
