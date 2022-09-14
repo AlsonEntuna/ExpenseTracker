@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using ExpenseTracker.Wpf.Dialog;
+using System.Text.RegularExpressions;
 
 namespace ExpenseTracker.View
 {
@@ -63,6 +64,17 @@ namespace ExpenseTracker.View
         {
             DialogResult = false;
             Close();
+        }
+
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
+        private static bool IsNumeric(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+
+        private void TxtBox_Amount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsNumeric(e.Text);
         }
     }
 }
