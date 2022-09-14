@@ -1,5 +1,6 @@
-﻿using System.Windows;
- using System.Windows.Input;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker.Wpf.Dialog
 {
@@ -28,6 +29,17 @@ namespace ExpenseTracker.Wpf.Dialog
         {
             DialogResult = true;
             Close();
+        }
+
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
+        private static bool IsNumeric(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+
+        private void Txt_Value_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsNumeric(e.Text);
         }
     }
 }
