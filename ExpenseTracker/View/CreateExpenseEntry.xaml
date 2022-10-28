@@ -40,7 +40,7 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Category" />
+                        Text="Category:" />
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -64,10 +64,10 @@
                         Style="{StaticResource TextBlockStyle.Form}"
                         Text="Amount:" />
                     <TextBox
-                        PreviewTextInput="TxtBox_Amount_PreviewTextInput"
                         x:Name="TxtBox_Amount"
                         Grid.Row="2"
                         Grid.Column="1"
+                        PreviewTextInput="TxtBox_Amount_PreviewTextInput"
                         Style="{StaticResource TextBoxkStyle.Title}" />
                 </Grid>
             </StackPanel>
