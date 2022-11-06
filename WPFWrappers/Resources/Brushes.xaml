@@ -5,8 +5,8 @@
     <SolidColorBrush x:Key="Brush.Main.Background.Alt" Color="#100f0f" />
     <SolidColorBrush x:Key="Brush.Main.Text" Color="#dcd7d7" />
     <SolidColorBrush x:Key="Brush.Main.Border" Color="#260d43" />
-    <SolidColorBrush x:Key="Brush.Button.Main" Color="#ed0143" />
-    <SolidColorBrush x:Key="Brush.Button.Alt" Color="#870026" />
-    <SolidColorBrush x:Key="Brush.Border.Background" Color="#fe752c" />
-    <SolidColorBrush x:Key="Brush.Border.Background.Alt" Color="#ca571a" />
+    <SolidColorBrush x:Key="Brush.Button.Main" Color="#1f9188" />
+    <SolidColorBrush x:Key="Brush.Button.Alt" Color="#0f726a" />
+    <SolidColorBrush x:Key="Brush.Border.Background" Color="#06352f" />
+    <SolidColorBrush x:Key="Brush.Border.Background.Alt" Color="#054a41" />
 </ResourceDictionary>

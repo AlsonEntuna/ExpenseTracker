@@ -84,9 +84,16 @@
                 </Button>
             </Grid>
         </Grid>
-        <StackPanel Grid.Column="1" Margin="20">
-            <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="Expense Tracker" />
-            <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
-        </StackPanel>
+        <Grid Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Style="{StaticResource TextBlockStyle.Title}"
+                Text="Expense Tracker" />
+            <view:VariableExpenseView Grid.Row="1" DataContext="{Binding VariableExpenseViewModel}" />
+        </Grid>
     </Grid>
 </Window>

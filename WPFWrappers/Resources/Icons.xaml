@@ -71,4 +71,73 @@
             </Path.RenderTransform>
         </Path>
     </Grid>
+    <Grid x:Key="PlusIcon">
+        <Grid
+            Width="32"
+            Height="32"
+            Visibility="Collapsed" />
+        <Path
+            Width="16"
+            Height="16"
+            Margin="0,0,0,0"
+            Data="M12.126984,0L19.872009,0 19.872009,12.128 32,12.128 32,19.872999 19.872009,19.872999 19.872009,31.999 12.126984,31.999 12.126984,19.872999 0,19.872999 0,12.128 12.126984,12.128z"
+            Fill="{StaticResource Brush.Main.Text}"
+            RenderTransformOrigin="0.5,0.5"
+            Stretch="Uniform">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <RotateTransform Angle="0" />
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+    </Grid>
+    <Grid x:Key="EditIcon">
+        <Grid
+            Width="32"
+            Height="32"
+            Visibility="Collapsed" />
+        <Path
+            Width="16"
+            Height="16"
+            Margin="0,0,0,0"
+            Data="M1,25.07703L31,25.07703C31.552979,25.07703 32,25.525028 32,26.07703 32,26.629032 31.552979,27.07703 31,27.07703L1,27.07703C0.44702148,27.07703 0,26.629032 0,26.07703 0,25.525028 0.44702148,25.07703 1,25.07703z M9.8064213,17.357931L9.6760168,17.487015 8.8610172,21.393018 12.748013,20.558017 12.865452,20.441767z M20.509636,6.7630577L11.227604,15.951134 14.286634,19.034972 23.568132,9.8474321z M24.492002,2.821003L21.93083,5.3562489 24.989326,8.4406242 27.563,5.8930054z M24.500002,0L30.398996,5.9010048 13.740012,22.391018 6.2750196,23.99302 7.8420181,16.489014z"
+            Fill="{StaticResource Brush.Main.Text}"
+            RenderTransformOrigin="0.5,0.5"
+            Stretch="Uniform">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <RotateTransform Angle="0" />
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+    </Grid>
+    <Grid x:Key="SaveIcon">
+        <Grid
+            Width="32"
+            Height="32"
+            Visibility="Collapsed" />
+        <Path
+            Width="16"
+            Height="16"
+            Margin="0,0,0,0"
+            Data="M7.9999733,21.999969L7.9999733,29.999969 10.999944,29.999969 10.999944,23.999994 12.999944,23.999994 12.999944,29.999969 19.999973,29.999969 19.999973,21.999969z M7.9999437,2.9999943L7.9999437,14.999994 23.999945,14.999994 23.999945,2.9999943z M2.5,2C2.224,2,1.9999998,2.2250004,2,2.5L2,27.434 5.9999733,29.833797 5.9999733,19.999969 21.999973,19.999969 21.999973,30 29.5,30C29.775,30,30,29.775,30,29.5L30,2.5C30,2.2250004,29.775,2,29.5,2L25.999945,2 25.999945,16.999994 5.9999442,16.999994 5.9999442,2z M2.5,0L29.5,0C30.879,0,32,1.1210003,32,2.5L32,29.5C32,30.879,30.879,32,29.5,32L5.7219996,32 0,28.566 0,2.5C0,1.1210003,1.1209998,0,2.5,0z"
+            Fill="{StaticResource Brush.Main.Text}"
+            RenderTransformOrigin="0.5,0.5"
+            Stretch="Uniform">
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <RotateTransform Angle="0" />
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+    </Grid>
 </ResourceDictionary>
