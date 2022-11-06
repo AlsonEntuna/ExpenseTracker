@@ -8,7 +8,7 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
     Width="1720"
-    Height="1000"
+    Height="900"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
@@ -44,8 +44,8 @@
                 <Button
                     x:Name="Btn_Open"
                     Grid.Row="1"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
                     Click="Btn_Open_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>
@@ -58,8 +58,8 @@
                 <Button
                     x:Name="Btn_New"
                     Grid.Row="2"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
                     Click="Btn_New_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>
@@ -72,8 +72,8 @@
                 <Button
                     x:Name="Btn_Exit"
                     Grid.Row="15"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
                     Click="Btn_Exit_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>

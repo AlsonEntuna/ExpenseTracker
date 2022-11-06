@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel>
                 <Border
-                    Margin="10"
+                    Height="500"
                     Background="{StaticResource Brush.Border.Background.Alt}"
                     CornerRadius="20">
                     <StackPanel Margin="20">
@@ -74,7 +74,7 @@
                                             Grid.Column="0"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
-                                            Style="{StaticResource TextBlockStyle.Header2}"
+                                            Style="{StaticResource TextBlockStyle.Header1}"
                                             Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
                                         <Button
                                             Grid.Column="1"
@@ -105,7 +105,7 @@
                                     <TextBlock
                                         Margin="0,30,0,0"
                                         HorizontalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header2}"
+                                        Style="{StaticResource TextBlockStyle.Header1}"
                                         Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                             </Border>
@@ -118,7 +118,7 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Width="0.5"
-                Margin="0,0,10,0"
+                Margin="10,0,10,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
                 Background="{StaticResource Brush.Main.Text}" />
@@ -126,7 +126,7 @@
                 Grid.Column="2"
                 Background="{StaticResource Brush.Main.Background.Alt}"
                 CornerRadius="20">
-                <StackPanel Margin="5">
+                <StackPanel Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150" />
@@ -134,7 +134,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock
                             Grid.Column="0"
-                            Margin="15,15,0,0"
+                            VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Reports" />
                         <Grid Grid.Column="1">
@@ -159,7 +159,7 @@
                     </Grid>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
-                            Margin="15,15,0,0"
+                            VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Expenses/Bills" />
                         <Button
@@ -176,11 +176,7 @@
                         </Button>
 
                     </StackPanel>
-
-                    <Border
-                        Margin="5"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="20">
+                    <Border Background="{StaticResource Brush.Border.Background}" CornerRadius="20">
                         <StackPanel>
                             <Grid Margin="30,30,30,-15">
                                 <Grid.ColumnDefinitions>
@@ -202,7 +198,7 @@
                             </Grid>
                             <DataGrid
                                 x:Name="DataGrid_Expenses"
-                                Height="600"
+                                Height="500"
                                 Margin="30"
                                 AutoGenerateColumns="False"
                                 CanUserAddRows="False"
