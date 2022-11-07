@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Input;
 using ExpenseTracker.Wpf.Dialog;
 using ExpenseTracker.Wpf;
+using System.Globalization;
 
 namespace ExpenseTracker.Data
 {
@@ -102,6 +103,13 @@ namespace ExpenseTracker.Data
             get => _selectedReport;
             set => SetProperty(ref _selectedReport, value);
         }
+
+        // TODO: this is temporary until we implement a currency feature...
+        private CultureInfo _culture = new CultureInfo("en-PH");
+        public string CurrencySymbol 
+        {
+            get => _culture.NumberFormat.CurrencySymbol.ToString();
+        } 
 
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
 

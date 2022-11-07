@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
@@ -36,6 +37,13 @@ namespace ExpenseTracker.Data
         }
 
         public string EndDate => CycleEndDate.ToLongDateString();
+
+        // TODO: This is only temporary...
+        public CultureInfo Currency => new CultureInfo("en-PH");
+        public string CurrencySymbol
+        {
+            get => Currency.NumberFormat.CurrencySymbol.ToString();
+        }
 
         private ObservableCollection<DataEntry> _entires = new();
         public ObservableCollection<DataEntry> Entries

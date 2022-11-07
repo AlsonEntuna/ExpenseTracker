@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="Brush.Main.Background" Color="#1e1c1c" />
     <SolidColorBrush x:Key="Brush.Main.Background.Alt" Color="#100f0f" />
     <SolidColorBrush x:Key="Brush.Main.Text" Color="#dcd7d7" />
+    <SolidColorBrush x:Key="Brush.Main.Text.Alt" Color="#9d9d9d" />
     <SolidColorBrush x:Key="Brush.Main.Border" Color="#260d43" />
     <SolidColorBrush x:Key="Brush.Button.Main" Color="#1f9188" />
     <SolidColorBrush x:Key="Brush.Button.Alt" Color="#0f726a" />

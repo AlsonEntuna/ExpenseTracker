@@ -43,11 +43,11 @@
                         </StackPanel>
                         <TextBlock
                             VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2}"
+                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
                             Text="{Binding CurrentDisplayedExpense.Description, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock
                             VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2}"
+                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
                             Text="{Binding CurrentDisplayedExpense.EndDate, UpdateSourceTrigger=PropertyChanged}" />
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -70,12 +70,20 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="50" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Style="{StaticResource TextBlockStyle.Header1}"
-                                            Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Style="{StaticResource TextBlockStyle.Header1}"
+                                                Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Style="{StaticResource TextBlockStyle.Header1}"
+                                                Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
+                                        </StackPanel>
                                         <Button
                                             Grid.Column="1"
                                             Margin="10,0,0,0"
@@ -102,11 +110,17 @@
                                         VerticalAlignment="Center"
                                         Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                         Text="Expense Total" />
-                                    <TextBlock
-                                        Margin="0,30,0,0"
-                                        HorizontalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
-                                        Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Margin="0,30,0,0"
+                                            Style="{StaticResource TextBlockStyle.Header1}"
+                                            Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Margin="0,30,0,0"
+                                            Style="{StaticResource TextBlockStyle.Header1}"
+                                            Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
                                 </StackPanel>
                             </Border>
                         </Grid>
@@ -137,25 +151,24 @@
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Reports" />
-                        <Grid Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
                             <Button
-                                Grid.Column="0"
+                                Width="200"
                                 Margin="5"
                                 Command="{Binding OpenReportCommand}"
                                 Content="Open Expense Report"
                                 IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}"
                                 Style="{StaticResource ButtonStyle.Main}" />
                             <Button
-                                Grid.Column="1"
+                                Width="200"
                                 Margin="5"
                                 Command="{Binding GenerateExpenseReportCommand}"
                                 Content="Generate Expense Report"
                                 Style="{StaticResource ButtonStyle.Main}" />
-                        </Grid>
+                        </StackPanel>
                     </Grid>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock

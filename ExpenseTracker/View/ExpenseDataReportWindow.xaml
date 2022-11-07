@@ -8,7 +8,7 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     Title="Expense Data Report"
     Width="800"
-    Height="900"
+    Height="800"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"
@@ -38,11 +38,18 @@
                         CornerRadius="20">
                         <StackPanel Margin="15">
                             <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Total" />
-                            <TextBlock
-                                Margin="0,30,0,0"
-                                HorizontalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header1}"
-                                Text="{Binding Report.TotalAmount}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header1}"
+                                    Text="{Binding Report.CurrencySymbol}" />
+                                <TextBlock
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header1}"
+                                    Text="{Binding Report.TotalAmount}" />
+                            </StackPanel>
                         </StackPanel>
                     </Border>
 
@@ -54,11 +61,18 @@
                         CornerRadius="20">
                         <StackPanel Margin="15">
                             <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Debt" />
-                            <TextBlock
-                                Margin="0,30,0,0"
-                                HorizontalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2}"
-                                Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2}"
+                                    Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2}"
+                                    Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                     <Border
@@ -69,11 +83,18 @@
                         CornerRadius="20">
                         <StackPanel Margin="15">
                             <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Paid" />
-                            <TextBlock
-                                Margin="0,30,0,0"
-                                HorizontalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2}"
-                                Text="{Binding Report.PaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2}"
+                                    Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2}"
+                                    Text="{Binding Report.PaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </Grid>

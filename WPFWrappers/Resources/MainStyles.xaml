@@ -132,6 +132,12 @@
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
+    <Style x:Key="TextBlockStyle.Header2.Alt" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontWeight" Value="ExtraLight" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text.Alt}" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+    </Style>
 
     <!--  GroupBox  -->
     <Style x:Key="GroupBoxStyle.Main" TargetType="GroupBox">
