@@ -8,44 +8,39 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
     Width="1720"
-    Height="1000"
+    Height="900"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
     ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Border Panel.ZIndex="-1" Background="{StaticResource Brush.Main.Background.Alt}" />
-            <Grid Grid.Column="0" Panel.ZIndex="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                Style="{StaticResource TextBlockStyle.Title}"
+                Text="Dashboard" />
+            <StackPanel
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
                 <Button
                     x:Name="Btn_Open"
-                    Grid.Row="1"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
                     Click="Btn_Open_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>
@@ -54,12 +49,11 @@
                         </DataTemplate>
                     </Button.ContentTemplate>
                 </Button>
-
                 <Button
                     x:Name="Btn_New"
-                    Grid.Row="2"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
+                    Margin="5,0,0,0"
                     Click="Btn_New_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>
@@ -68,12 +62,11 @@
                         </DataTemplate>
                     </Button.ContentTemplate>
                 </Button>
-
                 <Button
                     x:Name="Btn_Exit"
-                    Grid.Row="15"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
+                    Margin="5,0,0,0"
                     Click="Btn_Exit_Click"
                     Style="{StaticResource ButtonStyle.Main}">
                     <Button.ContentTemplate>
@@ -82,11 +75,8 @@
                         </DataTemplate>
                     </Button.ContentTemplate>
                 </Button>
-            </Grid>
+            </StackPanel>
         </Grid>
-        <StackPanel Grid.Column="1" Margin="20">
-            <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="Expense Tracker" />
-            <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
-        </StackPanel>
+        <view:VariableExpenseView Grid.Row="1" DataContext="{Binding VariableExpenseViewModel}" />
     </Grid>
 </Window>

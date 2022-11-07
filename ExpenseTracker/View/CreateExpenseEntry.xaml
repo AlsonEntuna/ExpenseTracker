@@ -12,84 +12,86 @@
     ResizeMode="NoResize"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Grid Background="{StaticResource Brush.Main.Background}">
-        <StackPanel Margin="20">
-            <StackPanel>
-                <Grid>
+    <Border Background="{StaticResource Brush.Border.Background.Alt}">
+        <Grid Margin="1" Background="{StaticResource Brush.Main.Background}">
+            <StackPanel Margin="20">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Description:" />
+                        <TextBox
+                            x:Name="TxtBox_Description"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Style="{StaticResource TextBoxkStyle.Title}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Category:" />
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <ComboBox
+                                x:Name="CmbBox_Category"
+                                Grid.Column="0"
+                                SelectedIndex="0" />
+                            <Button
+                                x:Name="BtnCreateCategory"
+                                Grid.Column="1"
+                                Height="20"
+                                Click="BtnCreateCategory_Click"
+                                Content="+"
+                                Style="{StaticResource ButtonStyle.Main}" />
+                        </Grid>
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Amount:" />
+                        <TextBox
+                            x:Name="TxtBox_Amount"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            PreviewTextInput="TxtBox_Amount_PreviewTextInput"
+                            Style="{StaticResource TextBoxkStyle.Title}" />
+                    </Grid>
+                </StackPanel>
+                <Grid Margin="0,15,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock
-                        Grid.Row="0"
+                    <Button
                         Grid.Column="0"
-                        Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Description:" />
-                    <TextBox
-                        x:Name="TxtBox_Description"
-                        Grid.Row="0"
+                        Margin="5"
+                        Click="Button_Click"
+                        Content="Add"
+                        Style="{StaticResource ButtonStyle.Main}" />
+                    <Button
+                        x:Name="Btn_Cancel"
                         Grid.Column="1"
-                        Style="{StaticResource TextBoxkStyle.Title}" />
-                    <TextBlock
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Category" />
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20" />
-                        </Grid.ColumnDefinitions>
-                        <ComboBox
-                            x:Name="CmbBox_Category"
-                            Grid.Column="0"
-                            SelectedIndex="0" />
-                        <Button
-                            x:Name="BtnCreateCategory"
-                            Grid.Column="1"
-                            Height="20"
-                            Click="BtnCreateCategory_Click"
-                            Content="+"
-                            Style="{StaticResource ButtonStyle.Main}" />
-                    </Grid>
-                    <TextBlock
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Amount:" />
-                    <TextBox
-                        PreviewTextInput="TxtBox_Amount_PreviewTextInput"
-                        x:Name="TxtBox_Amount"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Style="{StaticResource TextBoxkStyle.Title}" />
+                        Margin="5"
+                        Click="Btn_Cancel_Click"
+                        Content="Cancel"
+                        Style="{StaticResource ButtonStyle.Main}" />
                 </Grid>
             </StackPanel>
-            <Grid Margin="0,15,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button
-                    Grid.Column="0"
-                    Margin="5"
-                    Click="Button_Click"
-                    Content="Add"
-                    Style="{StaticResource ButtonStyle.Main}" />
-                <Button
-                    x:Name="Btn_Cancel"
-                    Grid.Column="1"
-                    Margin="5"
-                    Click="Btn_Cancel_Click"
-                    Content="Cancel"
-                    Style="{StaticResource ButtonStyle.Main}" />
-            </Grid>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </Border>
 </Window>

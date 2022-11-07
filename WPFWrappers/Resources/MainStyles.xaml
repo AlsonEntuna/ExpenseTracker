@@ -89,6 +89,11 @@
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
         <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Regular" />
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="3" />
+            </Style>
+        </Style.Resources>
     </Style>
 
     <!--  TextBlock  -->
@@ -123,7 +128,14 @@
     </Style>
     <Style x:Key="TextBlockStyle.Header2" TargetType="TextBlock">
         <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontWeight" Value="ExtraLight" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+    </Style>
+    <Style x:Key="TextBlockStyle.Header2.Alt" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontWeight" Value="ExtraLight" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text.Alt}" />
         <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
     </Style>
 
@@ -137,7 +149,7 @@
     <Style x:Key="DataGridStyle.Main" TargetType="DataGrid">
         <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Medium" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
-        <Setter Property="CanUserSortColumns" Value="True"/>
+        <Setter Property="CanUserSortColumns" Value="True" />
     </Style>
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center" />
