@@ -77,6 +77,9 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <view:VariableExpenseView Grid.Row="1" DataContext="{Binding VariableExpenseViewModel}" />
+        <view:VariableExpenseView
+            Grid.Row="1"
+            Margin="5"
+            DataContext="{Binding VariableExpenseViewModel}" />
     </Grid>
 </Window>
