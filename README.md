@@ -8,7 +8,7 @@
 ## Requirements
 - Visual Studio Version 17 (2022)
 - .Net 5.0
-- Nuget Package Manager
+- Nuget Package Manager - to install additional packages used by the tool
 
 ## Projects
 - ExpenseTracker
