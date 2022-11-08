@@ -125,6 +125,11 @@ namespace ExpenseTracker.ViewModels
             {
                 DataContext = reportVm
             };
+
+            //Setting data for the charts
+            reportVm.Report.GenerateReportChartData();
+            reportWindow.columnChart.DataContext = reportVm.Report.ReportChartData;
+            reportWindow.pieChart.DataContext = reportVm.Report.ReportChartData;
             reportWindow.ShowDialog();
         }
         

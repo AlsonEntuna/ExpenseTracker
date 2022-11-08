@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel>
                 <Border
-                    Height="500"
+                    Height="320"
                     Background="{StaticResource Brush.Border.Background.Alt}"
                     CornerRadius="20">
                     <StackPanel Margin="20">
@@ -213,6 +213,7 @@
                                 x:Name="DataGrid_Expenses"
                                 Height="500"
                                 Margin="30"
+                                HorizontalContentAlignment="Center"
                                 AutoGenerateColumns="False"
                                 CanUserAddRows="False"
                                 CanUserResizeColumns="True"

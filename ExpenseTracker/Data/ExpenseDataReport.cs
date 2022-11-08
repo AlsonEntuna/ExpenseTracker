@@ -6,6 +6,8 @@ using System.Windows.Input;
 using ExpenseTracker.Wpf.Dialog;
 using ExpenseTracker.Wpf;
 using System.Globalization;
+using System.Configuration;
+using System.Collections.ObjectModel;
 
 namespace ExpenseTracker.Data
 {
@@ -109,7 +111,14 @@ namespace ExpenseTracker.Data
         public string CurrencySymbol 
         {
             get => _culture.NumberFormat.CurrencySymbol.ToString();
-        } 
+        }
+
+        private ObservableCollection<KeyValuePair<string, int>> _reportChartData;
+        public ObservableCollection<KeyValuePair<string, int>> ReportChartData
+        {
+            get => _reportChartData;
+            set => SetProperty(ref _reportChartData, value);
+        }
 
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
 
@@ -142,6 +151,15 @@ namespace ExpenseTracker.Data
             }
 
             return null;
+        }
+
+        public void GenerateReportChartData()
+        {
+            ReportChartData = new ObservableCollection<KeyValuePair<string, int>>();
+            foreach (CategoryReport report in CategoryReports)
+            {
+                ReportChartData.Add(new KeyValuePair<string, int>(report.CategoryName, (int)Math.Round(report.Amount)));
+            }
         }
 
         public void AddCategoryReport(string category, float amount)
