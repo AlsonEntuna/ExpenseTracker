@@ -27,7 +27,8 @@ namespace ExpenseTracker.ViewModels
             set => SetProperty(ref _selectedDataEntry, value);
         }
 
-        public List<string> Categories => DataHandler.EntryCategories;
+        public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
+        public List<string> PaymentChannels => DataHandler.DataCategories.PaymentChannels;
 
         #region Commands
         public ICommand AddEntryCommand => new RelayCommand(AddEntry);
@@ -39,10 +40,7 @@ namespace ExpenseTracker.ViewModels
         #endregion
 
         public bool IsNewExpense { get; set; }
-        public VariableExpenseViewModel()
-        {
-
-        }
+        public VariableExpenseViewModel() { }
 
         private void AddEntry()
         {
@@ -69,6 +67,8 @@ namespace ExpenseTracker.ViewModels
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                // Detect and migrate legacy data
+                CurrentDisplayedExpense.DetectAndMigrateLegacyData();
                 DataHandler.Config.DataLocation = dialog.FileName;
                 DataHandler.SaveAppConfiguration();
                 IsNewExpense = false;
@@ -130,6 +130,8 @@ namespace ExpenseTracker.ViewModels
             reportVm.Report.GenerateReportChartData();
             reportWindow.columnChart.DataContext = reportVm.Report.ReportChartData;
             reportWindow.pieChart.DataContext = reportVm.Report.ReportChartData;
+            reportWindow.expenseCategoryColumnChart.DataContext = reportVm.Report.ExpenseCategoryChartData;
+            reportWindow.expenseCategoryPieChart.DataContext = reportVm.Report.ExpenseCategoryChartData;
             reportWindow.ShowDialog();
         }
         
@@ -139,7 +141,7 @@ namespace ExpenseTracker.ViewModels
             foreach (DataEntry entry in CurrentDisplayedExpense.Entries)
             {
                 report.TotalAmount += entry.Amount;
-                report.AddCategoryReport(entry.Category, entry.Amount);
+                report.AddCategoryReport(entry.PaymentChannel, entry.Amount, entry.ExpenseCategory);
             }
             report.UnPaidAmount = report.TotalAmount;
             return report;

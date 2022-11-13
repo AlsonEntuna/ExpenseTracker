@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
@@ -64,6 +65,19 @@ namespace ExpenseTracker.Data
             if (!Entries.Contains(Entry))
             {
                 Entries.Add(Entry);
+            }
+        }
+
+        public void DetectAndMigrateLegacyData()
+        {
+            bool hasLegacyData = Entries.Any(f => f.Category != null && f.Category.Length != 0);
+            if (hasLegacyData)
+            {
+                foreach(var entry in Entries)
+                {
+                    entry.PaymentChannel = entry.Category;
+                    entry.Category = null;
+                }
             }
         }
 

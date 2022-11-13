@@ -233,10 +233,17 @@
                                         Width="200"
                                         Binding="{Binding Description}"
                                         Header="Description" />
+                                    <DataGridTemplateColumn Width="150" Header="Payment Channel">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                     <DataGridTemplateColumn Width="150" Header="Category">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>

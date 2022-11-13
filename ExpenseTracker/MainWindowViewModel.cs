@@ -31,6 +31,8 @@ namespace ExpenseTracker
                     if (deserializedData == null)
                         return;
                     VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
+                    // Detects and migrates old legacy data...
+                    variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
                     variableExpenseViewModel.UpdateEventListeners();
                 }
                 catch(Exception e)

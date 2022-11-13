@@ -21,7 +21,8 @@ namespace ExpenseTracker.View
 
         private void UpdateCategoryList()
         {
-            CmbBox_Category.ItemsSource = DataHandler.EntryCategories.ToArray();
+            CmbBox_ExpenseCategory.ItemsSource = DataHandler.DataCategories.ExpenseCategories.ToArray();
+            CmbBox_PaymentChannel.ItemsSource = DataHandler.DataCategories.PaymentChannels.ToArray();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,19 +36,32 @@ namespace ExpenseTracker.View
             {
                 Description = TxtBox_Description.Text,
                 Amount = float.Parse(TxtBox_Amount.Text, System.Globalization.NumberStyles.Float),
-                Category = CmbBox_Category.SelectedItem as string
+                PaymentChannel = CmbBox_PaymentChannel.SelectedItem as string,
+                ExpenseCategory = CmbBox_ExpenseCategory.SelectedItem as string
             };
 
             DialogResult = true;
             Close();
         }
 
-        private void BtnCreateCategory_Click(object sender, RoutedEventArgs e)
+        private void BtnCreatePaymentChannel_Click(object sender, RoutedEventArgs e)
         {
-            NameDialog dialog = new NameDialog("Enter new Category:");
+            NameDialog dialog = new NameDialog("Enter new PaymentChannel:");
             if (dialog.ShowDialog() ?? true)
             {
-                if (DataHandler.AddCategory(dialog.InputText))
+                if (DataHandler.AddPaymentChannel(dialog.InputText))
+                {
+                    UpdateCategoryList();
+                }
+            }
+        }
+
+        private void BtnExpenseCreateCategory_Click(object sender, RoutedEventArgs e)
+        {
+            NameDialog dialog = new NameDialog("Enter new ExpenseCategory:");
+            if (dialog.ShowDialog() ?? true)
+            {
+                if (DataHandler.AddExpenseCategory(dialog.InputText))
                 {
                     UpdateCategoryList();
                 }

@@ -6,7 +6,6 @@ using System.Windows.Input;
 using ExpenseTracker.Wpf.Dialog;
 using ExpenseTracker.Wpf;
 using System.Globalization;
-using System.Configuration;
 using System.Collections.ObjectModel;
 
 namespace ExpenseTracker.Data
@@ -20,7 +19,7 @@ namespace ExpenseTracker.Data
     [Serializable]
     public class CategoryReport : ViewModel
     {
-        public string CategoryName { get; set; }
+        public string PaymentChannel { get; set; }
         public float Amount { get; set; }
         public string Comments { get; set; }
         private bool _paid;
@@ -46,9 +45,9 @@ namespace ExpenseTracker.Data
         [NonSerialized]
         public EventHandler<PaidEventArgs> PaidEvent;
 
-        public CategoryReport(string category, float amount)
+        public CategoryReport(string paymenChannel, float amount)
         {
-            CategoryName = category;
+            PaymentChannel = paymenChannel;
             Amount = amount;
         }
 
@@ -120,6 +119,15 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _reportChartData, value);
         }
 
+        private ObservableCollection<KeyValuePair<string, int>> _expenseCategoryChartData;
+        public ObservableCollection<KeyValuePair<string, int>> ExpenseCategoryChartData
+        {
+            get => _expenseCategoryChartData;
+            set => SetProperty(ref _expenseCategoryChartData, value);
+        }
+
+        private Dictionary<string, int> _expenseCategoryReportCounter = new Dictionary<string, int>();
+
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
 
         public ExpenseDataReport()
@@ -140,11 +148,11 @@ namespace ExpenseTracker.Data
             Completed = CategoryReports.All(f => f.Paid);
         }
 
-        private CategoryReport GetCategoryReport(string category)
+        private CategoryReport GetCategoryReport(string paymenChannel)
         {
             foreach(CategoryReport report in CategoryReports)
             {
-                if (report.CategoryName == category)
+                if (report.PaymentChannel == paymenChannel)
                 {
                     return report;
                 }
@@ -156,29 +164,46 @@ namespace ExpenseTracker.Data
         public void GenerateReportChartData()
         {
             ReportChartData = new ObservableCollection<KeyValuePair<string, int>>();
+            ExpenseCategoryChartData = new ObservableCollection<KeyValuePair<string, int>>();
+
             foreach (CategoryReport report in CategoryReports)
             {
-                ReportChartData.Add(new KeyValuePair<string, int>(report.CategoryName, (int)Math.Round(report.Amount)));
+                ReportChartData.Add(new KeyValuePair<string, int>(report.PaymentChannel, (int)Math.Round(report.Amount)));
+            }
+
+            foreach(var expenseCategoryReport in _expenseCategoryReportCounter)
+            {
+                ExpenseCategoryChartData.Add(new KeyValuePair<string, int>(expenseCategoryReport.Key, expenseCategoryReport.Value));
             }
         }
 
-        public void AddCategoryReport(string category, float amount)
+        public void AddCategoryReport(string paymenChannel, float amount, string expenseCategory)
         {
+            // TODO: Add support for ExpenseCategory
             CategoryReport report;
-            if (!categIds.Contains(category))
+            if (!categIds.Contains(paymenChannel))
             {
-                categIds.Add(category);
-                report = new CategoryReport(category, amount);
+                categIds.Add(paymenChannel);
+                report = new CategoryReport(paymenChannel, amount);
                 CategoryReports.Add(report);
                 report.PaidEvent += OnPaidEvent;
             }
             else
             {
-                report = GetCategoryReport(category);
+                report = GetCategoryReport(paymenChannel);
                 if (report != null)
                 {
                     report.Amount += amount;
                 }
+            }
+
+            if (_expenseCategoryReportCounter.Keys.Contains(expenseCategory))
+            {
+                _expenseCategoryReportCounter[expenseCategory] += 1;
+            }
+            else
+            {
+                _expenseCategoryReportCounter.Add(expenseCategory, 1);
             }
         }
 
