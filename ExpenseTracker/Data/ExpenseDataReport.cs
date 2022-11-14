@@ -126,13 +126,14 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _expenseCategoryChartData, value);
         }
 
-        private Dictionary<string, int> _expenseCategoryReportCounter = new Dictionary<string, int>();
+        private Dictionary<string, int> _expenseCategoryReportCounter;
 
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
 
         public ExpenseDataReport()
         {
             CategoryReports = new List<CategoryReport>();
+            _expenseCategoryReportCounter= new Dictionary<string, int>();
 
             // Inits
             PaidAmount = 0;
@@ -179,7 +180,6 @@ namespace ExpenseTracker.Data
 
         public void AddCategoryReport(string paymenChannel, float amount, string expenseCategory)
         {
-            // TODO: Add support for ExpenseCategory
             CategoryReport report;
             if (!categIds.Contains(paymenChannel))
             {
@@ -197,6 +197,7 @@ namespace ExpenseTracker.Data
                 }
             }
 
+            // TODO: on open, make sure to have a regeneration since Dictionary is non-serializable
             if (_expenseCategoryReportCounter.Keys.Contains(expenseCategory))
             {
                 _expenseCategoryReportCounter[expenseCategory] += 1;

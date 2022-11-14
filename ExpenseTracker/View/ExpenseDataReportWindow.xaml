@@ -156,7 +156,8 @@
                                 Name="columnChart"
                                 Grid.Column="0"
                                 BorderBrush="Transparent"
-                                Style="{StaticResource ChartStyle.Main}">
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
                                 <toolkit:ColumnSeries
                                     Title="Report"
                                     DependentValuePath="Value"
@@ -166,7 +167,9 @@
                             <toolkit:Chart
                                 Name="pieChart"
                                 Grid.Column="1"
-                                BorderBrush="Transparent">
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
                                 <toolkit:PieSeries
                                     DependentValuePath="Value"
                                     IndependentValuePath="Key"
@@ -188,7 +191,9 @@
                             <toolkit:Chart
                                 Name="expenseCategoryColumnChart"
                                 Grid.Column="0"
-                                BorderBrush="Transparent">
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
                                 <toolkit:ColumnSeries
                                     Title="Report"
                                     DependentValuePath="Value"
@@ -198,7 +203,9 @@
                             <toolkit:Chart
                                 Name="expenseCategoryPieChart"
                                 Grid.Column="1"
-                                BorderBrush="Transparent">
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
                                 <toolkit:PieSeries
                                     DependentValuePath="Value"
                                     IndependentValuePath="Key"
