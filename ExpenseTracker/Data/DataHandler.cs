@@ -13,20 +13,33 @@ namespace ExpenseTracker.Data
         public static Categories DataCategories;
         private static string _dataFile;
         private static readonly string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExpenseTracker");
-        private static readonly string configFile = Path.Combine(appDataPath, Constants.CONFIG_FILE);
-        
+        private static string configFile = Path.Combine(appDataPath, Constants.CONFIG_FILE);
+#if DEBUG
+        private static string configDebugPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data");
+#endif
+
         public static void LoadAppConfiguration()
         {
+#if DEBUG          
+            configFile = Path.Combine(configDebugPath, Constants.CONFIG_FILE);
+#endif
             if (File.Exists(configFile))
             {
                 Config = JsonUtils.Deserialize<Configuration>(configFile);
             }
             else
             {
+#if DEBUG
+                if (!Directory.Exists(configDebugPath))
+                {
+                    Directory.CreateDirectory(configDebugPath);
+                }
+#else
                 if (!Directory.Exists(appDataPath))
                 {
                     Directory.CreateDirectory(appDataPath);
                 }
+#endif
                 Config = Configuration.GenerateConfigFile(configFile);
             }
 
@@ -46,7 +59,11 @@ namespace ExpenseTracker.Data
         private static void LoadCategories()
         {
             // TODO: Add support for PaymentChannels
+#if DEBUG
+            _dataFile = Path.Combine(configDebugPath, Constants.CATEGORIES_FILE);
+#else
             _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+#endif
             if (File.Exists(_dataFile))
             {
                 bool legacyData = DetectLegacyData();
@@ -64,6 +81,8 @@ namespace ExpenseTracker.Data
             else
             {
                 DataCategories = new Categories(DataUtils.GenerateDefaultPaymentChannels(), DataUtils.GenerateDefaultCategories());
+                // Serialize immediately
+                JsonUtils.Serialize(_dataFile, DataCategories);
             }
         }
 
