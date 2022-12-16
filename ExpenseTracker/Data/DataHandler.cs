@@ -6,7 +6,6 @@ using System.IO;
 
 namespace ExpenseTracker.Data
 {
-
     public static class DataHandler
     {
         public static Configuration Config;
@@ -58,7 +57,6 @@ namespace ExpenseTracker.Data
 
         private static void LoadCategories()
         {
-            // TODO: Add support for PaymentChannels
 #if DEBUG
             _dataFile = Path.Combine(configDebugPath, Constants.CATEGORIES_FILE);
 #else
@@ -119,6 +117,7 @@ namespace ExpenseTracker.Data
             if (!DataCategories.PaymentChannels.Contains(chanel))
             {
                 DataCategories.PaymentChannels.Add(chanel);
+
                 // Serialize immediately
                 JsonUtils.Serialize(_dataFile, DataCategories);
                 return true;
@@ -134,7 +133,6 @@ namespace ExpenseTracker.Data
             }
             catch
             {
-                // TODO: legacy data handle here...
                 List<string> legacyData = JsonUtils.DeserializeArray<List<string>>(_dataFile);
                 
                 if (DataCategories == null)

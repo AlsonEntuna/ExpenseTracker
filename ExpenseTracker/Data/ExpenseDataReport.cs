@@ -126,14 +126,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _expenseCategoryChartData, value);
         }
 
-        private Dictionary<string, int> _expenseCategoryReportCounter;
+        public Dictionary<string, int> ExpenseCategoryReportCounter;
 
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
 
         public ExpenseDataReport()
         {
             CategoryReports = new List<CategoryReport>();
-            _expenseCategoryReportCounter= new Dictionary<string, int>();
 
             // Inits
             PaidAmount = 0;
@@ -172,7 +171,7 @@ namespace ExpenseTracker.Data
                 ReportChartData.Add(new KeyValuePair<string, int>(report.PaymentChannel, (int)Math.Round(report.Amount)));
             }
 
-            foreach(var expenseCategoryReport in _expenseCategoryReportCounter)
+            foreach(KeyValuePair<string, int> expenseCategoryReport in ExpenseCategoryReportCounter)
             {
                 ExpenseCategoryChartData.Add(new KeyValuePair<string, int>(expenseCategoryReport.Key, expenseCategoryReport.Value));
             }
@@ -197,14 +196,18 @@ namespace ExpenseTracker.Data
                 }
             }
 
-            // TODO: on open, make sure to have a regeneration since Dictionary is non-serializable
-            if (_expenseCategoryReportCounter.Keys.Contains(expenseCategory))
+            if (ExpenseCategoryReportCounter == null) 
             {
-                _expenseCategoryReportCounter[expenseCategory] += 1;
+                ExpenseCategoryReportCounter = new Dictionary<string, int>();
+            }
+
+            if (ExpenseCategoryReportCounter.Keys.Contains(expenseCategory))
+            {
+                ExpenseCategoryReportCounter[expenseCategory] += 1;
             }
             else
             {
-                _expenseCategoryReportCounter.Add(expenseCategory, 1);
+                ExpenseCategoryReportCounter.Add(expenseCategory, 1);
             }
         }
 
