@@ -3,7 +3,10 @@
 - Trying to implement my own libraries from the ground up and trying to make them as useful for my future projects.
 - Read more about this tool here on my website [Alson Entuna - Expense Tracker](https://alsonentuna.github.io/expense-tracker.html)
 
+## App Screenshot
 ![ExpenseTracker](/Assets/ExpenseTracker-App.png)
+### Report Window
+![ExpenseTracker](/Assets/ExpenseTracker-Report.png)
 
 ## Requirements
 - Visual Studio Version 17 (2022)
