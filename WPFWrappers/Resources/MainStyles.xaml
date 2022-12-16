@@ -1,4 +1,8 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
+    xmlns:toolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -174,6 +178,22 @@
                         </Border>
                     </Grid>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Charts  -->
+    <Style x:Key="ChartStyle.NoTitle" TargetType="datavis:Title">
+        <Setter Property="Visibility" Value="Collapsed" />
+    </Style>
+
+    <Style x:Key="ChartStyle.Main" TargetType="toolkit:Chart">
+        <Setter Property="PlotAreaStyle">
+            <Setter.Value>
+                <Style TargetType="Grid">
+                    <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
+                </Style>
+
             </Setter.Value>
         </Setter>
     </Style>

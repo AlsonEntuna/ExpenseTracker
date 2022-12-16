@@ -3,30 +3,42 @@ using ExpenseTracker.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace ExpenseTracker.Data
 {
-
     public static class DataHandler
     {
         public static Configuration Config;
-        public static List<string> EntryCategories = new();
-        private static string _categFile;
+        public static Categories DataCategories;
+        private static string _dataFile;
         private static readonly string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExpenseTracker");
-        private static readonly string configFile = Path.Combine(appDataPath, Constants.CONFIG_FILE);
+        private static string configFile = Path.Combine(appDataPath, Constants.CONFIG_FILE);
+#if DEBUG
+        private static string configDebugPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data");
+#endif
+
         public static void LoadAppConfiguration()
         {
+#if DEBUG          
+            configFile = Path.Combine(configDebugPath, Constants.CONFIG_FILE);
+#endif
             if (File.Exists(configFile))
             {
                 Config = JsonUtils.Deserialize<Configuration>(configFile);
             }
             else
             {
+#if DEBUG
+                if (!Directory.Exists(configDebugPath))
+                {
+                    Directory.CreateDirectory(configDebugPath);
+                }
+#else
                 if (!Directory.Exists(appDataPath))
                 {
                     Directory.CreateDirectory(appDataPath);
                 }
+#endif
                 Config = Configuration.GenerateConfigFile(configFile);
             }
 
@@ -45,13 +57,30 @@ namespace ExpenseTracker.Data
 
         private static void LoadCategories()
         {
-            _categFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
-            if (File.Exists(_categFile))
-                EntryCategories = JsonUtils.DeserializeArray<List<string>>(_categFile);
+#if DEBUG
+            _dataFile = Path.Combine(configDebugPath, Constants.CATEGORIES_FILE);
+#else
+            _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+#endif
+            if (File.Exists(_dataFile))
+            {
+                bool legacyData = DetectLegacyData();
+                if (legacyData)
+                {
+                    // We generate new expense categories since it's legacy data we're handling
+                    DataCategories.ExpenseCategories = DataUtils.GenerateDefaultCategories();
+                    JsonUtils.Serialize(_dataFile, DataCategories);
+                }
+                else
+                {
+                    DataCategories = JsonUtils.Deserialize<Categories>(_dataFile);
+                }
+            }
             else
             {
-                EntryCategories = DataUtils.GenerateDefaultCategories();
-                JsonUtils.SerializeArray(_categFile, EntryCategories);
+                DataCategories = new Categories(DataUtils.GenerateDefaultPaymentChannels(), DataUtils.GenerateDefaultCategories());
+                // Serialize immediately
+                JsonUtils.Serialize(_dataFile, DataCategories);
             }
         }
 
@@ -60,21 +89,64 @@ namespace ExpenseTracker.Data
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        public static bool AddCategory(string category)
+        public static bool AddExpenseCategory(string category)
         {
-            if (string.IsNullOrEmpty(_categFile))
+            if (string.IsNullOrEmpty(_dataFile))
             {
-                _categFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+                _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
             }
             
-            if (!EntryCategories.Contains(category))
+            if (!DataCategories.ExpenseCategories.Contains(category))
             {
-                EntryCategories.Add(category);
+                DataCategories.ExpenseCategories.Add(category);
                 // Serialize immediately
-                JsonUtils.SerializeArray(_categFile, EntryCategories);
+                JsonUtils.Serialize(_dataFile, DataCategories);
                 return true;
             }
 
+            return false;
+        }
+
+        public static bool AddPaymentChannel(string chanel)
+        {
+            if (string.IsNullOrEmpty(_dataFile))
+            {
+                _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+            }
+
+            if (!DataCategories.PaymentChannels.Contains(chanel))
+            {
+                DataCategories.PaymentChannels.Add(chanel);
+
+                // Serialize immediately
+                JsonUtils.Serialize(_dataFile, DataCategories);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool DetectLegacyData()
+        {
+            try
+            {
+                Categories data = JsonUtils.Deserialize<Categories>(_dataFile);
+            }
+            catch
+            {
+                List<string> legacyData = JsonUtils.DeserializeArray<List<string>>(_dataFile);
+                
+                if (DataCategories == null)
+                {
+                    DataCategories = new Categories();
+                }
+
+                foreach(string paymentChannel in legacyData)
+                {
+                    AddPaymentChannel(paymentChannel);
+                }
+
+                return true;
+            }
             return false;
         }
     }

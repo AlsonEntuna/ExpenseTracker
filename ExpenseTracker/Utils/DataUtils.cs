@@ -6,7 +6,22 @@ namespace ExpenseTracker.Utils
     {
         public static List<string> GenerateDefaultCategories()
         {
-            List<string> categ = new List<string>()
+            List<string> categories = new List<string>()
+            {
+                "Food",
+                "Shopping",
+                "Bills",
+                "Transportation",
+                "Rent",
+                "Utilities"
+            };
+
+            return categories;
+        }
+
+        public static List<string> GenerateDefaultPaymentChannels()
+        {
+            List<string> channels = new List<string>()
             {
                 "Citibank",
                 "BPI Credit",
@@ -16,7 +31,7 @@ namespace ExpenseTracker.Utils
                 "Eastwest"
             };
 
-            return categ;
+            return channels;
         }
     }
 }

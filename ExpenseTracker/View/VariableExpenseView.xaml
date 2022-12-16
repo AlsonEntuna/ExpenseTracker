@@ -20,10 +20,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <Border
-                    Height="320"
-                    Background="{StaticResource Brush.Border.Background.Alt}"
-                    CornerRadius="20">
+                <Border Background="{StaticResource Brush.Border.Background.Alt}" CornerRadius="20">
                     <StackPanel Margin="20">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
@@ -32,6 +29,7 @@
                                 Text="{Binding CurrentDisplayedExpense.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <Button
                                 Width="45"
+                                Margin="10,0,0,0"
                                 Command="{Binding SaveVariableExpenseCommand}"
                                 Style="{StaticResource ButtonStyle.Main}">
                                 <Button.ContentTemplate>
@@ -124,6 +122,30 @@
                                 </StackPanel>
                             </Border>
                         </Grid>
+                        <TextBlock
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                            Text="Reports" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Grid.Column="0"
+                                Margin="5"
+                                Command="{Binding OpenReportCommand}"
+                                Content="Open Expense Report"
+                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}"
+                                Style="{StaticResource ButtonStyle.Main}" />
+                            <Button
+                                Grid.Column="1"
+                                Margin="5"
+                                Command="{Binding GenerateExpenseReportCommand}"
+                                Content="Generate Expense Report"
+                                Style="{StaticResource ButtonStyle.Main}" />
+                        </Grid>
                     </StackPanel>
                 </Border>
 
@@ -141,49 +163,23 @@
                 Background="{StaticResource Brush.Main.Background.Alt}"
                 CornerRadius="20">
                 <StackPanel Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Reports" />
-                        <StackPanel
-                            Grid.Column="1"
-                            HorizontalAlignment="Right"
-                            Orientation="Horizontal">
-                            <Button
-                                Width="200"
-                                Margin="5"
-                                Command="{Binding OpenReportCommand}"
-                                Content="Open Expense Report"
-                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}"
-                                Style="{StaticResource ButtonStyle.Main}" />
-                            <Button
-                                Width="200"
-                                Margin="5"
-                                Command="{Binding GenerateExpenseReportCommand}"
-                                Content="Generate Expense Report"
-                                Style="{StaticResource ButtonStyle.Main}" />
-                        </StackPanel>
-                    </Grid>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Expenses/Bills" />
                         <Button
-                            Width="30"
-                            Height="30"
+                            Width="60"
+                            Height="40"
                             Margin="10"
                             Command="{Binding AddEntryCommand}"
                             Style="{StaticResource ButtonStyle.Main}">
                             <Button.ContentTemplate>
                                 <DataTemplate>
-                                    <ContentPresenter Content="{StaticResource PlusIcon}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Add" />
+                                        <ContentPresenter Margin="5,0,0,0" Content="{StaticResource PlusIcon}" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </Button.ContentTemplate>
                         </Button>
@@ -233,10 +229,17 @@
                                         Width="200"
                                         Binding="{Binding Description}"
                                         Header="Description" />
+                                    <DataGridTemplateColumn Width="150" Header="Payment Channel">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                     <DataGridTemplateColumn Width="150" Header="Category">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>

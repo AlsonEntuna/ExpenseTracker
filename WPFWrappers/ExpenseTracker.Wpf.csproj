@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.1.94" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
   </ItemGroup>
 
