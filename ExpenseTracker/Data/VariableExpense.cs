@@ -53,7 +53,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _entires, value);
         }
 
-        public ExpenseDataReport Report { get; set; }
+        private ExpenseDataReport _report;
+
+        public ExpenseDataReport Report
+        {
+            get => _report;
+            set => SetProperty(ref _report, value);
+        }
        
 
         public VariableExpense() { }
