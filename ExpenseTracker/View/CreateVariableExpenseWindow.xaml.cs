@@ -14,6 +14,7 @@ namespace ExpenseTracker.View
         {
             InitializeComponent();
             DPicker_ExpenseDate.SelectedDate = System.DateTime.Now;
+            Combo_Currency.ItemsSource = DataCurrency.GenerateCurrencyList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -23,7 +24,8 @@ namespace ExpenseTracker.View
             {
                 Name = Txtbox_Name.Text,
                 Description = Txtbox_Description.Text,
-                CycleEndDate = DPicker_ExpenseDate.SelectedDate.Value
+                CycleEndDate = DPicker_ExpenseDate.SelectedDate.Value,
+                DataCurrency = Combo_Currency.SelectedItem as DataCurrency
             };
             Close();
         }

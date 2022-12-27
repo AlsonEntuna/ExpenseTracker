@@ -18,10 +18,11 @@
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="110" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -53,12 +54,23 @@
                             Grid.Column="0"
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Cycle Date:" />
+                            Text="Due Date:" />
                         <DatePicker
                             x:Name="DPicker_ExpenseDate"
                             Grid.Row="2"
                             Grid.Column="1"
                             DisplayDate="2022-01-01" />
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Form}"
+                            Text="Main Currency:" />
+                        <ComboBox
+                            x:Name="Combo_Currency"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            SelectedIndex="0" />
                     </Grid>
                 </StackPanel>
                 <Grid Margin="0,15,0,0">

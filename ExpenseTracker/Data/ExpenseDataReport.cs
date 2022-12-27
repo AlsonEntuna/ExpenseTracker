@@ -7,6 +7,7 @@ using ExpenseTracker.Wpf.Dialog;
 using ExpenseTracker.Wpf;
 using System.Globalization;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace ExpenseTracker.Data
 {
@@ -105,11 +106,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _selectedReport, value);
         }
 
-        // TODO: this is temporary until we implement a currency feature...
-        private CultureInfo _culture = new CultureInfo("en-PH");
+        public DataCurrency DataCurrency { get; set; }
         public string CurrencySymbol 
         {
-            get => _culture.NumberFormat.CurrencySymbol.ToString();
+            get
+            {
+                return DataCurrency != null ? DataCurrency.Symbol : CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
+            }
         }
 
         private ObservableCollection<KeyValuePair<string, int>> _reportChartData;
@@ -168,12 +171,26 @@ namespace ExpenseTracker.Data
 
             foreach (CategoryReport report in CategoryReports)
             {
-                ReportChartData.Add(new KeyValuePair<string, int>(report.PaymentChannel, (int)Math.Round(report.Amount)));
+                try
+                {
+                    ReportChartData.Add(new KeyValuePair<string, int>(report.PaymentChannel, (int)Math.Round(report.Amount)));
+                }
+                catch(Exception ex) 
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
 
             foreach(KeyValuePair<string, int> expenseCategoryReport in ExpenseCategoryReportCounter)
             {
-                ExpenseCategoryChartData.Add(new KeyValuePair<string, int>(expenseCategoryReport.Key, expenseCategoryReport.Value));
+                try
+                {
+                    ExpenseCategoryChartData.Add(new KeyValuePair<string, int>(expenseCategoryReport.Key, expenseCategoryReport.Value));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 
