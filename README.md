@@ -18,7 +18,8 @@
 - ExpenseTracker.Wpf
 
 ---
-
+## Documentation
+Documentation is available via this external link: [ExpenseTracker Documentation](https://alsonentuna.notion.site/Expense-Tracker-Documentation-a3cf8c5dd56d44f1a26e7cd72ea1d154)
 ## Release
 You can simply try out the tool by going to the release page here: [Release](https://github.com/AlsonEntuna/ExpenseTracker/releases)
 
