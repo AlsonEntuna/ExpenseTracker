@@ -48,7 +48,7 @@ namespace ExpenseTracker.Data
         {
             get
             {
-                return DataCurrency != null ? DataCurrency.Symbol : "???";
+                return DataCurrency != null ? DataCurrency.Symbol : CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
             }
         }
 
