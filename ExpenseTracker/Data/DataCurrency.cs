@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
 namespace ExpenseTracker.Data
 {
-    internal class DataCurrency
+    [Serializable]
+    public class DataCurrency
     {
         public string Code { get; set; }
         public string Name { get; set; }
@@ -17,12 +19,16 @@ namespace ExpenseTracker.Data
             Symbol = symbol;
         }
 
-        // TODO: Implement currency list per entry soon...
+        public override string ToString()
+        {
+            return $"{Name} - {Symbol}";
+        }
+
         public static IEnumerable<DataCurrency> GenerateCurrencyList()
         {
             List<DataCurrency> list = new List<DataCurrency>();
             CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Select(ci => ci.LCID).Distinct()
+                .Select(ci => ci.Name).Distinct()
                 .Select(id => new RegionInfo(id))
                 .GroupBy(r => r.ISOCurrencySymbol)
                 .Select(g => g.First()).ToList()

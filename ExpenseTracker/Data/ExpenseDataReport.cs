@@ -106,11 +106,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _selectedReport, value);
         }
 
-        // TODO: this is temporary until we implement a currency feature...
-        private CultureInfo _culture = new CultureInfo("en-PH");
+        public DataCurrency DataCurrency { get; set; }
         public string CurrencySymbol 
         {
-            get => _culture.NumberFormat.CurrencySymbol.ToString();
+            get
+            {
+                return DataCurrency != null ? DataCurrency.Symbol : "???";
+            }
         }
 
         private ObservableCollection<KeyValuePair<string, int>> _reportChartData;

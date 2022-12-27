@@ -144,6 +144,7 @@ namespace ExpenseTracker.ViewModels
                 report.AddCategoryReport(entry.PaymentChannel, entry.Amount, entry.ExpenseCategory);
             }
             report.UnPaidAmount = report.TotalAmount;
+            report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
             return report;
         }
 

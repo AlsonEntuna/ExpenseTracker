@@ -39,11 +39,17 @@ namespace ExpenseTracker.Data
 
         public string EndDate => CycleEndDate.ToLongDateString();
 
-        // TODO: This is only temporary...
-        public CultureInfo Currency => new CultureInfo("en-PH");
+
+        public DataCurrency DataCurrency { get; set; }
+        // NOTE: This is a fail-safe option.
+        public CultureInfo Currency => CultureInfo.CurrentCulture;
+
         public string CurrencySymbol
         {
-            get => Currency.NumberFormat.CurrencySymbol.ToString();
+            get
+            {
+                return DataCurrency != null ? DataCurrency.Symbol : "???";
+            }
         }
 
         private ObservableCollection<DataEntry> _entires = new();
