@@ -107,7 +107,7 @@
                                     <TextBlock
                                         VerticalAlignment="Center"
                                         Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Expense Total" />
+                                        Text="Total" />
                                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                         <TextBlock
                                             Grid.Column="0"
@@ -167,7 +167,7 @@
                         <TextBlock
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Expenses/Bills" />
+                            Text="Entries" />
                         <Button
                             Width="60"
                             Height="40"

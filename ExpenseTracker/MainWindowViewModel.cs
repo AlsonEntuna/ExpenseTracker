@@ -4,6 +4,8 @@ using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
 using System;
 using ExpenseTracker.Wpf;
+using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ExpenseTracker
 {
@@ -12,6 +14,11 @@ namespace ExpenseTracker
         #region ViewModels
         private readonly VariableExpenseViewModel variableExpenseViewModel = new VariableExpenseViewModel();
         public VariableExpenseViewModel VariableExpenseViewModel => variableExpenseViewModel;
+        #endregion
+
+        #region Commaands
+        public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
+        public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
         #endregion
 
         public MainWindowViewModel()
@@ -52,6 +59,25 @@ namespace ExpenseTracker
                 VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
                 VariableExpenseViewModel.IsNewExpense = true;
             }
+        }
+
+        public void OpenToolsPanel()
+        {
+            ExpenseTrackerTools toolsWindow = new ExpenseTrackerTools
+            {
+                DataContext = this
+            };
+            toolsWindow.ShowDialog();
+        }
+
+        // TODO: implement import and export of categories
+        private void ImportCategories() 
+        {
+
+        }
+        private void ExportCategories() 
+        {
+            
         }
 
         public void OpenVariableExpense()

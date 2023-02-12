@@ -42,7 +42,8 @@
                     Width="60"
                     Height="60"
                     Click="Btn_Open_Click"
-                    Style="{StaticResource ButtonStyle.Main}">
+                    Style="{StaticResource ButtonStyle.Main}"
+                    ToolTip="Open Expense">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <ContentPresenter Content="{StaticResource OpenIcon}" />
@@ -55,10 +56,25 @@
                     Height="60"
                     Margin="5,0,0,0"
                     Click="Btn_New_Click"
-                    Style="{StaticResource ButtonStyle.Main}">
+                    Style="{StaticResource ButtonStyle.Main}"
+                    ToolTip="Create New Expense">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <ContentPresenter Content="{StaticResource NewIcon}" />
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+                <Button
+                    x:Name="Btn_Tools"
+                    Width="60"
+                    Height="60"
+                    Margin="5,0,0,0"
+                    Click="Btn_Tools_Click"
+                    Style="{StaticResource ButtonStyle.Main}"
+                    ToolTip="Tools">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{StaticResource ToolsIcon}" />
                         </DataTemplate>
                     </Button.ContentTemplate>
                 </Button>
@@ -68,7 +84,8 @@
                     Height="60"
                     Margin="5,0,0,0"
                     Click="Btn_Exit_Click"
-                    Style="{StaticResource ButtonStyle.Main}">
+                    Style="{StaticResource ButtonStyle.Main}"
+                    ToolTip="Close Application">
                     <Button.ContentTemplate>
                         <DataTemplate>
                             <ContentPresenter Content="{StaticResource ExitIcon}" />
