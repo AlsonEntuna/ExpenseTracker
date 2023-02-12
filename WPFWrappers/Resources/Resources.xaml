@@ -13,4 +13,5 @@
     <converter:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
     <converter:EnumToBoolConverter x:Key="EnumToBoolConverter" />
     <converter:StringToBoolConverter x:Key="StringToBoolConverter" />
+    <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
 </ResourceDictionary>

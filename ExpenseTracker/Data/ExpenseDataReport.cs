@@ -43,6 +43,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _partialPayment, value);
         }
 
+        private float _outstandingBalance;
+        public float OutstandingBalance
+        {
+            get => _outstandingBalance;
+            set => SetProperty(ref _outstandingBalance, value);
+        }
+
         [NonSerialized]
         public EventHandler<PaidEventArgs> PaidEvent;
 
@@ -50,6 +57,7 @@ namespace ExpenseTracker.Data
         {
             PaymentChannel = paymenChannel;
             Amount = amount;
+            OutstandingBalance = Amount;
         }
 
         public void AddPartialPayment()
@@ -62,6 +70,13 @@ namespace ExpenseTracker.Data
             if (numDialog.DialogResult == true)
             {
                 PartialPayment += numDialog.NumValue;
+            }
+
+            // Compute the outstanding balance
+            OutstandingBalance = Amount - PartialPayment;
+            if (OutstandingBalance == 0)
+            {
+                Paid = true;
             }
         }
     }
