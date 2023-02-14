@@ -3,6 +3,9 @@ using ExpenseTracker.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ExpenseTracker.Data
 {
@@ -148,6 +151,54 @@ namespace ExpenseTracker.Data
                 return true;
             }
             return false;
+        }
+
+        public static void ExportCategories()
+        {
+            SaveFileDialog dialog = new()
+            {
+                Title = "Export Categories",
+                DefaultExt = ".json",
+                Filter = "category files (*.json)|*.json",
+                CheckPathExists = true,
+                FileName = Constants.CATEGORIES_FILE,
+                FilterIndex = 2,
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                JsonUtils.Serialize(dialog.FileName, DataCategories);
+                MessageBox.Show("Successfully exported categories data.", "Export", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        public static void ImportCategories() 
+        {
+            OpenFileDialog dialog = new()
+            {
+                Title = "Import Categories",
+                DefaultExt = "json",
+                Filter = "category files (*.json)|*.json",
+                CheckPathExists = true,
+                FilterIndex = 2,
+                InitialDirectory = "C:/",
+                RestoreDirectory = true
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataCategories = JsonUtils.Deserialize<Categories>(dialog.FileName);
+                }
+                catch(Exception ex) 
+                {
+                    return;
+                }
+                // Serialize immediately
+                JsonUtils.Serialize(_dataFile, DataCategories);
+                MessageBox.Show("Successfully imported categories data.", "Import", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

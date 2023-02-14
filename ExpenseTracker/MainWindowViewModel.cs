@@ -70,14 +70,13 @@ namespace ExpenseTracker
             toolsWindow.ShowDialog();
         }
 
-        // TODO: implement import and export of categories
         private void ImportCategories() 
         {
-
+            DataHandler.ImportCategories();
         }
         private void ExportCategories() 
         {
-            
+            DataHandler.ExportCategories();
         }
 
         public void OpenVariableExpense()
