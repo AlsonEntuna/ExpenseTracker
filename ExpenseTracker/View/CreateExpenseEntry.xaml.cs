@@ -1,8 +1,8 @@
 ﻿using ExpenseTracker.Data;
-using System.Windows;
-using System.Windows.Input;
 using ExpenseTracker.Wpf.Dialog;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker.View
 {

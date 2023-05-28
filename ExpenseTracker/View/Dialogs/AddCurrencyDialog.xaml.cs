@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using ExpenseTracker.Data;
+﻿using ExpenseTracker.Data;
+using System.Windows;
 
 namespace ExpenseTracker.View.Dialogs
 {

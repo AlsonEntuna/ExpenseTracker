@@ -98,7 +98,7 @@ namespace ExpenseTracker.Data
             {
                 _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
             }
-            
+
             if (!DataCategories.ExpenseCategories.Contains(category))
             {
                 DataCategories.ExpenseCategories.Add(category);
@@ -137,13 +137,13 @@ namespace ExpenseTracker.Data
             catch
             {
                 List<string> legacyData = JsonUtils.DeserializeArray<List<string>>(_dataFile);
-                
+
                 if (DataCategories == null)
                 {
                     DataCategories = new Categories();
                 }
 
-                foreach(string paymentChannel in legacyData)
+                foreach (string paymentChannel in legacyData)
                 {
                     AddPaymentChannel(paymentChannel);
                 }
@@ -172,7 +172,7 @@ namespace ExpenseTracker.Data
             }
         }
 
-        public static void ImportCategories() 
+        public static void ImportCategories()
         {
             OpenFileDialog dialog = new()
             {
@@ -191,7 +191,7 @@ namespace ExpenseTracker.Data
                 {
                     DataCategories = JsonUtils.Deserialize<Categories>(dialog.FileName);
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     return;
                 }

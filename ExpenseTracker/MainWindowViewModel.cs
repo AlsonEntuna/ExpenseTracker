@@ -2,10 +2,10 @@
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
-using System;
 using ExpenseTracker.Wpf;
-using System.Windows.Input;
 using Microsoft.Toolkit.Mvvm.Input;
+using System;
+using System.Windows.Input;
 
 namespace ExpenseTracker
 {
@@ -42,7 +42,7 @@ namespace ExpenseTracker
                     variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
                     variableExpenseViewModel.UpdateEventListeners();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     DataHandler.Config.DataLocation = string.Empty;
                     // TODO: have a logging system here...
@@ -70,11 +70,11 @@ namespace ExpenseTracker
             toolsWindow.ShowDialog();
         }
 
-        private void ImportCategories() 
+        private void ImportCategories()
         {
             DataHandler.ImportCategories();
         }
-        private void ExportCategories() 
+        private void ExportCategories()
         {
             DataHandler.ExportCategories();
         }

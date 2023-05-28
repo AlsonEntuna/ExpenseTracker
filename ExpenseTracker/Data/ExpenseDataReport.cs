@@ -1,13 +1,13 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
+﻿using ExpenseTracker.Wpf;
+using ExpenseTracker.Wpf.Dialog;
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Input;
-using ExpenseTracker.Wpf.Dialog;
-using ExpenseTracker.Wpf;
-using System.Globalization;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker.Data
 {
@@ -92,14 +92,14 @@ namespace ExpenseTracker.Data
         }
 
         private float _unpaidAmount;
-        public float UnPaidAmount 
+        public float UnPaidAmount
         {
             get => _unpaidAmount;
             set => SetProperty(ref _unpaidAmount, value);
         }
 
         private float _paidAmount;
-        public float PaidAmount 
+        public float PaidAmount
         {
             get => _paidAmount;
             set => SetProperty(ref _paidAmount, value);
@@ -122,7 +122,7 @@ namespace ExpenseTracker.Data
         }
 
         public DataCurrency DataCurrency { get; set; }
-        public string CurrencySymbol 
+        public string CurrencySymbol
         {
             get
             {
@@ -168,7 +168,7 @@ namespace ExpenseTracker.Data
 
         private CategoryReport GetCategoryReport(string paymenChannel)
         {
-            foreach(CategoryReport report in CategoryReports)
+            foreach (CategoryReport report in CategoryReports)
             {
                 if (report.PaymentChannel == paymenChannel)
                 {
@@ -190,13 +190,13 @@ namespace ExpenseTracker.Data
                 {
                     ReportChartData.Add(new KeyValuePair<string, int>(report.PaymentChannel, (int)Math.Round(report.Amount)));
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
             }
 
-            foreach(KeyValuePair<string, int> expenseCategoryReport in ExpenseCategoryReportCounter)
+            foreach (KeyValuePair<string, int> expenseCategoryReport in ExpenseCategoryReportCounter)
             {
                 try
                 {
@@ -228,7 +228,7 @@ namespace ExpenseTracker.Data
                 }
             }
 
-            if (ExpenseCategoryReportCounter == null) 
+            if (ExpenseCategoryReportCounter == null)
             {
                 ExpenseCategoryReportCounter = new Dictionary<string, int>();
             }

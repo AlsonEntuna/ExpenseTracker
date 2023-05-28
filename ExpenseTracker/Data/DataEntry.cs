@@ -1,5 +1,5 @@
-﻿using System;
-using ExpenseTracker.Wpf;
+﻿using ExpenseTracker.Wpf;
+using System;
 
 namespace ExpenseTracker.Data
 {
