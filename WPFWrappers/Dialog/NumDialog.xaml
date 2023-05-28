@@ -31,7 +31,7 @@
                     Height="30"
                     Click="Btn_Done_Click"
                     Content="Enter"
-                    Style="{StaticResource ButtonStyle.Main}" />
+                     />
             </Grid>
         </GroupBox>
     </Grid>

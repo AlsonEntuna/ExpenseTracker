@@ -31,7 +31,7 @@
                                 Width="45"
                                 Margin="10,0,0,0"
                                 Command="{Binding SaveVariableExpenseCommand}"
-                                Style="{StaticResource ButtonStyle.Main}">
+                                >
                                 <Button.ContentTemplate>
                                     <DataTemplate>
                                         <ContentPresenter Content="{StaticResource SaveIcon}" />
@@ -87,7 +87,7 @@
                                             Margin="10,0,0,0"
                                             Command="{Binding EditBudgetCommand}"
                                             Content="Edit"
-                                            Style="{StaticResource ButtonStyle.Main}">
+                                            >
                                             <Button.ContentTemplate>
                                                 <DataTemplate>
                                                     <ContentPresenter Content="{StaticResource EditIcon}" />
@@ -138,13 +138,13 @@
                                 Command="{Binding OpenReportCommand}"
                                 Content="Open Expense Report"
                                 IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}"
-                                Style="{StaticResource ButtonStyle.Main}" />
+                                 />
                             <Button
                                 Grid.Column="1"
                                 Margin="5"
                                 Command="{Binding GenerateExpenseReportCommand}"
                                 Content="Generate Expense Report"
-                                Style="{StaticResource ButtonStyle.Main}" />
+                                 />
                         </Grid>
                     </StackPanel>
                 </Border>
@@ -173,7 +173,7 @@
                             Height="40"
                             Margin="10"
                             Command="{Binding AddEntryCommand}"
-                            Style="{StaticResource ButtonStyle.Main}">
+                            >
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">

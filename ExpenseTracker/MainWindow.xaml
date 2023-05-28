@@ -42,7 +42,6 @@
                     Width="60"
                     Height="60"
                     Click="Btn_Open_Click"
-                    Style="{StaticResource ButtonStyle.Main}"
                     ToolTip="Open Expense">
                     <Button.ContentTemplate>
                         <DataTemplate>
@@ -56,7 +55,6 @@
                     Height="60"
                     Margin="5,0,0,0"
                     Click="Btn_New_Click"
-                    Style="{StaticResource ButtonStyle.Main}"
                     ToolTip="Create New Expense">
                     <Button.ContentTemplate>
                         <DataTemplate>
@@ -70,7 +68,6 @@
                     Height="60"
                     Margin="5,0,0,0"
                     Click="Btn_Tools_Click"
-                    Style="{StaticResource ButtonStyle.Main}"
                     ToolTip="Tools">
                     <Button.ContentTemplate>
                         <DataTemplate>
@@ -84,7 +81,6 @@
                     Height="60"
                     Margin="5,0,0,0"
                     Click="Btn_Exit_Click"
-                    Style="{StaticResource ButtonStyle.Main}"
                     ToolTip="Close Application">
                     <Button.ContentTemplate>
                         <DataTemplate>

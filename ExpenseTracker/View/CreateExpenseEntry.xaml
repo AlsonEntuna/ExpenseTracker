@@ -58,7 +58,7 @@
                                 Height="20"
                                 Click="BtnExpenseCreateCategory_Click"
                                 Content="+"
-                                Style="{StaticResource ButtonStyle.Main}" />
+                                 />
                         </Grid>
                         <TextBlock
                             Grid.Row="2"
@@ -80,7 +80,7 @@
                                 Height="20"
                                 Click="BtnCreatePaymentChannel_Click"
                                 Content="+"
-                                Style="{StaticResource ButtonStyle.Main}" />
+                                 />
                         </Grid>
                         <TextBlock
                             Grid.Row="3"
@@ -105,14 +105,14 @@
                         Margin="5"
                         Click="Button_Click"
                         Content="Add"
-                        Style="{StaticResource ButtonStyle.Main}" />
+                         />
                     <Button
                         x:Name="Btn_Cancel"
                         Grid.Column="1"
                         Margin="5"
                         Click="Btn_Cancel_Click"
                         Content="Cancel"
-                        Style="{StaticResource ButtonStyle.Main}" />
+                         />
                 </Grid>
             </StackPanel>
         </Grid>

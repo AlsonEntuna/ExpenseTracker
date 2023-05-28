@@ -35,7 +35,7 @@
                     Margin="1,0,0,0"
                     Click="Button_Click"
                     Content="Enter"
-                    Style="{StaticResource ButtonStyle.Main}" />
+                     />
             </Grid>
         </GroupBox>
     </Grid>

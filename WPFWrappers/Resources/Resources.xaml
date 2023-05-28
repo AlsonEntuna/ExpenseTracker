@@ -5,7 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml" />
         <ResourceDictionary Source="Icons.xaml" />
-        <ResourceDictionary Source="MainStyles.xaml" />
+        <ResourceDictionary Source="MainTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <converter:BooleanFromObjectConverter x:Key="BoolFromObjectConverter" />
     <converter:InverseBooleanFromObjectConverter x:Key="InverseBoolFromObjectConverter" />
