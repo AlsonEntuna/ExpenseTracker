@@ -1,8 +1,8 @@
-﻿using System;
+﻿using ExpenseTracker.Wpf;
+using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -66,7 +66,7 @@ namespace ExpenseTracker.Data
             get => _report;
             set => SetProperty(ref _report, value);
         }
-       
+
 
         public VariableExpense() { }
         public void AddEntry(DataEntry Entry)
@@ -85,7 +85,7 @@ namespace ExpenseTracker.Data
             bool hasLegacyData = Entries.Any(f => f.Category != null && f.Category.Length != 0);
             if (hasLegacyData)
             {
-                foreach(var entry in Entries)
+                foreach (var entry in Entries)
                 {
                     entry.PaymentChannel = entry.Category;
                     entry.Category = null;

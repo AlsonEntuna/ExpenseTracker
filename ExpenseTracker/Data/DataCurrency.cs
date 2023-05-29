@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 
@@ -22,6 +23,13 @@ namespace ExpenseTracker.Data
         public override string ToString()
         {
             return $"{Name} - {Symbol}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is DataCurrency otherCurrency)
+                return string.Equals(Code, otherCurrency.Code);
+            else return false ;
         }
 
         public static IEnumerable<DataCurrency> GenerateCurrencyList()

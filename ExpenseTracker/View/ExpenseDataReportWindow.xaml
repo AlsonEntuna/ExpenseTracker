@@ -9,7 +9,7 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     Title="Expense Data Report"
     Width="1660"
-    Height="1000"
+    Height="900"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"
@@ -21,6 +21,10 @@
     <Border Background="{StaticResource Brush.Border.Background.Alt}">
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel>
+                <TextBlock
+                    Margin="45,20,0,0"
+                    Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                    Text="Report Summary" />
                 <Grid Height="100" Margin="20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" />
@@ -52,7 +56,7 @@
                         Background="{StaticResource Brush.Border.Background}"
                         CornerRadius="20">
                         <StackPanel Margin="15" Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Debt:" />
+                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Balance:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
                                 <TextBlock
                                     HorizontalAlignment="Center"
@@ -129,92 +133,92 @@
                                         <Button
                                             Command="{Binding Path=DataContext.Report.AddPartialPaymentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
                                             Content="Add"
+                                            IsEnabled="{Binding Paid, Converter={StaticResource InverseBoolConverter}}"
                                             Style="{StaticResource ButtonStyle.Element}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
+                            <DataGridTextColumn Binding="{Binding OutstandingBalance}" Header="Outstanding Balance" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
-                <Grid Height="500">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Border
-                        Grid.Column="0"
-                        Margin="30"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="20">
-                        <Grid Margin="20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <toolkit:Chart
-                                Name="columnChart"
-                                Grid.Column="0"
-                                BorderBrush="Transparent"
-                                Style="{StaticResource ChartStyle.Main}"
-                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                                <toolkit:ColumnSeries
-                                    Title="Report"
-                                    DependentValuePath="Value"
-                                    IndependentValuePath="Key"
-                                    ItemsSource="{Binding}" />
-                            </toolkit:Chart>
-                            <toolkit:Chart
-                                Name="pieChart"
-                                Grid.Column="1"
-                                BorderBrush="Transparent"
-                                Style="{StaticResource ChartStyle.Main}"
-                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                                <toolkit:PieSeries
-                                    DependentValuePath="Value"
-                                    IndependentValuePath="Key"
-                                    IsSelectionEnabled="True"
-                                    ItemsSource="{Binding}" />
-                            </toolkit:Chart>
-                        </Grid>
-                    </Border>
-                    <Border
-                        Grid.Column="1"
-                        Margin="30"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="20">
-                        <Grid Margin="20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <toolkit:Chart
-                                Name="expenseCategoryColumnChart"
-                                Grid.Column="0"
-                                BorderBrush="Transparent"
-                                Style="{StaticResource ChartStyle.Main}"
-                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                                <toolkit:ColumnSeries
-                                    Title="Report"
-                                    DependentValuePath="Value"
-                                    IndependentValuePath="Key"
-                                    ItemsSource="{Binding}" />
-                            </toolkit:Chart>
-                            <toolkit:Chart
-                                Name="expenseCategoryPieChart"
-                                Grid.Column="1"
-                                BorderBrush="Transparent"
-                                Style="{StaticResource ChartStyle.Main}"
-                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                                <toolkit:PieSeries
-                                    DependentValuePath="Value"
-                                    IndependentValuePath="Key"
-                                    IsSelectionEnabled="True"
-                                    ItemsSource="{Binding}" />
-                            </toolkit:Chart>
-                        </Grid>
-                    </Border>
-                </Grid>
+                <TextBlock
+                    Margin="45,0,0,0"
+                    Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                    Text="Expense Breakdown Chart" />
+                <Border
+                    Height="500"
+                    Margin="30"
+                    Background="{StaticResource Brush.Border.Background}"
+                    CornerRadius="20">
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <toolkit:Chart
+                            Name="columnChart"
+                            Grid.Column="0"
+                            BorderBrush="Transparent"
+                            Style="{StaticResource ChartStyle.Main}"
+                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                            <toolkit:ColumnSeries
+                                Title="Report"
+                                DependentValuePath="Value"
+                                IndependentValuePath="Key"
+                                ItemsSource="{Binding}" />
+                        </toolkit:Chart>
+                        <toolkit:Chart
+                            Name="pieChart"
+                            Grid.Column="1"
+                            BorderBrush="Transparent"
+                            Style="{StaticResource ChartStyle.Main}"
+                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                            <toolkit:PieSeries
+                                DependentValuePath="Value"
+                                IndependentValuePath="Key"
+                                IsSelectionEnabled="True"
+                                ItemsSource="{Binding}" />
+                        </toolkit:Chart>
+                    </Grid>
+                </Border>
+                <Border
+                    Height="500"
+                    Margin="30"
+                    Background="{StaticResource Brush.Border.Background}"
+                    CornerRadius="20">
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <toolkit:Chart
+                            Name="expenseCategoryColumnChart"
+                            Grid.Column="0"
+                            BorderBrush="Transparent"
+                            Style="{StaticResource ChartStyle.Main}"
+                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                            <toolkit:ColumnSeries
+                                Title="Report"
+                                DependentValuePath="Value"
+                                IndependentValuePath="Key"
+                                ItemsSource="{Binding}" />
+                        </toolkit:Chart>
+                        <toolkit:Chart
+                            Name="expenseCategoryPieChart"
+                            Grid.Column="1"
+                            BorderBrush="Transparent"
+                            Style="{StaticResource ChartStyle.Main}"
+                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                            <toolkit:PieSeries
+                                DependentValuePath="Value"
+                                IndependentValuePath="Key"
+                                IsSelectionEnabled="True"
+                                ItemsSource="{Binding}" />
+                        </toolkit:Chart>
+                    </Grid>
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Border>

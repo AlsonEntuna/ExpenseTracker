@@ -17,5 +17,10 @@ namespace ExpenseTracker.Wpf
             }
             return false;
         }
+
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null) 
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -2,8 +2,10 @@
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
-using System;
 using ExpenseTracker.Wpf;
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
+using System.Windows.Input;
 
 namespace ExpenseTracker
 {
@@ -12,6 +14,11 @@ namespace ExpenseTracker
         #region ViewModels
         private readonly VariableExpenseViewModel variableExpenseViewModel = new VariableExpenseViewModel();
         public VariableExpenseViewModel VariableExpenseViewModel => variableExpenseViewModel;
+        #endregion
+
+        #region Commaands
+        public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
+        public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
         #endregion
 
         public MainWindowViewModel()
@@ -35,7 +42,7 @@ namespace ExpenseTracker
                     variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
                     variableExpenseViewModel.UpdateEventListeners();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     DataHandler.Config.DataLocation = string.Empty;
                     // TODO: have a logging system here...
@@ -52,6 +59,24 @@ namespace ExpenseTracker
                 VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
                 VariableExpenseViewModel.IsNewExpense = true;
             }
+        }
+
+        public void OpenToolsPanel()
+        {
+            ExpenseTrackerTools toolsWindow = new ExpenseTrackerTools
+            {
+                DataContext = this
+            };
+            toolsWindow.ShowDialog();
+        }
+
+        private void ImportCategories()
+        {
+            DataHandler.ImportCategories();
+        }
+        private void ExportCategories()
+        {
+            DataHandler.ExportCategories();
         }
 
         public void OpenVariableExpense()

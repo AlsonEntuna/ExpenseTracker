@@ -11,9 +11,13 @@ namespace ExpenseTracker.Wpf.Dialog
     {
         public string TextValue => Txt_Value.Text;
         public float NumValue => float.Parse(Txt_Value.Text);
-        public NumDialog()
+        public NumDialog(string title = "")
         {
             InitializeComponent();
+            if (!string.IsNullOrEmpty(title))
+            {
+                Title = title;
+            }
         }
 
         private void Input_KeyDown(object sender, KeyEventArgs e)

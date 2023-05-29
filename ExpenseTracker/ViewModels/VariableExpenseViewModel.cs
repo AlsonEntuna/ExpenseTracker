@@ -2,12 +2,12 @@
 using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
+using ExpenseTracker.Wpf;
+using ExpenseTracker.Wpf.Dialog;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
-using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -44,7 +44,7 @@ namespace ExpenseTracker.ViewModels
 
         private void AddEntry()
         {
-            CreateExpenseEntry entryWindow = new CreateExpenseEntry();
+            CreateExpenseEntry entryWindow = new CreateExpenseEntry(CurrentDisplayedExpense.DataCurrency);
             if (entryWindow.ShowDialog() ?? true)
             {
                 CurrentDisplayedExpense.Entries.Add(entryWindow.Entry);
@@ -134,7 +134,7 @@ namespace ExpenseTracker.ViewModels
             reportWindow.expenseCategoryPieChart.DataContext = reportVm.Report.ExpenseCategoryChartData;
             reportWindow.ShowDialog();
         }
-        
+
         private ExpenseDataReport GenerateExpenseDataReport()
         {
             ExpenseDataReport report = new();
@@ -163,7 +163,7 @@ namespace ExpenseTracker.ViewModels
 
         private void EditBudget()
         {
-            NumDialog numDialog = new NumDialog();
+            NumDialog numDialog = new NumDialog("Enter Your Budget");
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {

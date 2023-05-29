@@ -3,18 +3,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
     xmlns:toolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit">
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <!--  Main Styles  -->
+    <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+        <!--  Icon - works only if a resource  -->
+    </Style>
+    <Style x:Key="UserControlStyle" TargetType="{x:Type UserControl}">
+        <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+    </Style>
+
+    <!--  All controls  -->
+    <Style x:Key="CommonStyle" TargetType="{x:Type Control}">
+        <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text}" />
+        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontStretch" Value="Expanded" />
+        <Setter Property="FontStyle" Value="Normal" />
+    </Style>
+
     <!--  Button  -->
-    <Style x:Key="ButtonStyle.Main" TargetType="Button">
+    <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="40" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border
                         Width="auto"
                         Height="{TemplateBinding Height}"
@@ -33,15 +54,15 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="ButtonStyle.Element" TargetType="Button">
+    <Style x:Key="ButtonStyle.Element" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="30" />
         <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+
         <Setter Property="TextElement.FontSize" Value="12" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border
                         Width="auto"
                         Height="{TemplateBinding Height}"
@@ -61,14 +82,14 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="ButtonStyle.Main.Large" TargetType="Button">
+    <Style x:Key="ButtonStyle.Main.Large" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="50" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="TextElement.FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border
                         Width="auto"
                         Height="{TemplateBinding Height}"
@@ -88,11 +109,10 @@
         </Style.Triggers>
     </Style>
 
-    <!--  TexBox  -->
-    <Style x:Key="TextBoxkStyle.Title" TargetType="TextBox">
+    <!--  TextBox  -->
+    <Style x:Key="TextBoxkStyle.Title" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Regular" />
         <Style.Resources>
             <Style TargetType="{x:Type Border}">
                 <Setter Property="CornerRadius" Value="3" />
@@ -100,97 +120,110 @@
         </Style.Resources>
     </Style>
 
-    <!--  TextBlock  -->
-    <Style x:Key="TextBlockStyle.Title" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="50" />
-        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
-    </Style>
-    <Style x:Key="TextBlockStyle.Form" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
-    </Style>
-    <Style x:Key="TextBlockStyle.Header1.Bold" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="28" />
-        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
-    </Style>
-    <Style x:Key="TextBlockStyle.Header1" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="28" />
-        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+    <!--  Label / TextBlock  -->
+    <ControlTemplate x:Key="LabelTemplate" TargetType="{x:Type Label}">
+        <Border>
+            <ContentPresenter
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                RecognizesAccessKey="True" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text.Alt}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type Label}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template" Value="{DynamicResource LabelTemplate}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     </Style>
 
-    <Style x:Key="TextBlockStyle.Header2.Bold" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Bold" />
+    <!--  TextBlock  -->
+    <Style x:Key="TextBlockStyle.Title" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+
+    </Style>
+    <Style x:Key="TextBlockStyle.Form" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+    </Style>
+    <Style x:Key="TextBlockStyle.Header1.Bold" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+
+    </Style>
+    <Style x:Key="TextBlockStyle.Header1" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+
+    </Style>
+
+    <Style x:Key="TextBlockStyle.Header2.Bold" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontSize" Value="22" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+
     </Style>
-    <Style x:Key="TextBlockStyle.Header2" TargetType="TextBlock">
+    <Style x:Key="TextBlockStyle.Header2" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="22" />
         <Setter Property="FontWeight" Value="ExtraLight" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+
     </Style>
-    <Style x:Key="TextBlockStyle.Header2.Alt" TargetType="TextBlock">
+    <Style x:Key="TextBlockStyle.Header2.Alt" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="22" />
         <Setter Property="FontWeight" Value="ExtraLight" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text.Alt}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+
     </Style>
 
     <!--  GroupBox  -->
-    <Style x:Key="GroupBoxStyle.Main" TargetType="GroupBox">
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+    <Style x:Key="GroupBoxStyle.Main" TargetType="{x:Type GroupBox}">
+
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
     </Style>
 
     <!--  DataGrid  -->
-    <Style x:Key="DataGridStyle.Main" TargetType="DataGrid">
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono Medium" />
+    <Style x:Key="DataGridStyle.Main" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
         <Setter Property="CanUserSortColumns" Value="True" />
     </Style>
+
+    <ControlTemplate x:Key="DataGridColumnHeaderTemplate" TargetType="{x:Type DataGridColumnHeader}">
+        <Border
+            Padding="0"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+            <Border Background="{StaticResource Brush.Button.Main}">
+                <ContentPresenter
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    RecognizesAccessKey="True"
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </Border>
+        </Border>
+    </ControlTemplate>
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                    <Grid>
-                        <Border
-                            Padding="0"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                            <Border Background="{StaticResource Brush.Button.Main}">
-                                <ContentPresenter
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    RecognizesAccessKey="True"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Border>
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Template" Value="{DynamicResource DataGridColumnHeaderTemplate}" />
     </Style>
 
     <!--  Charts  -->
-    <Style x:Key="ChartStyle.NoTitle" TargetType="datavis:Title">
+    <Style x:Key="ChartStyle.NoTitle" TargetType="{x:Type datavis:Title}">
         <Setter Property="Visibility" Value="Collapsed" />
     </Style>
 
-    <Style x:Key="ChartStyle.Main" TargetType="toolkit:Chart">
+    <Style x:Key="ChartStyle.Main" TargetType="{x:Type toolkit:Chart}">
         <Setter Property="PlotAreaStyle">
             <Setter.Value>
-                <Style TargetType="Grid">
+                <Style TargetType="{x:Type Grid}">
                     <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
                 </Style>
 

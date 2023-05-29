@@ -7,114 +7,124 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Create Expense Entry"
     Width="400"
-    Height="230"
+    Height="220"
     MouseDown="Window_MouseDown"
     ResizeMode="NoResize"
-    SizeToContent="Height"
+    Style="{DynamicResource WindowStyle}"
     mc:Ignorable="d">
-    <Border Background="{StaticResource Brush.Border.Background.Alt}">
-        <Grid Margin="1" Background="{StaticResource Brush.Main.Background}">
-            <StackPanel Margin="20">
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Description:" />
-                        <TextBox
-                            x:Name="TxtBox_Description"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Style="{StaticResource TextBoxkStyle.Title}" />
-                        <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Category:" />
-                        <Grid Grid.Row="1" Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="20" />
-                            </Grid.ColumnDefinitions>
-                            <ComboBox
-                                x:Name="CmbBox_ExpenseCategory"
-                                Grid.Column="0"
-                                SelectedIndex="0" />
-                            <Button
-                                x:Name="BtnExpenseCreateCategory"
-                                Grid.Column="1"
-                                Height="20"
-                                Click="BtnExpenseCreateCategory_Click"
-                                Content="+"
-                                Style="{StaticResource ButtonStyle.Main}" />
-                        </Grid>
-                        <TextBlock
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Payment Channel:" />
-                        <Grid Grid.Row="2" Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="20" />
-                            </Grid.ColumnDefinitions>
-                            <ComboBox
-                                x:Name="CmbBox_PaymentChannel"
-                                Grid.Column="0"
-                                SelectedIndex="0" />
-                            <Button
-                                x:Name="BtnCreatePaymentChannel"
-                                Grid.Column="1"
-                                Height="20"
-                                Click="BtnCreatePaymentChannel_Click"
-                                Content="+"
-                                Style="{StaticResource ButtonStyle.Main}" />
-                        </Grid>
-                        <TextBlock
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Amount:" />
-                        <TextBox
-                            x:Name="TxtBox_Amount"
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            PreviewTextInput="TxtBox_Amount_PreviewTextInput"
-                            Style="{StaticResource TextBoxkStyle.Title}" />
-                    </Grid>
-                </StackPanel>
-                <Grid Margin="0,15,0,0">
+    <Grid>
+        <StackPanel Margin="5">
+            <StackPanel>
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
                         Grid.Column="0"
-                        Margin="5"
-                        Click="Button_Click"
-                        Content="Add"
-                        Style="{StaticResource ButtonStyle.Main}" />
-                    <Button
-                        x:Name="Btn_Cancel"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Description:" />
+                    <TextBox
+                        x:Name="TxtBox_Description"
+                        Grid.Row="0"
                         Grid.Column="1"
-                        Margin="5"
-                        Click="Btn_Cancel_Click"
-                        Content="Cancel"
-                        Style="{StaticResource ButtonStyle.Main}" />
+                        Style="{StaticResource TextBoxkStyle.Title}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Category:" />
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            x:Name="CmbBox_ExpenseCategory"
+                            Grid.Column="0"
+                            SelectedIndex="0" />
+                        <Button
+                            x:Name="BtnExpenseCreateCategory"
+                            Grid.Column="1"
+                            Height="20"
+                            Click="BtnExpenseCreateCategory_Click"
+                            Content="+" />
+                    </Grid>
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Payment Channel:" />
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            x:Name="CmbBox_PaymentChannel"
+                            Grid.Column="0"
+                            SelectedIndex="0" />
+                        <Button
+                            x:Name="BtnCreatePaymentChannel"
+                            Grid.Column="1"
+                            Height="20"
+                            Click="BtnCreatePaymentChannel_Click"
+                            Content="+" />
+                    </Grid>
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Amount:" />
+                    <TextBox
+                        x:Name="TxtBox_Amount"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        PreviewTextInput="TxtBox_Amount_PreviewTextInput"
+                        Style="{StaticResource TextBoxkStyle.Title}" />
+                </Grid>
+                <Separator Height="10" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        VerticalContentAlignment="Center"
+                        Content="Currency" />
+                    <ComboBox
+                        x:Name="Combo_Currency"
+                        Grid.Column="1"
+                        Width="auto"
+                        SelectedIndex="0" />
                 </Grid>
             </StackPanel>
-        </Grid>
-    </Border>
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Margin="3"
+                    Click="Button_Click"
+                    Content="Add" />
+                <Button
+                    x:Name="Btn_Cancel"
+                    Grid.Column="1"
+                    Margin="3"
+                    Click="Btn_Cancel_Click"
+                    Content="Cancel" />
+            </Grid>
+        </StackPanel>
+    </Grid>
 </Window>

@@ -40,5 +40,10 @@ namespace ExpenseTracker
         {
             _vm?.CreateVariableExpense();
         }
+
+        private void Btn_Tools_Click(object sender, RoutedEventArgs e)
+        {
+            _vm?.OpenToolsPanel();
+        }
     }
 }

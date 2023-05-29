@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ExpenseTracker.Utils
@@ -61,6 +62,18 @@ namespace ExpenseTracker.Utils
                 writer.Formatting = Formatting.Indented;
                 tabData.WriteTo(writer);
             }
+        }
+
+        public static JToken GetJArrayValue(JObject jarray, string key)
+        {
+            foreach (KeyValuePair<string, JToken> keyValuePair in jarray)
+            {
+                if (key == keyValuePair.Key)
+                {
+                    return keyValuePair.Value;
+                }
+            }
+            return null;
         }
     }
 }
