@@ -9,7 +9,7 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     Title="Expense Data Report"
     Width="1660"
-    Height="1000"
+    Height="900"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"

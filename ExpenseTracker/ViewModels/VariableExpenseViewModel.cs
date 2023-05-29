@@ -44,7 +44,7 @@ namespace ExpenseTracker.ViewModels
 
         private void AddEntry()
         {
-            CreateExpenseEntry entryWindow = new CreateExpenseEntry();
+            CreateExpenseEntry entryWindow = new CreateExpenseEntry(CurrentDisplayedExpense.DataCurrency);
             if (entryWindow.ShowDialog() ?? true)
             {
                 CurrentDisplayedExpense.Entries.Add(entryWindow.Entry);
@@ -163,7 +163,7 @@ namespace ExpenseTracker.ViewModels
 
         private void EditBudget()
         {
-            NumDialog numDialog = new NumDialog();
+            NumDialog numDialog = new NumDialog("Enter Your Budget");
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {

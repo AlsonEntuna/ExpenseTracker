@@ -14,10 +14,20 @@ namespace ExpenseTracker.Data
         }
 
         private float _amount;
+        /// <summary>
+        /// Amount reflected is already the converted amount.
+        /// </summary>
         public float Amount
         {
             get => _amount;
             set => SetProperty(ref _amount, value);
+        }
+
+        private float _originalAmount;
+        public float OriginalAmount
+        {
+            get => _originalAmount;
+            set => SetProperty(ref _originalAmount, value);
         }
 
         /// <summary>
@@ -51,6 +61,20 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _comments, value);
         }
 
+        private DataCurrency _currency;
+        public DataCurrency Currency
+        {
+            get => _currency;
+            set => SetProperty(ref _currency, value);
+        }
+
         public DataEntry() { }
+
+        public void ConvertToMainCurrency(DataCurrency _mainCurrency) 
+        {
+            OriginalAmount = Amount;
+            CurrencyConverter converter = new CurrencyConverter();
+            Amount = converter.Convert(Currency.Code, _mainCurrency.Code, OriginalAmount);
+        }
     }
 }

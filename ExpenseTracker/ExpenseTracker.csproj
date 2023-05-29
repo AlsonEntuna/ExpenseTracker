@@ -15,7 +15,18 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <BaseOutputPath>..\bin</BaseOutputPath>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\conversion\conversion_data_eur.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\conversion\conversion_data_eur.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\Assets\logo.png">

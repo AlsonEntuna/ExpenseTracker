@@ -12,7 +12,6 @@ namespace ExpenseTracker.Data
         public string Code { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public ObservableCollection<CurrencyInfo> AlternativeCurrencies { get; set; }
 
         public DataCurrency(string code, string name, string symbol)
         {
@@ -26,6 +25,13 @@ namespace ExpenseTracker.Data
             return $"{Name} - {Symbol}";
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is DataCurrency otherCurrency)
+                return string.Equals(Code, otherCurrency.Code);
+            else return false ;
+        }
+
         public static IEnumerable<DataCurrency> GenerateCurrencyList()
         {
             List<DataCurrency> list = new List<DataCurrency>();
@@ -36,12 +42,6 @@ namespace ExpenseTracker.Data
                 .Select(g => g.First()).ToList()
                 .ForEach(r => list.Add(new DataCurrency(r.ISOCurrencySymbol, r.CurrencyEnglishName, r.CurrencySymbol)));
             return list;
-        }
-
-
-        public void AddCurrency()
-        {
-            // TODO: implement this...
         }
     }
 }

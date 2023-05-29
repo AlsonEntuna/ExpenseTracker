@@ -9,10 +9,10 @@
     Title="Expense Tracker"
     Width="1720"
     Height="900"
-    Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
     ResizeMode="CanResizeWithGrip"
+    Style="{DynamicResource WindowStyle}"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

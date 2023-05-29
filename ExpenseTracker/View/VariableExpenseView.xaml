@@ -30,8 +30,7 @@
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
-                                Command="{Binding SaveVariableExpenseCommand}"
-                                >
+                                Command="{Binding SaveVariableExpenseCommand}">
                                 <Button.ContentTemplate>
                                     <DataTemplate>
                                         <ContentPresenter Content="{StaticResource SaveIcon}" />
@@ -86,8 +85,7 @@
                                             Grid.Column="1"
                                             Margin="10,0,0,0"
                                             Command="{Binding EditBudgetCommand}"
-                                            Content="Edit"
-                                            >
+                                            Content="Edit">
                                             <Button.ContentTemplate>
                                                 <DataTemplate>
                                                     <ContentPresenter Content="{StaticResource EditIcon}" />
@@ -137,14 +135,12 @@
                                 Margin="5"
                                 Command="{Binding OpenReportCommand}"
                                 Content="Open Expense Report"
-                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}"
-                                 />
+                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}" />
                             <Button
                                 Grid.Column="1"
                                 Margin="5"
                                 Command="{Binding GenerateExpenseReportCommand}"
-                                Content="Generate Expense Report"
-                                 />
+                                Content="Generate Expense Report" />
                         </Grid>
                     </StackPanel>
                 </Border>
@@ -172,8 +168,7 @@
                             Width="60"
                             Height="40"
                             Margin="10"
-                            Command="{Binding AddEntryCommand}"
-                            >
+                            Command="{Binding AddEntryCommand}">
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -247,6 +242,14 @@
                                         Width="100"
                                         Binding="{Binding Amount}"
                                         Header="Amount" />
+                                    <DataGridTextColumn
+                                        Width="100"
+                                        Binding="{Binding OriginalAmount}"
+                                        Header="Og. Amount" />
+                                    <DataGridTextColumn
+                                        Width="100"
+                                        Binding="{Binding Currency.Symbol}"
+                                        Header="Currency" />
                                     <DataGridTextColumn
                                         Width="200"
                                         Binding="{Binding Comments}"
