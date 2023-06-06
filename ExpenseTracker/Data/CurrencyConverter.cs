@@ -1,6 +1,10 @@
-﻿using ExpenseTracker.Utils;
-using Newtonsoft.Json.Linq;
+﻿using System;
 using System.Collections.Generic;
+
+using Newtonsoft.Json.Linq;
+
+using ExpenseTracker.Utils;
+
 
 namespace ExpenseTracker.Data
 {
@@ -17,8 +21,9 @@ namespace ExpenseTracker.Data
             _currencies.TryGetValue("data", out object dataObj);
             JToken conversionToken = JsonUtils.GetJArrayValue((JObject)dataObj, fromCurrency);
             float conversionRate = (float)conversionToken["value"];
-
-            return amount/conversionRate;
+            float convertedAmount = (float)Math.Round(amount / conversionRate, 2);
+            
+            return convertedAmount;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using ExpenseTracker.Wpf;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -38,7 +39,6 @@ namespace ExpenseTracker.Data
         }
 
         public string EndDate => CycleEndDate.ToLongDateString();
-
 
         public DataCurrency DataCurrency { get; set; }
         // NOTE: This is a fail-safe option.

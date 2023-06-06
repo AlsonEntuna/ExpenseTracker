@@ -1,13 +1,15 @@
-﻿using ExpenseTracker.Data;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Windows.Input;
+
+using Microsoft.Toolkit.Mvvm.Input;
+
+using ExpenseTracker.Data;
 using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
-using Microsoft.Toolkit.Mvvm.Input;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -17,7 +19,12 @@ namespace ExpenseTracker.ViewModels
         public VariableExpense CurrentDisplayedExpense
         {
             get => _currentDisplayedExpense;
-            set => SetProperty(ref _currentDisplayedExpense, value);
+            set
+            {
+                SetProperty(ref _currentDisplayedExpense, value);
+                // Set the Main Currency
+                AppInstance.Instance.MainCurrency = CurrentDisplayedExpense.DataCurrency;
+            }
         }
 
         private DataEntry _selectedDataEntry;
@@ -37,6 +44,8 @@ namespace ExpenseTracker.ViewModels
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
         public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         public ICommand EditBudgetCommand => new RelayCommand(EditBudget);
+        public ICommand EditExpenseNameCommand => new RelayCommand(EditExpenseName);
+        public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
         #endregion
 
         public bool IsNewExpense { get; set; }
@@ -168,6 +177,26 @@ namespace ExpenseTracker.ViewModels
             if (numDialog.DialogResult == true)
             {
                 CurrentDisplayedExpense.Budget = numDialog.NumValue;
+            }
+        }
+
+        private void EditExpenseName()
+        {
+            NameDialog nameDialog = new NameDialog("Enter new Expense Name");
+            nameDialog.ShowDialog();
+            if (nameDialog.DialogResult == true)
+            {
+                CurrentDisplayedExpense.Name = nameDialog.InputText;
+            }
+        }
+
+        private void EditExpenseDescription()
+        {
+            NameDialog nameDialog = new NameDialog("Enter new Expense Description");
+            nameDialog.ShowDialog();
+            if (nameDialog.DialogResult == true)
+            {
+                CurrentDisplayedExpense.Description = nameDialog.InputText;
             }
         }
 

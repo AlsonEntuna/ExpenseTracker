@@ -32,6 +32,11 @@ namespace ExpenseTracker.Data
             else return false ;
         }
 
+        public override int GetHashCode()
+        {
+            return Code.GetHashCode();
+        }
+
         public static IEnumerable<DataCurrency> GenerateCurrencyList()
         {
             List<DataCurrency> list = new List<DataCurrency>();

@@ -1,13 +1,16 @@
-﻿using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
-using Microsoft.Toolkit.Mvvm.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+
+using Microsoft.Toolkit.Mvvm.Input;
+
+using ExpenseTracker.Wpf;
+using ExpenseTracker.Wpf.Dialog;
+
 
 namespace ExpenseTracker.Data
 {
@@ -62,10 +65,7 @@ namespace ExpenseTracker.Data
 
         public void AddPartialPayment()
         {
-            NumDialog numDialog = new NumDialog()
-            {
-                Title = "Enter Partial Payment"
-            };
+            NumDialog numDialog = new NumDialog("Enter Partial Payment");
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {

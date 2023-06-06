@@ -16,7 +16,7 @@ namespace ExpenseTracker
         public VariableExpenseViewModel VariableExpenseViewModel => variableExpenseViewModel;
         #endregion
 
-        #region Commaands
+        #region Commands
         public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
         public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
         #endregion

@@ -30,6 +30,11 @@
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
+                                Command="{Binding EditExpenseNameCommand}"
+                                Content="Edit" />
+                            <Button
+                                Width="45"
+                                Margin="10,0,0,0"
                                 Command="{Binding SaveVariableExpenseCommand}">
                                 <Button.ContentTemplate>
                                     <DataTemplate>
@@ -38,10 +43,17 @@
                                 </Button.ContentTemplate>
                             </Button>
                         </StackPanel>
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                            Text="{Binding CurrentDisplayedExpense.Description, UpdateSourceTrigger=PropertyChanged}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                Text="{Binding CurrentDisplayedExpense.Description, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button
+                                Width="45"
+                                Margin="10,0,0,0"
+                                Command="{Binding EditExpenseDescriptionCommand}"
+                                Content="Edit" />
+                        </StackPanel>
                         <TextBlock
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockStyle.Header2.Alt}"

@@ -27,7 +27,23 @@ namespace ExpenseTracker.Data
         public float OriginalAmount
         {
             get => _originalAmount;
-            set => SetProperty(ref _originalAmount, value);
+            set
+            {
+                if (AppInstance.Instance.MainCurrency != Currency)
+                {
+                    if (AppInstance.Instance.MainCurrency != null)
+                    {
+                        // TODO: not really good implementation...
+                        CurrencyConverter converter = new CurrencyConverter();
+                        Amount = converter.Convert(Currency.Code, AppInstance.Instance.MainCurrency.Code, value);
+                    }
+                    SetProperty(ref _originalAmount, value);
+                }
+                else
+                {
+                    SetProperty(ref _originalAmount, 0);
+                }
+            }
         }
 
         /// <summary>
