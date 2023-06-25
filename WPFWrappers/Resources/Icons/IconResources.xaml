@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="File_Edit" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_edit.ico" />
+    <BitmapImage x:Key="File_Close" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_close.ico" />
+    <BitmapImage x:Key="File_Open" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_open.ico" />
+    <BitmapImage x:Key="File_New" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_new.ico" />
+    <BitmapImage x:Key="Settings" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/settings.ico" />
+    <BitmapImage x:Key="File_Save" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_save.ico" />
+    <BitmapImage x:Key="Add" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/add.ico" />
+</ResourceDictionary>

@@ -9,15 +9,13 @@ namespace ExpenseTracker.Wpf.Dialog
     public partial class NameDialog : Window
     {
         public string InputText => InputTextBox.Text;
-        public NameDialog()
+        public NameDialog(string title = "")
         {
             InitializeComponent();
-        }
-
-        public NameDialog(string title)
-        {
-            Title = title;
-            InitializeComponent();
+            if (!string.IsNullOrEmpty(title) ) 
+            {
+                Title = title;
+            }
         }
 
 

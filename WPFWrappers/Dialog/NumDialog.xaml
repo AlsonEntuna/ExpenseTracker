@@ -13,7 +13,7 @@
     SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
-        <GroupBox Header="Enter Value..." Style="{StaticResource GroupBoxStyle.Main}">
+        <GroupBox Header="Enter Value...">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -30,8 +30,7 @@
                     Grid.Column="1"
                     Height="30"
                     Click="Btn_Done_Click"
-                    Content="Enter"
-                     />
+                    Content="Enter" />
             </Grid>
         </GroupBox>
     </Grid>

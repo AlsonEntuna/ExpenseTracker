@@ -1,5 +1,6 @@
-﻿using ExpenseTracker.Wpf;
-using System;
+﻿using System;
+
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -29,13 +30,17 @@ namespace ExpenseTracker.Data
             get => _originalAmount;
             set
             {
-                if (AppInstance.Instance.MainCurrency != Currency)
+                if (AppInstance.Connection.MainCurrency != Currency)
                 {
-                    if (AppInstance.Instance.MainCurrency != null)
+                    if (AppInstance.Connection.MainCurrency != null)
                     {
                         // TODO: not really good implementation...
                         CurrencyConverter converter = new CurrencyConverter();
-                        Amount = converter.Convert(Currency.Code, AppInstance.Instance.MainCurrency.Code, value);
+                        // TODO: we need to catch the issue here...
+                        if (Currency != null)
+                            Amount = converter.Convert(Currency.Code, AppInstance.Connection.MainCurrency.Code, value);
+                        else
+                            Amount = 0;
                     }
                     SetProperty(ref _originalAmount, value);
                 }

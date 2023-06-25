@@ -182,17 +182,18 @@
     </Style>
 
     <!--  GroupBox  -->
-    <Style x:Key="GroupBoxStyle.Main" TargetType="{x:Type GroupBox}">
+    <Style TargetType="{x:Type GroupBox}">
 
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
     </Style>
 
     <!--  DataGrid  -->
-    <Style x:Key="DataGridStyle.Main" TargetType="{x:Type DataGrid}">
+    <Style TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
         <Setter Property="CanUserSortColumns" Value="True" />
     </Style>
 
+    <!--  DataGrid ColumnHeader  -->
     <ControlTemplate x:Key="DataGridColumnHeaderTemplate" TargetType="{x:Type DataGridColumnHeader}">
         <Border
             Padding="0"

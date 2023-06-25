@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
-    class AppInstance
+    internal class AppInstance
     {
         #region Singleton
         private static AppInstance _instance;
-        public static AppInstance Instance
+        public static AppInstance Connection
         {
             get
             {
@@ -22,7 +19,28 @@ namespace ExpenseTracker.Data
             }
         }
         #endregion
+       
         public DataCurrency MainCurrency;
+        private List<ViewModel> _appViewModels = new List<ViewModel>();
+
         private AppInstance() { }
+
+        public void AddViewModel(ViewModel vm)
+        {
+            if (!_appViewModels.Contains(vm))
+            {
+                _appViewModels.Add(vm);
+            }
+        }
+
+        public T GetEditorViewModel<T>() where T : ViewModel
+        {
+            foreach (ViewModel vm in _appViewModels)
+            {
+                if (vm is T)
+                    return (T)vm;
+            }
+            return null;
+        }
     }
 }

@@ -5,6 +5,8 @@ using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
+using System.IO;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace ExpenseTracker
@@ -19,6 +21,8 @@ namespace ExpenseTracker
         #region Commands
         public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
         public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
+        public ICommand CopyFromCurrentExpenseCommand => new RelayCommand(CopyFromCurrentExpense);
+        public ICommand CopyFromOtherExpenseCommand => new RelayCommand(CopyFromOtherExpense);
         #endregion
 
         public MainWindowViewModel()
@@ -26,6 +30,9 @@ namespace ExpenseTracker
             // Load the data...
             DataHandler.LoadAppConfiguration();
             InitializeData();
+
+            // Register to the app instance connection
+            AppInstance.Connection.AddViewModel(this);
         }
 
         private void InitializeData()
@@ -87,6 +94,32 @@ namespace ExpenseTracker
         internal void SaveData()
         {
             VariableExpenseViewModel.SaveCurrentExpenseData();
+        }
+        private void CopyFromCurrentExpense()
+        {
+            
+        }
+        private void CopyFromOtherExpense()
+        {
+            OpenFileDialog dialog = new OpenFileDialog()
+            {
+                Title = "Select file to copy",
+                DefaultExt = "exp",
+                Filter = "expense files (*.exp)|*.exp",
+                CheckPathExists = true,
+                FilterIndex = 2,
+                InitialDirectory = Path.GetDirectoryName(DataHandler.Config.DataLocation),
+                RestoreDirectory = true
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var copiedDataExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                if (copiedDataExpense == null) return;
+
+                copiedDataExpense.DetectAndMigrateLegacyData();
+                AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SetCurrentDisplayedExpense(copiedDataExpense);
+
+            }
         }
     }
 }

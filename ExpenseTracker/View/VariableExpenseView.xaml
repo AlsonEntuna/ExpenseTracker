@@ -30,15 +30,18 @@
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
-                                Command="{Binding EditExpenseNameCommand}"
-                                Content="Edit" />
+                                Command="{Binding EditExpenseNameCommand}">
+                                <Button.Content>
+                                    <Image Source="{StaticResource File_Edit}" />
+                                </Button.Content>
+                            </Button>
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
                                 Command="{Binding SaveVariableExpenseCommand}">
                                 <Button.ContentTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{StaticResource SaveIcon}" />
+                                        <Image Source="{StaticResource File_Save}" />
                                     </DataTemplate>
                                 </Button.ContentTemplate>
                             </Button>
@@ -51,8 +54,11 @@
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
-                                Command="{Binding EditExpenseDescriptionCommand}"
-                                Content="Edit" />
+                                Command="{Binding EditExpenseDescriptionCommand}">
+                                <Button.Content>
+                                    <Image Source="{StaticResource File_Edit}" />
+                                </Button.Content>
+                            </Button>
                         </StackPanel>
                         <TextBlock
                             VerticalAlignment="Center"
@@ -100,7 +106,7 @@
                                             Content="Edit">
                                             <Button.ContentTemplate>
                                                 <DataTemplate>
-                                                    <ContentPresenter Content="{StaticResource EditIcon}" />
+                                                    <Image Source="{StaticResource File_Edit}" />
                                                 </DataTemplate>
                                             </Button.ContentTemplate>
                                         </Button>
@@ -177,18 +183,16 @@
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Entries" />
                         <Button
-                            Width="60"
+                            Width="40"
                             Height="40"
                             Margin="10"
                             Command="{Binding AddEntryCommand}">
-                            <Button.ContentTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Add" />
-                                        <ContentPresenter Margin="5,0,0,0" Content="{StaticResource PlusIcon}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </Button.ContentTemplate>
+                            <Button.Content>
+                                <Image
+                                    Width="40"
+                                    Height="40"
+                                    Source="{StaticResource Add}" />
+                            </Button.Content>
                         </Button>
 
                     </StackPanel>
@@ -224,8 +228,7 @@
                                 GridLinesVisibility="None"
                                 HeadersVisibility="Column"
                                 ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Style="{StaticResource DataGridStyle.Main}">
+                                SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />

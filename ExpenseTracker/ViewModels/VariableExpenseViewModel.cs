@@ -10,6 +10,7 @@ using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -23,7 +24,7 @@ namespace ExpenseTracker.ViewModels
             {
                 SetProperty(ref _currentDisplayedExpense, value);
                 // Set the Main Currency
-                AppInstance.Instance.MainCurrency = CurrentDisplayedExpense.DataCurrency;
+                AppInstance.Connection.MainCurrency = CurrentDisplayedExpense.DataCurrency;
             }
         }
 
@@ -49,7 +50,11 @@ namespace ExpenseTracker.ViewModels
         #endregion
 
         public bool IsNewExpense { get; set; }
-        public VariableExpenseViewModel() { }
+        public VariableExpenseViewModel() 
+        {
+            // Register to the app instance connection
+            AppInstance.Connection.AddViewModel(this);
+        }
 
         private void AddEntry()
         {
@@ -82,6 +87,14 @@ namespace ExpenseTracker.ViewModels
                 DataHandler.SaveAppConfiguration();
                 IsNewExpense = false;
             }
+        }
+
+        public void SetCurrentDisplayedExpense(VariableExpense expense)
+        {
+            CurrentDisplayedExpense = expense;
+            // Detect and migrate legacy data
+            CurrentDisplayedExpense.DetectAndMigrateLegacyData();
+            IsNewExpense = false;
         }
 
         internal void SaveCurrentExpenseData()

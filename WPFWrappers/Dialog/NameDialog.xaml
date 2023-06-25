@@ -14,10 +14,7 @@
     SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
-        <GroupBox
-            x:Name="TitleHeader"
-            Header="Enter Name Here..."
-            Style="{StaticResource GroupBoxStyle.Main}">
+        <GroupBox x:Name="TitleHeader" Header="Enter Name Here...">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -34,8 +31,7 @@
                     Height="30"
                     Margin="1,0,0,0"
                     Click="Button_Click"
-                    Content="Enter"
-                     />
+                    Content="Enter" />
             </Grid>
         </GroupBox>
     </Grid>
