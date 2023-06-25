@@ -99,8 +99,7 @@
                         AutoGenerateColumns="False"
                         CanUserAddRows="False"
                         ItemsSource="{Binding Report.CategoryReports}"
-                        SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource DataGridStyle.Main}">
+                        SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="100"
@@ -120,13 +119,6 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Width="100" Header="Comments">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBox Text="{Binding Comments, UpdateSourceTrigger=PropertyChanged}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn Width="100" Header="Add Partial">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -139,7 +131,40 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
-                            <DataGridTextColumn Binding="{Binding OutstandingBalance}" Header="Outstanding Balance" />
+                            <DataGridTextColumn Binding="{Binding OutstandingBalance}" Header="Balance" />
+                            <DataGridTemplateColumn Width="100" Header="Comments">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Comments, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+                <TextBlock
+                    Margin="45,0,0,0"
+                    Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                    Text="Local Currencies Breakdown" />
+                <Border
+                    Margin="30"
+                    Background="{StaticResource Brush.Border.Background}"
+                    CornerRadius="10">
+                    <DataGrid
+                        Height="200"
+                        Margin="30"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Currency.Code}"
+                                Header="Currency" />
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Amount}"
+                                Header="Amount" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

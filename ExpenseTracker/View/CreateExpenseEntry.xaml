@@ -31,7 +31,7 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Description:" />
+                        Text="Description" />
                     <TextBox
                         x:Name="TxtBox_Description"
                         Grid.Row="0"
@@ -41,11 +41,14 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Category:" />
-                    <Grid Grid.Row="1" Grid.Column="1">
+                        Text="Category" />
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
                         <ComboBox
                             x:Name="CmbBox_ExpenseCategory"
@@ -54,6 +57,7 @@
                         <Button
                             x:Name="BtnExpenseCreateCategory"
                             Grid.Column="1"
+                            Width="20"
                             Height="20"
                             Click="BtnExpenseCreateCategory_Click"
                             Content="+" />
@@ -62,11 +66,14 @@
                         Grid.Row="2"
                         Grid.Column="0"
                         Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Payment Channel:" />
-                    <Grid Grid.Row="2" Grid.Column="1">
+                        Text="Payment Channel" />
+                    <Grid
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="40" />
                         </Grid.ColumnDefinitions>
                         <ComboBox
                             x:Name="CmbBox_PaymentChannel"
@@ -75,6 +82,7 @@
                         <Button
                             x:Name="BtnCreatePaymentChannel"
                             Grid.Column="1"
+                            Width="20"
                             Height="20"
                             Click="BtnCreatePaymentChannel_Click"
                             Content="+" />
@@ -83,7 +91,7 @@
                         Grid.Row="3"
                         Grid.Column="0"
                         Style="{StaticResource TextBlockStyle.Form}"
-                        Text="Amount:" />
+                        Text="Amount" />
                     <TextBox
                         x:Name="TxtBox_Amount"
                         Grid.Row="3"

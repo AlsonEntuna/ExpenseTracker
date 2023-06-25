@@ -46,7 +46,10 @@ namespace ExpenseTracker.Data
                 }
                 else
                 {
-                    SetProperty(ref _originalAmount, 0);
+                    if (AppInstance.Connection.MainCurrency != null)
+                        SetProperty(ref _originalAmount, 0);
+                    else
+                        SetProperty(ref _originalAmount, value);
                 }
             }
         }

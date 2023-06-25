@@ -10,6 +10,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
+using System.Xml.Linq;
 
 
 namespace ExpenseTracker.Data
@@ -18,6 +19,34 @@ namespace ExpenseTracker.Data
     {
         public bool Paid;
         public float Amount;
+    }
+
+    [Serializable]
+    public class CurrencyData
+    {
+        public DataCurrency Currency { get; set; }
+        public float Amount { get; set; }
+        public CurrencyData() { }
+        public CurrencyData(DataCurrency currency, float amount) 
+        {
+            Currency = currency;
+            Amount = amount;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is CurrencyData other)
+            {
+                return string.Equals(Currency.Code, other.Currency.Code);
+            }
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Currency.GetHashCode();
+        }
     }
 
     [Serializable]
@@ -60,6 +89,7 @@ namespace ExpenseTracker.Data
         {
             PaymentChannel = paymenChannel;
             Amount = amount;
+            // TODO: fix outstanding balance computation...
             OutstandingBalance = Amount;
         }
 
@@ -144,6 +174,13 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _expenseCategoryChartData, value);
         }
 
+        private ObservableCollection<CurrencyData> _currencyReport;
+        public ObservableCollection<CurrencyData> CurrencyReport 
+        {
+            get => _currencyReport;
+            set => SetProperty(ref _currencyReport, value);
+        }
+
         public Dictionary<string, int> ExpenseCategoryReportCounter;
 
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
@@ -151,6 +188,7 @@ namespace ExpenseTracker.Data
         public ExpenseDataReport()
         {
             CategoryReports = new List<CategoryReport>();
+            CurrencyReport = new ObservableCollection<CurrencyData>();
 
             // Inits
             PaidAmount = 0;
@@ -241,6 +279,28 @@ namespace ExpenseTracker.Data
             {
                 ExpenseCategoryReportCounter.Add(expenseCategory, 1);
             }
+        }
+
+        public void GenerateCurrencyReport(DataEntry entry)
+        {
+            if (AppInstance.Connection.MainCurrency.Code == entry.Currency.Code)
+                return;
+
+            CurrencyData data = new CurrencyData(entry.Currency, entry.OriginalAmount);
+            if (!CurrencyReport.Contains(data))
+                CurrencyReport.Add(data);
+            else
+            {
+                foreach(var curData in CurrencyReport)
+                {
+                    if (string.Equals(curData.Currency.Code, data.Currency.Code))
+                    {
+                        curData.Amount = (float)Math.Round(curData.Amount += data.Amount, 2);
+                        return;
+                    }
+                }
+            }
+
         }
 
         public void UpdatePaidEventListeners()
