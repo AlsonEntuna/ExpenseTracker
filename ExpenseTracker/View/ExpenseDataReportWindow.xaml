@@ -35,7 +35,7 @@
                         Grid.Column="0"
                         Margin="10"
                         Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="20">
+                        CornerRadius="10">
                         <StackPanel Margin="15" Orientation="Horizontal">
                             <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Total:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
@@ -54,7 +54,7 @@
                         Grid.Column="1"
                         Margin="10"
                         Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="20">
+                        CornerRadius="10">
                         <StackPanel Margin="15" Orientation="Horizontal">
                             <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Balance:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
@@ -73,7 +73,7 @@
                         Grid.Column="3"
                         Margin="10"
                         Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="20">
+                        CornerRadius="10">
                         <StackPanel Margin="15" Orientation="Horizontal">
                             <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Paid:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
@@ -96,15 +96,14 @@
                     <DataGrid
                         Height="200"
                         Margin="30"
-                        AutoGenerateColumns="False"
-                        CanUserAddRows="False"
                         ItemsSource="{Binding Report.CategoryReports}"
                         SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="100"
                                 Binding="{Binding PaymentChannel}"
-                                Header="Payment Channel" />
+                                CanUserResize="True"
+                                Header="Channel" />
                             <DataGridTextColumn
                                 Width="100"
                                 Binding="{Binding Amount}"
@@ -153,8 +152,6 @@
                     <DataGrid
                         Height="200"
                         Margin="30"
-                        AutoGenerateColumns="False"
-                        CanUserAddRows="False"
                         ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
@@ -176,7 +173,7 @@
                     Height="500"
                     Margin="30"
                     Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="20">
+                    CornerRadius="10">
                     <Grid Margin="20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -212,7 +209,7 @@
                     Height="500"
                     Margin="30"
                     Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="20">
+                    CornerRadius="10">
                     <Grid Margin="20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
