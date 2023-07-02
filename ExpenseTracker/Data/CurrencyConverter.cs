@@ -29,8 +29,17 @@ namespace ExpenseTracker.Data
 
         public async void Convert(DataEntry entry, string toCurrency)
         {
-            float conversionRate = await GetCurrencyConversion(entry.Currency.Code, toCurrency);
-            entry.Amount = (float)Math.Round(entry.Amount / conversionRate, 2);
+            try
+            {
+                float conversionRate = await GetCurrencyConversion(entry.Currency.Code, toCurrency);
+                entry.Amount = (float)Math.Round(entry.Amount / conversionRate, 2);
+            }
+            catch
+            {
+                // TODO: make a cache system for this purpose...
+                return;
+            }
+            
         }
     }
 }
