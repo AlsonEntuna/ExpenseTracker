@@ -48,10 +48,8 @@ namespace ExpenseTracker.View
 
             if (_mainCurrency != null)
             {
-                if (Entry.Currency != _mainCurrency) 
-                {
-                    Entry.ConvertToMainCurrency(_mainCurrency);
-                }
+                if (Entry.Currency != _mainCurrency)
+                    Entry.OriginalAmount = Entry.Amount;
             }
 
             DialogResult = true;

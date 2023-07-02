@@ -32,15 +32,11 @@ namespace ExpenseTracker.Data
             {
                 if (AppInstance.Connection.MainCurrency != Currency)
                 {
-                    if (AppInstance.Connection.MainCurrency != null)
+                    float cache = value;
+                    if (cache != _originalAmount)
                     {
-                        // TODO: not really good implementation...
-                        CurrencyConverter converter = new CurrencyConverter();
-                        // TODO: we need to catch the issue here...
-                        if (Currency != null)
-                            Amount = converter.Convert(Currency.Code, AppInstance.Connection.MainCurrency.Code, value);
-                        else
-                            Amount = 0;
+                        Amount = value;
+                        _converter.Convert(this, AppInstance.Connection.MainCurrency.Code);
                     }
                     SetProperty(ref _originalAmount, value);
                 }
@@ -91,14 +87,8 @@ namespace ExpenseTracker.Data
             get => _currency;
             set => SetProperty(ref _currency, value);
         }
-
+        
+        private CurrencyConverter _converter = new CurrencyConverter();
         public DataEntry() { }
-
-        public void ConvertToMainCurrency(DataCurrency _mainCurrency) 
-        {
-            OriginalAmount = Amount;
-            CurrencyConverter converter = new CurrencyConverter();
-            Amount = converter.Convert(Currency.Code, _mainCurrency.Code, OriginalAmount);
-        }
     }
 }

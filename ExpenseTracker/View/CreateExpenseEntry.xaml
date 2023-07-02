@@ -123,12 +123,14 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Grid.Column="0"
+                    Height="30"
                     Margin="3"
                     Click="Button_Click"
                     Content="Add" />
                 <Button
                     x:Name="Btn_Cancel"
                     Grid.Column="1"
+                    Height="30"
                     Margin="3"
                     Click="Btn_Cancel_Click"
                     Content="Cancel" />

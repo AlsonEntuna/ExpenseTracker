@@ -22,17 +22,9 @@
     <Description>A WPF Application that I'm creating because of my own needs based on my own experience on how to handle bills and payments.
 </Description>
     <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>1.1.5</AssemblyVersion>
+    <FileVersion>1.1.5</FileVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\conversion\conversion_data_eur.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\conversion\conversion_data_eur.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\Assets\logo.png">

@@ -41,7 +41,6 @@
 
     <!--  Button  -->
     <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="Height" Value="40" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Template">

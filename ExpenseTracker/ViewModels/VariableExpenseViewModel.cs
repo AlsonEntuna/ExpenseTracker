@@ -46,6 +46,7 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditBudgetCommand => new RelayCommand(EditBudget);
         public ICommand EditExpenseNameCommand => new RelayCommand(EditExpenseName);
         public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
+        public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
         #endregion
 
         public bool IsNewExpense { get; set; }
@@ -210,6 +211,16 @@ namespace ExpenseTracker.ViewModels
             if (nameDialog.DialogResult == true)
             {
                 CurrentDisplayedExpense.Description = nameDialog.InputText;
+            }
+        }
+
+        private void EditDueDate()
+        {
+            CalendarDialog dialog = new CalendarDialog("Select new date");
+            dialog.ShowDialog();
+            if (dialog.DialogResult == true) 
+            {
+                CurrentDisplayedExpense.CycleEndDate = dialog.SeletectDateTimeValue;
             }
         }
 

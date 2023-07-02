@@ -26,7 +26,7 @@
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                                Text="{Binding CurrentDisplayedExpense.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding CurrentDisplayedExpense.Name}" />
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
@@ -50,7 +50,7 @@
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                Text="{Binding CurrentDisplayedExpense.Description, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding CurrentDisplayedExpense.Description}" />
                             <Button
                                 Width="30"
                                 Height="30"
@@ -61,10 +61,21 @@
                                 </Button.Content>
                             </Button>
                         </StackPanel>
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                            Text="{Binding CurrentDisplayedExpense.EndDate, UpdateSourceTrigger=PropertyChanged}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                Text="{Binding CurrentDisplayedExpense.EndDate}" />
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Margin="10,5,0,5"
+                                Command="{Binding EditDueDateCommand}">
+                                <Button.Content>
+                                    <Image Source="{StaticResource File_Edit}" />
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -151,12 +162,14 @@
                             </Grid.ColumnDefinitions>
                             <Button
                                 Grid.Column="0"
+                                Height="35"
                                 Margin="5"
                                 Command="{Binding OpenReportCommand}"
                                 Content="Open Expense Report"
                                 IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}" />
                             <Button
                                 Grid.Column="1"
+                                Height="35"
                                 Margin="5"
                                 Command="{Binding GenerateExpenseReportCommand}"
                                 Content="Generate Expense Report" />

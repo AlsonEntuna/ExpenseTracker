@@ -12,6 +12,7 @@
     Height="900"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
+    d:DesignHeight="1000"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
@@ -22,7 +23,7 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock
-                    Margin="45,20,0,0"
+                    Margin="35,20,0,0"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
                     Text="Report Summary" />
                 <Grid Height="100" Margin="20">
@@ -168,7 +169,7 @@
                 <TextBlock
                     Margin="45,0,0,0"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                    Text="Expense Breakdown Chart" />
+                    Text="Breakdown Chart" />
                 <Border
                     Height="500"
                     Margin="30"
