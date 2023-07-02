@@ -1,5 +1,6 @@
-﻿using ExpenseTracker.Wpf;
-using System;
+﻿using System;
+
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -27,7 +28,26 @@ namespace ExpenseTracker.Data
         public float OriginalAmount
         {
             get => _originalAmount;
-            set => SetProperty(ref _originalAmount, value);
+            set
+            {
+                if (AppInstance.Connection.MainCurrency != Currency)
+                {
+                    float cache = value;
+                    if (cache != _originalAmount)
+                    {
+                        Amount = value;
+                        _converter.Convert(this, AppInstance.Connection.MainCurrency.Code);
+                    }
+                    SetProperty(ref _originalAmount, value);
+                }
+                else
+                {
+                    if (AppInstance.Connection.MainCurrency != null)
+                        SetProperty(ref _originalAmount, 0);
+                    else
+                        SetProperty(ref _originalAmount, value);
+                }
+            }
         }
 
         /// <summary>
@@ -67,14 +87,8 @@ namespace ExpenseTracker.Data
             get => _currency;
             set => SetProperty(ref _currency, value);
         }
-
+        
+        private CurrencyConverter _converter = new CurrencyConverter();
         public DataEntry() { }
-
-        public void ConvertToMainCurrency(DataCurrency _mainCurrency) 
-        {
-            OriginalAmount = Amount;
-            CurrencyConverter converter = new CurrencyConverter();
-            Amount = converter.Convert(Currency.Code, _mainCurrency.Code, OriginalAmount);
-        }
     }
 }

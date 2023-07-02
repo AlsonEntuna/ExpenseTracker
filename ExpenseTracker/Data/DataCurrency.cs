@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 
@@ -30,6 +29,11 @@ namespace ExpenseTracker.Data
             if (obj is DataCurrency otherCurrency)
                 return string.Equals(Code, otherCurrency.Code);
             else return false ;
+        }
+
+        public override int GetHashCode()
+        {
+            return Code.GetHashCode();
         }
 
         public static IEnumerable<DataCurrency> GenerateCurrencyList()

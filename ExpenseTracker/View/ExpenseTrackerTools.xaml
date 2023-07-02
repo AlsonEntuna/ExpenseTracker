@@ -8,15 +8,16 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker"
     Title="Tools"
     Width="400"
-    Height="120"
+    Height="190"
     d:DataContext="{d:DesignInstance viewmodel:MainWindowViewModel,
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"
     ResizeMode="CanMinimize"
+    SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
         <StackPanel Margin="5">
-            <GroupBox Header="Categories" Style="{StaticResource GroupBoxStyle.Main}">
+            <GroupBox Header="Categories">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -33,6 +34,26 @@
                         Margin="5"
                         Command="{Binding ImportCategoriesCommand}"
                         Content="Import Category File"
+                        Style="{StaticResource ButtonStyle.Element}" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Expense">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Grid.Column="0"
+                        Margin="5"
+                        Command="{Binding CopyFromCurrentExpenseCommand}"
+                        Content="Copy from Current Expense"
+                        Style="{StaticResource ButtonStyle.Element}" />
+                    <Button
+                        Grid.Column="1"
+                        Margin="5"
+                        Command="{Binding CopyFromOtherExpenseCommand}"
+                        Content="Copy from other Expense"
                         Style="{StaticResource ButtonStyle.Element}" />
                 </Grid>
             </GroupBox>

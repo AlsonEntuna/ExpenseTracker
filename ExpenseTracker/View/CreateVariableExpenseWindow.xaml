@@ -57,8 +57,7 @@
                     <DatePicker
                         x:Name="DPicker_ExpenseDate"
                         Grid.Row="2"
-                        Grid.Column="1"
-                        DisplayDate="2022-01-01" />
+                        Grid.Column="1" />
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
@@ -79,12 +78,14 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Grid.Column="0"
+                    Height="30"
                     Margin="5"
                     Click="Button_Click"
                     Content="Add" />
                 <Button
                     x:Name="Btn_Cancel"
                     Grid.Column="1"
+                    Height="30"
                     Margin="5"
                     Click="Btn_Cancel_Click"
                     Content="Cancel" />

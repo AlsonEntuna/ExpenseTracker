@@ -1,13 +1,16 @@
-﻿using ExpenseTracker.Data;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Windows.Input;
+
+using Microsoft.Toolkit.Mvvm.Input;
+
+using ExpenseTracker.Data;
 using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
-using Microsoft.Toolkit.Mvvm.Input;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Windows.Input;
+using System;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -17,7 +20,12 @@ namespace ExpenseTracker.ViewModels
         public VariableExpense CurrentDisplayedExpense
         {
             get => _currentDisplayedExpense;
-            set => SetProperty(ref _currentDisplayedExpense, value);
+            set
+            {
+                SetProperty(ref _currentDisplayedExpense, value);
+                // Set the Main Currency
+                AppInstance.Connection.MainCurrency = CurrentDisplayedExpense.DataCurrency;
+            }
         }
 
         private DataEntry _selectedDataEntry;
@@ -37,10 +45,17 @@ namespace ExpenseTracker.ViewModels
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
         public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         public ICommand EditBudgetCommand => new RelayCommand(EditBudget);
+        public ICommand EditExpenseNameCommand => new RelayCommand(EditExpenseName);
+        public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
+        public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
         #endregion
 
         public bool IsNewExpense { get; set; }
-        public VariableExpenseViewModel() { }
+        public VariableExpenseViewModel() 
+        {
+            // Register to the app instance connection
+            AppInstance.Connection.AddViewModel(this);
+        }
 
         private void AddEntry()
         {
@@ -73,6 +88,14 @@ namespace ExpenseTracker.ViewModels
                 DataHandler.SaveAppConfiguration();
                 IsNewExpense = false;
             }
+        }
+
+        public void SetCurrentDisplayedExpense(VariableExpense expense)
+        {
+            CurrentDisplayedExpense = expense;
+            // Detect and migrate legacy data
+            CurrentDisplayedExpense.DetectAndMigrateLegacyData();
+            IsNewExpense = false;
         }
 
         internal void SaveCurrentExpenseData()
@@ -142,7 +165,9 @@ namespace ExpenseTracker.ViewModels
             {
                 report.TotalAmount += entry.Amount;
                 report.AddCategoryReport(entry.PaymentChannel, entry.Amount, entry.ExpenseCategory);
+                report.GenerateCurrencyReport(entry);
             }
+            report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
             report.UnPaidAmount = report.TotalAmount;
             report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
             return report;
@@ -168,6 +193,36 @@ namespace ExpenseTracker.ViewModels
             if (numDialog.DialogResult == true)
             {
                 CurrentDisplayedExpense.Budget = numDialog.NumValue;
+            }
+        }
+
+        private void EditExpenseName()
+        {
+            NameDialog nameDialog = new NameDialog("Enter new Expense Name");
+            nameDialog.ShowDialog();
+            if (nameDialog.DialogResult == true)
+            {
+                CurrentDisplayedExpense.Name = nameDialog.InputText;
+            }
+        }
+
+        private void EditExpenseDescription()
+        {
+            NameDialog nameDialog = new NameDialog("Enter new Expense Description");
+            nameDialog.ShowDialog();
+            if (nameDialog.DialogResult == true)
+            {
+                CurrentDisplayedExpense.Description = nameDialog.InputText;
+            }
+        }
+
+        private void EditDueDate()
+        {
+            CalendarDialog dialog = new CalendarDialog("Select new date");
+            dialog.ShowDialog();
+            if (dialog.DialogResult == true) 
+            {
+                CurrentDisplayedExpense.CycleEndDate = dialog.SeletectDateTimeValue;
             }
         }
 

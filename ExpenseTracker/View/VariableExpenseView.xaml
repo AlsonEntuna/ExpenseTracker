@@ -20,32 +20,62 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <Border Background="{StaticResource Brush.Border.Background.Alt}" CornerRadius="20">
+                <Border Background="{StaticResource Brush.Border.Background.Alt}" CornerRadius="10">
                     <StackPanel Margin="20">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                                Text="{Binding CurrentDisplayedExpense.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Text="{Binding CurrentDisplayedExpense.Name}" />
+                            <Button
+                                Width="45"
+                                Margin="10,0,0,0"
+                                Command="{Binding EditExpenseNameCommand}">
+                                <Button.Content>
+                                    <Image Source="{StaticResource File_Edit}" />
+                                </Button.Content>
+                            </Button>
                             <Button
                                 Width="45"
                                 Margin="10,0,0,0"
                                 Command="{Binding SaveVariableExpenseCommand}">
                                 <Button.ContentTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{StaticResource SaveIcon}" />
+                                        <Image Source="{StaticResource File_Save}" />
                                     </DataTemplate>
                                 </Button.ContentTemplate>
                             </Button>
                         </StackPanel>
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                            Text="{Binding CurrentDisplayedExpense.Description, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                            Text="{Binding CurrentDisplayedExpense.EndDate, UpdateSourceTrigger=PropertyChanged}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                Text="{Binding CurrentDisplayedExpense.Description}" />
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Margin="10,5,0,5"
+                                Command="{Binding EditExpenseDescriptionCommand}">
+                                <Button.Content>
+                                    <Image Source="{StaticResource File_Edit}" />
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                Text="{Binding CurrentDisplayedExpense.EndDate}" />
+                            <Button
+                                Width="30"
+                                Height="30"
+                                Margin="10,5,0,5"
+                                Command="{Binding EditDueDateCommand}">
+                                <Button.Content>
+                                    <Image Source="{StaticResource File_Edit}" />
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -56,7 +86,7 @@
                                 Height="150"
                                 Margin="20"
                                 Background="{StaticResource Brush.Border.Background}"
-                                CornerRadius="20">
+                                CornerRadius="10">
                                 <StackPanel Margin="20">
                                     <TextBlock
                                         VerticalAlignment="Center"
@@ -88,7 +118,7 @@
                                             Content="Edit">
                                             <Button.ContentTemplate>
                                                 <DataTemplate>
-                                                    <ContentPresenter Content="{StaticResource EditIcon}" />
+                                                    <Image Source="{StaticResource File_Edit}" />
                                                 </DataTemplate>
                                             </Button.ContentTemplate>
                                         </Button>
@@ -100,7 +130,7 @@
                                 Height="150"
                                 Margin="20"
                                 Background="{StaticResource Brush.Border.Background}"
-                                CornerRadius="20">
+                                CornerRadius="10">
                                 <StackPanel Margin="20">
                                     <TextBlock
                                         VerticalAlignment="Center"
@@ -132,19 +162,20 @@
                             </Grid.ColumnDefinitions>
                             <Button
                                 Grid.Column="0"
+                                Height="35"
                                 Margin="5"
                                 Command="{Binding OpenReportCommand}"
                                 Content="Open Expense Report"
                                 IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}" />
                             <Button
                                 Grid.Column="1"
+                                Height="35"
                                 Margin="5"
                                 Command="{Binding GenerateExpenseReportCommand}"
                                 Content="Generate Expense Report" />
                         </Grid>
                     </StackPanel>
                 </Border>
-
             </StackPanel>
             <GridSplitter
                 Grid.Row="0"
@@ -154,112 +185,149 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
                 Background="{StaticResource Brush.Main.Text}" />
-            <Border
-                Grid.Column="2"
-                Background="{StaticResource Brush.Main.Background.Alt}"
-                CornerRadius="20">
-                <StackPanel Margin="10">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Entries" />
-                        <Button
-                            Width="60"
-                            Height="40"
-                            Margin="10"
-                            Command="{Binding AddEntryCommand}">
-                            <Button.ContentTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Add" />
-                                        <ContentPresenter Margin="5,0,0,0" Content="{StaticResource PlusIcon}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </Button.ContentTemplate>
-                        </Button>
-
-                    </StackPanel>
-                    <Border Background="{StaticResource Brush.Border.Background}" CornerRadius="20">
-                        <StackPanel>
-                            <Grid Margin="30,30,30,-15">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Search:" />
-                                <TextBox
-                                    x:Name="TxtBox_Search"
-                                    Grid.Column="1"
-                                    VerticalContentAlignment="Center"
-                                    Style="{StaticResource TextBoxkStyle.Title}"
-                                    TextChanged="TxtBox_Search_TextChanged">
-                                    <TextBox.InputBindings>
-                                        <KeyBinding Key="Return" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
-                                        <KeyBinding Key="Enter" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
-                                    </TextBox.InputBindings>
-                                </TextBox>
-                            </Grid>
-                            <DataGrid
-                                x:Name="DataGrid_Expenses"
-                                Height="500"
-                                Margin="30"
-                                HorizontalContentAlignment="Center"
-                                AutoGenerateColumns="False"
-                                CanUserAddRows="False"
-                                CanUserResizeColumns="True"
-                                CanUserSortColumns="True"
-                                GridLinesVisibility="None"
-                                HeadersVisibility="Column"
-                                ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Style="{StaticResource DataGridStyle.Main}">
-                                <DataGrid.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
-                                    </ContextMenu>
-                                </DataGrid.ContextMenu>
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
-                                        Width="200"
-                                        Binding="{Binding Description}"
-                                        Header="Description" />
-                                    <DataGridTemplateColumn Width="150" Header="Payment Channel">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <ComboBox ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTemplateColumn Width="150" Header="Category">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <ComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn
-                                        Width="100"
-                                        Binding="{Binding Amount}"
-                                        Header="Amount" />
-                                    <DataGridTextColumn
-                                        Width="100"
-                                        Binding="{Binding OriginalAmount}"
-                                        Header="Og. Amount" />
-                                    <DataGridTextColumn
-                                        Width="100"
-                                        Binding="{Binding Currency.Symbol}"
-                                        Header="Currency" />
-                                    <DataGridTextColumn
-                                        Width="200"
-                                        Binding="{Binding Comments}"
-                                        Header="Comments" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </StackPanel>
-                    </Border>
+            <StackPanel Grid.Column="2" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                        Text="Entries" />
+                    <Button
+                        Width="40"
+                        Height="40"
+                        Margin="10"
+                        Command="{Binding AddEntryCommand}">
+                        <Button.Content>
+                            <Image
+                                Width="40"
+                                Height="40"
+                                Source="{StaticResource Add}" />
+                        </Button.Content>
+                    </Button>
                 </StackPanel>
-            </Border>
+                <Border Background="{StaticResource Brush.Border.Background}" CornerRadius="10">
+                    <StackPanel>
+                        <Grid Margin="30,30,30,-15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Search:" />
+                            <TextBox
+                                x:Name="TxtBox_Search"
+                                Grid.Column="1"
+                                VerticalContentAlignment="Center"
+                                Style="{StaticResource TextBoxkStyle.Title}"
+                                TextChanged="TxtBox_Search_TextChanged">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Return" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
+                                    <KeyBinding Key="Enter" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </Grid>
+                        <DataGrid
+                            x:Name="DataGrid_Expenses"
+                            MinHeight="400"
+                            MaxHeight="550"
+                            Margin="30"
+                            ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGrid.Resources>
+                                <!--  Test Only  -->
+                                <DataTemplate x:Key="ResizableTemplate">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Text}" />
+                                        <GridSplitter
+                                            Grid.Column="1"
+                                            Width="3"
+                                            DragDelta="GridSplitter_DragDelta"
+                                            DragIncrement="1"
+                                            Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGrid.Resources>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="200"
+                                    Binding="{Binding Description}"
+                                    Header="Description" />
+                                <DataGridTemplateColumn Width="150" Header="Payment Channel">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <ComboBox
+                                                    Grid.Column="0"
+                                                    ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                    SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                <GridSplitter
+                                                    Grid.Column="1"
+                                                    Width="3"
+                                                    DragDelta="GridSplitter_DragDelta"
+                                                    DragIncrement="1"
+                                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn
+                                    Width="150"
+                                    CanUserResize="True"
+                                    Header="Category">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <ComboBox
+                                                    Grid.Column="0"
+                                                    ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                    SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                                <GridSplitter
+                                                    Grid.Column="1"
+                                                    Width="3"
+                                                    DragDelta="GridSplitter_DragDelta"
+                                                    DragIncrement="1"
+                                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Amount}"
+                                    CanUserResize="True"
+                                    Header="Amount" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding OriginalAmount}"
+                                    Header="Og. Amount" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Currency.Symbol}"
+                                    Header="Currency" />
+                                <DataGridTextColumn
+                                    Width="200"
+                                    Binding="{Binding Comments}"
+                                    Header="Comments" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </UserControl>

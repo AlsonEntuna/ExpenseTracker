@@ -4,8 +4,8 @@
     xmlns:converter="clr-namespace:ExpenseTracker.Wpf.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Brushes.xaml" />
-        <ResourceDictionary Source="Icons.xaml" />
         <ResourceDictionary Source="MainTheme.xaml" />
+        <ResourceDictionary Source="Icons/IconResources.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <converter:BooleanFromObjectConverter x:Key="BoolFromObjectConverter" />
     <converter:InverseBooleanFromObjectConverter x:Key="InverseBoolFromObjectConverter" />

@@ -1,24 +1,36 @@
-﻿using ExpenseTracker.Utils;
-using Newtonsoft.Json.Linq;
+﻿using System;
 using System.Collections.Generic;
+
+using ExpenseTracker.Utils;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text.Json;
+using System.IO;
 
 namespace ExpenseTracker.Data
 {
     public class CurrencyConverter
     {
-        private readonly Dictionary<string, object> _currencies;
-        public CurrencyConverter() 
+        public CurrencyConverter() { }
+
+        static async Task<float> GetCurrencyConversion(string from, string to)
         {
-            _currencies = JsonUtils.Deserialize<Dictionary<string,object>>("Resources/conversion/conversion_data_eur.json");
+            using HttpClient client = new();
+            client.DefaultRequestHeaders.Accept.Clear();
+
+            string conversionKey = $"{to}_{from}";
+            await using Stream stream =
+                await client.GetStreamAsync($"https://free.currconv.com/api/v7/convert?q={conversionKey}&compact=ultra&apiKey={ExpenseSys.Constants.API_KEY}");
+            var conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
+
+            conversionData.Result.TryGetValue(conversionKey, out float val);
+            return val;
         }
 
-        public float Convert(string fromCurrency, string toCurrency, float amount)
+        public async void Convert(DataEntry entry, string toCurrency)
         {
-            _currencies.TryGetValue("data", out object dataObj);
-            JToken conversionToken = JsonUtils.GetJArrayValue((JObject)dataObj, fromCurrency);
-            float conversionRate = (float)conversionToken["value"];
-
-            return amount/conversionRate;
+            float conversionRate = await GetCurrencyConversion(entry.Currency.Code, toCurrency);
+            entry.Amount = (float)Math.Round(entry.Amount / conversionRate, 2);
         }
     }
 }

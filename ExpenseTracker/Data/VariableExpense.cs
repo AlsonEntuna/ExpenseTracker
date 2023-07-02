@@ -1,8 +1,9 @@
-﻿using ExpenseTracker.Wpf;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+
+using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -27,7 +28,17 @@ namespace ExpenseTracker.Data
         public DateTime CycleEndDate
         {
             get => _cycleEndDate;
-            set => SetProperty(ref _cycleEndDate, value);
+            set
+            {
+                SetProperty(ref _cycleEndDate, value);
+                EndDate = CycleEndDate.ToLongDateString();
+            }
+        }
+        private string _endDate;
+        public string EndDate
+        {
+            get => _endDate;
+            set => SetProperty(ref _endDate, value);
         }
 
         private float _budget = 0;
@@ -36,9 +47,6 @@ namespace ExpenseTracker.Data
             get => _budget;
             set => SetProperty(ref _budget, value);
         }
-
-        public string EndDate => CycleEndDate.ToLongDateString();
-
 
         public DataCurrency DataCurrency { get; set; }
         // NOTE: This is a fail-safe option.

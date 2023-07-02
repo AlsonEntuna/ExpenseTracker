@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -41,6 +42,18 @@ namespace ExpenseTracker.View
         private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             Search();
+        }
+
+        private void GridSplitter_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            var gridSplitter = sender as GridSplitter;
+
+            if (gridSplitter != null)
+            {
+                ((DataGridCell)gridSplitter.Tag).Column.Width
+                    = ((DataGridCell)gridSplitter.Tag).Column.ActualWidth +
+                      e.HorizontalChange;
+            }
         }
     }
 }

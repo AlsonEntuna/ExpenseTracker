@@ -15,6 +15,13 @@
   <ItemGroup>
     <None Remove="Fonts\MonoMedium.ttf" />
     <None Remove="Fonts\MonoRegular.ttf" />
+    <None Remove="Resources\Icons\add.ico" />
+    <None Remove="Resources\Icons\file_close.ico" />
+    <None Remove="Resources\Icons\file_edit.ico" />
+    <None Remove="Resources\Icons\file_new.ico" />
+    <None Remove="Resources\Icons\file_open.ico" />
+    <None Remove="Resources\Icons\file_save.ico" />
+    <None Remove="Resources\Icons\settings.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +34,25 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Fonts\MonoRegular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\add.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\file_close.ico" />
+    <Resource Include="Resources\Icons\file_edit.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\file_new.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\file_open.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\file_save.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\settings.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -43,10 +69,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Brushes.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\Icons.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
