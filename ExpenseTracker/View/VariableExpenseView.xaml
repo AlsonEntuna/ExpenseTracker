@@ -227,7 +227,7 @@
                         <DataGrid
                             x:Name="DataGrid_Expenses"
                             MinHeight="400"
-                            MaxHeight="800"
+                            MaxHeight="550"
                             Margin="30"
                             ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
                             SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
