@@ -10,6 +10,7 @@ using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
+using System;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -166,6 +167,7 @@ namespace ExpenseTracker.ViewModels
                 report.AddCategoryReport(entry.PaymentChannel, entry.Amount, entry.ExpenseCategory);
                 report.GenerateCurrencyReport(entry);
             }
+            report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
             report.UnPaidAmount = report.TotalAmount;
             report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
             return report;
