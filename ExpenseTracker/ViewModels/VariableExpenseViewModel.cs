@@ -237,7 +237,11 @@ namespace ExpenseTracker.ViewModels
         {
             foreach (var entry in CurrentDisplayedExpense.Entries)
             {
-                entry.ConvertToMainCurrency();
+                if (entry.Currency.Code != AppInstance.Connection.MainCurrency.Code)
+                {
+                    entry.Amount = entry.OriginalAmount;
+                    entry.ConvertToMainCurrency();
+                }
             }
         }
     }
