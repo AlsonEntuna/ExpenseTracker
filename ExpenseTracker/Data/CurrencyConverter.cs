@@ -29,17 +29,16 @@ namespace ExpenseTracker.Data
     public class CurrencyConverter
     {
         private string _cachePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_cache", "currency_conversion.json");
-        private List<ConversionData> _cachedConversionData = new List<ConversionData>();
+        private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
         public CurrencyConverter() 
         {
+            if (!Directory.Exists(Path.GetDirectoryName(_cachePath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(_cachePath));
+
             if (!File.Exists(_cachePath))
-            {
                 JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
-            }
             else
-            {
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
-            }
         }
 
         static async Task<float> GetCurrencyConversion(string from, string to)

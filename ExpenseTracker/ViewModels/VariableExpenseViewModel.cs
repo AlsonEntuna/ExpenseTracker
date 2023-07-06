@@ -229,6 +229,10 @@ namespace ExpenseTracker.ViewModels
         public void UpdateEventListeners()
         {
             CurrentDisplayedExpense?.Report?.UpdatePaidEventListeners();
+            //foreach (var entry in  CurrentDisplayedExpense.Entries) 
+            //{
+            //    entry.ConvertToMainCurrency();
+            //}
         }
     }
 }

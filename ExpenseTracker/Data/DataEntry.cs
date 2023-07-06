@@ -1,6 +1,7 @@
 ﻿using System;
 
 using ExpenseTracker.Wpf;
+using Newtonsoft.Json.Linq;
 
 namespace ExpenseTracker.Data
 {
@@ -32,12 +33,8 @@ namespace ExpenseTracker.Data
             {
                 if (AppInstance.Connection.MainCurrency != Currency)
                 {
-                    float cache = value;
-                    if (cache != _originalAmount)
-                    {
-                        Amount = value;
-                        _converter.Convert(this, AppInstance.Connection.MainCurrency.Code);
-                    }
+                    Amount = value;
+                    ConvertToMainCurrency();
                     SetProperty(ref _originalAmount, value);
                 }
                 else
@@ -90,5 +87,9 @@ namespace ExpenseTracker.Data
         
         private CurrencyConverter _converter = new CurrencyConverter();
         public DataEntry() { }
+        public void ConvertToMainCurrency()
+        {
+            _converter.Convert(this, AppInstance.Connection.MainCurrency.Code);
+        }
     }
 }
