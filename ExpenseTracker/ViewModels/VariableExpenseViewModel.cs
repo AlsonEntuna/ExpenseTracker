@@ -48,6 +48,7 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditExpenseNameCommand => new RelayCommand(EditExpenseName);
         public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
         public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
+        public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
         #endregion
 
         public bool IsNewExpense { get; set; }
@@ -84,6 +85,7 @@ namespace ExpenseTracker.ViewModels
                 CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 // Detect and migrate legacy data
                 CurrentDisplayedExpense.DetectAndMigrateLegacyData();
+                UpdateEventListeners();
                 DataHandler.Config.DataLocation = dialog.FileName;
                 DataHandler.SaveAppConfiguration();
                 IsNewExpense = false;
@@ -229,10 +231,14 @@ namespace ExpenseTracker.ViewModels
         public void UpdateEventListeners()
         {
             CurrentDisplayedExpense?.Report?.UpdatePaidEventListeners();
-            //foreach (var entry in  CurrentDisplayedExpense.Entries) 
-            //{
-            //    entry.ConvertToMainCurrency();
-            //}
+        }
+
+        private void UpdateEntryConversion()
+        {
+            foreach (var entry in CurrentDisplayedExpense.Entries)
+            {
+                entry.ConvertToMainCurrency();
+            }
         }
     }
 }

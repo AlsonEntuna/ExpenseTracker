@@ -33,9 +33,12 @@ namespace ExpenseTracker.Data
             {
                 if (AppInstance.Connection.MainCurrency != Currency)
                 {
-                    Amount = value;
+                    
                     if (Currency != null)
+                    {
+                        Amount = value;
                         ConvertToMainCurrency();
+                    }
                     SetProperty(ref _originalAmount, value);
                 }
                 else

@@ -94,7 +94,6 @@ namespace ExpenseTracker.Data
             }
             catch
             {
-                // TODO: make a cache system for this purpose...
                 var data = GetConversionData(conversionKey);
                 if (data != null)
                     conversionRate = data.Value;

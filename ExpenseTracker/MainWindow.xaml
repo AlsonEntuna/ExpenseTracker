@@ -8,7 +8,7 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Title="Expense Tracker"
     Width="1720"
-    Height="900"
+    Height="1000"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
     ResizeMode="CanResizeWithGrip"

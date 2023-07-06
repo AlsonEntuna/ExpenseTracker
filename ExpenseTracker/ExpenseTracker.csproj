@@ -22,7 +22,7 @@
     <Description>A WPF Application that I'm creating because of my own needs based on my own experience on how to handle bills and payments.
 </Description>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.1.5</AssemblyVersion>
+    <AssemblyVersion>1.1.6</AssemblyVersion>
     <FileVersion>1.1.5</FileVersion>
   </PropertyGroup>
 
