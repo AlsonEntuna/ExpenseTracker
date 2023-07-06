@@ -174,6 +174,17 @@
                                 Command="{Binding GenerateExpenseReportCommand}"
                                 Content="Generate Expense Report" />
                         </Grid>
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                            Text="Currency Tools" />
+                        <Button
+                            Width="150"
+                            Height="35"
+                            Margin="5"
+                            HorizontalAlignment="Left"
+                            Command="{Binding UpdateEntryConversionCommand}"
+                            Content="Update Conversion" />
                     </StackPanel>
                 </Border>
             </StackPanel>
