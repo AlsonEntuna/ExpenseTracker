@@ -14,8 +14,8 @@ namespace ExpenseTracker.Data
         public static Configuration Config;
         public static Categories DataCategories;
         private static string _dataFile;
-        private static readonly string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExpenseTracker");
-        private static string configFile = Path.Combine(appDataPath, Constants.CONFIG_FILE);
+       
+        private static string configFile = Path.Combine(PathUtils.AppDataPath(), Constants.CONFIG_FILE);
 #if DEBUG
         private static string configDebugPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data");
 #endif
@@ -96,7 +96,7 @@ namespace ExpenseTracker.Data
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
-                _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+                _dataFile = Path.Combine(PathUtils.AppDataPath(), Constants.CATEGORIES_FILE);
             }
 
             if (!DataCategories.ExpenseCategories.Contains(category))
@@ -114,7 +114,7 @@ namespace ExpenseTracker.Data
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
-                _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+                _dataFile = Path.Combine(PathUtils.AppDataPath(), Constants.CATEGORIES_FILE);
             }
 
             if (!DataCategories.PaymentChannels.Contains(chanel))
