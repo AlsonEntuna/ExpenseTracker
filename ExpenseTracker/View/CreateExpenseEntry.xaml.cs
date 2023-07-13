@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -40,7 +41,7 @@ namespace ExpenseTracker.View
             Entry = new DataEntry()
             {
                 Description = TxtBox_Description.Text,
-                Amount = float.Parse(TxtBox_Amount.Text, System.Globalization.NumberStyles.Float),
+                Amount = float.Parse(TxtBox_Amount.Text, CultureInfo.InvariantCulture.NumberFormat),
                 PaymentChannel = CmbBox_PaymentChannel.SelectedItem as string,
                 ExpenseCategory = CmbBox_ExpenseCategory.SelectedItem as string,
                 Currency = Combo_Currency.SelectedItem as DataCurrency

@@ -1,7 +1,6 @@
 ﻿using System;
 
 using ExpenseTracker.Wpf;
-using Newtonsoft.Json.Linq;
 
 namespace ExpenseTracker.Data
 {
