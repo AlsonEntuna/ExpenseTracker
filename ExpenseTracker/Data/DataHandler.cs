@@ -37,9 +37,9 @@ namespace ExpenseTracker.Data
                     Directory.CreateDirectory(configDebugPath);
                 }
 #else
-                if (!Directory.Exists(appDataPath))
+                if (!Directory.Exists(PathUtils.AppDataPath()))
                 {
-                    Directory.CreateDirectory(appDataPath);
+                    Directory.CreateDirectory(PathUtils.AppDataPath());
                 }
 #endif
                 Config = Configuration.GenerateConfigFile(configFile);
@@ -63,7 +63,7 @@ namespace ExpenseTracker.Data
 #if DEBUG
             _dataFile = Path.Combine(configDebugPath, Constants.CATEGORIES_FILE);
 #else
-            _dataFile = Path.Combine(appDataPath, Constants.CATEGORIES_FILE);
+            _dataFile = Path.Combine(PathUtils.AppDataPath(), Constants.CATEGORIES_FILE);
 #endif
             if (File.Exists(_dataFile))
             {

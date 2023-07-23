@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ExpenseTracker"
-#define MyAppVersion "1.1.6.2"
+#define MyAppVersion "1.1.7"
 #define MyAppPublisher "Alson Entuna"
 #define MyAppURL "https://github.com/AlsonEntuna/ExpenseTracker"
 #define MyAppExeName "ExpenseTracker.exe"
@@ -20,12 +20,12 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=D:\Projects\VS\ExpenseTracker\LICENSE.md
+LicenseFile=..\LICENSE.md
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputDir=D:\Projects\VS\ExpenseTracker\Release
-OutputBaseFilename=ExpenseTracker_Installer
-SetupIconFile=D:\Projects\VS\ExpenseTracker\ExpenseTracker\Resources\logo.ico
+OutputDir=Setup
+OutputBaseFilename=ExpenseTrackerSetup
+SetupIconFile=..\ExpenseTracker\Resources\logo.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -37,8 +37,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Projects\VS\ExpenseTracker\bin\Release\net6.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Projects\VS\ExpenseTracker\bin\Release\net6.0-windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\bin\Release\net7.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\bin\Release\net7.0-windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
