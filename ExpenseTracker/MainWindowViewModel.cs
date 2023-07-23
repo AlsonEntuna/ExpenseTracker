@@ -99,7 +99,12 @@ namespace ExpenseTracker
         }
         private void CopyFromCurrentExpense()
         {
-            
+            var vm = AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>();
+            if (vm.CurrentDisplayedExpense == null) { return; }
+
+            vm.IsNewExpense = true;
+            vm.CurrentDisplayedExpense.Name = "Copy - Replace Me";
+            vm.CurrentDisplayedExpense.Description = "Copy - Replace Me";
         }
         private void CopyFromOtherExpense()
         {
@@ -119,6 +124,8 @@ namespace ExpenseTracker
                 if (copiedDataExpense == null) return;
 
                 copiedDataExpense.DetectAndMigrateLegacyData();
+                copiedDataExpense.Name = "Copy - Replace Me";
+                copiedDataExpense.Description = "Copy - Replace Me";
                 AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SetCurrentDisplayedExpense(copiedDataExpense);
 
             }

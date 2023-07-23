@@ -96,9 +96,7 @@ namespace ExpenseTracker.ViewModels
         public void SetCurrentDisplayedExpense(VariableExpense expense)
         {
             CurrentDisplayedExpense = expense;
-            // Detect and migrate legacy data
-            CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-            IsNewExpense = false;
+            IsNewExpense = true;
         }
 
         internal void SaveCurrentExpenseData()
