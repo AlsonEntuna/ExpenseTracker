@@ -560,10 +560,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style
-        d:IsControlPart="True"
-        BasedOn="{StaticResource CommonStyle}"
-        TargetType="{x:Type ComboBoxItem}">
+    <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template" Value="{DynamicResource ComboBoxItemTemplate}" />

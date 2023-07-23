@@ -1,6 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ExpenseTracker.Wpf.Dialog
 {
@@ -35,7 +37,7 @@ namespace ExpenseTracker.Wpf.Dialog
             Close();
         }
 
-        private static readonly Regex _regex = new Regex("[+-]?([0-9]*[.])?[0-9]+");
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
         private static bool IsNumeric(string text)
         {
             return !_regex.IsMatch(text);
