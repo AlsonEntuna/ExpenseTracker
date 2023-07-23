@@ -61,6 +61,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource Brush.Button.Alt}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Disable}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -88,6 +91,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource Brush.Button.Alt}" />
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Disable}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -113,6 +119,9 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource Brush.Button.Alt}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Disable}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -560,10 +569,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style
-        d:IsControlPart="True"
-        BasedOn="{StaticResource CommonStyle}"
-        TargetType="{x:Type ComboBoxItem}">
+    <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template" Value="{DynamicResource ComboBoxItemTemplate}" />

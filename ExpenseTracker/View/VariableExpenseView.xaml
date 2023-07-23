@@ -150,6 +150,30 @@
                                 </StackPanel>
                             </Border>
                         </Grid>
+                        <Border
+                            Grid.Column="1"
+                            Height="150"
+                            Margin="20"
+                            Background="{StaticResource Brush.Border.Background}"
+                            CornerRadius="10">
+                            <StackPanel Margin="20">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                    Text="Savings" />
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Margin="0,30,0,0"
+                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                        Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        Margin="0,30,0,0"
+                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                        Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
                         <TextBlock
                             Grid.Column="0"
                             VerticalAlignment="Center"
@@ -179,12 +203,12 @@
                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                             Text="Currency Tools" />
                         <Button
-                            Width="150"
+                            Width="200"
                             Height="35"
                             Margin="5"
                             HorizontalAlignment="Left"
                             Command="{Binding UpdateEntryConversionCommand}"
-                            Content="Update Conversion" />
+                            Content="Update Realtime Conversion" />
                     </StackPanel>
                 </Border>
             </StackPanel>

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Data;
 using ExpenseTracker.ExpenseSys;
@@ -10,7 +11,7 @@ using ExpenseTracker.Utils;
 using ExpenseTracker.View;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
-using System;
+
 
 namespace ExpenseTracker.ViewModels
 {
@@ -95,9 +96,7 @@ namespace ExpenseTracker.ViewModels
         public void SetCurrentDisplayedExpense(VariableExpense expense)
         {
             CurrentDisplayedExpense = expense;
-            // Detect and migrate legacy data
-            CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-            IsNewExpense = false;
+            IsNewExpense = true;
         }
 
         internal void SaveCurrentExpenseData()
@@ -171,6 +170,7 @@ namespace ExpenseTracker.ViewModels
             }
             report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
             report.UnPaidAmount = report.TotalAmount;
+            report.Savings = (float)Math.Round(CurrentDisplayedExpense.Budget - report.TotalAmount, 2);
             report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
             return report;
         }

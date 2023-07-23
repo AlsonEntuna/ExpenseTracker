@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
@@ -51,7 +51,12 @@ namespace ExpenseTracker.Data
     public class CategoryReport : ViewModel
     {
         public string PaymentChannel { get; set; }
-        public float Amount { get; set; }
+        private float _amount;
+        public float Amount
+        {
+            get => (float)MathF.Round(_amount, 2);
+            set => SetProperty(ref _amount, value);
+        }
         public string Comments { get; set; }
         private bool _paid;
         public bool Paid
@@ -60,7 +65,7 @@ namespace ExpenseTracker.Data
             set
             {
                 SetProperty(ref _paid, value);
-                PaidEventArgs args = new PaidEventArgs()
+                PaidEventArgs args = new()
                 { Amount = this.Amount, Paid = this.Paid };
                 PaidEvent?.Invoke(this, args);
             }
@@ -76,18 +81,17 @@ namespace ExpenseTracker.Data
         private float _outstandingBalance;
         public float OutstandingBalance
         {
-            get => _outstandingBalance;
+            get => (float)MathF.Round(_outstandingBalance, 2);
             set => SetProperty(ref _outstandingBalance, value);
         }
 
         [NonSerialized]
         public EventHandler<PaidEventArgs> PaidEvent;
 
-        public CategoryReport(string paymenChannel, float amount)
+        public CategoryReport(string paymentChannel, float amount)
         {
-            PaymentChannel = paymenChannel;
+            PaymentChannel = paymentChannel;
             Amount = amount;
-            // TODO: fix outstanding balance computation...
             OutstandingBalance = Amount;
         }
 
@@ -117,6 +121,13 @@ namespace ExpenseTracker.Data
         {
             get => _totalAmount;
             set => SetProperty(ref _totalAmount, value);
+        }
+
+        private float _savings;
+        public float Savings
+        {
+            get => _savings;
+            set => SetProperty(ref _savings, value);
         }
 
         private float _unpaidAmount;
@@ -150,13 +161,7 @@ namespace ExpenseTracker.Data
         }
 
         public DataCurrency DataCurrency { get; set; }
-        public string CurrencySymbol
-        {
-            get
-            {
-                return DataCurrency != null ? DataCurrency.Symbol : CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
-            }
-        }
+        public string CurrencySymbol => DataCurrency != null ? DataCurrency.Symbol : CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
 
         private ObservableCollection<KeyValuePair<string, int>> _reportChartData;
         public ObservableCollection<KeyValuePair<string, int>> ReportChartData
@@ -190,6 +195,7 @@ namespace ExpenseTracker.Data
 
             // Inits
             PaidAmount = 0;
+            Savings = 0;
         }
 
         private void AddPartialPayment()
@@ -261,6 +267,7 @@ namespace ExpenseTracker.Data
                 if (report != null)
                 {
                     report.Amount += amount;
+                    report.OutstandingBalance += amount;
                 }
             }
 

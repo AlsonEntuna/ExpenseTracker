@@ -101,7 +101,7 @@
                         SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
-                                Width="100"
+                                Width="auto"
                                 Binding="{Binding PaymentChannel}"
                                 CanUserResize="True"
                                 Header="Channel" />
@@ -131,7 +131,10 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
-                            <DataGridTextColumn Binding="{Binding OutstandingBalance}" Header="Balance" />
+                            <DataGridTextColumn
+                                Width="auto"
+                                Binding="{Binding OutstandingBalance}"
+                                Header="Balance" />
                             <DataGridTemplateColumn Width="100" Header="Comments">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

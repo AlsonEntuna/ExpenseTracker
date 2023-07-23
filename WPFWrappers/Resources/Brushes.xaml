@@ -9,6 +9,7 @@
     <Color x:Key="Color.Main.Border">#260d43</Color>
 
     <Color x:Key="Color.Button.Main">#1f9188</Color>
+    <Color x:Key="Color.Button.Disable">#06100e</Color>
     <Color x:Key="Color.Button.Alt">#0f726a</Color>
 
     <Color x:Key="Color.Border.Background">#06352f</Color>
@@ -29,6 +30,7 @@
     <SolidColorBrush x:Key="Brush.Main.Border" Color="{StaticResource Color.Main.Border}" />
 
     <SolidColorBrush x:Key="Brush.Button.Main" Color="{StaticResource Color.Button.Main}" />
+    <SolidColorBrush x:Key="Brush.Button.Disable" Color="{StaticResource Color.Button.Disable}" />
     <SolidColorBrush x:Key="Brush.Button.Alt" Color="{StaticResource Color.Button.Alt}" />
 
     <SolidColorBrush x:Key="Brush.Border.Background" Color="{StaticResource Color.Border.Background}" />

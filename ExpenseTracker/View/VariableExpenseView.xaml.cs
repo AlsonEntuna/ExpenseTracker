@@ -1,10 +1,12 @@
-﻿using ExpenseTracker.Data;
-using Microsoft.Toolkit.Mvvm.Input;
-using System;
+﻿using System;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+
+using CommunityToolkit.Mvvm.Input;
+
+using ExpenseTracker.Data;
 
 namespace ExpenseTracker.View
 {

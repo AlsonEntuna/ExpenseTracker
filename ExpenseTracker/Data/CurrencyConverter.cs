@@ -28,7 +28,7 @@ namespace ExpenseTracker.Data
     }
     public class CurrencyConverter
     {
-        private string _cachePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_cache", "currency_conversion.json");
+        private string _cachePath = Path.Combine(PathUtils.AppDataPath(), "_cache", "currency_conversion.json");
         private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
         public CurrencyConverter() 
         {
