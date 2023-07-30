@@ -95,7 +95,7 @@
                     Background="{StaticResource Brush.Border.Background}"
                     CornerRadius="10">
                     <DataGrid
-                        Height="200"
+                        Height="400"
                         Margin="30"
                         ItemsSource="{Binding Report.CategoryReports}"
                         SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
