@@ -12,7 +12,7 @@
     Height="900"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="1000"
+    d:DesignHeight="1500"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
@@ -149,26 +149,59 @@
                     Margin="45,0,0,0"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
                     Text="Local Currencies Breakdown" />
-                <Border
-                    Margin="30"
-                    Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="10">
-                    <DataGrid
-                        Height="200"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border
+                        Grid.Column="0"
                         Margin="30"
-                        ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                                Width="100"
-                                Binding="{Binding Currency.Code}"
-                                Header="Currency" />
-                            <DataGridTextColumn
-                                Width="100"
-                                Binding="{Binding Amount}"
-                                Header="Amount" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Border>
+                        Background="{StaticResource Brush.Border.Background}"
+                        CornerRadius="10">
+                        <DataGrid
+                            Height="200"
+                            Margin="30"
+                            ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Currency.Code}"
+                                    Header="Currency" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Amount}"
+                                    Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <Border
+                        Grid.Column="1"
+                        Margin="30"
+                        Background="{StaticResource Brush.Border.Background}"
+                        CornerRadius="10">
+                        <DataGrid
+                            Height="200"
+                            Margin="30"
+                            AutoGenerateColumns="False"
+                            ItemsSource="{Binding Report.AltCurrencyBreakdown}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Key}"
+                                    Header="Currency" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Value}"
+                                    Header="Channel" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Value}"
+                                    Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                </Grid>
                 <TextBlock
                     Margin="45,0,0,0"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"

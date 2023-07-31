@@ -162,16 +162,18 @@ namespace ExpenseTracker.ViewModels
         private ExpenseDataReport GenerateExpenseDataReport()
         {
             ExpenseDataReport report = new();
+            report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
+            
             foreach (DataEntry entry in CurrentDisplayedExpense.Entries)
             {
                 report.TotalAmount += entry.Amount;
-                report.AddCategoryReport(entry.PaymentChannel, entry.Amount, entry.ExpenseCategory);
-                report.GenerateCurrencyReport(entry);
+                report.AddCategoryReport(entry);
             }
+
             report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
             report.UnPaidAmount = report.TotalAmount;
             report.Savings = (float)Math.Round(CurrentDisplayedExpense.Budget - report.TotalAmount, 2);
-            report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
+            
             return report;
         }
 

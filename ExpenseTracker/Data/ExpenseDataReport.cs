@@ -7,112 +7,12 @@ using System.Windows;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-
+using ExpenseTracker.Data.Events;
+using ExpenseTracker.Data.Reports;
 using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.Data
 {
-    public class PaidEventArgs : EventArgs
-    {
-        public bool Paid;
-        public float Amount;
-    }
-
-    [Serializable]
-    public class CurrencyData
-    {
-        public DataCurrency Currency { get; set; }
-        public float Amount { get; set; }
-        public CurrencyData() { }
-        public CurrencyData(DataCurrency currency, float amount) 
-        {
-            Currency = currency;
-            Amount = amount;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is CurrencyData other)
-            {
-                return string.Equals(Currency.Code, other.Currency.Code);
-            }
-
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return Currency.GetHashCode();
-        }
-    }
-
-    [Serializable]
-    public class CategoryReport : ViewModel
-    {
-        public string PaymentChannel { get; set; }
-        private float _amount;
-        public float Amount
-        {
-            get => (float)MathF.Round(_amount, 2);
-            set => SetProperty(ref _amount, value);
-        }
-        public string Comments { get; set; }
-        private bool _paid;
-        public bool Paid
-        {
-            get => _paid;
-            set
-            {
-                SetProperty(ref _paid, value);
-                PaidEventArgs args = new()
-                { Amount = this.Amount, Paid = this.Paid };
-                PaidEvent?.Invoke(this, args);
-            }
-        }
-
-        private float _partialPayment;
-        public float PartialPayment
-        {
-            get => _partialPayment;
-            set => SetProperty(ref _partialPayment, value);
-        }
-
-        private float _outstandingBalance;
-        public float OutstandingBalance
-        {
-            get => (float)MathF.Round(_outstandingBalance, 2);
-            set => SetProperty(ref _outstandingBalance, value);
-        }
-
-        [NonSerialized]
-        public EventHandler<PaidEventArgs> PaidEvent;
-
-        public CategoryReport(string paymentChannel, float amount)
-        {
-            PaymentChannel = paymentChannel;
-            Amount = amount;
-            OutstandingBalance = Amount;
-        }
-
-        public void AddPartialPayment()
-        {
-            NumDialog numDialog = new NumDialog("Enter Partial Payment");
-            numDialog.ShowDialog();
-            if (numDialog.DialogResult == true)
-            {
-                PartialPayment += numDialog.NumValue;
-            }
-
-            // Compute the outstanding balance
-            OutstandingBalance = Amount - PartialPayment;
-            if (OutstandingBalance == 0)
-            {
-                Paid = true;
-            }
-        }
-    }
-
     [Serializable]
     public class ExpenseDataReport : ViewModel
     {
@@ -185,13 +85,17 @@ namespace ExpenseTracker.Data
         }
 
         public Dictionary<string, int> ExpenseCategoryReportCounter;
-
+        public Dictionary<string, Dictionary<string, float>> AltCurrencyBreakdown { get; set; }
+        #region Commands
+        [Newtonsoft.Json.JsonIgnore]
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
+        #endregion
 
         public ExpenseDataReport()
         {
             CategoryReports = new List<CategoryReport>();
             CurrencyReport = new ObservableCollection<CurrencyData>();
+            AltCurrencyBreakdown = new Dictionary<string, Dictionary<string, float>>();
 
             // Inits
             PaidAmount = 0;
@@ -251,39 +155,55 @@ namespace ExpenseTracker.Data
             }
         }
 
-        public void AddCategoryReport(string paymenChannel, float amount, string expenseCategory)
+        public void AddCategoryReport(DataEntry entry)
         {
             CategoryReport report;
-            if (!categIds.Contains(paymenChannel))
+            if (!categIds.Contains(entry.PaymentChannel))
             {
-                categIds.Add(paymenChannel);
-                report = new CategoryReport(paymenChannel, amount);
+                categIds.Add(entry.PaymentChannel);
+                report = new CategoryReport(entry.PaymentChannel, entry.Amount);
                 CategoryReports.Add(report);
                 report.PaidEvent += OnPaidEvent;
             }
             else
             {
-                report = GetCategoryReport(paymenChannel);
+                report = GetCategoryReport(entry.PaymentChannel);
                 if (report != null)
                 {
-                    report.Amount += amount;
-                    report.OutstandingBalance += amount;
+                    report.Amount += entry.Amount;
+                    report.OutstandingBalance += entry.Amount;
                 }
             }
 
+
+            // Expense Category Report
             if (ExpenseCategoryReportCounter == null)
-            {
                 ExpenseCategoryReportCounter = new Dictionary<string, int>();
+
+            if (ExpenseCategoryReportCounter.Keys.Contains(entry.ExpenseCategory))
+                ExpenseCategoryReportCounter[entry.ExpenseCategory] += 1;
+            else
+                ExpenseCategoryReportCounter.Add(entry.ExpenseCategory, 1);
+
+            // AltCurrencyBreakdown
+            if (DataCurrency.Code != entry.Currency.Code)
+            {
+                // TODO: refactor to Dictionary<string, class>();
+                if (AltCurrencyBreakdown.Keys.Contains(entry.Currency.Code))
+                {
+                    if (AltCurrencyBreakdown[entry.Currency.Code].Keys.Contains(entry.PaymentChannel))
+                        AltCurrencyBreakdown[entry.Currency.Code][entry.PaymentChannel] += entry.OriginalAmount;
+                    else
+                        AltCurrencyBreakdown[entry.Currency.Code].Add(entry.PaymentChannel, entry.OriginalAmount);
+                }
+                else
+                {
+                    var breakdownDict = new Dictionary<string, float>() { { entry.PaymentChannel, entry.OriginalAmount } };
+                    AltCurrencyBreakdown.Add(entry.Currency.Code, breakdownDict);
+                }
             }
 
-            if (ExpenseCategoryReportCounter.Keys.Contains(expenseCategory))
-            {
-                ExpenseCategoryReportCounter[expenseCategory] += 1;
-            }
-            else
-            {
-                ExpenseCategoryReportCounter.Add(expenseCategory, 1);
-            }
+            GenerateCurrencyReport(entry);
         }
 
         public void GenerateCurrencyReport(DataEntry entry)
