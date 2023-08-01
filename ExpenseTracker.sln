@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker", "ExpenseTracker\ExpenseTracker.csproj", "{CF7303E1-B913-4CED-BF71-FE99B73F18C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.App", "ExpenseTracker\ExpenseTracker.App.csproj", "{CF7303E1-B913-4CED-BF71-FE99B73F18C1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Wpf", "WPFWrappers\ExpenseTracker.Wpf.csproj", "{2142422A-D714-425D-905E-C7F4D1917AFE}"
 EndProject
