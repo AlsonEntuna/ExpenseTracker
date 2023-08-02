@@ -188,15 +188,15 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn
                                     Width="100"
-                                    Binding="{Binding Key}"
+                                    Binding="{Binding CurrencyCode}"
                                     Header="Currency" />
                                 <DataGridTextColumn
                                     Width="100"
-                                    Binding="{Binding Value}"
+                                    Binding="{Binding PaymentChannel}"
                                     Header="Channel" />
                                 <DataGridTextColumn
                                     Width="100"
-                                    Binding="{Binding Value}"
+                                    Binding="{Binding Amount}"
                                     Header="Amount" />
                             </DataGrid.Columns>
                         </DataGrid>

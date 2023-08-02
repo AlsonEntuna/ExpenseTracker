@@ -85,7 +85,7 @@ namespace ExpenseTracker.Data
         }
 
         public Dictionary<string, int> ExpenseCategoryReportCounter;
-        public Dictionary<string, Dictionary<string, float>> AltCurrencyBreakdown { get; set; }
+        public List<MultiCurrencyReportData> AltCurrencyBreakdown { get; set; }
         #region Commands
         [Newtonsoft.Json.JsonIgnore]
         public ICommand AddPartialPaymentCommand => new RelayCommand(AddPartialPayment);
@@ -95,7 +95,7 @@ namespace ExpenseTracker.Data
         {
             CategoryReports = new List<CategoryReport>();
             CurrencyReport = new ObservableCollection<CurrencyData>();
-            AltCurrencyBreakdown = new Dictionary<string, Dictionary<string, float>>();
+            AltCurrencyBreakdown = new List<MultiCurrencyReportData>();
 
             // Inits
             PaidAmount = 0;
@@ -188,18 +188,28 @@ namespace ExpenseTracker.Data
             // AltCurrencyBreakdown
             if (DataCurrency.Code != entry.Currency.Code)
             {
-                // TODO: refactor to Dictionary<string, class>();
-                if (AltCurrencyBreakdown.Keys.Contains(entry.Currency.Code))
+                var multiCurData = new MultiCurrencyReportData(entry.Currency.Code, entry.PaymentChannel, entry.OriginalAmount);
+                // TODO: fix ugly implementation....
+                if (AltCurrencyBreakdown.Contains(multiCurData))
                 {
-                    if (AltCurrencyBreakdown[entry.Currency.Code].Keys.Contains(entry.PaymentChannel))
-                        AltCurrencyBreakdown[entry.Currency.Code][entry.PaymentChannel] += entry.OriginalAmount;
-                    else
-                        AltCurrencyBreakdown[entry.Currency.Code].Add(entry.PaymentChannel, entry.OriginalAmount);
+                    bool hasItem = false;
+                    foreach (var item in AltCurrencyBreakdown) 
+                    {
+                        if (item.PaymentChannel == multiCurData.PaymentChannel)
+                        {
+                            item.Amount += multiCurData.Amount;
+                            hasItem = true;
+                            break;
+                        }
+                    }
+                    if (!hasItem) 
+                    {
+                        AltCurrencyBreakdown.Add(multiCurData);
+                    }
                 }
                 else
                 {
-                    var breakdownDict = new Dictionary<string, float>() { { entry.PaymentChannel, entry.OriginalAmount } };
-                    AltCurrencyBreakdown.Add(entry.Currency.Code, breakdownDict);
+                    AltCurrencyBreakdown.Add(multiCurData);
                 }
             }
 
