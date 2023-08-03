@@ -19,9 +19,9 @@
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Grid Margin="20">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="65" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -29,13 +29,9 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock
-                Grid.Column="0"
-                Style="{StaticResource TextBlockStyle.Title}"
-                Text="Dashboard" />
             <StackPanel
-                Grid.Column="1"
-                HorizontalAlignment="Right"
+                Grid.Column="0"
+                Margin="10,0,0,0"
                 Orientation="Horizontal">
                 <Button
                     x:Name="Btn_Open"
@@ -78,6 +74,14 @@
                             Source="{StaticResource Settings}" />
                     </Button.Content>
                 </Button>
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="1"
+                Margin="10"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+
                 <Button
                     x:Name="Btn_Exit"
                     Width="60"
@@ -94,9 +98,6 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <view:VariableExpenseView
-            Grid.Row="1"
-            Margin="5"
-            DataContext="{Binding VariableExpenseViewModel}" />
+        <view:VariableExpenseView Grid.Row="1" DataContext="{Binding VariableExpenseViewModel}" />
     </Grid>
 </Window>
