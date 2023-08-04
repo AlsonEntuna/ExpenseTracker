@@ -14,7 +14,6 @@
     ResizeMode="CanResizeWithGrip"
     Style="{DynamicResource WindowStyle}"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
@@ -72,28 +71,6 @@
                             Width="48"
                             Height="48"
                             Source="{StaticResource Settings}" />
-                    </Button.Content>
-                </Button>
-            </StackPanel>
-
-            <StackPanel
-                Grid.Column="1"
-                Margin="10"
-                HorizontalAlignment="Right"
-                Orientation="Horizontal">
-
-                <Button
-                    x:Name="Btn_Exit"
-                    Width="60"
-                    Height="60"
-                    Margin="5,0,0,0"
-                    Click="Btn_Exit_Click"
-                    ToolTip="Close Application">
-                    <Button.Content>
-                        <Image
-                            Width="48"
-                            Height="48"
-                            Source="{StaticResource File_Close}" />
                     </Button.Content>
                 </Button>
             </StackPanel>
