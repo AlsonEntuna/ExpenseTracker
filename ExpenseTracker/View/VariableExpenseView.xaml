@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:ExpenseTracker.Data"
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
@@ -25,7 +26,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="70" />
+                        <RowDefinition Height="90" />
                     </Grid.RowDefinitions>
                     <StackPanel>
                         <Border>
@@ -74,7 +75,7 @@
                                         Height="100"
                                         Margin="5"
                                         Background="{StaticResource Brush.Border.Background}"
-                                        CornerRadius="10">
+                                        CornerRadius="25">
                                         <Border.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Command="{Binding EditBudgetCommand}" Header="Edit Budget" />
@@ -82,7 +83,9 @@
                                         </Border.ContextMenu>
                                         <StackPanel Margin="10">
                                             <TextBlock
+                                                Margin="10,0,0,0"
                                                 VerticalAlignment="Center"
+                                                FontSize="25"
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                                 Text="Budget" />
                                             <Grid HorizontalAlignment="Center">
@@ -112,10 +115,12 @@
                                         Height="100"
                                         Margin="5"
                                         Background="{StaticResource Brush.Border.Background}"
-                                        CornerRadius="10">
+                                        CornerRadius="25">
                                         <StackPanel Margin="10">
                                             <TextBlock
+                                                Margin="10,0,0,0"
                                                 VerticalAlignment="Center"
+                                                FontSize="25"
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                                 Text="Total" />
                                             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -130,109 +135,161 @@
                                 </Grid>
                                 <Border
                                     Grid.Column="1"
-                                    Height="100"
                                     Margin="5"
                                     Background="{StaticResource Brush.Border.Background}"
-                                    CornerRadius="10">
-                                    <StackPanel Margin="10">
+                                    CornerRadius="25">
+                                    <StackPanel Height="100" Margin="10">
                                         <TextBlock
+                                            Margin="10,0,0,0"
                                             VerticalAlignment="Center"
+                                            FontSize="30"
                                             Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                             Text="Savings" />
                                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                             <TextBlock
                                                 Grid.Column="0"
+                                                VerticalAlignment="Center"
                                                 Style="{StaticResource TextBlockStyle.Header1}"
                                                 Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                            <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                Style="{StaticResource TextBlockStyle.Header1}"
+                                                Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </StackPanel>
                                     </StackPanel>
                                 </Border>
                                 <TextBlock
-                                    Grid.Column="0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Expense Report" />
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button
-                                        Grid.Column="0"
-                                        Margin="5"
-                                        Command="{Binding GenerateExpenseReportCommand}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image
-                                                    Width="30"
-                                                    Height="30"
-                                                    Source="{StaticResource Create_Report}" />
-                                                <TextBlock VerticalAlignment="Center" Text="Generate Report" />
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button
-                                        Grid.Column="1"
-                                        Margin="5"
-                                        Command="{Binding OpenReportCommand}"
-                                        IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image
-                                                    Width="30"
-                                                    Height="30"
-                                                    Source="{StaticResource Open_Report}" />
-                                                <TextBlock VerticalAlignment="Center" Text="Open Report" />
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-                                </Grid>
+                                    Text="Expense and Report" />
+                                <Border
+                                    Margin="5"
+                                    Background="{StaticResource Brush.Border.Background}"
+                                    CornerRadius="25">
+                                    <Grid Height="120">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                            <Button
+                                                Grid.Row="0"
+                                                Width="50"
+                                                Command="{Binding AddEntryCommand}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Add}" />
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                Grid.Row="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Add" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding GenerateExpenseReportCommand}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Create_Report}" />
+
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Generate"
+                                                ToolTip="Generate Report" />
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                            <Button
+                                                Width="50"
+                                                Command="{Binding OpenReportCommand}"
+                                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Open_Report}" />
+
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Open"
+                                                ToolTip="Open Report" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                </Border>
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Currency Tools" />
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button
-                                        Grid.Column="0"
-                                        Margin="5"
-                                        Command="{Binding}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image
-                                                    Width="30"
-                                                    Height="30"
-                                                    Source="{StaticResource Currency_Converter}" />
-                                                <TextBlock VerticalAlignment="Center" Text="Currency Converter" />
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button
-                                        Grid.Column="1"
-                                        Margin="5"
-                                        Command="{Binding UpdateEntryConversionCommand}">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image
-                                                    Width="30"
-                                                    Height="30"
-                                                    Source="{StaticResource Conversion_Graph}" />
-                                                <TextBlock VerticalAlignment="Center" Text="Update Realtime Conversion" />
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-                                </Grid>
+                                    Text="Conversion" />
+                                <Border
+                                    Margin="5"
+                                    Background="{StaticResource Brush.Border.Background}"
+                                    CornerRadius="25">
+                                    <Grid Height="120">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Currency_Converter}" />
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Currency Converter" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding UpdateEntryConversionCommand}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Conversion_Graph}" />
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Update Conversion"
+                                                ToolTip="Update Realtime Conversion" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
                             </StackPanel>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Row="1">
-                        <Separator />
+                        <Separator Margin="10,0,10,0" />
                         <StackPanel
-                            Margin="0,3,0,0"
+                            Margin="15"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
                             <Button
@@ -300,42 +357,37 @@
                 Background="{StaticResource Brush.Border.Background}"
                 CornerRadius="25">
                 <StackPanel>
-                    <Button
-                        Width="200"
+                    <Border
                         Margin="10"
-                        HorizontalAlignment="Left"
-                        Command="{Binding AddEntryCommand}">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <Image
-                                    Width="30"
-                                    Height="30"
-                                    Source="{StaticResource Add}" />
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Add" />
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                    <Grid Margin="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="2*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Search:" />
-                        <TextBox
-                            x:Name="TxtBox_Search"
-                            Grid.Column="1"
-                            VerticalContentAlignment="Center"
-                            Style="{StaticResource TextBoxkStyle.Title}"
-                            TextChanged="TxtBox_Search_TextChanged">
-                            <TextBox.InputBindings>
-                                <KeyBinding Key="Return" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
-                                <KeyBinding Key="Enter" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
-                            </TextBox.InputBindings>
-                        </TextBox>
-                    </Grid>
+                        Background="{StaticResource Brush.Main.Background}"
+                        CornerRadius="25">
+                        <Grid Margin="15,0,15,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.Column="0"
+                                Width="40"
+                                Height="40"
+                                Source="{StaticResource Search}" />
+                            <TextBox
+                                x:Name="TxtBox_Search"
+                                Grid.Column="1"
+                                Height="40"
+                                Margin="10"
+                                VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Style="{StaticResource TextBoxkStyle.Title}"
+                                TextChanged="TxtBox_Search_TextChanged">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Return" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
+                                    <KeyBinding Key="Enter" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </Grid>
+                    </Border>
                     <DataGrid
                         x:Name="DataGrid_Expenses"
                         MinHeight="700"
@@ -419,14 +471,14 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn
-                                Width="100"
+                                Width="130"
                                 Binding="{Binding Amount}"
                                 CanUserResize="True"
-                                Header="Amount" />
+                                Header="Amount (Main)" />
                             <DataGridTextColumn
-                                Width="100"
+                                Width="130"
                                 Binding="{Binding OriginalAmount}"
-                                Header="Og. Amount" />
+                                Header="Amount (Local)" />
                             <DataGridTextColumn
                                 Width="100"
                                 Binding="{Binding Currency.Symbol}"
