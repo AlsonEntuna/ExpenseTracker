@@ -1,12 +1,16 @@
 # ExpenseTracker
+[![Version](https://img.shields.io/github/v/release/AlsonEntuna/ExpenseTracker)](https://github.com/AlsonEntuna/ExpenseTracker/releases/latest)
 - A WPF Application that I'm creating because of my own needs based on my own experience on how to handle bills and payments.
 - Trying to implement my own libraries from the ground up and trying to make them as useful for my future projects.
 - Read more about this tool here on my website [Alson Entuna - Expense Tracker](https://alsonentuna.github.io/expense-tracker.html)
 
-## App Screenshot
+## Tracker Main Dashboard
 ![ExpenseTracker](/Assets/ExpenseTracker-App.png)
-### Report Window
+### Expense Report Window
 ![ExpenseTracker](/Assets/ExpenseTracker-Report.png)
+
+#### Breakdown Chart
+![ExpenseTracker](/Assets/ExpenseTracker-Report_BreakdownChart.png)
 
 ## Requirements
 - Visual Studio Version 17 (2022)
