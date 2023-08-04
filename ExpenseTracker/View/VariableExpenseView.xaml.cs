@@ -57,5 +57,20 @@ namespace ExpenseTracker.View
                       e.HorizontalChange;
             }
         }
+
+        private void Btn_Open_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenVariableExpense();
+        }
+
+        private void Btn_New_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().CreateVariableExpense();
+        }
+
+        private void Btn_Tools_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenToolsPanel();
+        }
     }
 }

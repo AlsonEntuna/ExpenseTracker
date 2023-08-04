@@ -3,254 +3,382 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:ExpenseTracker.Data"
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     x:Name="RootWindow"
     d:DataContext="{d:DesignInstance viewmodel:VariableExpenseViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="800"
+    d:DesignHeight="950"
     d:DesignWidth="1500"
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <StackPanel>
-                <Border Background="{StaticResource Brush.Border.Background.Alt}" CornerRadius="10">
-                    <StackPanel Margin="20">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                                Text="{Binding CurrentDisplayedExpense.Name}" />
-                            <Button
-                                Width="45"
-                                Margin="10,0,0,0"
-                                Command="{Binding EditExpenseNameCommand}">
-                                <Button.Content>
-                                    <Image Source="{StaticResource File_Edit}" />
-                                </Button.Content>
-                            </Button>
-                            <Button
-                                Width="45"
-                                Margin="10,0,0,0"
-                                Command="{Binding SaveVariableExpenseCommand}">
-                                <Button.ContentTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{StaticResource File_Save}" />
-                                    </DataTemplate>
-                                </Button.ContentTemplate>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                Text="{Binding CurrentDisplayedExpense.Description}" />
-                            <Button
-                                Width="30"
-                                Height="30"
-                                Margin="10,5,0,5"
-                                Command="{Binding EditExpenseDescriptionCommand}">
-                                <Button.Content>
-                                    <Image Source="{StaticResource File_Edit}" />
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                Text="{Binding CurrentDisplayedExpense.EndDate}" />
-                            <Button
-                                Width="30"
-                                Height="30"
-                                Margin="10,5,0,5"
-                                Command="{Binding EditDueDateCommand}">
-                                <Button.Content>
-                                    <Image Source="{StaticResource File_Edit}" />
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Border
-                                Grid.Column="0"
-                                Height="150"
-                                Margin="20"
-                                Background="{StaticResource Brush.Border.Background}"
-                                CornerRadius="10">
-                                <StackPanel Margin="20">
+            <Border
+                Grid.Column="0"
+                Background="{StaticResource Brush.Main.Background.Alt}"
+                CornerRadius="25">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="90" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <Border>
+                            <StackPanel Margin="15">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="40"
+                                    Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                                    Text="{Binding CurrentDisplayedExpense.Name}">
+                                    <TextBlock.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Command="{Binding EditExpenseNameCommand}" Header="Edit Expense Name" />
+                                        </ContextMenu>
+                                    </TextBlock.ContextMenu>
+                                </TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Command="{Binding EditExpenseDescriptionCommand}" Header="Edit Description" />
+                                        </ContextMenu>
+                                    </StackPanel.ContextMenu>
                                     <TextBlock
                                         VerticalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Budget" />
-                                    <Grid Margin="0,30,0,0" HorizontalAlignment="Center">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="50" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Orientation="Horizontal">
+                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                        Text="{Binding CurrentDisplayedExpense.Description}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Command="{Binding EditDueDateCommand}" Header="Edit Due Date" />
+                                        </ContextMenu>
+                                    </StackPanel.ContextMenu>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                        Text="{Binding CurrentDisplayedExpense.EndDate}" />
+                                </StackPanel>
+                                <Separator Height="10" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Border
+                                        Grid.Column="0"
+                                        Height="100"
+                                        Margin="5"
+                                        Background="{StaticResource Brush.Border.Background}"
+                                        CornerRadius="25">
+                                        <Border.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Command="{Binding EditBudgetCommand}" Header="Edit Budget" />
+                                            </ContextMenu>
+                                        </Border.ContextMenu>
+                                        <StackPanel Margin="10">
+                                            <TextBlock
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="25"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Budget" />
+                                            <Grid HorizontalAlignment="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="50" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Grid.Column="0"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                                        Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <TextBlock
+                                                        Grid.Column="0"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                                        Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border
+                                        Grid.Column="1"
+                                        Height="100"
+                                        Margin="5"
+                                        Background="{StaticResource Brush.Border.Background}"
+                                        CornerRadius="25">
+                                        <StackPanel Margin="10">
+                                            <TextBlock
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="25"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Total" />
+                                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                <TextBlock
+                                                    Grid.Column="0"
+                                                    Style="{StaticResource TextBlockStyle.Header1}"
+                                                    Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    Background="{StaticResource Brush.Border.Background}"
+                                    CornerRadius="25">
+                                    <StackPanel Height="100" Margin="10">
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="30"
+                                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                            Text="Savings" />
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                             <TextBlock
                                                 Grid.Column="0"
-                                                HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Style="{StaticResource TextBlockStyle.Header1}"
                                                 Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
                                             <TextBlock
-                                                Grid.Column="0"
-                                                HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 Style="{StaticResource TextBlockStyle.Header1}"
-                                                Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
+                                                Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </StackPanel>
-                                        <Button
-                                            Grid.Column="1"
-                                            Margin="10,0,0,0"
-                                            Command="{Binding EditBudgetCommand}"
-                                            Content="Edit">
-                                            <Button.ContentTemplate>
-                                                <DataTemplate>
-                                                    <Image Source="{StaticResource File_Edit}" />
-                                                </DataTemplate>
-                                            </Button.ContentTemplate>
-                                        </Button>
-                                    </Grid>
-                                </StackPanel>
-                            </Border>
-                            <Border
-                                Grid.Column="1"
-                                Height="150"
-                                Margin="20"
-                                Background="{StaticResource Brush.Border.Background}"
-                                CornerRadius="10">
-                                <StackPanel Margin="20">
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Total" />
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            Margin="0,30,0,0"
-                                            Style="{StaticResource TextBlockStyle.Header1}"
-                                            Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock
-                                            Margin="0,30,0,0"
-                                            Style="{StaticResource TextBlockStyle.Header1}"
-                                            Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </StackPanel>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
-                        <Border
-                            Grid.Column="1"
-                            Height="150"
-                            Margin="20"
-                            Background="{StaticResource Brush.Border.Background}"
-                            CornerRadius="10">
-                            <StackPanel Margin="20">
+                                </Border>
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Savings" />
-                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock
-                                        Grid.Column="0"
-                                        Margin="0,30,0,0"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
-                                        Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock
-                                        Margin="0,30,0,0"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
-                                        Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                </StackPanel>
+                                    Text="Expense and Report" />
+                                <Border
+                                    Margin="5"
+                                    Background="{StaticResource Brush.Border.Background}"
+                                    CornerRadius="25">
+                                    <Grid Height="120">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                            <Button
+                                                Grid.Row="0"
+                                                Width="50"
+                                                Command="{Binding AddEntryCommand}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Add}" />
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                Grid.Row="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Add" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding GenerateExpenseReportCommand}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Create_Report}" />
+
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Generate"
+                                                ToolTip="Generate Report" />
+
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                            <Button
+                                                Width="50"
+                                                Command="{Binding OpenReportCommand}"
+                                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Open_Report}" />
+
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Open"
+                                                ToolTip="Open Report" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                </Border>
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                    Text="Conversion" />
+                                <Border
+                                    Margin="5"
+                                    Background="{StaticResource Brush.Border.Background}"
+                                    CornerRadius="25">
+                                    <Grid Height="120">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Currency_Converter}" />
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Currency Converter" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding UpdateEntryConversionCommand}">
+                                                <Button.Content>
+                                                    <Image
+                                                        Width="30"
+                                                        Height="30"
+                                                        Source="{StaticResource Conversion_Graph}" />
+                                                </Button.Content>
+                                            </Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                                Text="Update Conversion"
+                                                ToolTip="Update Realtime Conversion" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
                             </StackPanel>
                         </Border>
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Reports" />
-                        <Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <Separator Margin="10,0,10,0" />
+                        <StackPanel
+                            Margin="15"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="Btn_Open"
+                                Width="60"
+                                Height="60"
+                                Click="Btn_Open_Click"
+                                ToolTip="Open Expense">
+                                <Button.Content>
+                                    <Image
+                                        Width="48"
+                                        Height="48"
+                                        Source="{StaticResource File_Open}" />
+                                </Button.Content>
+                            </Button>
+                            <Button
+                                x:Name="Btn_New"
+                                Width="60"
+                                Height="60"
+                                Margin="5,0,0,0"
+                                Click="Btn_New_Click"
+                                ToolTip="Create New Expense">
+                                <Button.Content>
+                                    <Image
+                                        Width="48"
+                                        Height="48"
+                                        Source="{StaticResource File_New}" />
+                                </Button.Content>
+                            </Button>
+                            <Button
+                                x:Name="Btn_Tools"
+                                Width="60"
+                                Height="60"
+                                Margin="5,0,0,0"
+                                Click="Btn_Tools_Click"
+                                ToolTip="Tools">
+                                <Button.Content>
+                                    <Image
+                                        Width="48"
+                                        Height="48"
+                                        Source="{StaticResource Settings}" />
+                                </Button.Content>
+                            </Button>
+                            <Button
+                                x:Name="Btn_Save"
+                                Width="60"
+                                Height="60"
+                                Margin="5,0,0,0"
+                                Command="{Binding SaveVariableExpenseCommand}"
+                                ToolTip="Tools">
+                                <Button.Content>
+                                    <Image
+                                        Width="48"
+                                        Height="48"
+                                        Source="{StaticResource File_Save}" />
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border
+                Grid.Column="2"
+                Margin="5"
+                Background="{StaticResource Brush.Border.Background}"
+                CornerRadius="25">
+                <StackPanel>
+                    <Border
+                        Margin="10"
+                        Background="{StaticResource Brush.Main.Background}"
+                        CornerRadius="25">
+                        <Grid Margin="15,0,15,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="30" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Button
-                                Grid.Column="0"
-                                Height="35"
-                                Margin="5"
-                                Command="{Binding OpenReportCommand}"
-                                Content="Open Expense Report"
-                                IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}" />
-                            <Button
-                                Grid.Column="1"
-                                Height="35"
-                                Margin="5"
-                                Command="{Binding GenerateExpenseReportCommand}"
-                                Content="Generate Expense Report" />
-                        </Grid>
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Currency Tools" />
-                        <Button
-                            Width="200"
-                            Height="35"
-                            Margin="5"
-                            HorizontalAlignment="Left"
-                            Command="{Binding UpdateEntryConversionCommand}"
-                            Content="Update Realtime Conversion" />
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-            <GridSplitter
-                Grid.Row="0"
-                Grid.Column="1"
-                Width="0.5"
-                Margin="10,0,10,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Stretch"
-                Background="{StaticResource Brush.Main.Text}" />
-            <StackPanel Grid.Column="2" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                        Text="Entries" />
-                    <Button
-                        Width="40"
-                        Height="40"
-                        Margin="10"
-                        Command="{Binding AddEntryCommand}">
-                        <Button.Content>
                             <Image
+                                Grid.Column="0"
                                 Width="40"
                                 Height="40"
-                                Source="{StaticResource Add}" />
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-                <Border Background="{StaticResource Brush.Border.Background}" CornerRadius="10">
-                    <StackPanel>
-                        <Grid Margin="30,30,30,-15">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Search:" />
+                                Source="{StaticResource Search}" />
                             <TextBox
                                 x:Name="TxtBox_Search"
                                 Grid.Column="1"
+                                Height="40"
+                                Margin="10"
                                 VerticalContentAlignment="Center"
+                                Background="Transparent"
+                                BorderThickness="0"
                                 Style="{StaticResource TextBoxkStyle.Title}"
                                 TextChanged="TxtBox_Search_TextChanged">
                                 <TextBox.InputBindings>
@@ -259,110 +387,110 @@
                                 </TextBox.InputBindings>
                             </TextBox>
                         </Grid>
-                        <DataGrid
-                            x:Name="DataGrid_Expenses"
-                            MinHeight="400"
-                            MaxHeight="550"
-                            Margin="30"
-                            ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                            <DataGrid.Resources>
-                                <!--  Test Only  -->
-                                <DataTemplate x:Key="ResizableTemplate">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding Text}" />
-                                        <GridSplitter
-                                            Grid.Column="1"
-                                            Width="3"
-                                            DragDelta="GridSplitter_DragDelta"
-                                            DragIncrement="1"
-                                            Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGrid.Resources>
-                            <DataGrid.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
-                                </ContextMenu>
-                            </DataGrid.ContextMenu>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
-                                    Width="200"
-                                    Binding="{Binding Description}"
-                                    Header="Description" />
-                                <DataGridTemplateColumn Width="150" Header="Payment Channel">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <ComboBox
-                                                    Grid.Column="0"
-                                                    ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                                    SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <GridSplitter
-                                                    Grid.Column="1"
-                                                    Width="3"
-                                                    DragDelta="GridSplitter_DragDelta"
-                                                    DragIncrement="1"
-                                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn
-                                    Width="150"
-                                    CanUserResize="True"
-                                    Header="Category">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <ComboBox
-                                                    Grid.Column="0"
-                                                    ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                                    SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <GridSplitter
-                                                    Grid.Column="1"
-                                                    Width="3"
-                                                    DragDelta="GridSplitter_DragDelta"
-                                                    DragIncrement="1"
-                                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding Amount}"
-                                    CanUserResize="True"
-                                    Header="Amount" />
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding OriginalAmount}"
-                                    Header="Og. Amount" />
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding Currency.Symbol}"
-                                    Header="Currency" />
-                                <DataGridTextColumn
-                                    Width="200"
-                                    Binding="{Binding Comments}"
-                                    Header="Comments" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                    </Border>
+                    <DataGrid
+                        x:Name="DataGrid_Expenses"
+                        MinHeight="700"
+                        MaxHeight="730"
+                        Margin="10"
+                        ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Resources>
+                            <!--  Test Only  -->
+                            <DataTemplate x:Key="ResizableTemplate">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Text}" />
+                                    <GridSplitter
+                                        Grid.Column="1"
+                                        Width="3"
+                                        DragDelta="GridSplitter_DragDelta"
+                                        DragIncrement="1"
+                                        Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGrid.Resources>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding Description}"
+                                Header="Description" />
+                            <DataGridTemplateColumn Width="150" Header="Payment Channel">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <ComboBox
+                                                Grid.Column="0"
+                                                ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="3"
+                                                DragDelta="GridSplitter_DragDelta"
+                                                DragIncrement="1"
+                                                Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn
+                                Width="150"
+                                CanUserResize="True"
+                                Header="Category">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <ComboBox
+                                                Grid.Column="0"
+                                                ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="3"
+                                                DragDelta="GridSplitter_DragDelta"
+                                                DragIncrement="1"
+                                                Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn
+                                Width="130"
+                                Binding="{Binding Amount}"
+                                CanUserResize="True"
+                                Header="Amount (Main)" />
+                            <DataGridTextColumn
+                                Width="130"
+                                Binding="{Binding OriginalAmount}"
+                                Header="Amount (Local)" />
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Currency.Symbol}"
+                                Header="Currency" />
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding Comments}"
+                                Header="Comments" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
         </Grid>
     </ScrollViewer>
 </UserControl>

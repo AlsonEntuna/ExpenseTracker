@@ -8,16 +8,20 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker"
     Title="Tools"
     Width="400"
-    Height="190"
+    Height="250"
     d:DataContext="{d:DesignInstance viewmodel:MainWindowViewModel,
                                      IsDesignTimeCreatable=True}"
     Background="{StaticResource Brush.Main.Background}"
     ResizeMode="CanMinimize"
     SizeToContent="Height"
     mc:Ignorable="d">
-    <Grid>
-        <StackPanel Margin="5">
-            <GroupBox Header="Categories">
+    <Border
+        Margin="5"
+        Background="{StaticResource Brush.Border.Background}"
+        CornerRadius="25">
+        <Grid Margin="5">
+            <StackPanel Margin="5">
+                <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Categories" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -27,17 +31,14 @@
                         Grid.Column="0"
                         Margin="5"
                         Command="{Binding ExportCategoriesCommand}"
-                        Content="Export Category File"
-                        Style="{StaticResource ButtonStyle.Element}" />
+                        Content="Export Category File" />
                     <Button
                         Grid.Column="1"
                         Margin="5"
                         Command="{Binding ImportCategoriesCommand}"
-                        Content="Import Category File"
-                        Style="{StaticResource ButtonStyle.Element}" />
+                        Content="Import Category File" />
                 </Grid>
-            </GroupBox>
-            <GroupBox Header="Expense">
+                <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Expense" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -47,16 +48,14 @@
                         Grid.Column="0"
                         Margin="5"
                         Command="{Binding CopyFromCurrentExpenseCommand}"
-                        Content="Copy from Current Expense"
-                        Style="{StaticResource ButtonStyle.Element}" />
+                        Content="Copy from Current Expense" />
                     <Button
                         Grid.Column="1"
                         Margin="5"
                         Command="{Binding CopyFromOtherExpenseCommand}"
-                        Content="Copy from other Expense"
-                        Style="{StaticResource ButtonStyle.Element}" />
+                        Content="Copy from other Expense" />
                 </Grid>
-            </GroupBox>
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

@@ -25,6 +25,9 @@
     <AssemblyVersion>1.1.7</AssemblyVersion>
     <FileVersion>1.1.7</FileVersion>
     <PlatformTarget>x64</PlatformTarget>
+    <RootNamespace>ExpenseTracker</RootNamespace>
+    <PackageId>ExpenseTracker</PackageId>
+    <AssemblyName>ExpenseTracker</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

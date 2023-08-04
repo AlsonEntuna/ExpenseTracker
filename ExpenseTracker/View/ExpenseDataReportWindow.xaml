@@ -12,7 +12,7 @@
     Height="900"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="1000"
+    d:DesignHeight="1500"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
@@ -23,12 +23,14 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock
-                    Margin="35,20,0,0"
+                    Margin="15,0,0,0"
+                    FontSize="45"
+                    FontWeight="DemiBold"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
                     Text="Report Summary" />
-                <Grid Height="100" Margin="20">
+                <Grid Height="100">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
@@ -38,14 +40,19 @@
                         Background="{StaticResource Brush.Border.Background}"
                         CornerRadius="10">
                         <StackPanel Margin="15" Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Total:" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                                Text="Total:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
                                 <TextBlock
                                     HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header1}"
                                     Text="{Binding Report.CurrencySymbol}" />
                                 <TextBlock
                                     HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header1}"
                                     Text="{Binding Report.TotalAmount}" />
                             </StackPanel>
@@ -57,14 +64,19 @@
                         Background="{StaticResource Brush.Border.Background}"
                         CornerRadius="10">
                         <StackPanel Margin="15" Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Balance:" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                Text="Balance:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
                                 <TextBlock
                                     HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2}"
                                     Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
                                     HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2}"
                                     Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
@@ -76,14 +88,19 @@
                         Background="{StaticResource Brush.Border.Background}"
                         CornerRadius="10">
                         <StackPanel Margin="15" Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Paid:" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                Text="Paid:" />
                             <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
                                 <TextBlock
                                     HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2}"
                                     Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
                                     HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2}"
                                     Text="{Binding Report.PaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
@@ -91,17 +108,18 @@
                     </Border>
                 </Grid>
                 <Border
-                    Margin="30"
+                    Margin="10"
                     Background="{StaticResource Brush.Border.Background}"
                     CornerRadius="10">
                     <DataGrid
-                        Height="200"
+                        Height="300"
                         Margin="30"
                         ItemsSource="{Binding Report.CategoryReports}"
                         SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="auto"
+                                MinWidth="200"
                                 Binding="{Binding PaymentChannel}"
                                 CanUserResize="True"
                                 Header="Channel" />
@@ -119,7 +137,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Width="100" Header="Add Partial">
+                            <DataGridTemplateColumn Width="120" Header="Add Payment">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button
@@ -133,49 +151,83 @@
                             <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
                             <DataGridTextColumn
                                 Width="auto"
+                                MinWidth="100"
                                 Binding="{Binding OutstandingBalance}"
                                 Header="Balance" />
-                            <DataGridTemplateColumn Width="100" Header="Comments">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBox Text="{Binding Comments, UpdateSourceTrigger=PropertyChanged}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding Comments}"
+                                Header="Comments" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
                 <TextBlock
-                    Margin="45,0,0,0"
+                    Margin="15,0,0,0"
+                    FontWeight="DemiBold"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
                     Text="Local Currencies Breakdown" />
-                <Border
-                    Margin="30"
-                    Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="10">
-                    <DataGrid
-                        Height="200"
-                        Margin="30"
-                        ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                                Width="100"
-                                Binding="{Binding Currency.Code}"
-                                Header="Currency" />
-                            <DataGridTextColumn
-                                Width="100"
-                                Binding="{Binding Amount}"
-                                Header="Amount" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border
+                        Grid.Column="0"
+                        Margin="10"
+                        Background="{StaticResource Brush.Border.Background}"
+                        CornerRadius="10">
+                        <DataGrid
+                            Height="200"
+                            Margin="30"
+                            ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Currency.Code}"
+                                    Header="Currency" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Amount}"
+                                    Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <Border
+                        Grid.Column="1"
+                        Margin="10"
+                        Background="{StaticResource Brush.Border.Background}"
+                        CornerRadius="10">
+                        <DataGrid
+                            Height="200"
+                            Margin="30"
+                            AutoGenerateColumns="False"
+                            ItemsSource="{Binding Report.AltCurrencyBreakdown}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding CurrencyCode}"
+                                    Header="Currency" />
+                                <DataGridTextColumn
+                                    Width="auto"
+                                    MinWidth="200"
+                                    Binding="{Binding PaymentChannel}"
+                                    Header="Channel" />
+                                <DataGridTextColumn
+                                    Width="100"
+                                    Binding="{Binding Amount}"
+                                    Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                </Grid>
                 <TextBlock
-                    Margin="45,0,0,0"
+                    Margin="15,0,0,0"
+                    FontWeight="DemiBold"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
                     Text="Breakdown Chart" />
                 <Border
                     Height="500"
-                    Margin="30"
+                    Margin="10"
                     Background="{StaticResource Brush.Border.Background}"
                     CornerRadius="10">
                     <Grid Margin="20">
@@ -211,7 +263,7 @@
                 </Border>
                 <Border
                     Height="500"
-                    Margin="30"
+                    Margin="10"
                     Background="{StaticResource Brush.Border.Background}"
                     CornerRadius="10">
                     <Grid Margin="20">
