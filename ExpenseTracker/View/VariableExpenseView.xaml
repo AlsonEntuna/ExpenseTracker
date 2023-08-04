@@ -192,21 +192,40 @@
                                     VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                     Text="Currency Tools" />
-                                <Button
-                                    Width="260"
-                                    Margin="5"
-                                    HorizontalAlignment="Left"
-                                    Command="{Binding UpdateEntryConversionCommand}">
-                                    <Button.Content>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image
-                                                Width="30"
-                                                Height="30"
-                                                Source="{StaticResource Conversion_Graph}" />
-                                            <TextBlock VerticalAlignment="Center" Text="Update Realtime Conversion" />
-                                        </StackPanel>
-                                    </Button.Content>
-                                </Button>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        Grid.Column="0"
+                                        Margin="5"
+                                        Command="{Binding}">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image
+                                                    Width="30"
+                                                    Height="30"
+                                                    Source="{StaticResource Currency_Converter}" />
+                                                <TextBlock VerticalAlignment="Center" Text="Currency Converter" />
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        Command="{Binding UpdateEntryConversionCommand}">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image
+                                                    Width="30"
+                                                    Height="30"
+                                                    Source="{StaticResource Conversion_Graph}" />
+                                                <TextBlock VerticalAlignment="Center" Text="Update Realtime Conversion" />
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                </Grid>
                             </StackPanel>
                         </Border>
                     </StackPanel>

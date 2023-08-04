@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.App", "Expen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Wpf", "WPFWrappers\ExpenseTracker.Wpf.csproj", "{2142422A-D714-425D-905E-C7F4D1917AFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker.CurrencyConverter", "ExpenseTracker.CurrencyConverter\ExpenseTracker.CurrencyConverter.csproj", "{C2C404EF-707E-4345-8787-2126965DD60B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2142422A-D714-425D-905E-C7F4D1917AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2142422A-D714-425D-905E-C7F4D1917AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2142422A-D714-425D-905E-C7F4D1917AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2C404EF-707E-4345-8787-2126965DD60B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2C404EF-707E-4345-8787-2126965DD60B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2C404EF-707E-4345-8787-2126965DD60B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2C404EF-707E-4345-8787-2126965DD60B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
