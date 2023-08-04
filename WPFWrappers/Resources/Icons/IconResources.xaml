@@ -6,4 +6,8 @@
     <BitmapImage x:Key="Settings" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/settings.ico" />
     <BitmapImage x:Key="File_Save" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_save.ico" />
     <BitmapImage x:Key="Add" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/add.ico" />
+    <BitmapImage x:Key="Create_Report" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/create_report.ico" />
+    <BitmapImage x:Key="Open_Report" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/open_report.ico" />
+    <BitmapImage x:Key="Currency_Converter" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/currency_converter.ico" />
+    <BitmapImage x:Key="Conversion_Graph" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/conversion_graph.ico" />
 </ResourceDictionary>

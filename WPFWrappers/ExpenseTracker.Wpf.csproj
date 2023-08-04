@@ -16,11 +16,15 @@
     <None Remove="Fonts\MonoMedium.ttf" />
     <None Remove="Fonts\MonoRegular.ttf" />
     <None Remove="Resources\Icons\add.ico" />
+    <None Remove="Resources\Icons\conversion_graph.ico" />
+    <None Remove="Resources\Icons\create_report.ico" />
+    <None Remove="Resources\Icons\currency_converter.ico" />
     <None Remove="Resources\Icons\file_close.ico" />
     <None Remove="Resources\Icons\file_edit.ico" />
     <None Remove="Resources\Icons\file_new.ico" />
     <None Remove="Resources\Icons\file_open.ico" />
     <None Remove="Resources\Icons\file_save.ico" />
+    <None Remove="Resources\Icons\open_report.ico" />
     <None Remove="Resources\Icons\settings.ico" />
   </ItemGroup>
 
@@ -38,6 +42,15 @@
     <Resource Include="Resources\Icons\add.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Icons\conversion_graph.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\create_report.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\currency_converter.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\file_close.ico" />
     <Resource Include="Resources\Icons\file_edit.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -49,6 +62,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\file_save.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\open_report.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\settings.ico">

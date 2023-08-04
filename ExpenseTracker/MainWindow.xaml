@@ -18,63 +18,7 @@
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <StackPanel
-                Grid.Column="0"
-                Margin="10,0,0,0"
-                Orientation="Horizontal">
-                <Button
-                    x:Name="Btn_Open"
-                    Width="60"
-                    Height="60"
-                    Click="Btn_Open_Click"
-                    ToolTip="Open Expense">
-                    <Button.Content>
-                        <Image
-                            Width="48"
-                            Height="48"
-                            Source="{StaticResource File_Open}" />
-                    </Button.Content>
-                </Button>
-                <Button
-                    x:Name="Btn_New"
-                    Width="60"
-                    Height="60"
-                    Margin="5,0,0,0"
-                    Click="Btn_New_Click"
-                    ToolTip="Create New Expense">
-                    <Button.Content>
-                        <Image
-                            Width="48"
-                            Height="48"
-                            Source="{StaticResource File_New}" />
-                    </Button.Content>
-                </Button>
-                <Button
-                    x:Name="Btn_Tools"
-                    Width="60"
-                    Height="60"
-                    Margin="5,0,0,0"
-                    Click="Btn_Tools_Click"
-                    ToolTip="Tools">
-                    <Button.Content>
-                        <Image
-                            Width="48"
-                            Height="48"
-                            Source="{StaticResource Settings}" />
-                    </Button.Content>
-                </Button>
-            </StackPanel>
-        </Grid>
+    <Grid Margin="5">
         <view:VariableExpenseView Grid.Row="1" DataContext="{Binding VariableExpenseViewModel}" />
     </Grid>
 </Window>

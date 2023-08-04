@@ -25,6 +25,7 @@ namespace ExpenseTracker
         public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
         public ICommand CopyFromCurrentExpenseCommand => new RelayCommand(CopyFromCurrentExpense);
         public ICommand CopyFromOtherExpenseCommand => new RelayCommand(CopyFromOtherExpense);
+        public ICommand SaveExpenseCommand => new RelayCommand(SaveExpense);
         #endregion
 
         public MainWindowViewModel()
@@ -129,6 +130,11 @@ namespace ExpenseTracker
                 AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SetCurrentDisplayedExpense(copiedDataExpense);
 
             }
+        }
+
+        private void SaveExpense()
+        {
+            AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SaveCurrentExpenseData();
         }
     }
 }
