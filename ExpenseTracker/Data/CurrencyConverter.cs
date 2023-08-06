@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.Json;
 using System.IO;
+using ExpenseTracker.Tools;
+using ExpenseTracker.ExpenseSys;
 
 namespace ExpenseTracker.Data
 {
@@ -28,7 +30,7 @@ namespace ExpenseTracker.Data
     }
     public class CurrencyConverter
     {
-        private string _cachePath = Path.Combine(PathUtils.AppDataPath(), "_cache", "currency_conversion.json");
+        private string _cachePath = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), "_cache", "currency_conversion.json");
         private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
         public CurrencyConverter() 
         {

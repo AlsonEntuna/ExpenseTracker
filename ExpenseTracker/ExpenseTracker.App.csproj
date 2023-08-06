@@ -52,6 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj" />
     <ProjectReference Include="..\WPFWrappers\ExpenseTracker.Wpf.csproj" />
   </ItemGroup>
 
