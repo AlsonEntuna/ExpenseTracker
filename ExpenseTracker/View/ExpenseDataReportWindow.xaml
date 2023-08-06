@@ -124,9 +124,10 @@
                                 CanUserResize="True"
                                 Header="Channel" />
                             <DataGridTextColumn
-                                Width="100"
+                                Width="auto"
+                                MinWidth="200"
                                 Binding="{Binding Amount}"
-                                Header="Amount" />
+                                Header="Amount (Main)" />
                             <DataGridTemplateColumn Width="100" Header="Paid">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

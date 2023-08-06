@@ -1,10 +1,13 @@
-﻿using ExpenseTracker.ExpenseSys;
-using ExpenseTracker.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
+
+using ExpenseTracker.ExpenseSys;
+using ExpenseTracker.Tools;
+using ExpenseTracker.Utils;
+
 using MessageBox = System.Windows.MessageBox;
 
 namespace ExpenseTracker.Data
@@ -15,7 +18,7 @@ namespace ExpenseTracker.Data
         public static Categories DataCategories;
         private static string _dataFile;
        
-        private static string configFile = Path.Combine(PathUtils.AppDataPath(), Constants.CONFIG_FILE);
+        private static string configFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CONFIG_FILE);
 #if DEBUG
         private static string configDebugPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data");
 #endif
@@ -37,9 +40,9 @@ namespace ExpenseTracker.Data
                     Directory.CreateDirectory(configDebugPath);
                 }
 #else
-                if (!Directory.Exists(PathUtils.AppDataPath()))
+                if (!Directory.Exists(PathUtils.AppDataPath(Constants.EXPENSETRACKER)))
                 {
-                    Directory.CreateDirectory(PathUtils.AppDataPath());
+                    Directory.CreateDirectory(PathUtils.AppDataPath(Constants.EXPENSETRACKER));
                 }
 #endif
                 Config = Configuration.GenerateConfigFile(configFile);
@@ -63,7 +66,7 @@ namespace ExpenseTracker.Data
 #if DEBUG
             _dataFile = Path.Combine(configDebugPath, Constants.CATEGORIES_FILE);
 #else
-            _dataFile = Path.Combine(PathUtils.AppDataPath(), Constants.CATEGORIES_FILE);
+            _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
 #endif
             if (File.Exists(_dataFile))
             {
@@ -96,7 +99,7 @@ namespace ExpenseTracker.Data
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
-                _dataFile = Path.Combine(PathUtils.AppDataPath(), Constants.CATEGORIES_FILE);
+                _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
             }
 
             if (!DataCategories.ExpenseCategories.Contains(category))
@@ -114,7 +117,7 @@ namespace ExpenseTracker.Data
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
-                _dataFile = Path.Combine(PathUtils.AppDataPath(), Constants.CATEGORIES_FILE);
+                _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
             }
 
             if (!DataCategories.PaymentChannels.Contains(chanel))

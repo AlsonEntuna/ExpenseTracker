@@ -14,7 +14,7 @@
     d:DesignWidth="1500"
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
@@ -28,7 +28,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="90" />
                     </Grid.RowDefinitions>
-                    <StackPanel>
+                    <StackPanel IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
                         <Border>
                             <StackPanel Margin="15">
                                 <TextBlock
@@ -355,12 +355,12 @@
                 Grid.Column="2"
                 Margin="5"
                 Background="{StaticResource Brush.Border.Background}"
-                CornerRadius="25">
+                CornerRadius="20">
                 <StackPanel>
                     <Border
                         Margin="10"
                         Background="{StaticResource Brush.Main.Background}"
-                        CornerRadius="25">
+                        CornerRadius="20">
                         <Grid Margin="15,0,15,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30" />
@@ -368,13 +368,13 @@
                             </Grid.ColumnDefinitions>
                             <Image
                                 Grid.Column="0"
-                                Width="40"
-                                Height="40"
+                                Width="25"
+                                Height="25"
                                 Source="{StaticResource Search}" />
                             <TextBox
                                 x:Name="TxtBox_Search"
                                 Grid.Column="1"
-                                Height="40"
+                                Height="25"
                                 Margin="10"
                                 VerticalContentAlignment="Center"
                                 Background="Transparent"
@@ -420,10 +420,14 @@
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
                             <DataGridTextColumn
-                                Width="200"
+                                Width="auto"
+                                MinWidth="200"
                                 Binding="{Binding Description}"
                                 Header="Description" />
-                            <DataGridTemplateColumn Width="150" Header="Payment Channel">
+                            <DataGridTemplateColumn
+                                Width="auto"
+                                MinWidth="150"
+                                Header="Payment Channel">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid>

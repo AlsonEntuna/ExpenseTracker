@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
-namespace ExpenseTracker.Utils
+namespace ExpenseTracker.Tools
 {
     public static class JsonUtils
     {

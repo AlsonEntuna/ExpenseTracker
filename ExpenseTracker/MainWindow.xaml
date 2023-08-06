@@ -19,6 +19,6 @@
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Grid Margin="5">
-        <view:VariableExpenseView Grid.Row="1" DataContext="{Binding VariableExpenseViewModel}" />
+        <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
     </Grid>
 </Window>
