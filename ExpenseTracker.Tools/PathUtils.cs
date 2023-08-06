@@ -8,7 +8,16 @@
         }
         public static string AppDataPath(string subFolder) 
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), subFolder);
+            return Path.Combine(AppDataPath(), subFolder);
+        }
+        public static string AppDataPath(string[] subFolders)
+        {
+            string subFolderStr = "";
+            for(uint i = 0; i < subFolders.Length; ++i)
+            {
+                subFolderStr += $"{subFolders[i]}\\";
+            }
+            return Path.Combine(AppDataPath(), subFolderStr);
         }
     }
 }

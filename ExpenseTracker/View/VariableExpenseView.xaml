@@ -14,7 +14,7 @@
     d:DesignWidth="1500"
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
@@ -28,7 +28,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="90" />
                     </Grid.RowDefinitions>
-                    <StackPanel>
+                    <StackPanel IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
                         <Border>
                             <StackPanel Margin="15">
                                 <TextBlock

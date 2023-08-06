@@ -9,21 +9,23 @@ namespace ExpenseTracker.CurrencyConverter
     {
         //private string _cachePath = Path.Combine(PathUtils.AppDataPath(), "_cache", "currency_conversion.json");
         private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
-        private string _cachePath = "";
+        private string _cachedPath = "";
         public CurrencyConverter(string cachePath)
         {
-            _cachePath = cachePath;
+            _cachedPath = cachePath;
+            if (string.IsNullOrEmpty(cachePath))
+                throw new ArgumentNullException(nameof(cachePath));
 
-            if (!Directory.Exists(Path.GetDirectoryName(_cachePath)))
-                Directory.CreateDirectory(Path.GetDirectoryName(_cachePath));
+            if (!Directory.Exists(Path.GetDirectoryName(_cachedPath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(_cachedPath));
 
-            if (!File.Exists(_cachePath))
-                JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
+            if (!File.Exists(_cachedPath))
+                JsonUtils.SerializeArray(_cachedPath, _cachedConversionData);
             else
-                _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
+                _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachedPath);
         }
 
-        static async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
+        public static async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
         {
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -57,6 +59,19 @@ namespace ExpenseTracker.CurrencyConverter
                     conversionData = cachedData;
             }
             return conversionData;
+        }
+
+        public void SaveToCacheData(ConversionData conversionData) 
+        {
+            if (!_cachedConversionData.Contains(conversionData))
+                _cachedConversionData.Add(conversionData);
+            else
+            {
+                var data = GetConversionData(conversionData.Key);
+                if (data != null)
+                    data.Value = conversionData.Value;
+            }
+            JsonUtils.SerializeArray(_cachedPath, _cachedConversionData);
         }
     }
 }

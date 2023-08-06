@@ -11,6 +11,12 @@ namespace ExpenseTracker.CurrencyConverter
         public string Key;
         public float Value;
         public ConversionData() { }
+        public ConversionData(string key, float value)
+        {
+            Key = key;
+            Value = value;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is ConversionData other)
