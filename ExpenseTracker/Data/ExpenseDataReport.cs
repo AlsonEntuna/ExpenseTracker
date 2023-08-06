@@ -77,8 +77,8 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _expenseCategoryChartData, value);
         }
 
-        private ObservableCollection<CurrencyData> _currencyReport;
-        public ObservableCollection<CurrencyData> CurrencyReport 
+        private ObservableCollection<ReportData> _currencyReport;
+        public ObservableCollection<ReportData> CurrencyReport 
         {
             get => _currencyReport;
             set => SetProperty(ref _currencyReport, value);
@@ -94,7 +94,7 @@ namespace ExpenseTracker.Data
         public ExpenseDataReport()
         {
             CategoryReports = new List<CategoryReport>();
-            CurrencyReport = new ObservableCollection<CurrencyData>();
+            CurrencyReport = new ObservableCollection<ReportData>();
             AltCurrencyBreakdown = new List<MultiCurrencyReportData>();
 
             // Inits
@@ -221,7 +221,7 @@ namespace ExpenseTracker.Data
             if (AppInstance.Connection.MainCurrency.Code == entry.Currency.Code)
                 return;
 
-            CurrencyData data = new CurrencyData(entry.Currency, entry.OriginalAmount);
+            ReportData data = new ReportData(entry.Currency, entry.OriginalAmount);
             if (!CurrencyReport.Contains(data))
                 CurrencyReport.Add(data);
             else
