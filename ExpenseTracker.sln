@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Wpf", "WPFWr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.CurrencyConverter", "ExpenseTracker.CurrencyConverter\ExpenseTracker.CurrencyConverter.csproj", "{C2C404EF-707E-4345-8787-2126965DD60B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker.Tools", "ExpenseTracker.Tools\ExpenseTracker.Tools.csproj", "{9571B67C-CE37-4AD6-B04F-FC6EF307F05A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseTracker.Tools", "ExpenseTracker.Tools\ExpenseTracker.Tools.csproj", "{9571B67C-CE37-4AD6-B04F-FC6EF307F05A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

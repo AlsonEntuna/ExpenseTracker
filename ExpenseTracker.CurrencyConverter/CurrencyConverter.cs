@@ -1,11 +1,7 @@
-﻿using ExpenseTracker.CurrencyConverter.Config;
+﻿using System.Text.Json;
+
 using ExpenseTracker.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+using ExpenseTracker.CurrencyConverter.Config;
 
 namespace ExpenseTracker.CurrencyConverter
 {
@@ -27,14 +23,15 @@ namespace ExpenseTracker.CurrencyConverter
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
         }
 
-        static async Task<float> GetCurrencyConversion(string from, string to)
+        static async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
         {
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
 
-            string conversionKey = $"{to}_{from}";
+            string conversionKey = $"{toCurrencyCode}_{fromCurrencyCode}";
             await using Stream stream =
                 await client.GetStreamAsync($"https://free.currconv.com/api/v7/convert?q={conversionKey}&compact=ultra&apiKey={Keys.CURRENCY_CONVERTER_API_KEY}");
+            
             var conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
 
             conversionData.Result.TryGetValue(conversionKey, out float val);
@@ -42,16 +39,24 @@ namespace ExpenseTracker.CurrencyConverter
             return val;
         }
 
-        private ConversionData GetConversionData(string key)
+        /// <summary>
+        /// Returns the cached conversiondata based on a conversionKey
+        /// Ex. EUR_USD, PHP_EUR
+        /// </summary>
+        /// <param name="conversionKey"></param>
+        /// <returns></returns>
+        private ConversionData GetConversionData(string conversionKey)
         {
-            foreach (var conversionData in _cachedConversionData)
+            ConversionData conversionData = null;
+            if (_cachedConversionData == null || _cachedConversionData.Count == 0)
+                return conversionData;
+
+            foreach (ConversionData cachedData in _cachedConversionData)
             {
-                if (string.Equals(conversionData.Key, key))
-                {
-                    return conversionData;
-                }
+                if (string.Equals(cachedData.Key, conversionKey))
+                    conversionData = cachedData;
             }
-            return null;
+            return conversionData;
         }
     }
 }
