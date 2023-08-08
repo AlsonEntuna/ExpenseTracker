@@ -1,14 +1,15 @@
 ﻿using System;
+using ExpenseTracker.CurrencyConverter;
 
 namespace ExpenseTracker.Data.Reports
 {
     [Serializable]
     public class ReportData
     {
-        public DataCurrency Currency { get; set; }
+        public CurrencyInfo Currency { get; set; }
         public float Amount { get; set; }
         public ReportData() { }
-        public ReportData(DataCurrency currency, float amount)
+        public ReportData(CurrencyInfo currency, float amount)
         {
             Currency = currency;
             Amount = amount;

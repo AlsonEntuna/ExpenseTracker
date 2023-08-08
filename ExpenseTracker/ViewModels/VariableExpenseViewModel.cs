@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-
+using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
 using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.Tools;
@@ -52,11 +52,16 @@ namespace ExpenseTracker.ViewModels
         public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
         #endregion
 
+        #region ViewModels
+        public CurrencyConverterViewModel ConverterUIViewModel { get; set; }
+        #endregion
+
         public bool IsNewExpense { get; set; }
         public VariableExpenseViewModel() 
         {
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
+            ConverterUIViewModel = new CurrencyConverterViewModel(AppInstance.Connection.CurrConverter);
         }
 
         private void AddEntry()

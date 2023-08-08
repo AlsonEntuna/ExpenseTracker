@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 
+using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
@@ -48,7 +49,7 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _budget, value);
         }
 
-        public DataCurrency DataCurrency { get; set; }
+        public CurrencyInfo DataCurrency { get; set; }
         // NOTE: This is a fail-safe option.
         public CultureInfo Currency => CultureInfo.CurrentCulture;
 

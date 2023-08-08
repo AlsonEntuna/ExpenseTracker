@@ -9,23 +9,23 @@ namespace ExpenseTracker.CurrencyConverter
     {
         //private string _cachePath = Path.Combine(PathUtils.AppDataPath(), "_cache", "currency_conversion.json");
         private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
-        private string _cachedPath = "";
+        private string _cachePath = "";
         public CurrencyConverter(string cachePath)
         {
-            _cachedPath = cachePath;
+            _cachePath = cachePath;
             if (string.IsNullOrEmpty(cachePath))
                 throw new ArgumentNullException(nameof(cachePath));
 
-            if (!Directory.Exists(Path.GetDirectoryName(_cachedPath)))
-                Directory.CreateDirectory(Path.GetDirectoryName(_cachedPath));
+            if (!Directory.Exists(Path.GetDirectoryName(_cachePath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(_cachePath));
 
-            if (!File.Exists(_cachedPath))
-                JsonUtils.SerializeArray(_cachedPath, _cachedConversionData);
+            if (!File.Exists(_cachePath))
+                JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
             else
-                _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachedPath);
+                _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
         }
 
-        public static async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
+        public async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
         {
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -47,7 +47,7 @@ namespace ExpenseTracker.CurrencyConverter
         /// </summary>
         /// <param name="conversionKey"></param>
         /// <returns></returns>
-        private ConversionData GetConversionData(string conversionKey)
+        public ConversionData GetCachedConversionData(string conversionKey)
         {
             ConversionData conversionData = null;
             if (_cachedConversionData == null || _cachedConversionData.Count == 0)
@@ -67,11 +67,11 @@ namespace ExpenseTracker.CurrencyConverter
                 _cachedConversionData.Add(conversionData);
             else
             {
-                var data = GetConversionData(conversionData.Key);
+                var data = GetCachedConversionData(conversionData.Key);
                 if (data != null)
                     data.Value = conversionData.Value;
             }
-            JsonUtils.SerializeArray(_cachedPath, _cachedConversionData);
+            JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
         }
     }
 }

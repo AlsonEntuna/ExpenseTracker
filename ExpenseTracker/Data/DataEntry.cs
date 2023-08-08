@@ -1,5 +1,5 @@
 ﻿using System;
-
+using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
@@ -81,18 +81,34 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _comments, value);
         }
 
-        private DataCurrency _currency;
-        public DataCurrency Currency
+        private CurrencyInfo _currency;
+        public CurrencyInfo Currency
         {
             get => _currency;
             set => SetProperty(ref _currency, value);
         }
-        
-        private CurrencyConverter _converter = new CurrencyConverter();
+
         public DataEntry() { }
-        public void ConvertToMainCurrency()
+
+        public async void ConvertToMainCurrency()
         {
-            _converter.Convert(this, AppInstance.Connection.MainCurrency.Code);
+            string fromCurrency = AppInstance.Connection.MainCurrency.Code;
+            string conversionKey = $"{fromCurrency}_{Currency.Code}";
+            float conversionRate;
+            try
+            {
+                conversionRate = await AppInstance.Connection.CurrConverter.GetCurrencyConversion(Currency.Code, fromCurrency);
+                AppInstance.Connection.CurrConverter.SaveToCacheData(new CurrencyConverter.ConversionData(conversionKey, conversionRate));
+            }
+            catch
+            {
+                var data = AppInstance.Connection.CurrConverter.GetCachedConversionData(conversionKey);
+                if (data != null)
+                    conversionRate = data.Value;
+                else
+                    conversionRate = 1;
+            }
+            Amount = (float)Math.Round(Amount / conversionRate, 2);
         }
     }
 }

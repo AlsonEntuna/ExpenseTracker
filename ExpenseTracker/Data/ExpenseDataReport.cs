@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Data.Events;
 using ExpenseTracker.Data.Reports;
 using ExpenseTracker.Wpf;
@@ -60,7 +61,7 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _selectedReport, value);
         }
 
-        public DataCurrency DataCurrency { get; set; }
+        public CurrencyInfo DataCurrency { get; set; }
         public string CurrencySymbol => DataCurrency != null ? DataCurrency.Symbol : CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
 
         private ObservableCollection<KeyValuePair<string, int>> _reportChartData;
