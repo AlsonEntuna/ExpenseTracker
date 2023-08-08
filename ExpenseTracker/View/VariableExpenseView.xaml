@@ -167,12 +167,10 @@
                                     Margin="5"
                                     Background="{StaticResource Brush.Border.Background}"
                                     CornerRadius="25">
-                                    <Grid Height="120">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                    <UniformGrid
+                                        Height="auto"
+                                        Margin="10"
+                                        Columns="4">
                                         <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                             <Button
                                                 Grid.Row="0"
@@ -233,24 +231,8 @@
                                                 Text="Open"
                                                 ToolTip="Open Report" />
                                         </StackPanel>
-                                    </Grid>
-
-                                </Border>
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Conversion" />
-                                <Border
-                                    Margin="5"
-                                    Background="{StaticResource Brush.Border.Background}"
-                                    CornerRadius="25">
-                                    <Grid Height="120">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                            <Button Width="50" Command="{Binding}">
+                                        <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                            <Button Width="50" Command="{Binding UpdateEntryConversionCommand}">
                                                 <Button.Content>
                                                     <Image
                                                         Width="30"
@@ -263,28 +245,23 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="20"
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                                Text="Currency Converter" />
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                            <Button Width="50" Command="{Binding UpdateEntryConversionCommand}">
-                                                <Button.Content>
-                                                    <Image
-                                                        Width="30"
-                                                        Height="30"
-                                                        Source="{StaticResource Conversion_Graph}" />
-                                                </Button.Content>
-                                            </Button>
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="20"
-                                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                                Text="Update Conversion"
+                                                Text="Refresh"
                                                 ToolTip="Update Realtime Conversion" />
                                         </StackPanel>
-                                    </Grid>
+                                    </UniformGrid>
+
                                 </Border>
-                                <currencyConverterControl:CurrencyConverterControl DataContext="{Binding ConverterUIViewModel}" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                    Text="Currency Converter" />
+                                <Border
+                                    Margin="5"
+                                    Background="{StaticResource Brush.Border.Background}"
+                                    CornerRadius="25">
+                                    <currencyConverterControl:CurrencyConverterControl Margin="20" DataContext="{Binding ConverterUIViewModel}" />
+                                </Border>
+
                             </StackPanel>
                         </Border>
                     </StackPanel>

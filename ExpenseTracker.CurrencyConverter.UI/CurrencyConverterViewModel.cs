@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using ExpenseTracker.Wpf;
 
@@ -59,6 +57,8 @@ namespace ExpenseTracker.CurrencyConverter.UI
             CurrencyInfos = CurrencyInfo.GenerateCurrencyList().ToList();
             if (converter != null)
                 _currencyConverter = converter;
+
+            InputValue = 1;
         }
 
         private async void Convert()

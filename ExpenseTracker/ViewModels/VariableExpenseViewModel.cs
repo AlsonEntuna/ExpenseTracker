@@ -26,6 +26,8 @@ namespace ExpenseTracker.ViewModels
                 SetProperty(ref _currentDisplayedExpense, value);
                 // Set the Main Currency
                 AppInstance.Connection.MainCurrency = CurrentDisplayedExpense.DataCurrency;
+                // Initialize the Currency in the Converter
+                ConverterUIViewModel.FromCurrency = AppInstance.Connection.MainCurrency;
             }
         }
 

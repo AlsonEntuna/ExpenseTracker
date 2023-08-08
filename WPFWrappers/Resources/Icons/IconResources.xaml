@@ -11,4 +11,5 @@
     <BitmapImage x:Key="Currency_Converter" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/currency_converter.ico" />
     <BitmapImage x:Key="Conversion_Graph" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/conversion_graph.ico" />
     <BitmapImage x:Key="Search" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/search.ico" />
+    <BitmapImage x:Key="Swap" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/swap.ico" />
 </ResourceDictionary>

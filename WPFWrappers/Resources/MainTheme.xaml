@@ -374,8 +374,8 @@
                 Grid.ColumnSpan="2"
                 Width="Auto"
                 Height="Auto"
-                Background="{StaticResource Brush.Button.Main}"
-                BorderBrush="{StaticResource Brush.Main.Border}"
+                Background="{StaticResource Brush.Border.Background.Alt}"
+                BorderBrush="{StaticResource Brush.Main.Background.Alt}"
                 BorderThickness="1"
                 CornerRadius="2" />
             <Path
