@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+
+using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Wpf;
 
@@ -49,6 +52,9 @@ namespace ExpenseTracker.CurrencyConverter.UI
             set => SetProperty(ref _convertedValue, value);
         }
         #endregion
+        #region Commands
+        public ICommand SwapCurrenciesCommand => new RelayCommand(SwapCurrencies);
+        #endregion
 
         private CurrencyConverter _currencyConverter;
         public CurrencyConverterViewModel() { }
@@ -85,6 +91,13 @@ namespace ExpenseTracker.CurrencyConverter.UI
                     conversionRate = 1;
             }
             ConvertedValue = (float)Math.Round(InputValue / conversionRate, 2);
+        }
+
+        private void SwapCurrencies()
+        {
+            CurrencyInfo cached = FromCurrency;
+            FromCurrency = ToCurrency;
+            ToCurrency = cached;
         }
     }
 }

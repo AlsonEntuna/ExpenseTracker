@@ -41,6 +41,7 @@
                 Height="25"
                 Margin="5,0,5,0"
                 VerticalAlignment="Bottom"
+                Command="{Binding SwapCurrenciesCommand}"
                 Style="{StaticResource ButtonStyle.Element}">
                 <Button.Content>
                     <Image Source="{StaticResource Swap}" />
