@@ -22,8 +22,8 @@
     <Description>A WPF Application that I'm creating because of my own needs based on my own experience on how to handle bills and payments.
 </Description>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.1.7</AssemblyVersion>
-    <FileVersion>1.1.7</FileVersion>
+    <AssemblyVersion>1.1.9</AssemblyVersion>
+    <FileVersion>1.1.9</FileVersion>
     <PlatformTarget>x64</PlatformTarget>
     <RootNamespace>ExpenseTracker</RootNamespace>
     <PackageId>ExpenseTracker</PackageId>

@@ -191,7 +191,10 @@
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                                 Text="Add" />
                                         </StackPanel>
-                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            ToolTip="Generate Report">
                                             <Button Width="50" Command="{Binding GenerateExpenseReportCommand}">
                                                 <Button.Content>
                                                     <Image
@@ -206,11 +209,13 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="20"
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                                Text="Generate"
-                                                ToolTip="Generate Report" />
+                                                Text="Generate" />
 
                                         </StackPanel>
-                                        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                        <StackPanel
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            ToolTip="Open Report">
                                             <Button
                                                 Width="50"
                                                 Command="{Binding OpenReportCommand}"
@@ -228,10 +233,12 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="20"
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                                Text="Open"
-                                                ToolTip="Open Report" />
+                                                Text="Open" />
                                         </StackPanel>
-                                        <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                        <StackPanel
+                                            Grid.Column="3"
+                                            VerticalAlignment="Center"
+                                            ToolTip="Update Realtime Conversion">
                                             <Button Width="50" Command="{Binding UpdateEntryConversionCommand}">
                                                 <Button.Content>
                                                     <Image
@@ -245,8 +252,7 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="20"
                                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                                Text="Refresh"
-                                                ToolTip="Update Realtime Conversion" />
+                                                Text="Update" />
                                         </StackPanel>
                                     </UniformGrid>
 
