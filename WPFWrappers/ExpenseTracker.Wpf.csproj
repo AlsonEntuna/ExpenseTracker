@@ -27,6 +27,7 @@
     <None Remove="Resources\Icons\open_report.ico" />
     <None Remove="Resources\Icons\search.ico" />
     <None Remove="Resources\Icons\settings.ico" />
+    <None Remove="Resources\Icons\swap.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,6 +73,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\settings.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\swap.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

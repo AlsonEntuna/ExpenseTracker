@@ -1,6 +1,8 @@
-﻿using ExpenseTracker.Data;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
+
+using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Data;
 
 namespace ExpenseTracker.View
 {
@@ -14,7 +16,7 @@ namespace ExpenseTracker.View
         {
             InitializeComponent();
             DPicker_ExpenseDate.SelectedDate = System.DateTime.Now;
-            Combo_Currency.ItemsSource = DataCurrency.GenerateCurrencyList();
+            Combo_Currency.ItemsSource = CurrencyInfo.GenerateCurrencyList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -25,7 +27,7 @@ namespace ExpenseTracker.View
                 Name = Txtbox_Name.Text,
                 Description = Txtbox_Description.Text,
                 CycleEndDate = DPicker_ExpenseDate.SelectedDate.Value,
-                DataCurrency = Combo_Currency.SelectedItem as DataCurrency
+                DataCurrency = Combo_Currency.SelectedItem as CurrencyInfo
             };
             Close();
         }

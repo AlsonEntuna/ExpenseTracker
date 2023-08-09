@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace ExpenseTracker.CurrencyConverter
 {
     [Serializable]
-    public class DataCurrency
+    public class CurrencyInfo
     {
         public string Code { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
 
-        public DataCurrency(string code, string name, string symbol)
+        public CurrencyInfo(string code, string name, string symbol)
         {
             Code = code;
             Name = name;
@@ -28,7 +23,7 @@ namespace ExpenseTracker.CurrencyConverter
 
         public override bool Equals(object obj)
         {
-            if (obj is DataCurrency otherCurrency)
+            if (obj is CurrencyInfo otherCurrency)
                 return string.Equals(Code, otherCurrency.Code);
             else return false;
         }
@@ -38,15 +33,15 @@ namespace ExpenseTracker.CurrencyConverter
             return Code.GetHashCode();
         }
 
-        public static IEnumerable<DataCurrency> GenerateCurrencyList()
+        public static IEnumerable<CurrencyInfo> GenerateCurrencyList()
         {
-            List<DataCurrency> list = new List<DataCurrency>();
+            List<CurrencyInfo> list = new List<CurrencyInfo>();
             CultureInfo.GetCultures(CultureTypes.SpecificCultures)
                 .Select(ci => ci.Name).Distinct()
                 .Select(id => new RegionInfo(id))
                 .GroupBy(r => r.ISOCurrencySymbol)
                 .Select(g => g.First()).ToList()
-                .ForEach(r => list.Add(new DataCurrency(r.ISOCurrencySymbol, r.CurrencyEnglishName, r.CurrencySymbol)));
+                .ForEach(r => list.Add(new CurrencyInfo(r.ISOCurrencySymbol, r.CurrencyEnglishName, r.CurrencySymbol)));
             return list;
         }
     }

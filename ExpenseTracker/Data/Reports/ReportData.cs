@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ExpenseTracker.CurrencyConverter;
 
-namespace ExpenseTracker.CurrencyConverter
+namespace ExpenseTracker.Data.Reports
 {
     [Serializable]
-    public class CurrencyData
+    public class ReportData
     {
-        public DataCurrency Currency { get; set; }
+        public CurrencyInfo Currency { get; set; }
         public float Amount { get; set; }
-        public CurrencyData() { }
-        public CurrencyData(DataCurrency currency, float amount)
+        public ReportData() { }
+        public ReportData(CurrencyInfo currency, float amount)
         {
             Currency = currency;
             Amount = amount;
@@ -20,7 +17,7 @@ namespace ExpenseTracker.CurrencyConverter
 
         public override bool Equals(object obj)
         {
-            if (obj is CurrencyData other)
+            if (obj is ReportData other)
             {
                 return string.Equals(Currency.Code, other.Currency.Code);
             }

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
+using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Data;
 using ExpenseTracker.Wpf.Dialog;
 
@@ -14,13 +15,13 @@ namespace ExpenseTracker.View
     public partial class CreateExpenseEntry : Window
     {
         public DataEntry Entry { get; set; }
-        private readonly DataCurrency _mainCurrency = null;
-        public CreateExpenseEntry(DataCurrency mainCurrency)
+        private readonly CurrencyInfo _mainCurrency = null;
+        public CreateExpenseEntry(CurrencyInfo mainCurrency)
         {
             InitializeComponent();
             // Initialize the value
             UpdateCategoryList();
-            Combo_Currency.ItemsSource = DataCurrency.GenerateCurrencyList();
+            Combo_Currency.ItemsSource = CurrencyInfo.GenerateCurrencyList();
             Combo_Currency.SelectedItem = mainCurrency;
             _mainCurrency = mainCurrency;
         }
@@ -44,7 +45,7 @@ namespace ExpenseTracker.View
                 Amount = float.Parse(TxtBox_Amount.Text, CultureInfo.InvariantCulture.NumberFormat),
                 PaymentChannel = CmbBox_PaymentChannel.SelectedItem as string,
                 ExpenseCategory = CmbBox_ExpenseCategory.SelectedItem as string,
-                Currency = Combo_Currency.SelectedItem as DataCurrency
+                Currency = Combo_Currency.SelectedItem as CurrencyInfo
             };
 
             if (_mainCurrency != null)
