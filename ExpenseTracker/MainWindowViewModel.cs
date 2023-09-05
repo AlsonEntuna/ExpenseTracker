@@ -11,6 +11,8 @@ using ExpenseTracker.View;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
 
+using ApplicationUpdater;
+
 namespace ExpenseTracker
 {
     class MainWindowViewModel : ViewModel
@@ -28,6 +30,8 @@ namespace ExpenseTracker
         public ICommand SaveExpenseCommand => new RelayCommand(SaveExpense);
         #endregion
 
+        private ApplicationUpdater.AppClientUpdater _updater;
+
         public MainWindowViewModel()
         {
             // Load the data...
@@ -36,6 +40,10 @@ namespace ExpenseTracker
 
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
+
+            _updater = new AppClientUpdater();
+            _updater.InitializeClient("expense_tracker", "AlsonEntuna", "ExpenseTracker");
+            _updater.CheckForUpdate();
         }
 
         private void InitializeData()
