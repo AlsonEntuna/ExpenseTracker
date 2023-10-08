@@ -8,6 +8,6 @@ namespace ExpenseTracker.CurrencyConverter.Config
 {
     internal static class Keys
     {
-        public static string CURRENCY_CONVERTER_API_KEY = "63216d7f4275580b6660";
+        public static string CURRENCY_CONVERTER_API_KEY = "de8d30df904e58a021b9";
     }
 }
