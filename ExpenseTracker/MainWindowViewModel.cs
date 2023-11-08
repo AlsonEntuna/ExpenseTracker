@@ -12,6 +12,8 @@ using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
 
 using ApplicationUpdater;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace ExpenseTracker
 {
@@ -30,7 +32,7 @@ namespace ExpenseTracker
         public ICommand SaveExpenseCommand => new RelayCommand(SaveExpense);
         #endregion
 
-        private ApplicationUpdater.AppClientUpdater _updater;
+        private AppClientUpdater _updater;
 
         public MainWindowViewModel()
         {
@@ -43,7 +45,23 @@ namespace ExpenseTracker
 
             _updater = new AppClientUpdater();
             _updater.InitializeClient("expense_tracker", "AlsonEntuna", "ExpenseTracker");
-            _updater.CheckForUpdate();
+            Version appVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            string ver = $"v{appVersion.Major}.{appVersion.Minor}.{appVersion.Build}";
+            _updater.DownloadCompleted += OnDownloadCompleted;
+            _updater.CheckForUpdate(ver);
+        }
+
+        private void OnDownloadCompleted(object sender, DownloadInstallerCompleteArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show($"A new version({e.Version}) of the tool has been downloaded.\nDo you want to install it?"
+                , "Update Available"
+                , MessageBoxButtons.YesNo
+                , MessageBoxIcon.Information);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Process.Start(e.InstallerPath);
+                App.Current.Shutdown();
+            }
         }
 
         private void InitializeData()
