@@ -6,18 +6,24 @@
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         }
-        public static string AppDataPath(string subFolder) 
+        public static string AppDataPath(string subFolder, bool createIfNotExist = true)
         {
-            return Path.Combine(AppDataPath(), subFolder);
+            string appDataPath = Path.Combine(AppDataPath(), subFolder);
+            if (createIfNotExist)
+                Directory.CreateDirectory(appDataPath);
+            return appDataPath;
         }
-        public static string AppDataPath(string[] subFolders)
+        public static string AppDataPath(string[] subFolders, bool createIfNotExist = true)
         {
             string subFolderStr = "";
             for(uint i = 0; i < subFolders.Length; ++i)
             {
                 subFolderStr += $"{subFolders[i]}\\";
             }
-            return Path.Combine(AppDataPath(), subFolderStr);
+            string path = Path.Combine(AppDataPath(), subFolderStr);
+            if (createIfNotExist)
+                Directory.CreateDirectory(path);
+            return path;
         }
     }
 }

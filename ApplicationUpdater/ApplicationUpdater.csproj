@@ -20,4 +20,8 @@
     <PackageReference Include="Octokit" Version="7.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj" />
+  </ItemGroup>
+
 </Project>
