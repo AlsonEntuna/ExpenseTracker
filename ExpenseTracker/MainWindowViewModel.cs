@@ -106,6 +106,12 @@ namespace ExpenseTracker
             toolsWindow.ShowDialog();
         }
 
+        public void OpenPiggyBank()
+        {
+            PiggyBankWindow window = new PiggyBankWindow();
+            window.ShowDialog();
+        }
+
         private void ImportCategories()
         {
             DataHandler.ImportCategories();

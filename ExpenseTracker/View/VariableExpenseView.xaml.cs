@@ -72,5 +72,10 @@ namespace ExpenseTracker.View
         {
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenToolsPanel();
         }
+
+        private void Btn_PiggyBank_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenPiggyBank();
+        }
     }
 }

@@ -319,6 +319,20 @@
                                 </Button.Content>
                             </Button>
                             <Button
+                                x:Name="Btn_PiggyBank"
+                                Width="60"
+                                Height="60"
+                                Margin="5,0,0,0"
+                                Click="Btn_PiggyBank_Click"
+                                ToolTip="Tools">
+                                <Button.Content>
+                                    <Image
+                                        Width="48"
+                                        Height="48"
+                                        Source="{StaticResource PiggyBank}" />
+                                </Button.Content>
+                            </Button>
+                            <Button
                                 x:Name="Btn_Save"
                                 Width="60"
                                 Height="60"
