@@ -29,6 +29,7 @@
                     x:Name="Btn_Done"
                     Grid.Column="1"
                     Width="90"
+                    Margin="5"
                     Click="Btn_Done_Click"
                     Content="Enter" />
             </Grid>

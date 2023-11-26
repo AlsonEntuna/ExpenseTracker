@@ -1,16 +1,14 @@
 ﻿using ExpenseTracker.CurrencyConverter;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpenseTracker.Data.Savings
 {
+    [Serializable]
     public class InputSavings
     {
-        public float Amount { get; private set; }
-        public string InputDate { get; private set; }
+        public float Amount { get; set; }
+        public string InputDate { get; set; }
 
         public InputSavings(float amount, string date) 
         {
@@ -18,30 +16,53 @@ namespace ExpenseTracker.Data.Savings
             InputDate = date;
         }
     }
+
+    [Serializable]
     public class SavingsData
     {
-        private string _savingsName;
-        public string SavingsName => _savingsName;
+        public string SavingsName { get; set; }
+        public string SavingsDescription { get; set; }
+        public float SavingsTotalAmount { get; set; }
+        public float SavingsCurrentAmount { get; set; }
+        public CurrencyInfo SavingsCurrency { get; set; }
 
-        private float _savingsTotalAmount;
-        public float SavingsTotalAmount => _savingsTotalAmount;
+        public List<InputSavings> SavingsInput { get; set; } = new List<InputSavings>();
+        public SavingsData(string name, string description, float amount, CurrencyInfo currency)
+        {
+            SavingsName = name;
+            SavingsDescription = description;
+            SavingsTotalAmount = amount;
+            SavingsCurrency = currency;
+        }
 
-        private float _savingsAmount;
-        public float SavingsAmount => _savingsAmount;
+        public override string ToString()
+        {
+            return SavingsName;
+        }
 
-        private CurrencyInfo _currencyInfo;
-        
-        private List<InputSavings> _savingsInput;
-        public SavingsData(string name) { }
-        
-        public float GetRemaining()
+        public float GetRemainingAmount()
         {
             float totalInput = 0;
-            foreach(var input in _savingsInput)
+            foreach(var input in SavingsInput)
             {
                 totalInput += input.Amount;
             }
-            return _savingsTotalAmount -= totalInput;
+            return SavingsTotalAmount -= totalInput;
+        }
+
+        public float GetTotalSavedAmount()
+        {
+            float total = 0;
+            foreach (var input in SavingsInput)
+                total += input.Amount;
+
+            return total;
+        }
+
+        public void AddInputSavings(float amount, string date)
+        {
+            InputSavings savings = new InputSavings(amount, date);
+            SavingsInput.Add(savings);
         }
     }
 }

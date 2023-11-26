@@ -109,7 +109,9 @@ namespace ExpenseTracker
         public void OpenPiggyBank()
         {
             PiggyBankWindow window = new PiggyBankWindow();
-            window.ShowDialog();
+            PiggyBankViewModel vm = new PiggyBankViewModel();
+            window.DataContext = vm;
+            window.Show();
         }
 
         private void ImportCategories()

@@ -41,7 +41,7 @@
 
     <!--  Button  -->
     <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="Height" Value="50" />
+        <Setter Property="Height" Value="30" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Template">
@@ -51,7 +51,7 @@
                         Width="auto"
                         Height="{TemplateBinding Height}"
                         Background="{TemplateBinding Background}"
-                        CornerRadius="25"
+                        CornerRadius="5"
                         TextBlock.Foreground="{TemplateBinding Foreground}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>

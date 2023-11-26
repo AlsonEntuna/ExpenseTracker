@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using ExpenseTracker.ViewModels;
 
 namespace ExpenseTracker.View
 {
@@ -19,9 +8,22 @@ namespace ExpenseTracker.View
     /// </summary>
     public partial class PiggyBankWindow : Window
     {
+        private PiggyBankViewModel _vm;
         public PiggyBankWindow()
         {
             InitializeComponent();
+        }
+
+        private void EnsureDataContext()
+        {
+            if (_vm != null) return;
+            _vm = DataContext as PiggyBankViewModel;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            EnsureDataContext();
+            _vm.Dispose();
         }
     }
 }

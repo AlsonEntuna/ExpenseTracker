@@ -19,7 +19,7 @@
         <Button
             x:Name="Btn_Done"
             Grid.Row="1"
-            Margin="2"
+            Margin="5"
             Click="Btn_Done_Click"
             Content="Done" />
     </Grid>
