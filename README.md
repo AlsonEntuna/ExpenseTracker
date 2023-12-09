@@ -20,6 +20,10 @@
 ## Projects
 - ExpenseTracker.App
 - ExpenseTracker.Wpf
+- ExpenseTracker.Tools
+- ExpenseTracker.CurrencyConverter
+- ExpenseTracker.CurrencyConverter.UI
+- ApplicationUpdater
 
 ---
 ## Documentation

@@ -53,8 +53,8 @@ namespace ExpenseTracker
 
         private void OnDownloadCompleted(object sender, DownloadInstallerCompleteArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show($"A new version({e.Version}) of the tool has been downloaded.\nDo you want to install it?"
-                , "Update Available"
+            DialogResult dialogResult = MessageBox.Show($"A version({e.Version}) of the tool has been downloaded from the release branch.\nDo you want to install it?"
+                , "Version Available"
                 , MessageBoxButtons.YesNo
                 , MessageBoxIcon.Information);
             if (dialogResult == DialogResult.Yes)
