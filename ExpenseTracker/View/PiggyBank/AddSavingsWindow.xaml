@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="New Savings"
     Width="800"
-    Height="350"
+    Height="400"
     Style="{StaticResource WindowStyle}"
     mc:Ignorable="d">
     <Grid>
@@ -54,11 +54,13 @@
                         x:Name="Txt_Amount"
                         Grid.Row="1"
                         Grid.Column="1"
+                        VerticalContentAlignment="Center"
                         PreviewTextInput="Txt_Amount_PreviewTextInput"
                         Style="{StaticResource TextBoxkStyle.Title}" />
                 </Grid>
                 <Button
                     x:Name="Btn_AddSavings"
+                    Height="45"
                     MaxWidth="500"
                     Margin="0,10,0,0"
                     Click="Btn_AddSavings_Click"

@@ -1,14 +1,16 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using ExpenseTracker.Data.Savings;
-using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
+using CommunityToolkit.Mvvm.Input;
+
+using ExpenseTracker.Data.Savings;
+using ExpenseTracker.Wpf;
+using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -29,13 +31,27 @@ namespace ExpenseTracker.ViewModels
         public SavingsData SelectedSavingsData
         {
             get => _selectedSavingsData;
-            set => SetProperty(ref _selectedSavingsData, value);
+            set
+            {
+                SetProperty(ref _selectedSavingsData, value);
+                _selectedSavingsData?.Compute();
+            }
+        }
+
+        private InputSavings _selectedSavingsInput;
+        public InputSavings SelectedSavingsInput
+        {
+            get => _selectedSavingsInput;
+            set => SetProperty(ref _selectedSavingsInput, value);
         }
 
         private UserSavingsDataService _userSavingsDataService;
 
         public ICommand CreateNewSavingsCommand => new RelayCommand(CreateNewSavings);
         public ICommand AddSavingsAmountCommand => new RelayCommand(AddSavingsAmount);
+        public ICommand EditSavingsCommand => new RelayCommand(EditSavings);
+        public ICommand RemoveSavingsCommand => new RelayCommand(RemoveSavings);
+        public ICommand RemoveSavingsInputCommand => new RelayCommand(RemoveSavingsInput);
         public PiggyBankViewModel()
         {
             _userSavingsDataService = new UserSavingsDataService();
@@ -57,7 +73,29 @@ namespace ExpenseTracker.ViewModels
             if (numDialog.DialogResult == true)
             {
                 SelectedSavingsData.AddInputSavings(numDialog.NumValue, DateTime.Now.ToString());
+                RaisePropertyChanged(nameof(SelectedSavingsData));
             }
+        }
+
+        private void EditSavings()
+        {
+            if (SelectedSavingsData == null) return;
+            _userSavingsDataService.EditSavingsData(SelectedSavingsData);
+            RaisePropertyChanged(nameof(SelectedSavingsData));
+        }
+        private void RemoveSavings() 
+        {
+            if (SelectedSavingsData == null) return;
+            _userSavingsDataService.RemoveSavingsData(SelectedSavingsData);
+            RaisePropertyChanged(nameof(Savings));
+        }
+        private void RemoveSavingsInput() 
+        {
+            if (SelectedSavingsInput == null) return;
+            if (SelectedSavingsData == null) return;
+
+            SelectedSavingsData.RemoveSavingsIinput(SelectedSavingsInput);
+            SelectedSavingsInput = null;
         }
 
         public void Dispose()
