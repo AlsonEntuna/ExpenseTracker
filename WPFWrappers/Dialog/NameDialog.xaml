@@ -31,7 +31,8 @@
                     Width="90"
                     Margin="1,0,0,0"
                     Click="Button_Click"
-                    Content="Enter" />
+                    Content="Enter"
+                    Style="{StaticResource ButtonStyle.Element}" />
             </Grid>
         </GroupBox>
     </Grid>

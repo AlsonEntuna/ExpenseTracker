@@ -190,7 +190,6 @@ namespace ExpenseTracker.Data
             if (DataCurrency.Code != entry.Currency.Code)
             {
                 var multiCurData = new MultiCurrencyReportData(entry.Currency.Code, entry.PaymentChannel, entry.OriginalAmount);
-                // TODO: fix ugly implementation....
                 if (AltCurrencyBreakdown.Contains(multiCurData))
                 {
                     bool hasItem = false;
@@ -203,7 +202,7 @@ namespace ExpenseTracker.Data
                             break;
                         }
                     }
-                    if (!hasItem) 
+                    if (!hasItem)
                     {
                         AltCurrencyBreakdown.Add(multiCurData);
                     }

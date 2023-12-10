@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using ExpenseTracker.ViewModels;
 
-namespace ExpenseTracker.View
+namespace ExpenseTracker.View.PiggyBank
 {
     /// <summary>
     /// Interaction logic for PiggyBankWindow.xaml

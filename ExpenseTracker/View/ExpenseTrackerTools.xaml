@@ -18,7 +18,7 @@
     <Border
         Margin="5"
         Background="{StaticResource Brush.Border.Background}"
-        CornerRadius="25">
+        CornerRadius="10">
         <Grid Margin="5">
             <StackPanel Margin="5">
                 <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Categories" />
@@ -31,12 +31,14 @@
                         Grid.Column="0"
                         Margin="5"
                         Command="{Binding ExportCategoriesCommand}"
-                        Content="Export Category File" />
+                        Content="Export Category File"
+                        Style="{StaticResource ButtonStyle.Element}" />
                     <Button
                         Grid.Column="1"
                         Margin="5"
                         Command="{Binding ImportCategoriesCommand}"
-                        Content="Import Category File" />
+                        Content="Import Category File"
+                        Style="{StaticResource ButtonStyle.Element}" />
                 </Grid>
                 <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="Expense" />
                 <Grid>
@@ -48,12 +50,14 @@
                         Grid.Column="0"
                         Margin="5"
                         Command="{Binding CopyFromCurrentExpenseCommand}"
-                        Content="Copy from Current Expense" />
+                        Content="Copy from Current Expense"
+                        Style="{StaticResource ButtonStyle.Element}" />
                     <Button
                         Grid.Column="1"
                         Margin="5"
                         Command="{Binding CopyFromOtherExpenseCommand}"
-                        Content="Copy from other Expense" />
+                        Content="Copy from other Expense"
+                        Style="{StaticResource ButtonStyle.Element}" />
                 </Grid>
             </StackPanel>
         </Grid>

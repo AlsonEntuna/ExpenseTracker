@@ -21,6 +21,7 @@
             Grid.Row="1"
             Margin="5"
             Click="Btn_Done_Click"
-            Content="Done" />
+            Content="Done"
+            Style="{StaticResource ButtonStyle.Element}" />
     </Grid>
 </Window>

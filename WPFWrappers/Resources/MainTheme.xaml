@@ -41,6 +41,37 @@
 
     <!--  Button  -->
     <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
+        <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Width="auto"
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="15"
+                        TextBlock.Foreground="{TemplateBinding Foreground}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Alt}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Brush.Button.Disable}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="ButtonStyle.Alt"
+        BasedOn="{StaticResource CommonStyle}"
+        TargetType="{x:Type Button}">
         <Setter Property="Height" Value="30" />
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
