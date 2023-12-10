@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     Title="My PiggyBank"
-    Width="800"
+    Width="900"
     Height="650"
     d:DataContext="{d:DesignInstance viewmodel:PiggyBankViewModel,
                                      IsDesignTimeCreatable=True}"
@@ -15,180 +15,206 @@
     Icon="{StaticResource PiggyBank}"
     Style="{StaticResource WindowStyle}"
     mc:Ignorable="d">
-    <Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Button
-                        Grid.Row="0"
-                        Margin="10"
-                        Command="{Binding CreateNewSavingsCommand}"
-                        Content="Add New Savings" />
-                    <TextBlock
-                        Grid.Row="1"
-                        FontSize="19"
-                        Style="{StaticResource TextBlockStyle.Header1}"
-                        Text="My Savings" />
-                    <ListView
-                        Grid.Row="2"
-                        ItemsSource="{Binding Savings}"
-                        SelectedItem="{Binding SelectedSavingsData, UpdateSourceTrigger=PropertyChanged}">
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Command="{Binding EditSavingsCommand}" Header="Edit" />
-                                <MenuItem Command="{Binding RemoveSavingsCommand}" Header="Remove" />
-                            </ContextMenu>
-                        </ListView.ContextMenu>
-                    </ListView>
-                </Grid>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="{Binding SelectedSavingsData.SavingsName}" />
-                        <Separator />
-                        <TextBlock Style="{StaticResource TextBlockStyle.Header2}" Text="{Binding SelectedSavingsData.SavingsDescription}" />
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Column="0"
-                                    FontSize="18"
-                                    FontWeight="Bold"
-                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                    Text="Total:" />
-                                <StackPanel
-                                    Grid.Column="1"
-                                    Margin="5,0,0,0"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        FontSize="18"
-                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                        Text="{Binding SelectedSavingsData.SavingsTotalAmount}" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                        Text="{Binding SelectedSavingsData.SavingsCurrency.Symbol}" />
-                                </StackPanel>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Column="0"
-                                    FontSize="18"
-                                    FontWeight="Bold"
-                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                    Text="Saved:" />
-                                <StackPanel
-                                    Grid.Column="1"
-                                    Margin="5,0,0,0"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        FontSize="18"
-                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                        Text="{Binding SelectedSavingsData.SavingsCurrentAmount}" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                        Text="{Binding SelectedSavingsData.SavingsCurrency.Symbol}" />
-                                </StackPanel>
-                            </Grid>
-                            <Grid Grid.Column="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Column="0"
-                                    FontSize="18"
-                                    FontWeight="Bold"
-                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                    Text="Remaining:" />
-                                <StackPanel
-                                    Grid.Column="1"
-                                    Margin="5,0,0,0"
-                                    Orientation="Horizontal">
-                                    <TextBlock
-                                        FontSize="18"
-                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                        Text="{Binding SelectedSavingsData.RemainingAmount}" />
-                                    <TextBlock
-                                        FontSize="18"
-                                        Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                        Text="{Binding SelectedSavingsData.SavingsCurrency.Symbol}" />
-                                </StackPanel>
-
-                            </Grid>
-                        </Grid>
-                        <TextBlock
-                            FontSize="22"
-                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                            Text="Progress" />
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="50" />
-                            </Grid.ColumnDefinitions>
-                            <ProgressBar
-                                Grid.Column="0"
-                                Height="20"
-                                Margin="5"
-                                Background="{StaticResource Brush.Button.Alt}"
-                                Foreground="{StaticResource Brush.Button.Main}"
-                                Maximum="{Binding SelectedSavingsData.SavingsTotalAmount}"
-                                Value="{Binding SelectedSavingsData.SavingsCurrentAmount}" />
-                            <TextBlock
-                                Grid.Column="1"
-                                HorizontalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                Text="{Binding SelectedSavingsData.SavedPercentage, StringFormat={}{0}%}" />
-                        </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
                         <Button
-                            Width="300"
+                            Grid.Row="0"
                             Margin="10"
-                            Command="{Binding AddSavingsAmountCommand}"
-                            Content="Save Money" />
-                    </StackPanel>
-                    <DataGrid Grid.Row="1" ItemsSource="{Binding SelectedSavingsData.SavingsInput}">
-                        <DataGrid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Remove" />
-                            </ContextMenu>
-                        </DataGrid.ContextMenu>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                                MinWidth="200"
-                                Binding="{Binding InputDate}"
-                                Header="Date" />
-                            <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            Command="{Binding CreateNewSavingsCommand}"
+                            Content="Add New Savings" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Margin="5,0,0,0"
+                            FontSize="28"
+                            FontWeight="DemiBold"
+                            Style="{StaticResource TextBlockStyle.Title}"
+                            Text="My Savings" />
+                        <ListView
+                            Grid.Row="2"
+                            Margin="3"
+                            ItemsSource="{Binding Savings}"
+                            SelectedItem="{Binding SelectedSavingsData, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Command="{Binding EditSavingsCommand}" Header="Edit" />
+                                    <MenuItem Command="{Binding RemoveSavingsCommand}" Header="Remove" />
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                        </ListView>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="1" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Border
+                                Margin="10"
+                                Background="{StaticResource Brush.Border.Background}"
+                                CornerRadius="25">
+                                <StackPanel Margin="15">
+                                    <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="{Binding SelectedSavingsData.SavingsName}" />
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="85" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Margin="5,0,0,0"
+                                            FontSize="22"
+                                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                            Text="Progress" />
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                            Text="{Binding SelectedSavingsData.SavedPercentage, StringFormat={}{0}%}" />
+                                        <Grid
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2">
+                                            <ProgressBar
+                                                Height="20"
+                                                Margin="5"
+                                                Background="{StaticResource Brush.Button.Alt}"
+                                                Foreground="{StaticResource Brush.Button.Main}"
+                                                Maximum="{Binding SelectedSavingsData.SavingsTotalAmount}"
+                                                Value="{Binding SelectedSavingsData.SavingsCurrentAmount}" />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel
+                                            Grid.Column="0"
+                                            VerticalAlignment="Bottom"
+                                            Orientation="Horizontal">
+                                            <StackPanel
+                                                Grid.Column="0"
+                                                Margin="5,0,0,0"
+                                                VerticalAlignment="Bottom"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    FontSize="18"
+                                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                    Text="{Binding SelectedSavingsData.SavingsCurrentAmount}" />
+                                                <TextBlock
+                                                    Margin="3,0,0,0"
+                                                    FontSize="18"
+                                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                    Text="{Binding SelectedSavingsData.SavingsCurrency.Symbol}" />
+                                            </StackPanel>
+                                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Alt}" Text=" of " />
+                                            <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
+                                                <TextBlock
+                                                    FontSize="18"
+                                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                    Text="{Binding SelectedSavingsData.SavingsTotalAmount}" />
+                                                <TextBlock
+                                                    Margin="3,0,0,0"
+                                                    FontSize="18"
+                                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                    Text="{Binding SelectedSavingsData.SavingsCurrency.Symbol}" />
+                                            </StackPanel>
+                                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Alt}" Text=" saved." />
+                                        </StackPanel>
+                                        <Grid
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Grid.Column="0"
+                                                FontSize="18"
+                                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                Text="Remaining:" />
+                                            <StackPanel
+                                                Grid.Column="1"
+                                                Margin="5,0,0,0"
+                                                Orientation="Horizontal">
+                                                <TextBlock
+                                                    FontSize="18"
+                                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                    Text="{Binding SelectedSavingsData.RemainingAmount}" />
+                                                <TextBlock
+                                                    Margin="3,0,0,0"
+                                                    FontSize="18"
+                                                    Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                                                    Text="{Binding SelectedSavingsData.SavingsCurrency.Symbol}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                            <TextBlock
+                                Margin="5,0,0,0"
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="{Binding SelectedSavingsData.SavingsDescription}" />
+                        </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Button
+                                Width="40"
+                                Margin="10"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Panel.ZIndex="1"
+                                Command="{Binding AddSavingsAmountCommand}">
+                                <Button.Content>
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource Add}" />
+                                </Button.Content>
+                            </Button>
+                            <DataGrid
+                                Margin="8"
+                                HorizontalScrollBarVisibility="Auto"
+                                ItemsSource="{Binding SelectedSavingsData.SavingsInput}"
+                                VerticalScrollBarVisibility="Auto">
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Command="{Binding RemoveSavingsInputCommand}" Header="Remove" />
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        MinWidth="200"
+                                        Binding="{Binding InputDate}"
+                                        Header="Date" />
+                                    <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </Window>

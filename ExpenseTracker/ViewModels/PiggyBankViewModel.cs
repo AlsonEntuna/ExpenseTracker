@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
@@ -68,7 +64,7 @@ namespace ExpenseTracker.ViewModels
         {
             if (SelectedSavingsData == null) return;
 
-            NumDialog numDialog = new NumDialog("Enter Amount you saved");
+            NumDialog numDialog = new NumDialog("Enter the amount you saved");
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {

@@ -8,10 +8,8 @@
     Title="NumDialog"
     Width="300"
     Height="70"
-    d:DesignHeight="100"
     Background="{StaticResource Brush.Main.Background}"
     ResizeMode="NoResize"
-    SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
         <GroupBox Header="Enter Value...">
@@ -29,7 +27,7 @@
                     x:Name="Btn_Done"
                     Grid.Column="1"
                     Width="90"
-                    Margin="5"
+                    Margin="1,0,0,0"
                     Click="Btn_Done_Click"
                     Content="Enter"
                     Style="{StaticResource ButtonStyle.Element}" />

@@ -175,6 +175,7 @@
                                             <Button
                                                 Grid.Row="0"
                                                 Width="50"
+                                                Height="45"
                                                 Command="{Binding AddEntryCommand}">
                                                 <Button.Content>
                                                     <Image
@@ -195,7 +196,10 @@
                                             Grid.Column="1"
                                             VerticalAlignment="Center"
                                             ToolTip="Generate Report">
-                                            <Button Width="50" Command="{Binding GenerateExpenseReportCommand}">
+                                            <Button
+                                                Width="50"
+                                                Height="45"
+                                                Command="{Binding GenerateExpenseReportCommand}">
                                                 <Button.Content>
                                                     <Image
                                                         Width="30"
@@ -218,6 +222,7 @@
                                             ToolTip="Open Report">
                                             <Button
                                                 Width="50"
+                                                Height="45"
                                                 Command="{Binding OpenReportCommand}"
                                                 IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
                                                 <Button.Content>
@@ -239,7 +244,10 @@
                                             Grid.Column="3"
                                             VerticalAlignment="Center"
                                             ToolTip="Update Realtime Conversion">
-                                            <Button Width="50" Command="{Binding UpdateEntryConversionCommand}">
+                                            <Button
+                                                Width="50"
+                                                Height="45"
+                                                Command="{Binding UpdateEntryConversionCommand}">
                                                 <Button.Content>
                                                     <Image
                                                         Width="30"

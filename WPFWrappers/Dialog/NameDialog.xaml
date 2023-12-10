@@ -8,11 +8,9 @@
     Title="NameDialog"
     Width="300"
     Height="70"
-    d:DesignHeight="100"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     ResizeMode="NoResize"
-    SizeToContent="Height"
     mc:Ignorable="d">
     <Grid>
         <GroupBox x:Name="TitleHeader" Header="Enter Name Here...">
