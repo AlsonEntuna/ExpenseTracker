@@ -16,9 +16,15 @@ namespace ExpenseTracker.Data.Savings
     {
         private List<SavingsData> _userSavings;
         public List<SavingsData> UserSavings => _userSavings;
+#if DEBUG
         private string _savingsDataPath = Path.Combine(
-              PathUtils.AppDataPath(Constants.EXPENSETRACKER)
+              Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data")
             , Constants.USER_SAVINGS_FILENAME);
+#else
+        private string _savingsDataPath = Path.Combine(
+             PathUtils.AppDataPath(Constants.EXPENSETRACKER)
+           , Constants.USER_SAVINGS_FILENAME);
+#endif
 
         public void GetOrCreateUserSavingsData()
         {

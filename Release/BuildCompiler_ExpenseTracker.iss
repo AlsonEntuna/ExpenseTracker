@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ExpenseTracker"
-#define MyAppVersion "1.3"
+#define MyAppVersion "1.3.1"
 #define MyAppPublisher "Alson Entuna"
 #define MyAppURL "https://github.com/AlsonEntuna/ExpenseTracker"
 #define MyAppExeName "ExpenseTracker.exe"
