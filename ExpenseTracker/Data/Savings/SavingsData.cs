@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ExpenseTracker.CurrencyConverter;
 
 namespace ExpenseTracker.Data.Savings
@@ -42,7 +43,7 @@ namespace ExpenseTracker.Data.Savings
         public float SavedPercentage { get; set; }
         public CurrencyInfo SavingsCurrency { get; set; }
 
-        public List<InputSavings> SavingsInput { get; set; } = new List<InputSavings>();
+        public ObservableCollection<InputSavings> SavingsInput { get; set; } = new ObservableCollection<InputSavings>();
         public SavingsData(string name, string description, float amount, CurrencyInfo currency)
         {
             SavingsName = name;

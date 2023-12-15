@@ -52,6 +52,13 @@ namespace ExpenseTracker.ViewModels
         {
             _userSavingsDataService = new UserSavingsDataService();
             _userSavingsDataService.GetOrCreateUserSavingsData();
+            if (SelectedSavingsData == null)
+            {
+                if (Savings != null && Savings.Count > 0)
+                {
+                    SelectedSavingsData = Savings[0];
+                }
+            }
         }
 
         private void CreateNewSavings()
