@@ -84,13 +84,15 @@
                         Grid.Column="0"
                         Margin="5"
                         Click="Button_Click"
-                        Content="Add" />
+                        Content="Add"
+                        Style="{StaticResource ButtonStyle.Element}" />
                     <Button
                         x:Name="Btn_Cancel"
                         Grid.Column="1"
                         Margin="5"
                         Click="Btn_Cancel_Click"
-                        Content="Cancel" />
+                        Content="Cancel"
+                        Style="{StaticResource ButtonStyle.Element}" />
                 </Grid>
             </StackPanel>
         </Grid>

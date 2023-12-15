@@ -2,18 +2,20 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Reflection;
+using System.Diagnostics;
 
 using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Data;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
+using ExpenseTracker.View.PiggyBank;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
 
 using ApplicationUpdater;
-using System.Reflection;
-using System.Diagnostics;
+
 
 namespace ExpenseTracker
 {
@@ -104,6 +106,14 @@ namespace ExpenseTracker
                 DataContext = this
             };
             toolsWindow.ShowDialog();
+        }
+
+        public void OpenPiggyBank()
+        {
+            PiggyBankWindow window = new PiggyBankWindow();
+            PiggyBankViewModel vm = new PiggyBankViewModel();
+            window.DataContext = vm;
+            window.Show();
         }
 
         private void ImportCategories()

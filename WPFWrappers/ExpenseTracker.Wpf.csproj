@@ -25,6 +25,7 @@
     <None Remove="Resources\Icons\file_open.ico" />
     <None Remove="Resources\Icons\file_save.ico" />
     <None Remove="Resources\Icons\open_report.ico" />
+    <None Remove="Resources\Icons\piggybank.ico" />
     <None Remove="Resources\Icons\search.ico" />
     <None Remove="Resources\Icons\settings.ico" />
     <None Remove="Resources\Icons\swap.ico" />
@@ -67,6 +68,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\open_report.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\piggybank.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\search.ico">
