@@ -172,10 +172,20 @@
                                     </Grid>
                                 </StackPanel>
                             </Border>
-                            <TextBlock
-                                Margin="5,0,0,0"
-                                Style="{StaticResource TextBlockStyle.Header2}"
-                                Text="{Binding SelectedSavingsData.SavingsDescription}" />
+                            <Border
+                                Height="80"
+                                Margin="10"
+                                Background="{StaticResource Brush.Border.Background}"
+                                CornerRadius="20">
+                                <TextBlock
+                                    MaxWidth="600"
+                                    Margin="15,5,15,5"
+                                    HorizontalAlignment="Left"
+                                    FontSize="16"
+                                    Style="{StaticResource TextBlockStyle.Header2}"
+                                    Text="{Binding SelectedSavingsData.SavingsDescription}"
+                                    TextWrapping="Wrap" />
+                            </Border>
                         </StackPanel>
                         <Grid Grid.Row="1">
                             <Button
@@ -193,7 +203,11 @@
                                 </Button.Content>
                             </Button>
                             <DataGrid
+                                x:Name="DataGrid_SavingsInput"
                                 Margin="8"
+                                AutoGenerateColumns="False"
+                                CanUserAddRows="False"
+                                CurrentCellChanged="DataGrid_SavingsInput_CurrentCellChanged"
                                 HorizontalScrollBarVisibility="Auto"
                                 ItemsSource="{Binding SelectedSavingsData.SavingsInput}"
                                 VerticalScrollBarVisibility="Auto">
@@ -207,11 +221,17 @@
                                         MinWidth="200"
                                         Binding="{Binding InputDate}"
                                         Header="Date" />
-                                    <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                                    <DataGridTextColumn
+                                        MinWidth="80"
+                                        Binding="{Binding Amount}"
+                                        Header="Amout" />
+                                    <!--<DataGridTextColumn
+                                        MinWidth="50"
+                                        Binding="{Binding SelectedSavingsData.SavingsCurrency.Symbol, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                        Header="Currency" />-->
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-
                     </Grid>
                 </Grid>
             </Grid>

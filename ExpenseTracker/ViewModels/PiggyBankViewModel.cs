@@ -67,6 +67,15 @@ namespace ExpenseTracker.ViewModels
             RaisePropertyChanged(nameof(Savings));
         }
 
+        public void ForceComputeSavingsData()
+        {
+            if (SelectedSavingsData != null) 
+            {
+                SelectedSavingsData.Compute();
+                RaisePropertyChanged(nameof(SelectedSavingsData));
+            }
+        }
+
         private void AddSavingsAmount()
         {
             if (SelectedSavingsData == null) return;
