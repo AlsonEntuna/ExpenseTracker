@@ -25,5 +25,11 @@ namespace ExpenseTracker.View.PiggyBank
             EnsureDataContext();
             _vm.Dispose();
         }
+
+        private void DataGrid_SavingsInput_CurrentCellChanged(object sender, System.EventArgs e)
+        {
+            EnsureDataContext();
+            _vm?.ForceComputeSavingsData();
+        }
     }
 }

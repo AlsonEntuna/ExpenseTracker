@@ -67,6 +67,15 @@ namespace ExpenseTracker.ViewModels
             RaisePropertyChanged(nameof(Savings));
         }
 
+        public void ForceComputeSavingsData()
+        {
+            if (SelectedSavingsData != null) 
+            {
+                SelectedSavingsData.Compute();
+                RaisePropertyChanged(nameof(SelectedSavingsData));
+            }
+        }
+
         private void AddSavingsAmount()
         {
             if (SelectedSavingsData == null) return;
@@ -75,7 +84,7 @@ namespace ExpenseTracker.ViewModels
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {
-                SelectedSavingsData.AddInputSavings(numDialog.NumValue, DateTime.Now.ToString());
+                SelectedSavingsData.AddInputSavings(numDialog.NumValue, DateTime.Now.Date.ToShortDateString());
                 RaisePropertyChanged(nameof(SelectedSavingsData));
             }
         }
