@@ -67,8 +67,10 @@
                                 Background="{StaticResource Brush.Border.Background}"
                                 CornerRadius="25">
                                 <StackPanel Margin="15">
-                                    <TextBlock Style="{StaticResource TextBlockStyle.Title}" Text="{Binding SelectedSavingsData.SavingsName}" />
-
+                                    <TextBlock
+                                        Style="{StaticResource TextBlockStyle.Title}"
+                                        Text="{Binding SelectedSavingsData.SavingsName}"
+                                        TextWrapping="Wrap" />
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="85" />
@@ -120,7 +122,7 @@
                                                 <TextBlock
                                                     FontSize="18"
                                                     Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                                    Text="{Binding SelectedSavingsData.SavingsCurrentAmount}" />
+                                                    Text="{Binding SelectedSavingsData.SavingsCurrentAmount, StringFormat=n2}" />
                                                 <TextBlock
                                                     Margin="3,0,0,0"
                                                     FontSize="18"
@@ -132,7 +134,7 @@
                                                 <TextBlock
                                                     FontSize="18"
                                                     Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                                    Text="{Binding SelectedSavingsData.SavingsTotalAmount}" />
+                                                    Text="{Binding SelectedSavingsData.SavingsTotalAmount, StringFormat=n2}" />
                                                 <TextBlock
                                                     Margin="3,0,0,0"
                                                     FontSize="18"
@@ -161,7 +163,7 @@
                                                 <TextBlock
                                                     FontSize="18"
                                                     Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                                    Text="{Binding SelectedSavingsData.RemainingAmount}" />
+                                                    Text="{Binding SelectedSavingsData.RemainingAmount, StringFormat=n2}" />
                                                 <TextBlock
                                                     Margin="3,0,0,0"
                                                     FontSize="18"
