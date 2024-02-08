@@ -2,6 +2,6 @@
 {
     internal static class Keys
     {
-        public static string CURRENCY_CONVERTER_API_KEY = "03f3fa602cf4c2fe69be";
+        public static string CURRENCY_CONVERTER_API_KEY = "061f5e0fc763af3842ed";
     }
 }
