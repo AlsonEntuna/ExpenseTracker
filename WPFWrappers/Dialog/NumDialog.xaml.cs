@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using static System.Net.Mime.MediaTypeNames;
+
 
 namespace ExpenseTracker.Wpf.Dialog
 {
@@ -12,7 +11,7 @@ namespace ExpenseTracker.Wpf.Dialog
     public partial class NumDialog : Window
     {
         public string TextValue => Txt_Value.Text;
-        public float NumValue => float.Parse(Txt_Value.Text);
+        public float NumValue => float.Parse(Txt_Value.Text, System.Globalization.CultureInfo.InvariantCulture);
         public NumDialog(string title = "")
         {
             InitializeComponent();
