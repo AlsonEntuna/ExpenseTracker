@@ -3,10 +3,12 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Linq;
 
 using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Data;
+using ExpenseTracker.ViewModels;
 
 namespace ExpenseTracker.View
 {
@@ -15,9 +17,16 @@ namespace ExpenseTracker.View
     /// </summary>
     public partial class VariableExpenseView : UserControl
     {
+        private VariableExpenseViewModel _vm;
         public VariableExpenseView()
         {
             InitializeComponent();
+        }
+
+        private void GetDataContext()
+        {
+            if (_vm != null) return;
+            _vm = DataContext as VariableExpenseViewModel;
         }
 
         private bool UserFilter(object item)
@@ -76,6 +85,12 @@ namespace ExpenseTracker.View
         private void Btn_PiggyBank_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenPiggyBank();
+        }
+
+        private void DataGrid_Expenses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetDataContext();
+            _vm.SelectedDataEntries = DataGrid_Expenses.SelectedItems.OfType<DataEntry>().ToList();
         }
     }
 }

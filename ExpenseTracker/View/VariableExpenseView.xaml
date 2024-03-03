@@ -401,7 +401,8 @@
                         MaxHeight="730"
                         Margin="10"
                         ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
-                        SelectedItem="{Binding SelectedDataEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        SelectionChanged="DataGrid_Expenses_SelectionChanged"
+                        SelectionMode="Extended">
                         <DataGrid.Resources>
                             <!--  Test Only  -->
                             <DataTemplate x:Key="ResizableTemplate">

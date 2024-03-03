@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -33,13 +34,7 @@ namespace ExpenseTracker.ViewModels
                 _selectedSavingsData?.Compute();
             }
         }
-
-        private InputSavings _selectedSavingsInput;
-        public InputSavings SelectedSavingsInput
-        {
-            get => _selectedSavingsInput;
-            set => SetProperty(ref _selectedSavingsInput, value);
-        }
+        public List<InputSavings> SelectedSavingsInput { get; set; }
 
         private UserSavingsDataService _userSavingsDataService;
 
@@ -103,11 +98,11 @@ namespace ExpenseTracker.ViewModels
         }
         private void RemoveSavingsInput() 
         {
-            if (SelectedSavingsInput == null) return;
-            if (SelectedSavingsData == null) return;
+            if (SelectedSavingsInput == null || SelectedSavingsData == null) return;
 
-            SelectedSavingsData.RemoveSavingsIinput(SelectedSavingsInput);
-            SelectedSavingsInput = null;
+            SelectedSavingsInput.ForEach(input => SelectedSavingsData.RemoveSavingsIinput(input));
+            SelectedSavingsInput.Clear();
+            ForceComputeSavingsData();
         }
 
         public void Dispose()

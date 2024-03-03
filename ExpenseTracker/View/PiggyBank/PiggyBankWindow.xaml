@@ -212,6 +212,7 @@
                                 CurrentCellChanged="DataGrid_SavingsInput_CurrentCellChanged"
                                 HorizontalScrollBarVisibility="Auto"
                                 ItemsSource="{Binding SelectedSavingsData.SavingsInput}"
+                                SelectionChanged="DataGrid_SavingsInput_SelectionChanged"
                                 VerticalScrollBarVisibility="Auto">
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>

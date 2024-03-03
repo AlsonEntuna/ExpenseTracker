@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
+
 using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
 using ExpenseTracker.ExpenseSys;
@@ -33,11 +34,11 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        private DataEntry _selectedDataEntry;
-        public DataEntry SelectedDataEntry
+        private List<DataEntry> _selectedDataEntries;
+        public List<DataEntry> SelectedDataEntries
         {
-            get => _selectedDataEntry;
-            set => SetProperty(ref _selectedDataEntry, value);
+            get => _selectedDataEntries;
+            set => SetProperty(ref _selectedDataEntries, value);
         }
 
         public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
@@ -188,9 +189,10 @@ namespace ExpenseTracker.ViewModels
 
         private void RemoveEntry()
         {
-            if (SelectedDataEntry != null)
-            {
-                CurrentDisplayedExpense.Entries.Remove(SelectedDataEntry);
+            if (SelectedDataEntries != null)
+            { 
+                SelectedDataEntries.ForEach(entry => CurrentDisplayedExpense.Entries.Remove(entry));
+                SelectedDataEntries.Clear();
             }
         }
 

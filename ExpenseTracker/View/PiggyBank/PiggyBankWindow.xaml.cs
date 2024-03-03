@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
+using ExpenseTracker.Data.Savings;
 using ExpenseTracker.ViewModels;
 
 namespace ExpenseTracker.View.PiggyBank
@@ -30,6 +32,13 @@ namespace ExpenseTracker.View.PiggyBank
         {
             EnsureDataContext();
             _vm?.ForceComputeSavingsData();
+        }
+
+        private void DataGrid_SavingsInput_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            EnsureDataContext();
+
+            _vm.SelectedSavingsInput = DataGrid_SavingsInput.SelectedItems.OfType<InputSavings>().ToList();
         }
     }
 }
