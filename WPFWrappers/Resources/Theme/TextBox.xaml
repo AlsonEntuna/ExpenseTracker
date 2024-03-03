@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MainStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  TextBox  -->
+    <Style x:Key="TextBoxkStyle.Title" TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="3" />
+            </Style>
+        </Style.Resources>
+    </Style>
+</ResourceDictionary>
