@@ -400,9 +400,13 @@
                         MinHeight="700"
                         MaxHeight="730"
                         Margin="10"
+                        Focusable="True"
                         ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
                         SelectionChanged="DataGrid_Expenses_SelectionChanged"
                         SelectionMode="Extended">
+                        <DataGrid.CommandBindings>
+                            <CommandBinding Command="Copy" Executed="DataGrid_Expenses_OnCopy" />
+                        </DataGrid.CommandBindings>
                         <DataGrid.Resources>
                             <!--  Test Only  -->
                             <DataTemplate x:Key="ResizableTemplate">
@@ -424,6 +428,8 @@
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
+                                <MenuItem Command="{Binding CopyEntryCommand}" Header="Copy" />
+                                <MenuItem Command="{Binding PasteEntryCommand}" Header="Paste" />
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>

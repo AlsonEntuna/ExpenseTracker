@@ -55,6 +55,8 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
         public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
         public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
+        public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
+        public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
         #endregion
 
         #region ViewModels
@@ -256,6 +258,46 @@ namespace ExpenseTracker.ViewModels
                     entry.ConvertToMainCurrency();
                 }
             }
+        }
+
+        public void CopyEntriesToClipboard()
+        {
+            if (SelectedDataEntries.Count == 0)
+                return;
+            string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
+
+            Clipboard.SetText(clipboard);
+        }
+
+        public void ProcessEntriesFromClipboard()
+        {
+            string clipboard = Clipboard.GetText();
+            var entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
+            if (entries == null)
+                return;
+
+            List<DataEntry> _toAdd = new List<DataEntry>();
+            if (CurrentDisplayedExpense.Entries.Count != 0)
+            {
+                foreach (var deserializedEntry in entries)
+                {
+                    foreach (var entry in CurrentDisplayedExpense.Entries)
+                    {
+                        if (entry != deserializedEntry)
+                            _toAdd.Add(deserializedEntry);
+                        else
+                        {
+                            entry.Amount = deserializedEntry.Amount;
+                            entry.Comments = deserializedEntry.Comments;
+                        }
+                    }
+                }
+            }
+            else
+                _toAdd = entries;
+
+            // Add
+            _toAdd.ForEach(CurrentDisplayedExpense.Entries.Add);
         }
     }
 }

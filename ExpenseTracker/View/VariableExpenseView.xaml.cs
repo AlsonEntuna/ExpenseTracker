@@ -9,6 +9,8 @@ using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Data;
 using ExpenseTracker.ViewModels;
+using ExpenseTracker.Tools;
+using System.Windows;
 
 namespace ExpenseTracker.View
 {
@@ -91,6 +93,12 @@ namespace ExpenseTracker.View
         {
             GetDataContext();
             _vm.SelectedDataEntries = DataGrid_Expenses.SelectedItems.OfType<DataEntry>().ToList();
+        }
+
+        private void DataGrid_Expenses_OnCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            GetDataContext();
+            _vm.CopyEntriesToClipboard();
         }
     }
 }
