@@ -15,6 +15,11 @@
     Style="{DynamicResource WindowStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
+    <!--<WindowChrome.WindowChrome>
+        <WindowChrome
+        CaptionHeight="0"
+        ResizeBorderThickness="3" />
+    </WindowChrome.WindowChrome>-->
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>

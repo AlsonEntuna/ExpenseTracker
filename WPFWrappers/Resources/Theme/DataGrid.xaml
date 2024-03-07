@@ -17,6 +17,7 @@
         <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="CanUserAddRows" Value="False" />
         <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="BorderBrush" Value="{StaticResource Brush.Main.Background}" />
     </Style>
 
     <!--  DataGrid ColumnHeader  -->

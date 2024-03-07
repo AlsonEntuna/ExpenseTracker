@@ -9,8 +9,8 @@ using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Data;
 using ExpenseTracker.ViewModels;
-using ExpenseTracker.Tools;
-using System.Windows;
+
+using Timer = System.Windows.Forms.Timer;
 
 namespace ExpenseTracker.View
 {
@@ -19,6 +19,9 @@ namespace ExpenseTracker.View
     /// </summary>
     public partial class VariableExpenseView : UserControl
     {
+        private Timer _searchDelayTimer;
+        private const int _searchDelayTimeout = 500;
+
         private VariableExpenseViewModel _vm;
         public VariableExpenseView()
         {
@@ -54,7 +57,26 @@ namespace ExpenseTracker.View
 
         private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (string.IsNullOrEmpty(TxtBox_Search.Text)) return;
+
+            if (_searchDelayTimer != null)
+                _searchDelayTimer.Stop();
+
+            if (_searchDelayTimer == null)
+            {
+                _searchDelayTimer = new Timer();
+                _searchDelayTimer.Tick += DelaySearch_Tick;
+                _searchDelayTimer.Interval = _searchDelayTimeout;
+            }
+
+            _searchDelayTimer.Start();
+        }
+
+        private void DelaySearch_Tick(object sender, EventArgs e)
+        {
             Search();
+            if (_searchDelayTimer != null)
+                _searchDelayTimer.Stop();
         }
 
         private void GridSplitter_DragDelta(object sender, DragDeltaEventArgs e)
