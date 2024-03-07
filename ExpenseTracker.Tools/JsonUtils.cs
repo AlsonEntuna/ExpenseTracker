@@ -22,6 +22,16 @@ namespace ExpenseTracker.Tools
             }
         }
 
+        public static T DeserializeFromString<T>(string jsonString)
+        {
+            try
+            {
+                JObject o = JObject.Parse(jsonString);
+                return o.ToObject<T>();
+            }
+            catch { return default(T); }
+        }
+
         public static T DeserializeArray<T>(string pFilePath)
         {
             using (StreamReader file = File.OpenText(pFilePath))
@@ -39,8 +49,21 @@ namespace ExpenseTracker.Tools
             }
         }
 
+        public static T DeserializeArrayFromString<T>(string jsonString)
+        {
+            try
+            {
+                JArray o = JArray.Parse(jsonString);
+                return o.ToObject<T>();
+            }
+            catch { return default(T); }
+        }    
+
         public static void Serialize<T>(string pFilePath, T pObject)
         {
+            if (pObject == null)
+                throw new NullReferenceException("Object to serialize is null.");
+
             JObject tabData = (JObject)JToken.FromObject(pObject);
             using (StreamWriter file = File.CreateText(pFilePath))
             using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -50,8 +73,18 @@ namespace ExpenseTracker.Tools
             }
         }
 
+        public static string SerializeToString<T>(T pObject)
+        {
+            if (pObject == null) return string.Empty;
+            JObject tabData = (JObject)JToken.FromObject(pObject);
+            return tabData.ToString();
+        }
+
         public static void SerializeArray<T>(string pFilePath, T pObject)
         {
+            if (pObject == null)
+                throw new NullReferenceException("Object to serialize is null.");
+
             JArray tabData = (JArray)JToken.FromObject(pObject);
             using (StreamWriter file = File.CreateText(pFilePath))
             using (JsonTextWriter writer = new JsonTextWriter(file))
@@ -59,6 +92,13 @@ namespace ExpenseTracker.Tools
                 writer.Formatting = Formatting.Indented;
                 tabData.WriteTo(writer);
             }
+        }
+
+        public static string SerializeArrayToString<T>(T pObject)
+        {
+            if (pObject == null) return string.Empty;
+            JArray tabData = (JArray)JToken.FromObject(pObject);
+            return tabData.ToString();
         }
 
         public static JToken GetJArrayValue(JObject jarray, string key)

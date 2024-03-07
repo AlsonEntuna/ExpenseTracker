@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
+
 using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
 using ExpenseTracker.ExpenseSys;
@@ -33,11 +34,11 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        private DataEntry _selectedDataEntry;
-        public DataEntry SelectedDataEntry
+        private List<DataEntry> _selectedDataEntries;
+        public List<DataEntry> SelectedDataEntries
         {
-            get => _selectedDataEntry;
-            set => SetProperty(ref _selectedDataEntry, value);
+            get => _selectedDataEntries;
+            set => SetProperty(ref _selectedDataEntries, value);
         }
 
         public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
@@ -54,6 +55,8 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
         public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
         public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
+        public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
+        public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
         #endregion
 
         #region ViewModels
@@ -188,9 +191,10 @@ namespace ExpenseTracker.ViewModels
 
         private void RemoveEntry()
         {
-            if (SelectedDataEntry != null)
-            {
-                CurrentDisplayedExpense.Entries.Remove(SelectedDataEntry);
+            if (SelectedDataEntries != null)
+            { 
+                SelectedDataEntries.ForEach(entry => CurrentDisplayedExpense.Entries.Remove(entry));
+                SelectedDataEntries.Clear();
             }
         }
 
@@ -254,6 +258,46 @@ namespace ExpenseTracker.ViewModels
                     entry.ConvertToMainCurrency();
                 }
             }
+        }
+
+        public void CopyEntriesToClipboard()
+        {
+            if (SelectedDataEntries.Count == 0)
+                return;
+            string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
+
+            Clipboard.SetText(clipboard);
+        }
+
+        public void ProcessEntriesFromClipboard()
+        {
+            string clipboard = Clipboard.GetText();
+            var entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
+            if (entries == null)
+                return;
+
+            List<DataEntry> _toAdd = new List<DataEntry>();
+            if (CurrentDisplayedExpense.Entries.Count != 0)
+            {
+                foreach (var deserializedEntry in entries)
+                {
+                    foreach (var entry in CurrentDisplayedExpense.Entries)
+                    {
+                        if (entry != deserializedEntry)
+                            _toAdd.Add(deserializedEntry);
+                        else
+                        {
+                            entry.Amount = deserializedEntry.Amount;
+                            entry.Comments = deserializedEntry.Comments;
+                        }
+                    }
+                }
+            }
+            else
+                _toAdd = entries;
+
+            // Add
+            _toAdd.ForEach(CurrentDisplayedExpense.Entries.Add);
         }
     }
 }

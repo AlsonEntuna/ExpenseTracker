@@ -90,6 +90,17 @@ namespace ExpenseTracker.Data
 
         public DataEntry() { }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is DataEntry otherEntry)
+                return string.Equals(Description, otherEntry.Description)
+                    && string.Equals(PaymentChannel, otherEntry.PaymentChannel)
+                    && string.Equals(Category, otherEntry.Category)
+                    && Currency == otherEntry.Currency;
+
+            else return false;
+        }
+
         public async void ConvertToMainCurrency()
         {
             string fromCurrency = AppInstance.Connection.MainCurrency.Code;

@@ -34,7 +34,9 @@ namespace ExpenseTracker
         public ICommand SaveExpenseCommand => new RelayCommand(SaveExpense);
         #endregion
 
+#if !DEBUG
         private AppClientUpdater _updater;
+#endif
 
         public MainWindowViewModel()
         {
@@ -45,12 +47,14 @@ namespace ExpenseTracker
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
 
+#if !DEBUG
             _updater = new AppClientUpdater();
             _updater.InitializeClient("expense_tracker", "AlsonEntuna", "ExpenseTracker");
             Version appVersion = Assembly.GetExecutingAssembly().GetName().Version;
             string ver = $"v{appVersion.Major}.{appVersion.Minor}.{appVersion.Build}";
             _updater.DownloadCompleted += OnDownloadCompleted;
             _updater.CheckForUpdate(ver);
+#endif
         }
 
         private void OnDownloadCompleted(object sender, DownloadInstallerCompleteArgs e)
