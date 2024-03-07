@@ -281,14 +281,17 @@ namespace ExpenseTracker.ViewModels
             {
                 foreach (var deserializedEntry in entries)
                 {
-                    foreach (var entry in CurrentDisplayedExpense.Entries)
+                    if (!CurrentDisplayedExpense.Entries.Contains(deserializedEntry))
+                        _toAdd.Add(deserializedEntry);
+                    else
                     {
-                        if (entry != deserializedEntry)
-                            _toAdd.Add(deserializedEntry);
-                        else
+                        foreach (var entry in CurrentDisplayedExpense.Entries)
                         {
-                            entry.Amount = deserializedEntry.Amount;
-                            entry.Comments = deserializedEntry.Comments;
+                            if (entry == deserializedEntry)
+                            {
+                                entry.Amount = deserializedEntry.Amount;
+                                entry.Comments = deserializedEntry.Comments;
+                            }
                         }
                     }
                 }

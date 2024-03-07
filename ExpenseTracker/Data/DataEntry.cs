@@ -96,9 +96,9 @@ namespace ExpenseTracker.Data
                 return string.Equals(Description, otherEntry.Description)
                     && string.Equals(PaymentChannel, otherEntry.PaymentChannel)
                     && string.Equals(Category, otherEntry.Category)
-                    && Currency == otherEntry.Currency;
-
-            else return false;
+                    && string.Equals(Currency.Code, otherEntry.Currency.Code);
+            else 
+                return false;
         }
 
         public async void ConvertToMainCurrency()
@@ -120,6 +120,11 @@ namespace ExpenseTracker.Data
                     conversionRate = 1;
             }
             Amount = (float)Math.Round(Amount / conversionRate, 2);
+        }
+
+        public override int GetHashCode()
+        {
+            return Description.GetHashCode();
         }
     }
 }
