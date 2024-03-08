@@ -11,6 +11,7 @@ using ExpenseTracker.Data;
 using ExpenseTracker.ViewModels;
 
 using Timer = System.Windows.Forms.Timer;
+using System.Windows;
 
 namespace ExpenseTracker.View
 {
@@ -23,9 +24,16 @@ namespace ExpenseTracker.View
         private const int _searchDelayTimeout = 500;
 
         private VariableExpenseViewModel _vm;
+        private Window parentWindow = Application.Current.MainWindow;
         public VariableExpenseView()
         {
             InitializeComponent();
+            parentWindow.SizeChanged += OnParentSizeChanged;
+        }
+
+        private void OnParentSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DataGrid_Expenses.MaxHeight = Grid_DataEntryView.ActualHeight - 100;
         }
 
         private void GetDataContext()
