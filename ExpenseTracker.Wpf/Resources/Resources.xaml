@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:ExpenseTracker.Wpf.Converters">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+        <ResourceDictionary Source="MainTheme.xaml" />
+        <ResourceDictionary Source="Icons/IconResources.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <converter:BooleanFromObjectConverter x:Key="BoolFromObjectConverter" />
+    <converter:InverseBooleanFromObjectConverter x:Key="InverseBoolFromObjectConverter" />
+    <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converter:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
+    <converter:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+    <converter:StringToBoolConverter x:Key="StringToBoolConverter" />
+    <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+</ResourceDictionary>

@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="File_Edit" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_edit.ico" />
+    <BitmapImage x:Key="File_Close" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_close.ico" />
+    <BitmapImage x:Key="File_Open" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_open.ico" />
+    <BitmapImage x:Key="File_New" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_new.ico" />
+    <BitmapImage x:Key="Settings" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/settings.ico" />
+    <BitmapImage x:Key="File_Save" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/file_save.ico" />
+    <BitmapImage x:Key="Add" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/add.ico" />
+    <BitmapImage x:Key="Create_Report" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/create_report.ico" />
+    <BitmapImage x:Key="Open_Report" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/open_report.ico" />
+    <BitmapImage x:Key="Currency_Converter" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/currency_converter.ico" />
+    <BitmapImage x:Key="Conversion_Graph" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/conversion_graph.ico" />
+    <BitmapImage x:Key="Search" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/search.ico" />
+    <BitmapImage x:Key="Swap" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/swap.ico" />
+    <BitmapImage x:Key="PiggyBank" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/piggybank.ico" />
+</ResourceDictionary>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{5A4F1E2D-46A0-096F-6F04-F8305BB49CD8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExpenseTracker.CurrencyConverter</RootNamespace>
+    <AssemblyName>ExpenseTracker.CurrencyConverter</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\Config\Keys.cs">
+      <Link>ExpenseTracker.CurrencyConverter\Config\Keys.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\ConversionData.cs">
+      <Link>ExpenseTracker.CurrencyConverter\ConversionData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\CurrencyConverter.cs">
+      <Link>ExpenseTracker.CurrencyConverter\CurrencyConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\CurrencyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter\CurrencyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs">
+      <Link>ExpenseTracker.CurrencyConverter\obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\obj\Debug\net7.0\ExpenseTracker.CurrencyConverter.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter\obj\Debug\net7.0\ExpenseTracker.CurrencyConverter.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\obj\Debug\net7.0\ExpenseTracker.CurrencyConverter.GlobalUsings.g.cs">
+      <Link>ExpenseTracker.CurrencyConverter\obj\Debug\net7.0\ExpenseTracker.CurrencyConverter.GlobalUsings.g.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\obj\Release\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs">
+      <Link>ExpenseTracker.CurrencyConverter\obj\Release\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\obj\Release\net7.0\ExpenseTracker.CurrencyConverter.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter\obj\Release\net7.0\ExpenseTracker.CurrencyConverter.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter\obj\Release\net7.0\ExpenseTracker.CurrencyConverter.GlobalUsings.g.cs">
+      <Link>ExpenseTracker.CurrencyConverter\obj\Release\net7.0\ExpenseTracker.CurrencyConverter.GlobalUsings.g.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj">
+      <Project>{C8345233-B4C3-DBFC-5DE2-EFF74950ECA2}</Project>
+      <Name>ExpenseTracker.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

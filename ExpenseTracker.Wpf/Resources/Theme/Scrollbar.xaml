@@ -1,0 +1,445 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MainStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  ScrollBar  -->
+    <DrawingBrush
+        x:Key="CheckerBackground"
+        Stretch="None"
+        TileMode="Tile"
+        Viewport="0,0,2,2"
+        ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{DynamicResource Brush.Button.Alt}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0,1,1" />
+                            <RectangleGeometry Rect="1,1,1,1" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{DynamicResource Brush.Main.Background}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="1,0,1,1" />
+                            <RectangleGeometry Rect="0,1,1,1" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+    <DrawingBrush
+        x:Key="GripBackground"
+        Stretch="None"
+        TileMode="Tile"
+        Viewport="0,0,4,4"
+        ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="{DynamicResource Brush.Main.Background}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0,1,2" />
+                            <RectangleGeometry Rect="1,0,1,1" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{DynamicResource Brush.Button.Alt}">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="1,1,1,1" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+    <Style x:Key="VerticalScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Button.Disable}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid SnapsToDevicePixels="True">
+                        <Rectangle
+                            x:Name="Ellipse"
+                            Fill="{DynamicResource Brush.Button.Alt}"
+                            RadiusX="5"
+                            RadiusY="5"
+                            Stroke="{DynamicResource Brush.Button.Disable}"
+                            StrokeThickness="1" />
+                        <Border
+                            x:Name="Border1"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1,1,1,1"
+                            CornerRadius="5" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Disable}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HorizontalScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DynamicResource Brush.Button.Alt}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid SnapsToDevicePixels="True">
+                        <Rectangle
+                            x:Name="Ellipse"
+                            Fill="{DynamicResource Brush.Button.Alt}"
+                            RadiusX="5"
+                            RadiusY="5"
+                            Stroke="{DynamicResource Brush.Button.Alt}"
+                            StrokeThickness="1" />
+                        <Border
+                            x:Name="Border1"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1,1,0,0"
+                            CornerRadius="5" />
+                        <Border
+                            x:Name="Border2"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="5" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border2" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LineButtonUpStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid Height="16" SnapsToDevicePixels="True">
+                        <Border
+                            x:Name="BorderAndBackground"
+                            Background="{DynamicResource Brush.Button.Alt}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1"
+                            CornerRadius="2" />
+                        <Border
+                            x:Name="Border1"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1,1,0,0"
+                            CornerRadius="1" />
+                        <Border
+                            x:Name="Border2"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="1" />
+                        <Path
+                            x:Name="Path"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M 0 2 L 4 -2 L 8 2 Z"
+                            Fill="{DynamicResource Brush.Main.Text}"
+                            RenderOptions.EdgeMode="Aliased"
+                            Stretch="None" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Path" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="1" Y="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Path" Property="Fill" Value="{DynamicResource Brush.Main.Text.Alt}" />
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border2" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LineButtonDownStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid Height="16" SnapsToDevicePixels="True">
+                        <Border
+                            x:Name="BorderAndBackground"
+                            Background="{DynamicResource Brush.Button.Alt}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1"
+                            CornerRadius="2" />
+                        <Border
+                            x:Name="Border1"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1,1,0,0"
+                            CornerRadius="1" />
+                        <Border
+                            x:Name="Border2"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="1" />
+                        <Path
+                            x:Name="Path"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M 0 -2 L 4 2 L 8 -2 Z"
+                            Fill="{DynamicResource TextBrush}"
+                            RenderOptions.EdgeMode="Aliased"
+                            Stretch="None" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Path" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="1" Y="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Path" Property="Fill" Value="{DynamicResource Brush.Main.Text.Alt}" />
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border2" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LineButtonLeftStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid Width="16" SnapsToDevicePixels="True">
+                        <Border
+                            x:Name="BorderAndBackground"
+                            Background="{DynamicResource Brush.Button.Alt}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1"
+                            CornerRadius="2" />
+                        <Border
+                            x:Name="Border1"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1,1,0,0"
+                            CornerRadius="1" />
+                        <Border
+                            x:Name="Border2"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="1" />
+                        <Path
+                            x:Name="Path"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M 2 -1 L -2 2 L 2 6 Z"
+                            Fill="{DynamicResource Brush.Main.Text}"
+                            RenderOptions.EdgeMode="Aliased"
+                            Stretch="None" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Path" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="1" Y="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Path" Property="Fill" Value="{DynamicResource Brush.Main.Text.Alt}" />
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border2" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LineButtonRightStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid Width="16" SnapsToDevicePixels="True">
+                        <Border
+                            x:Name="BorderAndBackground"
+                            Background="{DynamicResource Brush.Button.Alt}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1"
+                            CornerRadius="2" />
+                        <Border
+                            x:Name="Border1"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="1,1,0,0"
+                            CornerRadius="1" />
+                        <Border
+                            x:Name="Border2"
+                            Margin="1"
+                            Background="{x:Null}"
+                            BorderBrush="{DynamicResource Brush.Button.Alt}"
+                            BorderThickness="0,0,1,1"
+                            CornerRadius="1" />
+                        <Path
+                            x:Name="Path"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="M -2 -2 L 2 3 L -2 6 Z"
+                            Fill="{DynamicResource Brush.Main.Text}"
+                            RenderOptions.EdgeMode="Aliased"
+                            Stretch="None" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Path" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="1" Y="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Path" Property="Fill" Value="{DynamicResource Brush.Main.Text.Alt}" />
+                            <Setter TargetName="BorderAndBackground" Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Border2" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid Background="{DynamicResource CheckerBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="8" />
+                <ColumnDefinition MinWidth="8" />
+            </Grid.ColumnDefinitions>
+            <Track
+                Name="PART_Track"
+                Grid.Row="0"
+                Grid.Column="0"
+                IsDirectionReversed="True"
+                ViewportSize="NaN">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageUpCommand" Style="{DynamicResource ScrollBarPageButtonStyle}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb MinHeight="50" Style="{DynamicResource VerticalScrollBarThumbStyle}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageDownCommand" Style="{DynamicResource ScrollBarPageButtonStyle}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid Background="{DynamicResource CheckerBackground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="8" />
+            </Grid.RowDefinitions>
+            <Track
+                Name="PART_Track"
+                Grid.Column="1"
+                IsDirectionReversed="False"
+                ViewportSize="NaN">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageLeftCommand" Style="{DynamicResource ScrollBarPageButtonStyle}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb MinWidth="50" Style="{DynamicResource HorizontalScrollBarThumbStyle}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageRightCommand" Style="{DynamicResource ScrollBarPageButtonStyle}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+    <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type ScrollBar}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="8" />
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Template" Value="{DynamicResource VerticalScrollBar}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="Height" Value="8" />
+                <Setter Property="Template" Value="{DynamicResource HorizontalScrollBar}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

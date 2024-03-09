@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{4E41818E-3A25-42E4-A385-3C378F882C66}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApplicationUpdater</RootNamespace>
+    <AssemblyName>ApplicationUpdater</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\ApplicationUpdater\AppClientUpdater.cs">
+      <Link>ApplicationUpdater\AppClientUpdater.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ApplicationUpdater\obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs">
+      <Link>ApplicationUpdater\obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ApplicationUpdater\obj\Debug\net7.0\ApplicationUpdater.AssemblyInfo.cs">
+      <Link>ApplicationUpdater\obj\Debug\net7.0\ApplicationUpdater.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ApplicationUpdater\obj\Debug\net7.0\ApplicationUpdater.GlobalUsings.g.cs">
+      <Link>ApplicationUpdater\obj\Debug\net7.0\ApplicationUpdater.GlobalUsings.g.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ApplicationUpdater\obj\Release\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs">
+      <Link>ApplicationUpdater\obj\Release\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ApplicationUpdater\obj\Release\net7.0\ApplicationUpdater.AssemblyInfo.cs">
+      <Link>ApplicationUpdater\obj\Release\net7.0\ApplicationUpdater.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ApplicationUpdater\obj\Release\net7.0\ApplicationUpdater.GlobalUsings.g.cs">
+      <Link>ApplicationUpdater\obj\Release\net7.0\ApplicationUpdater.GlobalUsings.g.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Octokit" Version="7.1.0"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

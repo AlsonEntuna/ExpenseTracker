@@ -1,30 +1,26 @@
-include "thirdparty.lua"
+include "nugetpackages.lua"
 
-workspace "ExpenseTracker"
+workspace "ExpenseTrackerTest"
 	architecture "x64"
 	location "solutions"
 	startproject "ExpenseTracker.App"
 	
 	configurations
 	{ 
-		"Debug", 
+		"Debug",
 		"Release"
 	}
-	
-	local lang = "C++"
-	local dialect = "C++20"
-	
-	local buildname = "%{prj.name}_%{cfg.buildcfg}"
-	local builddir = ("bin/" .. buildname)
-	local intermediate = ("intermediate/" .. buildname)
-	local solutionlocations = "src/solutions/%{prj.name}"
 
--- ThirdParty solutions
+-- Libs
 group "Libs"
-	include "thirdparty/imgui"
-	include "thirdparty/usd"
+	include "ApplicationUpdater"
+	include "ExpenseTracker.Wpf"
+	include "ExpenseTracker.Tools"
+group ""
+group "Libs/CurrencyConverter"
+	include "ExpenseTracker.CurrencyConverter"
+	include "ExpenseTracker.CurrencyConverter.UI"
 group ""
 
 -- Include other projects / solutions
-include "src/Editor"
-include "src/CautionEngine"
+include "ExpenseTracker.App"

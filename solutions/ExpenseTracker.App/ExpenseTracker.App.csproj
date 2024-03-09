@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{782793C0-640B-5416-CD6B-4E69B96E3E98}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExpenseTracker.App</RootNamespace>
+    <AssemblyName>ExpenseTracker.App</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <Reference Include="Microsoft.NETCore.App" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <Reference Include="Microsoft.NETCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="..\..\ExpenseTracker.App\App.xaml">
+      <Link>ExpenseTracker.App\App.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\..\ExpenseTracker.App\App.xaml.cs">
+      <Link>ExpenseTracker.App\App.xaml.cs</Link>
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\AssemblyInfo.cs">
+      <Link>ExpenseTracker.App\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\AppInstance.cs">
+      <Link>ExpenseTracker.App\Data\AppInstance.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Categories.cs">
+      <Link>ExpenseTracker.App\Data\Categories.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Configuration.cs">
+      <Link>ExpenseTracker.App\Data\Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\DataEntry.cs">
+      <Link>ExpenseTracker.App\Data\DataEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\DataHandler.cs">
+      <Link>ExpenseTracker.App\Data\DataHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Events\PaidEventArgs.cs">
+      <Link>ExpenseTracker.App\Data\Events\PaidEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\ExpenseDataReport.cs">
+      <Link>ExpenseTracker.App\Data\ExpenseDataReport.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Reports\CategoryReport.cs">
+      <Link>ExpenseTracker.App\Data\Reports\CategoryReport.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Reports\MultiCurrencyReportData.cs">
+      <Link>ExpenseTracker.App\Data\Reports\MultiCurrencyReportData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Reports\ReportData.cs">
+      <Link>ExpenseTracker.App\Data\Reports\ReportData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Savings\SavingsData.cs">
+      <Link>ExpenseTracker.App\Data\Savings\SavingsData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\Savings\UserSavingsDataService.cs">
+      <Link>ExpenseTracker.App\Data\Savings\UserSavingsDataService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\Data\VariableExpense.cs">
+      <Link>ExpenseTracker.App\Data\VariableExpense.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\ExpenseSys\Constants.cs">
+      <Link>ExpenseTracker.App\ExpenseSys\Constants.cs</Link>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\MainWindow.xaml">
+      <Link>ExpenseTracker.App\MainWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\MainWindow.xaml.cs">
+      <Link>ExpenseTracker.App\MainWindow.xaml.cs</Link>
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\MainWindowViewModel.cs">
+      <Link>ExpenseTracker.App\MainWindowViewModel.cs</Link>
+    </Compile>
+    <None Include="..\..\ExpenseTracker.App\Resources\logo.ico">
+      <Link>ExpenseTracker.App\Resources\logo.ico</Link>
+    </None>
+    <Compile Include="..\..\ExpenseTracker.App\Utils\DataUtils.cs">
+      <Link>ExpenseTracker.App\Utils\DataUtils.cs</Link>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\CreateExpenseEntry.xaml">
+      <Link>ExpenseTracker.App\View\CreateExpenseEntry.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\CreateExpenseEntry.xaml.cs">
+      <Link>ExpenseTracker.App\View\CreateExpenseEntry.xaml.cs</Link>
+      <DependentUpon>CreateExpenseEntry.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\CreateVariableExpenseWindow.xaml">
+      <Link>ExpenseTracker.App\View\CreateVariableExpenseWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\CreateVariableExpenseWindow.xaml.cs">
+      <Link>ExpenseTracker.App\View\CreateVariableExpenseWindow.xaml.cs</Link>
+      <DependentUpon>CreateVariableExpenseWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\ExpenseDataReportWindow.xaml">
+      <Link>ExpenseTracker.App\View\ExpenseDataReportWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\ExpenseDataReportWindow.xaml.cs">
+      <Link>ExpenseTracker.App\View\ExpenseDataReportWindow.xaml.cs</Link>
+      <DependentUpon>ExpenseDataReportWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\ExpenseTrackerTools.xaml">
+      <Link>ExpenseTracker.App\View\ExpenseTrackerTools.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\ExpenseTrackerTools.xaml.cs">
+      <Link>ExpenseTracker.App\View\ExpenseTrackerTools.xaml.cs</Link>
+      <DependentUpon>ExpenseTrackerTools.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\PiggyBank\AddSavingsWindow.xaml">
+      <Link>ExpenseTracker.App\View\PiggyBank\AddSavingsWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\PiggyBank\AddSavingsWindow.xaml.cs">
+      <Link>ExpenseTracker.App\View\PiggyBank\AddSavingsWindow.xaml.cs</Link>
+      <DependentUpon>AddSavingsWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\PiggyBank\PiggyBankWindow.xaml">
+      <Link>ExpenseTracker.App\View\PiggyBank\PiggyBankWindow.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\PiggyBank\PiggyBankWindow.xaml.cs">
+      <Link>ExpenseTracker.App\View\PiggyBank\PiggyBankWindow.xaml.cs</Link>
+      <DependentUpon>PiggyBankWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="..\..\ExpenseTracker.App\View\VariableExpenseView.xaml">
+      <Link>ExpenseTracker.App\View\VariableExpenseView.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.App\View\VariableExpenseView.xaml.cs">
+      <Link>ExpenseTracker.App\View\VariableExpenseView.xaml.cs</Link>
+      <DependentUpon>VariableExpenseView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\ViewModels\ExpenseDataReportViewModel.cs">
+      <Link>ExpenseTracker.App\ViewModels\ExpenseDataReportViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\ViewModels\PiggyBankViewModel.cs">
+      <Link>ExpenseTracker.App\ViewModels\PiggyBankViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.App\ViewModels\VariableExpenseViewModel.cs">
+      <Link>ExpenseTracker.App\ViewModels\VariableExpenseViewModel.cs</Link>
+    </Compile>
+    <None Include="..\..\ExpenseTracker.App\logo.ico">
+      <Link>ExpenseTracker.App\logo.ico</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracker.Wpf\ExpenseTracker.Wpf.csproj">
+      <Project>{048593C0-F068-5416-59C9-4E6945CC3E98}</Project>
+      <Name>ExpenseTracker.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExpenseTracker.CurrencyConverter.UI\ExpenseTracker.CurrencyConverter.UI.csproj">
+      <Project>{0618E2AB-72D1-4C56-FB30-673067E902C6}</Project>
+      <Name>ExpenseTracker.CurrencyConverter.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj">
+      <Project>{C8345233-B4C3-DBFC-5DE2-EFF74950ECA2}</Project>
+      <Name>ExpenseTracker.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.1.94"/>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

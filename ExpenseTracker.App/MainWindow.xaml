@@ -1,0 +1,29 @@
+﻿<Window
+    x:Class="ExpenseTracker.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ExpenseTracker"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:ExpenseTracker.View"
+    Title="Expense Tracker"
+    Width="1720"
+    Height="1000"
+    Closing="Window_Closing"
+    MouseDown="Window_MouseDown"
+    ResizeMode="CanResizeWithGrip"
+    Style="{DynamicResource WindowStyle}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <!--<WindowChrome.WindowChrome>
+        <WindowChrome
+        CaptionHeight="0"
+        ResizeBorderThickness="3" />
+    </WindowChrome.WindowChrome>-->
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid Margin="5">
+        <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
+    </Grid>
+</Window>

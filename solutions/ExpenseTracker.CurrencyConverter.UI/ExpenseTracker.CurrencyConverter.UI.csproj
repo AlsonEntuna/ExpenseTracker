@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{0618E2AB-72D1-4C56-FB30-673067E902C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExpenseTracker.CurrencyConverter.UI</RootNamespace>
+    <AssemblyName>ExpenseTracker.CurrencyConverter.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>obj\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\..\ExpenseTracker.CurrencyConverter.UI\CurrencyConverterControl.xaml">
+      <Link>ExpenseTracker.CurrencyConverter.UI\CurrencyConverterControl.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\CurrencyConverterControl.xaml.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\CurrencyConverterControl.xaml.cs</Link>
+      <DependentUpon>CurrencyConverterControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\CurrencyConverterViewModel.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\CurrencyConverterViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\CurrencyConverterControl.g.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\CurrencyConverterControl.g.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\CurrencyConverterControl.g.i.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\CurrencyConverterControl.g.i.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1bvqrxeq_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1bvqrxeq_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1hafmpgp_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1hafmpgp_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1ijecyuc_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1ijecyuc_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_21ugdt0k_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_21ugdt0k_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2nw5l52s_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2nw5l52s_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2qpqb0gh_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2qpqb0gh_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2w0drvy3_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2w0drvy3_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_41enk0e1_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_41enk0e1_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_4nmj3gd4_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_4nmj3gd4_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_5qlzpihq_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_5qlzpihq_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_a42ff1ry_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_a42ff1ry_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_acgzoru4_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_acgzoru4_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_akl3mnsr_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_akl3mnsr_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_amjjhacw_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_amjjhacw_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_aoz4ghg2_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_aoz4ghg2_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bggjw5lm_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bggjw5lm_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bgkqfrsp_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bgkqfrsp_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bri2uecp_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bri2uecp_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bx51wor4_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bx51wor4_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_despse5v_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_despse5v_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ebft5uji_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ebft5uji_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ec1sdkgo_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ec1sdkgo_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_eqqou2s3_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_eqqou2s3_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_feexcz2m_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_feexcz2m_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_fg4otfq3_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_fg4otfq3_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_fx42zdku_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_fx42zdku_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_gv1zihhb_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_gv1zihhb_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_hcroumwg_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_hcroumwg_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_hhc3g1ch_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_hhc3g1ch_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_i0mede5w_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_i0mede5w_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_iiezmstu_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_iiezmstu_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_jlawqcvs_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_jlawqcvs_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_jn21linx_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_jn21linx_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_juqobe1h_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_juqobe1h_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_k5jnxxpz_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_k5jnxxpz_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_lcwna5kb_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_lcwna5kb_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_m4qtdgoc_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_m4qtdgoc_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_mdogdjfo_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_mdogdjfo_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_mk3v4r4s_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_mk3v4r4s_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_n1ubcxff_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_n1ubcxff_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nb3ybvov_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nb3ybvov_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nfqte5xz_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nfqte5xz_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nhrh2y3h_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nhrh2y3h_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nvqs4nn0_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_nvqs4nn0_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_prpjgjig_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_prpjgjig_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_psfqjhvw_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_psfqjhvw_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_q4fn0fht_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_q4fn0fht_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_q4s1ieka_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_q4s1ieka_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_qbmq1izj_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_qbmq1izj_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_qmcxcwuy_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_qmcxcwuy_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_sxyfuh4n_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_sxyfuh4n_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_t3sc415v_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_t3sc415v_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_tdh1aapw_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_tdh1aapw_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_tj0b15vg_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_tj0b15vg_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_u0weqseh_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_u0weqseh_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_untvqgkb_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_untvqgkb_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_uskrssyx_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_uskrssyx_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_utue2qlg_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_utue2qlg_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_uxgr0yw3_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_uxgr0yw3_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_uyaayzim_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_uyaayzim_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ve3m0jfy_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ve3m0jfy_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_xlqruzze_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_xlqruzze_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_xpaffvas_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_xpaffvas_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_zeco2d23_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_zeco2d23_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_zpgz4z3k_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Debug\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_zpgz4z3k_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\CurrencyConverterControl.g.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\CurrencyConverterControl.g.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\CurrencyConverterControl.g.i.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\CurrencyConverterControl.g.i.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1oj0cghw_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_1oj0cghw_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2duvf4da_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2duvf4da_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2wtjjb1w_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2wtjjb1w_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2wu2zxfh_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_2wu2zxfh_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_3woggm31_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_3woggm31_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_50p25prt_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_50p25prt_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_5jklh1dl_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_5jklh1dl_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_5vv4isot_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_5vv4isot_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bvofyo3z_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_bvofyo3z_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_gurnuocp_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_gurnuocp_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_h4wkxh5b_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_h4wkxh5b_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_hgnnumew_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_hgnnumew_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_iredpusp_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_iredpusp_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ktxt0p3c_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ktxt0p3c_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_n44fezif_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_n44fezif_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_neyli531_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_neyli531_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_pwrvfztk_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_pwrvfztk_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_q20iiqlb_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_q20iiqlb_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_rqss0d3n_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_rqss0d3n_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ss3sigj3_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_ss3sigj3_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_udhsvu04_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_udhsvu04_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_xuwg5sd1_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_xuwg5sd1_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_yek0eij2_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_yek0eij2_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_zdgzl1h2_wpftmp.AssemblyInfo.cs">
+      <Link>ExpenseTracker.CurrencyConverter.UI\obj\Release\net7.0-windows\ExpenseTracker.CurrencyConverter.UI_zdgzl1h2_wpftmp.AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracker.CurrencyConverter\ExpenseTracker.CurrencyConverter.csproj">
+      <Project>{5A4F1E2D-46A0-096F-6F04-F8305BB49CD8}</Project>
+      <Name>ExpenseTracker.CurrencyConverter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
