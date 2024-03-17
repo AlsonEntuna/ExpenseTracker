@@ -27,6 +27,7 @@
     <RootNamespace>ExpenseTracker</RootNamespace>
     <PackageId>ExpenseTracker</PackageId>
     <AssemblyName>ExpenseTracker</AssemblyName>
+    <BaseIntermediateOutputPath>..\intermediate\</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -55,7 +56,7 @@
     <ProjectReference Include="..\ExpenseTracker.CurrencyConverter.UI\ExpenseTracker.CurrencyConverter.UI.csproj" />
     <ProjectReference Include="..\ExpenseTracker.CurrencyConverter\ExpenseTracker.CurrencyConverter.csproj" />
     <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj" />
-    <ProjectReference Include="..\WPFWrappers\ExpenseTracker.Wpf.csproj" />
+    <ProjectReference Include="..\ExpenseTracker.Wpf\ExpenseTracker.Wpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>

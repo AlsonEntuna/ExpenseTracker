@@ -4,6 +4,8 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <BaseIntermediateOutputPath>..\intermediate\</BaseIntermediateOutputPath>
+    <BaseOutputPath>..\bin\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExpenseTracker.CurrencyConverter\ExpenseTracker.CurrencyConverter.csproj" />
-    <ProjectReference Include="..\WPFWrappers\ExpenseTracker.Wpf.csproj" />
+    <ProjectReference Include="..\ExpenseTracker.Wpf\ExpenseTracker.Wpf.csproj" />
   </ItemGroup>
 
 </Project>

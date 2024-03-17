@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <BaseOutputPath>..\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>..\intermediate\</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
