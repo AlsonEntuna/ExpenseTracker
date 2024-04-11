@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     Title="My PiggyBank"
-    Width="900"
-    Height="650"
+    Width="1520"
+    Height="920"
     d:DataContext="{d:DesignInstance viewmodel:PiggyBankViewModel,
                                      IsDesignTimeCreatable=True}"
     Closing="Window_Closing"
