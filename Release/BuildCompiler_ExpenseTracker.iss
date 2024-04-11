@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ExpenseTracker"
-#define MyAppVersion "1.4.0"
+#define MyAppVersion "1.4.1"
 #define MyAppPublisher "Alson Entuna"
 #define MyAppURL "https://github.com/AlsonEntuna/ExpenseTracker"
 #define MyAppExeName "ExpenseTracker.exe"
@@ -25,7 +25,7 @@ LicenseFile=..\LICENSE.md
 ;PrivilegesRequired=lowest
 OutputDir=Setup
 OutputBaseFilename=ExpenseTrackerSetup
-SetupIconFile=..\ExpenseTracker\Resources\logo.ico
+SetupIconFile=..\ExpenseTracker.App\Resources\logo.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
