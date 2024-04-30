@@ -14,7 +14,7 @@
                         Width="auto"
                         Height="{TemplateBinding Height}"
                         Background="{TemplateBinding Background}"
-                        CornerRadius="15"
+                        CornerRadius="10"
                         TextBlock.Foreground="{TemplateBinding Foreground}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>

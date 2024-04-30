@@ -63,4 +63,9 @@
         <Setter Property="FontWeight" Value="ExtraLight" />
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text.Alt}" />
     </Style>
+
+    <Style TargetType="{x:Type ToolTip}">
+        <Setter Property="Background" Value="{StaticResource Brush.Main.Background.Alt}" />
+        <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
+    </Style>
 </ResourceDictionary>

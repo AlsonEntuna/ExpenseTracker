@@ -43,22 +43,22 @@
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 5,
-      "Subscriptions": 1
+      "Subscriptions": 1,
+      "Food": 1
     },
-    "TotalAmount": 460.74,
-    "Savings": 1539.26,
-    "UnPaidAmount": 460.74,
+    "TotalAmount": 213.95,
+    "Savings": 1786.05,
+    "UnPaidAmount": 213.95,
     "PaidAmount": 0.0,
     "Completed": false,
     "CategoryReports": [
       {
         "PaymentChannel": "Citibank",
-        "Amount": 168.69,
+        "Amount": 50.15,
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 168.69
+        "OutstandingBalance": 50.15
       },
       {
         "PaymentChannel": "BPI-Car",
@@ -67,22 +67,6 @@
         "Paid": false,
         "PartialPayment": 0.0,
         "OutstandingBalance": 163.8
-      },
-      {
-        "PaymentChannel": "BPI Credit",
-        "Amount": 81.9,
-        "Comments": null,
-        "Paid": false,
-        "PartialPayment": 0.0,
-        "OutstandingBalance": 81.9
-      },
-      {
-        "PaymentChannel": "RobinsonsBank",
-        "Amount": 46.35,
-        "Comments": null,
-        "Paid": false,
-        "PartialPayment": 0.0,
-        "OutstandingBalance": 46.35
       }
     ],
     "SelectedReport": null,
@@ -95,28 +79,20 @@
     "ReportChartData": [
       {
         "Key": "Citibank",
-        "Value": 169
+        "Value": 50
       },
       {
         "Key": "BPI-Car",
         "Value": 164
-      },
-      {
-        "Key": "BPI Credit",
-        "Value": 82
-      },
-      {
-        "Key": "RobinsonsBank",
-        "Value": 46
       }
     ],
     "ExpenseCategoryChartData": [
       {
-        "Key": "Food",
-        "Value": 5
+        "Key": "Subscriptions",
+        "Value": 1
       },
       {
-        "Key": "Subscriptions",
+        "Key": "Food",
         "Value": 1
       }
     ],
@@ -127,37 +103,19 @@
           "Name": "Philippine Piso",
           "Symbol": "₱"
         },
-        "Amount": 18000.0
-      },
-      {
-        "Currency": {
-          "Code": "USD",
-          "Name": "US Dollar",
-          "Symbol": "$"
-        },
-        "Amount": 70.0
+        "Amount": 13000.0
       }
     ],
     "AltCurrencyBreakdown": [
       {
         "CurrencyCode": "PHP",
+        "PaymentChannel": "Citibank",
+        "Amount": 3000.0
+      },
+      {
+        "CurrencyCode": "PHP",
         "PaymentChannel": "BPI-Car",
         "Amount": 10000.0
-      },
-      {
-        "CurrencyCode": "PHP",
-        "PaymentChannel": "Citibank",
-        "Amount": 3020.0
-      },
-      {
-        "CurrencyCode": "PHP",
-        "PaymentChannel": "BPI Credit",
-        "Amount": 5000.0
-      },
-      {
-        "CurrencyCode": "USD",
-        "PaymentChannel": "RobinsonsBank",
-        "Amount": 50.0
       }
     ]
   }

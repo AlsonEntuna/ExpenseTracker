@@ -12,20 +12,18 @@
     Height="900"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseDataReportViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="1500"
+    d:DesignHeight="1800"
     Background="{StaticResource Brush.Main.Background}"
     Closing="Window_Closing"
     MouseDown="Window_MouseDown"
     ResizeMode="CanResizeWithGrip"
     WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
-    <Border Background="{StaticResource Brush.Border.Background.Alt}">
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="5">
             <StackPanel>
                 <TextBlock
-                    Margin="15,0,0,0"
                     FontSize="45"
-                    FontWeight="DemiBold"
                     Style="{StaticResource TextBlockStyle.Header1.Bold}"
                     Text="Report Summary" />
                 <Grid Height="100">
@@ -34,271 +32,248 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Border
-                        Grid.Column="0"
-                        Margin="10"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="10">
-                        <StackPanel Margin="15" Orientation="Horizontal">
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                            Text="Total:" />
+                        <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
                             <TextBlock
+                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                                Text="Total:" />
-                            <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header1}"
-                                    Text="{Binding Report.CurrencySymbol}" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header1}"
-                                    Text="{Binding Report.TotalAmount}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                    <Border
-                        Grid.Column="1"
-                        Margin="10"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="10">
-                        <StackPanel Margin="15" Orientation="Horizontal">
+                                Style="{StaticResource TextBlockStyle.Header1}"
+                                Text="{Binding Report.CurrencySymbol}" />
                             <TextBlock
+                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                Text="Balance:" />
-                            <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header2}"
-                                    Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header2}"
-                                    Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </StackPanel>
+                                Style="{StaticResource TextBlockStyle.Header1}"
+                                Text="{Binding Report.TotalAmount}" />
                         </StackPanel>
-                    </Border>
-                    <Border
-                        Grid.Column="3"
-                        Margin="10"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="10">
-                        <StackPanel Margin="15" Orientation="Horizontal">
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                            Text="Balance:" />
+                        <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
                             <TextBlock
+                                HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                Text="Paid:" />
-                            <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header2}"
-                                    Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header2}"
-                                    Text="{Binding Report.PaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </StackPanel>
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="{Binding Report.UnPaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
-                    </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                            Text="Paid:" />
+                        <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="{Binding Report.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="{Binding Report.PaidAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
-                <Border
-                    Margin="10"
-                    Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="10">
-                    <DataGrid
-                        Height="300"
-                        Margin="30"
-                        ItemsSource="{Binding Report.CategoryReports}"
-                        SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn
-                                Width="auto"
-                                MinWidth="200"
-                                Binding="{Binding PaymentChannel}"
-                                CanUserResize="True"
-                                Header="Channel" />
-                            <DataGridTextColumn
-                                Width="auto"
-                                MinWidth="200"
-                                Binding="{Binding Amount}"
-                                Header="Amount (Main)" />
-                            <DataGridTemplateColumn Width="100" Header="Paid">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <CheckBox
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Width="120" Header="Add Payment">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button
-                                            Command="{Binding Path=DataContext.Report.AddPartialPaymentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                            Content="Add"
-                                            IsEnabled="{Binding Paid, Converter={StaticResource InverseBoolConverter}}"
-                                            Style="{StaticResource ButtonStyle.Element}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
-                            <DataGridTextColumn
-                                Width="auto"
-                                MinWidth="100"
-                                Binding="{Binding OutstandingBalance}"
-                                Header="Balance" />
-                            <DataGridTextColumn
-                                Width="200"
-                                Binding="{Binding Comments}"
-                                Header="Comments" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Border>
-                <TextBlock
-                    Margin="15,0,0,0"
-                    FontWeight="DemiBold"
-                    Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                    Text="Local Currencies Breakdown" />
+                <DataGrid
+                    MinHeight="100"
+                    Margin="5"
+                    ItemsSource="{Binding Report.CategoryReports}"
+                    SelectedItem="{Binding Report.SelectedReport, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="auto"
+                            MinWidth="200"
+                            Binding="{Binding PaymentChannel}"
+                            CanUserResize="True"
+                            Header="Channel" />
+                        <DataGridTextColumn
+                            Width="auto"
+                            MinWidth="200"
+                            Binding="{Binding Amount}"
+                            Header="Amount (Main)" />
+                        <DataGridTemplateColumn Width="100" Header="Paid">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        IsChecked="{Binding Paid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="120" Header="Add Payment">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Command="{Binding Path=DataContext.Report.AddPartialPaymentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                        Content="Add"
+                                        IsEnabled="{Binding Paid, Converter={StaticResource InverseBoolConverter}}"
+                                        Style="{StaticResource ButtonStyle.Element}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding PartialPayment}" Header="Partial Payment" />
+                        <DataGridTextColumn
+                            Width="auto"
+                            MinWidth="100"
+                            Binding="{Binding OutstandingBalance}"
+                            Header="Balance" />
+                        <DataGridTextColumn
+                            Width="200"
+                            Binding="{Binding Comments}"
+                            Header="Comments" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Local Currencies Breakdown" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="500" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Border
+                    <DataGrid
                         Grid.Column="0"
-                        Margin="10"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="10">
-                        <DataGrid
-                            Height="200"
-                            Margin="30"
-                            ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding Currency.Code}"
-                                    Header="Currency" />
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding Amount}"
-                                    Header="Amount" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Border>
-                    <Border
+                        MinHeight="100"
+                        Margin="5"
+                        ItemsSource="{Binding Report.CurrencyReport, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Currency.Code}"
+                                Header="Currency" />
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Amount}"
+                                Header="Amount" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid
                         Grid.Column="1"
-                        Margin="10"
-                        Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="10">
-                        <DataGrid
-                            Height="200"
-                            Margin="30"
-                            AutoGenerateColumns="False"
-                            ItemsSource="{Binding Report.AltCurrencyBreakdown}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding CurrencyCode}"
-                                    Header="Currency" />
-                                <DataGridTextColumn
-                                    Width="auto"
-                                    MinWidth="200"
-                                    Binding="{Binding PaymentChannel}"
-                                    Header="Channel" />
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding Amount}"
-                                    Header="Amount" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Border>
+                        MinHeight="100"
+                        Margin="5"
+                        AutoGenerateColumns="False"
+                        ItemsSource="{Binding Report.AltCurrencyBreakdown}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding CurrencyCode}"
+                                Header="Currency" />
+                            <DataGridTextColumn
+                                Width="auto"
+                                MinWidth="200"
+                                Binding="{Binding PaymentChannel}"
+                                Header="Channel" />
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Amount}"
+                                Header="Amount" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
-                <TextBlock
-                    Margin="15,0,0,0"
-                    FontWeight="DemiBold"
-                    Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                    Text="Breakdown Chart" />
-                <Border
-                    Height="500"
-                    Margin="10"
-                    Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="10">
-                    <Grid Margin="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <toolkit:Chart
-                            Name="columnChart"
-                            Grid.Column="0"
-                            BorderBrush="Transparent"
-                            Style="{StaticResource ChartStyle.Main}"
-                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                            <toolkit:ColumnSeries
-                                Title="Report"
-                                DependentValuePath="Value"
-                                IndependentValuePath="Key"
-                                ItemsSource="{Binding}" />
-                        </toolkit:Chart>
-                        <toolkit:Chart
-                            Name="pieChart"
-                            Grid.Column="1"
-                            BorderBrush="Transparent"
-                            Style="{StaticResource ChartStyle.Main}"
-                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                            <toolkit:PieSeries
-                                DependentValuePath="Value"
-                                IndependentValuePath="Key"
-                                IsSelectionEnabled="True"
-                                ItemsSource="{Binding}" />
-                        </toolkit:Chart>
-                    </Grid>
-                </Border>
-                <Border
-                    Height="500"
-                    Margin="10"
-                    Background="{StaticResource Brush.Border.Background}"
-                    CornerRadius="10">
-                    <Grid Margin="20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <toolkit:Chart
-                            Name="expenseCategoryColumnChart"
-                            Grid.Column="0"
-                            BorderBrush="Transparent"
-                            Style="{StaticResource ChartStyle.Main}"
-                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                            <toolkit:ColumnSeries
-                                Title="Report"
-                                DependentValuePath="Value"
-                                IndependentValuePath="Key"
-                                ItemsSource="{Binding}" />
-                        </toolkit:Chart>
-                        <toolkit:Chart
-                            Name="expenseCategoryPieChart"
-                            Grid.Column="1"
-                            BorderBrush="Transparent"
-                            Style="{StaticResource ChartStyle.Main}"
-                            TitleStyle="{StaticResource ChartStyle.NoTitle}">
-                            <toolkit:PieSeries
-                                DependentValuePath="Value"
-                                IndependentValuePath="Key"
-                                IsSelectionEnabled="True"
-                                ItemsSource="{Binding}" />
-                        </toolkit:Chart>
-                    </Grid>
-                </Border>
+                <Expander>
+                    <Expander.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Breakdown Chart" />
+                    </Expander.Header>
+                    <StackPanel>
+                        <Grid MinHeight="500">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <toolkit:Chart
+                                Name="columnChart"
+                                Grid.Column="0"
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                                <toolkit:ColumnSeries
+                                    Title="Report"
+                                    DependentValuePath="Value"
+                                    IndependentValuePath="Key"
+                                    ItemsSource="{Binding}">
+                                    <toolkit:ColumnSeries.LegendItemStyle>
+                                        <Style TargetType="toolkit:LegendItem">
+                                            <Setter Property="TextElement.Foreground" Value="Black" />
+                                        </Style>
+                                    </toolkit:ColumnSeries.LegendItemStyle>
+                                </toolkit:ColumnSeries>
+                            </toolkit:Chart>
+                            <toolkit:Chart
+                                Name="pieChart"
+                                Grid.Column="1"
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                                <toolkit:PieSeries
+                                    DependentValuePath="Value"
+                                    IndependentValuePath="Key"
+                                    IsSelectionEnabled="True"
+                                    ItemsSource="{Binding}">
+                                    <toolkit:PieSeries.LegendItemStyle>
+                                        <Style TargetType="toolkit:LegendItem">
+                                            <Setter Property="TextElement.Foreground" Value="Black" />
+                                        </Style>
+                                    </toolkit:PieSeries.LegendItemStyle>
+                                </toolkit:PieSeries>
+                            </toolkit:Chart>
+                        </Grid>
+                        <Grid MinHeight="500">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <toolkit:Chart
+                                Name="expenseCategoryColumnChart"
+                                Grid.Column="0"
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                                <toolkit:ColumnSeries
+                                    Title="Report"
+                                    DependentValuePath="Value"
+                                    IndependentValuePath="Key"
+                                    ItemsSource="{Binding}">
+                                    <toolkit:ColumnSeries.LegendItemStyle>
+                                        <Style TargetType="toolkit:LegendItem">
+                                            <Setter Property="TextElement.Foreground" Value="Black" />
+                                        </Style>
+                                    </toolkit:ColumnSeries.LegendItemStyle>
+                                </toolkit:ColumnSeries>
+                            </toolkit:Chart>
+                            <toolkit:Chart
+                                Name="expenseCategoryPieChart"
+                                Grid.Column="1"
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                                <toolkit:PieSeries
+                                    DependentValuePath="Value"
+                                    IndependentValuePath="Key"
+                                    IsSelectionEnabled="True"
+                                    ItemsSource="{Binding}">
+                                    <toolkit:PieSeries.LegendItemStyle>
+                                        <Style TargetType="toolkit:LegendItem">
+                                            <Setter Property="TextElement.Foreground" Value="Black" />
+                                        </Style>
+                                    </toolkit:PieSeries.LegendItemStyle>
+                                </toolkit:PieSeries>
+                            </toolkit:Chart>
+                        </Grid>
+                    </StackPanel>
+                </Expander>
             </StackPanel>
-        </ScrollViewer>
-    </Border>
+        </Grid>
+    </ScrollViewer>
 </Window>

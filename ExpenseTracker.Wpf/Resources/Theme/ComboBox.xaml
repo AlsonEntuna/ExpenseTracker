@@ -14,7 +14,7 @@
                 Grid.ColumnSpan="2"
                 Width="Auto"
                 Height="Auto"
-                Background="{StaticResource Brush.Border.Background.Alt}"
+                Background="{StaticResource Brush.Button.Main}"
                 BorderBrush="{StaticResource Brush.Main.Background.Alt}"
                 BorderThickness="1"
                 CornerRadius="2" />
