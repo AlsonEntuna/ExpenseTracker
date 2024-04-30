@@ -25,231 +25,180 @@
                 <RowDefinition Height="90" />
             </Grid.RowDefinitions>
             <StackPanel IsEnabled="{Binding CurrentDisplayedExpense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
-                <Border>
-                    <StackPanel Margin="15">
+                <StackPanel Margin="10">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="40"
+                        Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                        Text="{Binding CurrentDisplayedExpense.Name}">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding EditExpenseNameCommand}" Header="Edit Expense Name" />
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding EditExpenseDescriptionCommand}" Header="Edit Description" />
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
                         <TextBlock
                             VerticalAlignment="Center"
-                            FontSize="40"
-                            Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                            Text="{Binding CurrentDisplayedExpense.Name}">
-                            <TextBlock.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding EditExpenseNameCommand}" Header="Edit Expense Name" />
-                                </ContextMenu>
-                            </TextBlock.ContextMenu>
-                        </TextBlock>
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding EditExpenseDescriptionCommand}" Header="Edit Description" />
-                                </ContextMenu>
-                            </StackPanel.ContextMenu>
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                Text="{Binding CurrentDisplayedExpense.Description}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding EditDueDateCommand}" Header="Edit Due Date" />
-                                </ContextMenu>
-                            </StackPanel.ContextMenu>
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                Style="{StaticResource TextBlockStyle.Header2.Alt}"
-                                Text="{Binding CurrentDisplayedExpense.EndDate}" />
-                        </StackPanel>
-                        <Separator Height="10" />
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Border
-                                Grid.Column="0"
-                                Height="100"
-                                Margin="5"
-                                Background="{StaticResource Brush.Border.Background}"
-                                CornerRadius="5">
-                                <Border.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Command="{Binding EditBudgetCommand}" Header="Edit Budget" />
-                                    </ContextMenu>
-                                </Border.ContextMenu>
-                                <StackPanel Margin="10">
-                                    <TextBlock
-                                        Margin="10,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="25"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Budget" />
-                                    <Grid HorizontalAlignment="Center">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="50" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock
-                                                Grid.Column="0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Style="{StaticResource TextBlockStyle.Header1}"
-                                                Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                            <TextBlock
-                                                Grid.Column="0"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Style="{StaticResource TextBlockStyle.Header1}"
-                                                Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
-                                        </StackPanel>
-                                    </Grid>
-                                </StackPanel>
-                            </Border>
-                            <Border
-                                Grid.Column="1"
-                                Height="100"
-                                Margin="5"
-                                Background="{StaticResource Brush.Border.Background}"
-                                CornerRadius="5">
-                                <StackPanel Margin="10">
-                                    <TextBlock
-                                        Margin="10,0,0,0"
-                                        VerticalAlignment="Center"
-                                        FontSize="25"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Total" />
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            Style="{StaticResource TextBlockStyle.Header1}"
-                                            Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
+                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                            Text="{Binding CurrentDisplayedExpense.Description}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding EditDueDateCommand}" Header="Edit Due Date" />
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockStyle.Header2.Alt}"
+                            Text="{Binding CurrentDisplayedExpense.EndDate}" />
+                    </StackPanel>
+                    <Separator Height="10" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
                         <Border
-                            Grid.Column="1"
+                            Grid.Column="0"
+                            Height="100"
                             Margin="5"
                             Background="{StaticResource Brush.Border.Background}"
                             CornerRadius="5">
-                            <StackPanel Height="100" Margin="10">
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Command="{Binding EditBudgetCommand}" Header="Edit Budget" />
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                            <StackPanel Margin="10">
                                 <TextBlock
                                     Margin="10,0,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="30"
+                                    FontSize="25"
+                                    FontWeight="Light"
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Savings" />
-                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                    <TextBlock
-                                        Grid.Column="0"
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
-                                        Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
-                                        Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                </StackPanel>
+                                    Text="Budget" />
+                                <Grid HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource TextBlockStyle.Header1}"
+                                            Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource TextBlockStyle.Header1}"
+                                            Text="{Binding CurrentDisplayedExpense.Budget, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+                                </Grid>
                             </StackPanel>
                         </Border>
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Expense and Report" />
                         <Border
+                            Grid.Column="1"
+                            Height="100"
                             Margin="5"
                             Background="{StaticResource Brush.Border.Background}"
                             CornerRadius="5">
-                            <UniformGrid
-                                Height="auto"
-                                Margin="10"
-                                Columns="4">
-                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                    <Button
-                                        Grid.Row="0"
-                                        Width="50"
-                                        Height="45"
-                                        Command="{Binding AddEntryCommand}">
-                                        <Button.Content>
-                                            <Image
-                                                Width="30"
-                                                Height="30"
-                                                Source="{StaticResource Add}" />
-                                        </Button.Content>
-                                    </Button>
+                            <StackPanel Margin="10">
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="25"
+                                    FontWeight="Light"
+                                    Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                    Text="Total" />
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                     <TextBlock
-                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                        Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrentDisplayedExpense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Border
+                        Grid.Column="1"
+                        Margin="5"
+                        Background="{StaticResource Brush.Border.Background}"
+                        CornerRadius="5">
+                        <StackPanel Height="100" Margin="10">
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="30"
+                                FontWeight="Light"
+                                Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                Text="Savings" />
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header1}"
+                                    Text="{Binding CurrentDisplayedExpense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource TextBlockStyle.Header1}"
+                                    Text="{Binding CurrentDisplayedExpense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontWeight="Light"
+                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                        Text="Expense" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Column="0"
+                            Width="Auto"
+                            Height="45"
+                            Margin="5"
+                            Command="{Binding AddEntryCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource Add}" />
+                                    <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         FontSize="20"
                                         Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                         Text="Add" />
                                 </StackPanel>
-                                <StackPanel
-                                    Grid.Column="1"
-                                    VerticalAlignment="Center"
-                                    ToolTip="Generate Report">
-                                    <Button
-                                        Width="50"
-                                        Height="45"
-                                        Command="{Binding GenerateExpenseReportCommand}">
-                                        <Button.Content>
-                                            <Image
-                                                Width="30"
-                                                Height="30"
-                                                Source="{StaticResource Create_Report}" />
-
-                                        </Button.Content>
-                                    </Button>
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Generate" />
-
-                                </StackPanel>
-                                <StackPanel
-                                    Grid.Column="2"
-                                    VerticalAlignment="Center"
-                                    ToolTip="Open Report">
-                                    <Button
-                                        Width="50"
-                                        Height="45"
-                                        Command="{Binding OpenReportCommand}"
-                                        IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
-                                        <Button.Content>
-                                            <Image
-                                                Width="30"
-                                                Height="30"
-                                                Source="{StaticResource Open_Report}" />
-
-                                        </Button.Content>
-                                    </Button>
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Open" />
-                                </StackPanel>
-                                <StackPanel
-                                    Grid.Column="3"
-                                    VerticalAlignment="Center"
-                                    ToolTip="Update Realtime Conversion">
-                                    <Button
-                                        Width="50"
-                                        Height="45"
-                                        Command="{Binding UpdateEntryConversionCommand}">
-                                        <Button.Content>
-                                            <Image
-                                                Width="30"
-                                                Height="30"
-                                                Source="{StaticResource Currency_Converter}" />
-                                        </Button.Content>
-                                    </Button>
+                            </Button.Content>
+                        </Button>
+                        <Button
+                            Grid.Column="1"
+                            Width="Auto"
+                            Height="45"
+                            Margin="5"
+                            Command="{Binding UpdateEntryConversionCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource Currency_Converter}" />
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
@@ -257,22 +206,72 @@
                                         Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                         Text="Update" />
                                 </StackPanel>
-                            </UniformGrid>
-
-                        </Border>
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                            Text="Currency Converter" />
-                        <Border
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontWeight="Light"
+                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                        Text="Report Tools" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Column="0"
+                            Width="Auto"
+                            Height="45"
                             Margin="5"
-                            Background="{StaticResource Brush.Border.Background}"
-                            CornerRadius="5">
-                            <currencyConverterControl:CurrencyConverterControl Margin="20" DataContext="{Binding ConverterUIViewModel}" />
-                        </Border>
+                            Command="{Binding GenerateExpenseReportCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource Create_Report}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                        Text="Generate" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button
+                            Grid.Column="1"
+                            Width="Auto"
+                            Height="45"
+                            Margin="5"
+                            Command="{Binding OpenReportCommand}"
+                            IsEnabled="{Binding CurrentDisplayedExpense.Report, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource Open_Report}" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                                        Text="Open" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <Separator Height="10" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontWeight="Light"
+                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
+                        Text="Currency Converter" />
+                    <currencyConverterControl:CurrencyConverterControl Margin="5" DataContext="{Binding ConverterUIViewModel}" />
 
-                    </StackPanel>
-                </Border>
+                </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <Separator Margin="10,0,10,0" />

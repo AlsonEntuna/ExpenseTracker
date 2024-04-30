@@ -28,7 +28,10 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <StackPanel>
-                    <Label Content="From" FontSize="20" />
+                    <Label
+                        Content="From"
+                        FontSize="16"
+                        FontWeight="Light" />
                     <ComboBox
                         Height="25"
                         ItemsSource="{Binding CurrencyInfos}"
@@ -49,7 +52,10 @@
             </Button>
             <Grid Grid.Column="2">
                 <StackPanel>
-                    <Label Content="To" FontSize="20" />
+                    <Label
+                        Content="To"
+                        FontSize="16"
+                        FontWeight="Light" />
                     <ComboBox
                         Height="25"
                         ItemsSource="{Binding CurrencyInfos}"
