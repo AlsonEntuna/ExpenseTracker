@@ -12,89 +12,84 @@
     ResizeMode="NoResize"
     Style="{DynamicResource WindowStyle}"
     mc:Ignorable="d">
-    <Border
-        Margin="5"
-        Background="{StaticResource Brush.Border.Background}"
-        CornerRadius="25">
-        <Grid>
-            <StackPanel Margin="20">
-                <StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="110" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Name:" />
-                        <TextBox
-                            x:Name="Txtbox_Name"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Style="{StaticResource TextBoxkStyle.Title}" />
-                        <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Description:" />
-                        <TextBox
-                            x:Name="Txtbox_Description"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Style="{StaticResource TextBoxkStyle.Title}" />
-                        <TextBlock
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Due Date:" />
-                        <DatePicker
-                            x:Name="DPicker_ExpenseDate"
-                            Grid.Row="2"
-                            Grid.Column="1" />
-                        <TextBlock
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            Style="{StaticResource TextBlockStyle.Form}"
-                            Text="Main Currency:" />
-                        <ComboBox
-                            x:Name="Combo_Currency"
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            SelectedIndex="0" />
-                    </Grid>
-                </StackPanel>
-                <Grid Margin="0,15,0,0">
+    <Grid>
+        <StackPanel Margin="5">
+            <StackPanel>
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="110" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
                         Grid.Column="0"
-                        Margin="5"
-                        Click="Button_Click"
-                        Content="Add"
-                        Style="{StaticResource ButtonStyle.Element}" />
-                    <Button
-                        x:Name="Btn_Cancel"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Name:" />
+                    <TextBox
+                        x:Name="Txtbox_Name"
+                        Grid.Row="0"
                         Grid.Column="1"
-                        Margin="5"
-                        Click="Btn_Cancel_Click"
-                        Content="Cancel"
-                        Style="{StaticResource ButtonStyle.Element}" />
+                        Style="{StaticResource TextBoxkStyle.Title}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Description:" />
+                    <TextBox
+                        x:Name="Txtbox_Description"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource TextBoxkStyle.Title}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Due Date:" />
+                    <DatePicker
+                        x:Name="DPicker_ExpenseDate"
+                        Grid.Row="2"
+                        Grid.Column="1" />
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource TextBlockStyle.Form}"
+                        Text="Main Currency:" />
+                    <ComboBox
+                        x:Name="Combo_Currency"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        SelectedIndex="0" />
                 </Grid>
             </StackPanel>
-        </Grid>
-    </Border>
+            <Grid Margin="0,15,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Margin="5"
+                    Click="Button_Click"
+                    Content="Add"
+                    Style="{StaticResource ButtonStyle.Element}" />
+                <Button
+                    x:Name="Btn_Cancel"
+                    Grid.Column="1"
+                    Margin="5"
+                    Click="Btn_Cancel_Click"
+                    Content="Cancel"
+                    Style="{StaticResource ButtonStyle.Element}" />
+            </Grid>
+        </StackPanel>
+    </Grid>
 </Window>

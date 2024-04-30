@@ -2,21 +2,23 @@
 
     <Color x:Key="Color.Main.Header">#112c5a</Color>
     <Color x:Key="Color.Main.Header_Alt">#0a1d3d</Color>
-    <Color x:Key="Color.Main.Background">#1e1c1c</Color>
-    <Color x:Key="Color.Main.Background.Alt">#100f0f</Color>
+
+    <Color x:Key="Color.Main.Background">#0f0f0f</Color>
+    <Color x:Key="Color.Main.Background.Alt">#000000</Color>
+
     <Color x:Key="Color.Main.Text">#dcd7d7</Color>
     <Color x:Key="Color.Main.Text.Alt">#9d9d9d</Color>
     <Color x:Key="Color.Main.Border">#260d43</Color>
 
-    <Color x:Key="Color.Button.Main">#0c655d</Color>
+    <Color x:Key="Color.Button.Main">#143e0a</Color>
     <Color x:Key="Color.Button.Disable">#06100e</Color>
-    <Color x:Key="Color.Button.Alt">#05312e</Color>
+    <Color x:Key="Color.Button.Alt">#1c6411</Color>
 
-    <Color x:Key="Color.Border.Background">#06352f</Color>
-    <Color x:Key="Color.Border.Background.Alt">#0a5b50</Color>
+    <Color x:Key="Color.Border.Background">#0b2507</Color>
+    <Color x:Key="Color.Border.Background.Alt">#0e2a0a</Color>
 
-    <Color x:Key="Color.Hover1">#1f9188</Color>
-    <Color x:Key="Color.Hover2">#0e4440</Color>
+    <Color x:Key="Color.Hover1">#217115</Color>
+    <Color x:Key="Color.Hover2">#2c971c</Color>
 
     <SolidColorBrush x:Key="Brush.Main.Header" Color="{StaticResource Color.Main.Header}" />
     <SolidColorBrush x:Key="Brush.Main.Header_Alt" Color="{StaticResource Color.Main.Header_Alt}" />

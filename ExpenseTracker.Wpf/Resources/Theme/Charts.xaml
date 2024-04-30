@@ -12,6 +12,7 @@
     </Style>
 
     <Style x:Key="ChartStyle.Main" TargetType="{x:Type toolkit:Chart}">
+        <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="PlotAreaStyle">
             <Setter.Value>
                 <Style TargetType="{x:Type Grid}">
