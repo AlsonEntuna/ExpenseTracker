@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Octokit;
+﻿using Octokit;
 using ExpenseTracker.Tools;
 
 namespace ApplicationUpdater
@@ -27,9 +26,7 @@ namespace ApplicationUpdater
 
         public EventHandler<DownloadInstallerCompleteArgs> DownloadCompleted;
 
-        public AppClientUpdater() 
-        {
-        }
+        public AppClientUpdater() { }
 
         public void InitializeClient(string clientName, string owner, string project)
         {
@@ -45,20 +42,23 @@ namespace ApplicationUpdater
                 "The latest release is tagged at {0} and is named {1}",
                 latest.TagName,
                 latest.Name);
-            // TODO: download if not up-to-date
+
             // Run the installer
             bool inLatest = string.Equals(latest.TagName, curassemblyVersion);
             if (!inLatest)
             {
-                WebClient wclient = new();
                 if (File.Exists(_downloadFilename)) 
                 {
                     File.Delete(_downloadFilename);
                 }
-                await wclient.DownloadFileTaskAsync(new Uri(latest.Assets[0].BrowserDownloadUrl), _downloadFilename);
-                if (File.Exists(_downloadFilename)) 
+
+                using (HttpClient httpClient = new HttpClient())
                 {
-                    DownloadCompleted?.Invoke(this, new DownloadInstallerCompleteArgs(_downloadFilename, latest.TagName));
+                    await httpClient.DownloadFileAsync(new Uri(latest.Assets[0].BrowserDownloadUrl), _downloadFilename);
+                    if (File.Exists(_downloadFilename))
+                    {
+                        DownloadCompleted?.Invoke(this, new DownloadInstallerCompleteArgs(_downloadFilename, latest.TagName));
+                    }
                 }
             }
         }
