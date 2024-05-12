@@ -7,7 +7,6 @@ namespace ExpenseTracker.CurrencyConverter
 {
     public class CurrencyConverter
     {
-        //private string _cachePath = Path.Combine(PathUtils.AppDataPath(), "_cache", "currency_conversion.json");
         private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
         private string _cachePath = "";
         public CurrencyConverter(string cachePath)
@@ -17,7 +16,7 @@ namespace ExpenseTracker.CurrencyConverter
                 throw new ArgumentNullException(nameof(cachePath));
 
             if (!Directory.Exists(Path.GetDirectoryName(_cachePath)))
-                Directory.CreateDirectory(Path.GetDirectoryName(_cachePath));
+                Directory.CreateDirectory(_cachePath);
 
             if (!File.Exists(_cachePath))
                 JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
