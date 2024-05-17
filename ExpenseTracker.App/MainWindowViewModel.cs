@@ -57,6 +57,7 @@ namespace ExpenseTracker
 #endif
         }
 
+#if !DEBUG
         private void OnDownloadCompleted(object sender, DownloadInstallerCompleteArgs e)
         {
             DialogResult dialogResult = MessageBox.Show($"A version({e.Version}) of the tool has been downloaded from the release branch.\nDo you want to install it?"
@@ -69,6 +70,7 @@ namespace ExpenseTracker
                 App.Current.Shutdown();
             }
         }
+#endif
 
         private void InitializeData()
         {

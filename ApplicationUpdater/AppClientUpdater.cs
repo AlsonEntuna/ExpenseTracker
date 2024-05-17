@@ -9,7 +9,7 @@ namespace ApplicationUpdater
         public string Version;
         public DownloadInstallerCompleteArgs(string installerPath, string version) 
         {
-            InstallerPath = installerPath; 
+            InstallerPath = installerPath;
             Version = version;
         }
     }
@@ -34,14 +34,12 @@ namespace ApplicationUpdater
             _gitHubOwner = owner;
             _gitHubProject = project;
         }
+
         public async void CheckForUpdate(string curassemblyVersion)
         {
             IReadOnlyList<Release> releases = await _client.Repository.Release.GetAll(_gitHubOwner, _gitHubProject);
-            var latest = releases[0];
-            Console.WriteLine(
-                "The latest release is tagged at {0} and is named {1}",
-                latest.TagName,
-                latest.Name);
+            Release latest = releases[0];
+            Console.WriteLine($"The latest release is tagged at {latest.TagName} and is named {latest.Name}");
 
             // Run the installer
             bool inLatest = string.Equals(latest.TagName, curassemblyVersion);
