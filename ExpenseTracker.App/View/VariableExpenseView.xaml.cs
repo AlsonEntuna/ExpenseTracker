@@ -65,8 +65,6 @@ namespace ExpenseTracker.View
 
         private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TxtBox_Search.Text)) return;
-
             if (_searchDelayTimer != null)
                 _searchDelayTimer.Stop();
 

@@ -18,7 +18,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -29,6 +29,7 @@
                     <TextBlock
                         Grid.Row="0"
                         Grid.Column="0"
+                        VerticalAlignment="Bottom"
                         Style="{StaticResource TextBlockStyle.Form}"
                         Text="Description" />
                     <TextBox
@@ -39,6 +40,7 @@
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
+                        VerticalAlignment="Bottom"
                         Style="{StaticResource TextBlockStyle.Form}"
                         Text="Category" />
                     <Grid
@@ -64,6 +66,7 @@
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
+                        VerticalAlignment="Bottom"
                         Style="{StaticResource TextBlockStyle.Form}"
                         Text="Payment Channel" />
                     <Grid
@@ -101,8 +104,8 @@
                 <Separator Height="10" />
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
                     <Label
                         Grid.Column="0"
@@ -115,7 +118,7 @@
                         SelectedIndex="0" />
                 </Grid>
             </StackPanel>
-            <Grid Margin="0,15,0,0">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

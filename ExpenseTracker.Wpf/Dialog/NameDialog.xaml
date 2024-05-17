@@ -7,11 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="NameDialog"
     Width="300"
-    Height="100"
-    Background="{StaticResource Brush.Main.Background}"
+    Height="90"
     Closing="Window_Closing"
     ResizeMode="NoResize"
+    Style="{DynamicResource WindowStyle}"
     mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <GroupBox x:Name="TitleHeader" Header="Enter Name Here...">
             <Grid>
@@ -27,7 +34,8 @@
                 <Button
                     Grid.Column="1"
                     Width="90"
-                    Margin="1,0,0,0"
+                    Height="auto"
+                    Margin="3,0,0,0"
                     Click="Button_Click"
                     Content="Enter"
                     Style="{StaticResource ButtonStyle.Element}" />
