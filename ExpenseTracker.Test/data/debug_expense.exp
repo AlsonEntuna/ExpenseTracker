@@ -24,7 +24,10 @@
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
-      }
+      },
+      "EntryDate": null,
+      "LastUpdated": "11/07/2024 22:14:00",
+      "GetMetaData": "Created: \nUpdated: 11/07/2024 22:14:00"
     },
     {
       "Description": "testing php",
@@ -38,7 +41,27 @@
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
-      }
+      },
+      "EntryDate": null,
+      "LastUpdated": "11/07/2024 22:14:00",
+      "GetMetaData": "Created: \nUpdated: 11/07/2024 22:14:00"
+    },
+    {
+      "Description": "Sample data",
+      "Amount": 15000.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Citibank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      },
+      "EntryDate": "11/07/2024 22:14:46",
+      "LastUpdated": "11/07/2024 22:14:46",
+      "GetMetaData": "Created: 11/07/2024 22:14:46\nUpdated: 11/07/2024 22:14:46"
     }
   ],
   "Report": {

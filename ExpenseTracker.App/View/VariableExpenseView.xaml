@@ -441,7 +441,13 @@
                             Width="auto"
                             MinWidth="200"
                             Binding="{Binding Description}"
-                            Header="Description" />
+                            Header="Description">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding GetMetaData}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
                         <DataGridTemplateColumn
                             Width="auto"
                             MinWidth="150"

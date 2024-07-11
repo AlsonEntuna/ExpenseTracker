@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -45,7 +46,8 @@ namespace ExpenseTracker.View
                 Amount = float.Parse(TxtBox_Amount.Text, CultureInfo.InvariantCulture.NumberFormat),
                 PaymentChannel = CmbBox_PaymentChannel.SelectedItem as string,
                 ExpenseCategory = CmbBox_ExpenseCategory.SelectedItem as string,
-                Currency = Combo_Currency.SelectedItem as CurrencyInfo
+                Currency = Combo_Currency.SelectedItem as CurrencyInfo,
+                EntryDate = DateTime.Now.ToString()
             };
 
             if (_mainCurrency != null)
