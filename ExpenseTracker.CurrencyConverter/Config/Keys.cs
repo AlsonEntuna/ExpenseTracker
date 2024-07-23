@@ -1,7 +1,13 @@
 ﻿namespace ExpenseTracker.CurrencyConverter.Config
 {
-    internal static class Keys
+    public static class Keys
     {
-        public static string CURRENCY_CONVERTER_API_KEY = "ccbaaff09b30c5dca2bf";
+        internal static string CURRENCY_CONVERTER_API_KEY = "";
+        public static void SetAPIKey(string key)
+        {
+            CURRENCY_CONVERTER_API_KEY = key;
+        }
+
+        internal static bool HasValidApiKey() { return !string.IsNullOrEmpty(CURRENCY_CONVERTER_API_KEY); }
     }
 }

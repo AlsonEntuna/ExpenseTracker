@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Reflection;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Collections.Generic;
 
 using CommunityToolkit.Mvvm.Input;
 
@@ -13,9 +15,12 @@ using ExpenseTracker.View;
 using ExpenseTracker.View.PiggyBank;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
+using ExpenseTracker.ExpenseSys;
+using ExpenseTracker.CurrencyConverter.Config;
 
 using ApplicationUpdater;
 
+using Keys = ExpenseTracker.CurrencyConverter.Config.Keys;
 
 namespace ExpenseTracker
 {
@@ -34,12 +39,23 @@ namespace ExpenseTracker
         public ICommand SaveExpenseCommand => new RelayCommand(SaveExpense);
         #endregion
 
+
 #if !DEBUG
         private AppClientUpdater _updater;
+        private readonly string _publicDataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.PUBLIC_FILE);
+#else
+        private static string _debugDataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\..\..\ExpenseTracker.Test\data\expense_tracker_public_data.json");
 #endif
 
         public MainWindowViewModel()
         {
+            // First download the public data
+#if !DEBUG
+            InitializeFromPublicData();
+#else
+            InitializeFromDebugData();
+#endif
+
             // Load the data...
             DataHandler.LoadAppConfiguration();
             InitializeData();
@@ -178,5 +194,41 @@ namespace ExpenseTracker
         {
             AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SaveCurrentExpenseData();
         }
+
+#if !DEBUG
+        private async void InitializeFromPublicData()
+        {
+            if (File.Exists(_publicDataFile))
+            {
+                File.Delete(_publicDataFile);
+            }
+
+            using (HttpClient httpClient = new HttpClient())
+            {
+                await httpClient.DownloadFileAsync(new Uri(Constants.EXPENSETRACKER_PUBLIC_DATA_URI), _publicDataFile);
+                if (File.Exists(_publicDataFile))
+                {
+                    Dictionary<string, string> publicData = JsonUtils.Deserialize<Dictionary<string, string>>(_publicDataFile);
+                    if (publicData.ContainsKey("APIKey"))
+                    {
+                        Keys.SetAPIKey(publicData["APIKey"]);
+                    }
+                }
+            }
+        }
+#else
+        private void InitializeFromDebugData()
+        {
+            // TODO: refine debug data handling
+            if (File.Exists(_debugDataPath))
+            {
+                Dictionary<string, string> debugData = JsonUtils.Deserialize<Dictionary<string, string>>(_debugDataPath);
+                if (debugData.ContainsKey("APIKey"))
+                {
+                    Keys.SetAPIKey(debugData["APIKey"]);
+                }
+            }
+        }
+#endif
     }
 }
