@@ -17,65 +17,92 @@
       "Amount": 100.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Citibank",
+      "PaymentChannel": "RobinsonsBank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
         "Code": "EUR",
         "Name": "Euro",
         "Symbol": "€"
-      }
+      },
+      "EntryDate": null,
+      "LastUpdated": "04/08/2024 14:26:27",
+      "GetMetaData": "Created: \nUpdated: 04/08/2024 14:26:27"
     },
     {
-      "Description": "testing php",
+      "Description": "Test Investment",
       "Amount": 163.8,
       "OriginalAmount": 10000.0,
       "Category": null,
-      "PaymentChannel": "BPI-Car",
+      "PaymentChannel": "Investment",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
-      }
+      },
+      "EntryDate": null,
+      "LastUpdated": "04/08/2024 14:26:33",
+      "GetMetaData": "Created: \nUpdated: 04/08/2024 14:26:33"
     },
     {
       "Description": "tesing other php",
       "Amount": 50.15,
       "OriginalAmount": 3000.0,
       "Category": null,
-      "PaymentChannel": "Citibank",
+      "PaymentChannel": "Cash",
       "ExpenseCategory": "Subscriptions",
       "Comments": "test2",
       "Currency": {
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
-      }
+      },
+      "EntryDate": null,
+      "LastUpdated": "04/08/2024 14:26:22",
+      "GetMetaData": "Created: \nUpdated: 04/08/2024 14:26:22"
+    },
+    {
+      "Description": "testing USD",
+      "Amount": 109.88,
+      "OriginalAmount": 120.0,
+      "Category": null,
+      "PaymentChannel": "SSS",
+      "ExpenseCategory": "Bills",
+      "Comments": null,
+      "Currency": {
+        "Code": "USD",
+        "Name": "US Dollar",
+        "Symbol": "$"
+      },
+      "EntryDate": "04/08/2024 14:26:56",
+      "LastUpdated": "04/08/2024 14:26:56",
+      "GetMetaData": "Created: 04/08/2024 14:26:56\nUpdated: 04/08/2024 14:26:56"
     }
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 5,
-      "Subscriptions": 1
+      "Food": 2,
+      "Subscriptions": 1,
+      "Bills": 1
     },
-    "TotalAmount": 460.74,
-    "Savings": 1539.26,
-    "UnPaidAmount": 460.74,
+    "TotalAmount": 423.83,
+    "Savings": 1576.17,
+    "UnPaidAmount": 423.83,
     "PaidAmount": 0.0,
     "Completed": false,
     "CategoryReports": [
       {
-        "PaymentChannel": "Citibank",
-        "Amount": 168.69,
+        "PaymentChannel": "RobinsonsBank",
+        "Amount": 100.0,
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 168.69
+        "OutstandingBalance": 100.0
       },
       {
-        "PaymentChannel": "BPI-Car",
+        "PaymentChannel": "Investment",
         "Amount": 163.8,
         "Comments": null,
         "Paid": false,
@@ -83,20 +110,20 @@
         "OutstandingBalance": 163.8
       },
       {
-        "PaymentChannel": "BPI Credit",
-        "Amount": 81.9,
+        "PaymentChannel": "Cash",
+        "Amount": 50.15,
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 81.9
+        "OutstandingBalance": 50.15
       },
       {
-        "PaymentChannel": "RobinsonsBank",
-        "Amount": 46.35,
+        "PaymentChannel": "SSS",
+        "Amount": 109.88,
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 46.35
+        "OutstandingBalance": 109.88
       }
     ],
     "SelectedReport": null,
@@ -108,29 +135,33 @@
     "CurrencySymbol": "€",
     "ReportChartData": [
       {
-        "Key": "Citibank",
-        "Value": 169
+        "Key": "RobinsonsBank",
+        "Value": 100
       },
       {
-        "Key": "BPI-Car",
+        "Key": "Investment",
         "Value": 164
       },
       {
-        "Key": "BPI Credit",
-        "Value": 82
+        "Key": "Cash",
+        "Value": 50
       },
       {
-        "Key": "RobinsonsBank",
-        "Value": 46
+        "Key": "SSS",
+        "Value": 110
       }
     ],
     "ExpenseCategoryChartData": [
       {
         "Key": "Food",
-        "Value": 5
+        "Value": 2
       },
       {
         "Key": "Subscriptions",
+        "Value": 1
+      },
+      {
+        "Key": "Bills",
         "Value": 1
       }
     ],
@@ -141,7 +172,7 @@
           "Name": "Philippine Piso",
           "Symbol": "₱"
         },
-        "Amount": 18000.0
+        "Amount": 13000.0
       },
       {
         "Currency": {
@@ -149,29 +180,24 @@
           "Name": "US Dollar",
           "Symbol": "$"
         },
-        "Amount": 70.0
+        "Amount": 120.0
       }
     ],
     "AltCurrencyBreakdown": [
       {
         "CurrencyCode": "PHP",
-        "PaymentChannel": "BPI-Car",
+        "PaymentChannel": "Investment",
         "Amount": 10000.0
       },
       {
         "CurrencyCode": "PHP",
-        "PaymentChannel": "Citibank",
-        "Amount": 3020.0
-      },
-      {
-        "CurrencyCode": "PHP",
-        "PaymentChannel": "BPI Credit",
-        "Amount": 5000.0
+        "PaymentChannel": "Cash",
+        "Amount": 3000.0
       },
       {
         "CurrencyCode": "USD",
-        "PaymentChannel": "RobinsonsBank",
-        "Amount": 50.0
+        "PaymentChannel": "SSS",
+        "Amount": 120.0
       }
     ]
   }
