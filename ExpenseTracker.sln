@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationUpdater", "ApplicationUpdater\ApplicationUpdater.csproj", "{1B261489-EFA6-4031-B029-B556273A68C3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{2D789A21-EF29-455E-863D-080A5B414D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCompiler", "Tools\ReleaseCompiler\ReleaseCompiler.csproj", "{5AE117BC-A1AB-4DCB-ACED-24E0E4C03887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{1B261489-EFA6-4031-B029-B556273A68C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B261489-EFA6-4031-B029-B556273A68C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B261489-EFA6-4031-B029-B556273A68C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE117BC-A1AB-4DCB-ACED-24E0E4C03887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE117BC-A1AB-4DCB-ACED-24E0E4C03887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE117BC-A1AB-4DCB-ACED-24E0E4C03887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE117BC-A1AB-4DCB-ACED-24E0E4C03887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{C2C404EF-707E-4345-8787-2126965DD60B} = {D9B1578A-F167-424A-889D-40F35F397E2E}
 		{95166954-5BAB-4882-BA74-C9006B06106A} = {D9B1578A-F167-424A-889D-40F35F397E2E}
 		{1B261489-EFA6-4031-B029-B556273A68C3} = {D9B1578A-F167-424A-889D-40F35F397E2E}
+		{5AE117BC-A1AB-4DCB-ACED-24E0E4C03887} = {2D789A21-EF29-455E-863D-080A5B414D31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9CC0F4FF-BE6E-4AE6-A8CB-E00F066F8862}

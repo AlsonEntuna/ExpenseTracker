@@ -13,7 +13,8 @@ namespace ExpenseTracker.Utils
                 "Bills",
                 "Transportation",
                 "Rent",
-                "Utilities"
+                "Mortgage",
+                "Utilities",
             };
 
             return categories;
@@ -23,12 +24,9 @@ namespace ExpenseTracker.Utils
         {
             List<string> channels = new List<string>()
             {
-                "Citibank",
-                "BPI Credit",
-                "GCredit",
-                "BPI-Car",
-                "Metrobank",
-                "Eastwest"
+                "Credit Card",
+                "Loan",
+                "Mortgage",
             };
 
             return channels;

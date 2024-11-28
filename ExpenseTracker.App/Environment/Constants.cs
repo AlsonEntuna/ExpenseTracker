@@ -1,4 +1,4 @@
-﻿namespace ExpenseTracker.ExpenseSys
+﻿namespace ExpenseTracker.Environment
 {
     public static class Constants
     {
