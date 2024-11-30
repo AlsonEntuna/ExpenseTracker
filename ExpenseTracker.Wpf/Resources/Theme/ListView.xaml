@@ -43,7 +43,7 @@
                 <Setter TargetName="Selection" Property="Background" Value="{DynamicResource Brush.Button.Main}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{DynamicResource}" />
+                <Setter Property="Foreground" Value="{DynamicResource Brush.Button.Alt}" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
