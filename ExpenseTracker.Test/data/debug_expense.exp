@@ -14,7 +14,7 @@
   "Entries": [
     {
       "Description": "tesing other php",
-      "Amount": 50.15,
+      "Amount": 49.01,
       "OriginalAmount": 3000.0,
       "Category": null,
       "PaymentChannel": "Citibank",
@@ -28,8 +28,8 @@
     },
     {
       "Description": "testing php",
-      "Amount": 163.8,
-      "OriginalAmount": 10000.0,
+      "Amount": 0.16,
+      "OriginalAmount": 10.0,
       "Category": null,
       "PaymentChannel": "BPI-Car",
       "ExpenseCategory": "Food",
@@ -37,6 +37,34 @@
       "Currency": {
         "Code": "PHP",
         "Name": "Philippine Piso",
+        "Symbol": "₱"
+      }
+    },
+    {
+      "Description": "Sample",
+      "Amount": 80.05,
+      "OriginalAmount": 4900.0,
+      "Category": null,
+      "PaymentChannel": "Citibank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Peso",
+        "Symbol": "₱"
+      }
+    },
+    {
+      "Description": "Sample - PHP",
+      "Amount": 49.09,
+      "OriginalAmount": 3005.0,
+      "Category": null,
+      "PaymentChannel": "BPI Credit",
+      "ExpenseCategory": "Utilities",
+      "Comments": null,
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Peso",
         "Symbol": "₱"
       }
     }
