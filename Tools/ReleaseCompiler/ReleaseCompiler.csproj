@@ -10,6 +10,7 @@
     <ItemGroup>
       <Content Include="..\..\Release\build_expense_tracker_release_x64.bat">
         <Link>build_expense_tracker_release_x64.bat</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
 

@@ -8,7 +8,7 @@ namespace ExpenseTracker
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel _vm;
+        private readonly MainWindowViewModel _vm;
         public MainWindow()
         {
             InitializeComponent();
