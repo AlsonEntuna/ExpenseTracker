@@ -14,7 +14,7 @@
   "Entries": [
     {
       "Description": "tesing other php",
-      "Amount": 50.15,
+      "Amount": 49.01,
       "OriginalAmount": 3000.0,
       "Category": null,
       "PaymentChannel": "Citibank",
@@ -24,15 +24,12 @@
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
-      },
-      "EntryDate": null,
-      "LastUpdated": "11/07/2024 22:14:00",
-      "GetMetaData": "Created: \nUpdated: 11/07/2024 22:14:00"
+      }
     },
     {
       "Description": "testing php",
-      "Amount": 163.8,
-      "OriginalAmount": 10000.0,
+      "Amount": 0.16,
+      "OriginalAmount": 10.0,
       "Category": null,
       "PaymentChannel": "BPI-Car",
       "ExpenseCategory": "Food",
@@ -41,27 +38,35 @@
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
-      },
-      "EntryDate": null,
-      "LastUpdated": "11/07/2024 22:14:00",
-      "GetMetaData": "Created: \nUpdated: 11/07/2024 22:14:00"
+      }
     },
     {
-      "Description": "Sample data",
-      "Amount": 15000.0,
-      "OriginalAmount": 0.0,
+      "Description": "Sample",
+      "Amount": 80.05,
+      "OriginalAmount": 4900.0,
       "Category": null,
       "PaymentChannel": "Citibank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
-      },
-      "EntryDate": "11/07/2024 22:14:46",
-      "LastUpdated": "11/07/2024 22:14:46",
-      "GetMetaData": "Created: 11/07/2024 22:14:46\nUpdated: 11/07/2024 22:14:46"
+        "Code": "PHP",
+        "Name": "Philippine Peso",
+        "Symbol": "₱"
+      }
+    },
+    {
+      "Description": "Sample - PHP",
+      "Amount": 49.09,
+      "OriginalAmount": 3005.0,
+      "Category": null,
+      "PaymentChannel": "BPI Credit",
+      "ExpenseCategory": "Utilities",
+      "Comments": null,
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Peso",
+        "Symbol": "₱"
+      }
     }
   ],
   "Report": {

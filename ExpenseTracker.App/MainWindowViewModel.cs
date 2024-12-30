@@ -27,8 +27,8 @@ namespace ExpenseTracker
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
-        private readonly VariableExpenseViewModel variableExpenseViewModel = new VariableExpenseViewModel();
-        public VariableExpenseViewModel VariableExpenseViewModel => variableExpenseViewModel;
+        private readonly VariableExpenseViewModel _variableExpenseViewModel = new VariableExpenseViewModel();
+        public VariableExpenseViewModel VariableExpenseViewModel => _variableExpenseViewModel;
         #endregion
 
         #region Commands
@@ -99,8 +99,8 @@ namespace ExpenseTracker
                         return;
                     VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
                     // Detects and migrates old legacy data...
-                    variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-                    variableExpenseViewModel.UpdateEventListeners();
+                    _variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
+                    _variableExpenseViewModel.UpdateEventListeners();
                 }
                 catch (Exception e)
                 {

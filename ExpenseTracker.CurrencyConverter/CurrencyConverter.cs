@@ -8,7 +8,7 @@ namespace ExpenseTracker.CurrencyConverter
     public class CurrencyConverter
     {
         private static List<ConversionData> _cachedConversionData = new List<ConversionData>();
-        private string _cachePath = "";
+        private readonly string _cachePath;
         public CurrencyConverter(string cachePath)
         {
             _cachePath = cachePath;
@@ -46,18 +46,21 @@ namespace ExpenseTracker.CurrencyConverter
         /// </summary>
         /// <param name="conversionKey"></param>
         /// <returns></returns>
-        public ConversionData GetCachedConversionData(string conversionKey)
+        public ConversionData? GetCachedConversionData(string conversionKey)
         {
-            ConversionData conversionData = null;
-            if (_cachedConversionData == null || _cachedConversionData.Count == 0)
-                return conversionData;
+            if (_cachedConversionData.Count == 0)
+            {
+                return null;
+            }
 
             foreach (ConversionData cachedData in _cachedConversionData)
             {
                 if (string.Equals(cachedData.Key, conversionKey))
-                    conversionData = cachedData;
+                {
+                    return cachedData;
+                }
             }
-            return conversionData;
+            return null;
         }
 
         public void SaveToCacheData(ConversionData conversionData) 
@@ -68,7 +71,9 @@ namespace ExpenseTracker.CurrencyConverter
             {
                 var data = GetCachedConversionData(conversionData.Key);
                 if (data != null)
+                {
                     data.Value = conversionData.Value;
+                }
             }
             JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
         }

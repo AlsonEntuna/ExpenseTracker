@@ -162,8 +162,8 @@ namespace ExpenseTracker.Data
 
         public async void ConvertToMainCurrency()
         {
-            string fromCurrency = AppInstance.Connection.MainCurrency.Code;
-            string conversionKey = $"{fromCurrency}_{Currency.Code}";
+            var fromCurrency = AppInstance.Connection.MainCurrency.Code;
+            var conversionKey = $"{fromCurrency}_{Currency.Code}";
             float conversionRate;
             try
             {
@@ -173,12 +173,9 @@ namespace ExpenseTracker.Data
             catch
             {
                 var data = AppInstance.Connection.CurrConverter.GetCachedConversionData(conversionKey);
-                if (data != null)
-                    conversionRate = data.Value;
-                else
-                    conversionRate = 1;
+                conversionRate = data?.Value ?? 1.0f;
             }
-            Amount = (float)Math.Round(Amount / conversionRate, 2);
+            Amount = (float)Math.Round(Amount * conversionRate, 2);
         }
 
         public override int GetHashCode()
