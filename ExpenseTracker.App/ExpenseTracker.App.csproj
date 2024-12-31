@@ -21,8 +21,8 @@
     <Copyright>Alson Entuna</Copyright>
     <Description>An application to track and manage expenses/bills and as well as savings.</Description>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.6.0</AssemblyVersion>
-    <FileVersion>1.6.0</FileVersion>
+    <AssemblyVersion>1.6.1</AssemblyVersion>
+    <FileVersion>1.6.1</FileVersion>
     <PlatformTarget>x64</PlatformTarget>
     <RootNamespace>ExpenseTracker</RootNamespace>
     <PackageId>ExpenseTracker</PackageId>

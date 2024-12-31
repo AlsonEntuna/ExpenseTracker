@@ -10,12 +10,12 @@ using System.Collections.Generic;
 using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.Data;
+using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
 using ExpenseTracker.View.PiggyBank;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
-using ExpenseTracker.ExpenseSys;
 using ExpenseTracker.CurrencyConverter.Config;
 
 using ApplicationUpdater;
