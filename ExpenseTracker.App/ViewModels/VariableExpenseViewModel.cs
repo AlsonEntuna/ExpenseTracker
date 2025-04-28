@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -57,6 +58,7 @@ namespace ExpenseTracker.ViewModels
         public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
         public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
         public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
+        public ICommand SortEntriesCommand => new RelayCommand(SortEntries);
         #endregion
 
         #region ViewModels
@@ -301,6 +303,19 @@ namespace ExpenseTracker.ViewModels
 
             // Add
             _toAdd.ForEach(CurrentDisplayedExpense.Entries.Add);
+        }
+
+        private void SortEntries()
+        {
+            if (CurrentDisplayedExpense.Entries != null)
+            {
+                var sortedList = CurrentDisplayedExpense.Entries.OrderBy(f => f.Description).ToList();
+                CurrentDisplayedExpense.Entries.Clear();
+                foreach (var item in sortedList)
+                {
+                    CurrentDisplayedExpense.Entries.Add(item);
+                }
+            }
         }
     }
 }

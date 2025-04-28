@@ -90,6 +90,7 @@ namespace ExpenseTracker
                 {
                     DataHandler.Config.DataLocation = string.Empty;
                     // TODO: have a logging system here...
+                    Console.WriteLine(e.ToString());
                 }
             }
         }

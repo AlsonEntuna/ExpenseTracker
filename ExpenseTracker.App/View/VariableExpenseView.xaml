@@ -434,6 +434,8 @@
                             <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
                             <MenuItem Command="{Binding CopyEntryCommand}" Header="Copy" />
                             <MenuItem Command="{Binding PasteEntryCommand}" Header="Paste" />
+                            <Separator />
+                            <MenuItem Command="{Binding SortEntriesCommand}" Header="Sort Entries" />
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
