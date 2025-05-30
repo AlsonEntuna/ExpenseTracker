@@ -12,6 +12,7 @@ using ExpenseTracker.ViewModels;
 
 using Timer = System.Windows.Forms.Timer;
 using System.Windows;
+using ExpenseTracker.View.Templates;
 
 namespace ExpenseTracker.View
 {
@@ -127,6 +128,18 @@ namespace ExpenseTracker.View
         {
             GetDataContext();
             _vm.CopyEntriesToClipboard();
+        }
+
+        private void DisplayExpenses()
+        {
+            foreach (var expense in  _vm.Expenses)
+            {
+                var expenseView = new ExpenseView();
+                TabItem tabItem = new TabItem();
+                tabItem.Header = expense.Name;
+                tabItem.Content = expenseView;
+                TabControlExpenses.Items.Add(tabItem);
+            }
         }
     }
 }

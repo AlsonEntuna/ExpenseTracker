@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -32,6 +33,16 @@ namespace ExpenseTracker.ViewModels
                 // Initialize the Currency in the Converter, From and To Currencies are the same at startup
                 ConverterUIViewModel.FromCurrency = AppInstance.Connection.MainCurrency;
                 ConverterUIViewModel.ToCurrency = AppInstance.Connection.MainCurrency;
+            }
+        }
+
+        private ObservableCollection<VariableExpense> _expenses;
+        public ObservableCollection<VariableExpense> Expenses
+        {
+            get => _expenses;
+            set
+            {
+                SetProperty(ref _expenses, value);
             }
         }
 
@@ -97,6 +108,7 @@ namespace ExpenseTracker.ViewModels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                // TODO change logic here and add the new expenses
                 CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 // Detect and migrate legacy data
                 CurrentDisplayedExpense.DetectAndMigrateLegacyData();
