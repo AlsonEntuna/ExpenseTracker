@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="ExpenseTracker.View.VariableExpenseView"
+    x:Class="ExpenseTracker.View.ExpenseViewControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:currencyConverterControl="clr-namespace:ExpenseTracker.CurrencyConverter.UI;assembly=ExpenseTracker.CurrencyConverter.UI"
@@ -10,7 +10,7 @@
     xmlns:templates="clr-namespace:ExpenseTracker.View.Templates"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     x:Name="RootWindow"
-    d:DataContext="{d:DesignInstance viewmodel:VariableExpenseViewModel,
+    d:DataContext="{d:DesignInstance viewmodel:ExpenseControlViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="950"
     d:DesignWidth="1500"
@@ -404,7 +404,8 @@
                     Margin="20"
                     FlowDirection="LeftToRight"
                     ItemsSource="{Binding Expenses}"
-                    SelectionChanged="TabControlExpenses_SelectionChanged"
+                    SelectedIndex="0"
+                    SelectedItem="{Binding CurrentExpenseViewModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     TabStripPlacement="Bottom">
                     <TabControl.ContentTemplate>
                         <DataTemplate>

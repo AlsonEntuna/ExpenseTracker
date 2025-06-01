@@ -1,11 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 using CommunityToolkit.Mvvm.Input;
-using System.Windows.Input;
 using ExpenseTracker.Data;
 using ExpenseTracker.Tools;
 using ExpenseTracker.Wpf;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker.View.Templates
 {
@@ -43,6 +44,20 @@ namespace ExpenseTracker.View.Templates
         public ExpenseViewModel()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return Expense != null ? Expense.Name : "!Error";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ExpenseViewModel _other)
+            {
+                return _other.Expense.Name == Expense.Name;
+            }
+            return false;
         }
         public void CopyEntriesToClipboard()
         {
@@ -105,6 +120,23 @@ namespace ExpenseTracker.View.Templates
                     Expense.Entries.Add(item);
                 }
             }
+        }
+
+        public void GenerateExpenseDataReport()
+        {
+            ExpenseDataReport newExpenseReport = new() { DataCurrency = Expense.DataCurrency };
+
+            foreach (DataEntry entry in Expense.Entries)
+            {
+                newExpenseReport.TotalAmount += entry.Amount;
+                newExpenseReport.AddCategoryReport(entry);
+            }
+
+            newExpenseReport.TotalAmount = (float)Math.Round(newExpenseReport.TotalAmount, 2);
+            newExpenseReport.UnPaidAmount = newExpenseReport.TotalAmount;
+            newExpenseReport.Savings = (float)Math.Round(Expense.Budget - newExpenseReport.TotalAmount, 2);
+
+            Expense.Report = newExpenseReport;
         }
     }
 }

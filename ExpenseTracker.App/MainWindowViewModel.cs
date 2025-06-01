@@ -15,6 +15,7 @@ using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
 
 using ApplicationUpdater;
+using ExpenseTracker.View.Templates;
 
 
 namespace ExpenseTracker
@@ -22,8 +23,8 @@ namespace ExpenseTracker
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
-        private readonly VariableExpenseViewModel _variableExpenseViewModel = new VariableExpenseViewModel();
-        public VariableExpenseViewModel VariableExpenseViewModel => _variableExpenseViewModel;
+        private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
+        public ExpenseControlViewModel VariableExpenseViewModel => _variableExpenseViewModel;
         #endregion
 
         #region Commands
@@ -81,14 +82,16 @@ namespace ExpenseTracker
                     VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
                     if (deserializedData == null)
                         return;
-                    //VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
-                    // Detects and migrates old legacy data...
-                    //VariableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-                    //VariableExpenseViewModel.UpdateEventListeners();
+
                     deserializedData.DetectAndMigrateLegacyData();
-                    VariableExpenseViewModel.Expenses.Add(deserializedData);
-                    VariableExpenseViewModel.UpdateEventListeners();
-                    //VariableExpenseViewModel.ExpenseOpenEvent?.Invoke(this, new EventArgs());
+
+                    // Create a new ExpenseViewModel
+                    ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
+                    if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
+                    {
+                        VariableExpenseViewModel.Expenses.Add(expenseVm);
+                        VariableExpenseViewModel.UpdateEventListeners();
+                    }
                 }
                 catch (Exception e)
                 {
@@ -105,8 +108,13 @@ namespace ExpenseTracker
             window.ShowDialog();
             if (window.DialogResult == true)
             {
-                VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
-                VariableExpenseViewModel.IsNewExpense = true;
+                ExpenseViewModel expenseVm = new() { Expense = window.Expense };
+                if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
+                {
+                    VariableExpenseViewModel.Expenses.Add(expenseVm);
+                    VariableExpenseViewModel.CurrentExpenseViewModel = expenseVm;
+                    VariableExpenseViewModel.IsNewExpense = true;
+                }
             }
         }
 
@@ -147,12 +155,15 @@ namespace ExpenseTracker
         }
         private void CopyFromCurrentExpense()
         {
-            var vm = AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>();
-            if (vm.CurrentDisplayedExpense == null) { return; }
+            ExpenseControlViewModel vm = AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>();
+            if (vm.CurrentExpenseViewModel == null)
+            { 
+                return;
+            }
 
             vm.IsNewExpense = true;
-            vm.CurrentDisplayedExpense.Name = "Copy - Replace Me";
-            vm.CurrentDisplayedExpense.Description = "Copy - Replace Me";
+            vm.CurrentExpenseViewModel.Expense.Name = "Copy - Replace Me";
+            vm.CurrentExpenseViewModel.Expense.Description = "Copy - Replace Me";
         }
         private void CopyFromOtherExpense()
         {
@@ -174,14 +185,16 @@ namespace ExpenseTracker
                 copiedDataExpense.DetectAndMigrateLegacyData();
                 copiedDataExpense.Name = "Copy - Replace Me";
                 copiedDataExpense.Description = "Copy - Replace Me";
-                AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SetCurrentDisplayedExpense(copiedDataExpense);
+
+                ExpenseViewModel expenseViewModel = new() { Expense = copiedDataExpense };
+                AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SetCurrentExpenseViewModel(expenseViewModel);
 
             }
         }
 
         private void SaveExpense()
         {
-            AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SaveCurrentExpenseData();
+            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SaveCurrentExpenseData();
         }
     }
 }

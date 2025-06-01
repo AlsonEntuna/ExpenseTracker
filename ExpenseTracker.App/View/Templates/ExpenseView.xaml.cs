@@ -6,6 +6,7 @@ namespace ExpenseTracker.View.Templates
 {
     public partial class ExpenseView : UserControl
     {
+
         private ExpenseViewModel _vm;
         public ExpenseView()
         {

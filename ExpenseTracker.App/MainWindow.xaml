@@ -27,6 +27,6 @@
         <KeyBinding Gesture="Ctrl+S" Command="{Binding SaveExpenseCommand}"></KeyBinding>
     </Window.InputBindings>
     <Grid Margin="5">
-        <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
+        <view:ExpenseViewControl DataContext="{Binding VariableExpenseViewModel}" />
     </Grid>
 </Window>

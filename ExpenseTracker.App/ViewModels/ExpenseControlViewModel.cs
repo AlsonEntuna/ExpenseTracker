@@ -13,23 +13,25 @@ using ExpenseTracker.Data.Events;
 using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
+using ExpenseTracker.View.Templates;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
 
 
 namespace ExpenseTracker.ViewModels
 {
-    class VariableExpenseViewModel : ViewModel
+    class ExpenseControlViewModel : ViewModel
     {
-        private VariableExpense _currentDisplayedExpense;
-        public VariableExpense CurrentDisplayedExpense
+        // TODO: we need to change this into a ExpenseViewModel to align with the new archtitecture
+        private ExpenseViewModel _currentDisplayedExpense;
+        public ExpenseViewModel CurrentExpenseViewModel
         {
             get => _currentDisplayedExpense;
             set
             {
                 SetProperty(ref _currentDisplayedExpense, value);
                 // Set the Main Currency
-                AppInstance.Connection.MainCurrency = CurrentDisplayedExpense.DataCurrency;
+                AppInstance.Connection.MainCurrency = _currentDisplayedExpense.Expense.DataCurrency;
 
                 // Initialize the Currency in the Converter, From and To Currencies are the same at startup
                 ConverterUIViewModel.FromCurrency = AppInstance.Connection.MainCurrency;
@@ -37,8 +39,8 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        private ObservableCollection<VariableExpense> _expenses = new();
-        public ObservableCollection<VariableExpense> Expenses
+        private ObservableCollection<ExpenseViewModel> _expenses = new();
+        public ObservableCollection<ExpenseViewModel> Expenses
         {
             get => _expenses;
             set
@@ -77,13 +79,8 @@ namespace ExpenseTracker.ViewModels
         public CurrencyConverterViewModel ConverterUIViewModel { get; set; }
         #endregion
 
-        #region Events
-        [NonSerialized]
-        public EventHandler<EventArgs> ExpenseOpenEvent;
-        #endregion
-
         public bool IsNewExpense { get; set; }
-        public VariableExpenseViewModel() 
+        public ExpenseControlViewModel() 
         {
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
@@ -92,10 +89,10 @@ namespace ExpenseTracker.ViewModels
 
         private void AddEntry()
         {
-            CreateExpenseEntry entryWindow = new CreateExpenseEntry(CurrentDisplayedExpense.DataCurrency);
+            CreateExpenseEntry entryWindow = new CreateExpenseEntry(CurrentExpenseViewModel.Expense.DataCurrency);
             if (entryWindow.ShowDialog() ?? true)
             {
-                CurrentDisplayedExpense.Entries.Add(entryWindow.Entry);
+                CurrentExpenseViewModel.Expense.Entries.Add(entryWindow.Entry);
             }
         }
 
@@ -115,18 +112,18 @@ namespace ExpenseTracker.ViewModels
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 // TODO change logic here and add the new expenses
-                //CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 VariableExpense newExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 // Detect and migrate legacy data
-                //CurrentDisplayedExpense.DetectAndMigrateLegacyData();
                 newExpense.DetectAndMigrateLegacyData();
-                if (!Expenses.Contains(newExpense))
+                ExpenseViewModel viewModel = new()
                 {
-                    Expenses.Add(newExpense);
+                    Expense = newExpense
+                };
+                if (!Expenses.Contains(viewModel))
+                {
+                    Expenses.Add(viewModel);
 
                     UpdateEventListeners();
-                    // TODO: test
-                    ExpenseOpenEvent?.Invoke(this, new EventArgs());
                     DataHandler.Config.DataLocation = dialog.FileName;
                     DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
@@ -134,9 +131,9 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        public void SetCurrentDisplayedExpense(VariableExpense expense)
+        public void SetCurrentExpenseViewModel(ExpenseViewModel expenseVm)
         {
-            CurrentDisplayedExpense = expense;
+            CurrentExpenseViewModel = expenseVm;
             IsNewExpense = true;
         }
 
@@ -156,7 +153,7 @@ namespace ExpenseTracker.ViewModels
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    JsonUtils.Serialize(dialog.FileName, CurrentDisplayedExpense);
+                    JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel);
                     DataHandler.Config.DataLocation = dialog.FileName;
                     DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
@@ -164,22 +161,22 @@ namespace ExpenseTracker.ViewModels
             }
             else
             {
-               if (CurrentDisplayedExpense != null)
+               if (CurrentExpenseViewModel != null)
                 {
-                    JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentDisplayedExpense);
+                    JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentExpenseViewModel);
                 }
             }
         }
 
         private void GenerateExpenseReport()
         {
-            CurrentDisplayedExpense.Report = GenerateExpenseDataReport();
-            OpenExpenseReport(CurrentDisplayedExpense.Report);
+            CurrentExpenseViewModel.GenerateExpenseDataReport();
+            OpenExpenseReport(CurrentExpenseViewModel.Expense.Report);
         }
 
         private void OpenReport()
         {
-            OpenExpenseReport(CurrentDisplayedExpense.Report);
+            OpenExpenseReport(CurrentExpenseViewModel.Expense.Report);
         }
 
         private void OpenExpenseReport(ExpenseDataReport report)
@@ -203,23 +200,23 @@ namespace ExpenseTracker.ViewModels
             reportWindow.ShowDialog();
         }
 
-        private ExpenseDataReport GenerateExpenseDataReport()
-        {
-            ExpenseDataReport report = new();
-            report.DataCurrency = CurrentDisplayedExpense.DataCurrency;
+        //private ExpenseDataReport GenerateExpenseDataReport()
+        //{
+        //    ExpenseDataReport report = new();
+        //    report.DataCurrency = CurrentExpenseViewModel.Expense.DataCurrency;
             
-            foreach (DataEntry entry in CurrentDisplayedExpense.Entries)
-            {
-                report.TotalAmount += entry.Amount;
-                report.AddCategoryReport(entry);
-            }
+        //    foreach (DataEntry entry in CurrentExpenseViewModel.Expense.Entries)
+        //    {
+        //        report.TotalAmount += entry.Amount;
+        //        report.AddCategoryReport(entry);
+        //    }
 
-            report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
-            report.UnPaidAmount = report.TotalAmount;
-            report.Savings = (float)Math.Round(CurrentDisplayedExpense.Budget - report.TotalAmount, 2);
+        //    report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
+        //    report.UnPaidAmount = report.TotalAmount;
+        //    report.Savings = (float)Math.Round(CurrentExpenseViewModel.Expense.Budget - report.TotalAmount, 2);
             
-            return report;
-        }
+        //    return report;
+        //}
 
         //private void RemoveEntry()
         //{
@@ -241,7 +238,7 @@ namespace ExpenseTracker.ViewModels
             numDialog.ShowDialog();
             if (numDialog.DialogResult == true)
             {
-                CurrentDisplayedExpense.Budget = numDialog.NumValue;
+                CurrentExpenseViewModel.Expense.Budget = numDialog.NumValue;
             }
         }
 
@@ -251,7 +248,7 @@ namespace ExpenseTracker.ViewModels
             nameDialog.ShowDialog();
             if (nameDialog.DialogResult == true)
             {
-                CurrentDisplayedExpense.Name = nameDialog.InputText;
+                CurrentExpenseViewModel.Expense.Name = nameDialog.InputText;
             }
         }
 
@@ -261,7 +258,7 @@ namespace ExpenseTracker.ViewModels
             nameDialog.ShowDialog();
             if (nameDialog.DialogResult == true)
             {
-                CurrentDisplayedExpense.Description = nameDialog.InputText;
+                CurrentExpenseViewModel.Expense.Description = nameDialog.InputText;
             }
         }
 
@@ -271,18 +268,18 @@ namespace ExpenseTracker.ViewModels
             dialog.ShowDialog();
             if (dialog.DialogResult == true) 
             {
-                CurrentDisplayedExpense.CycleEndDate = dialog.SeletectDateTimeValue;
+                CurrentExpenseViewModel.Expense.CycleEndDate = dialog.SeletectDateTimeValue;
             }
         }
 
         public void UpdateEventListeners()
         {
-            CurrentDisplayedExpense?.Report?.UpdatePaidEventListeners();
+            CurrentExpenseViewModel?.Expense.Report?.UpdatePaidEventListeners();
         }
 
         private void UpdateEntryConversion()
         {
-            foreach (var entry in CurrentDisplayedExpense.Entries)
+            foreach (var entry in CurrentExpenseViewModel.Expense.Entries)
             {
                 if (entry.Currency.Code != AppInstance.Connection.MainCurrency.Code)
                 {
@@ -291,61 +288,5 @@ namespace ExpenseTracker.ViewModels
                 }
             }
         }
-
-        //public void CopyEntriesToClipboard()
-        //{
-        //    if (SelectedDataEntries.Count == 0)
-        //        return;
-        //    string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
-
-        //    Clipboard.SetText(clipboard);
-        //}
-
-        //public void ProcessEntriesFromClipboard()
-        //{
-        //    string clipboard = Clipboard.GetText();
-        //    var entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
-        //    if (entries == null)
-        //        return;
-
-        //    List<DataEntry> _toAdd = new List<DataEntry>();
-        //    if (CurrentDisplayedExpense.Entries.Count != 0)
-        //    {
-        //        foreach (var deserializedEntry in entries)
-        //        {
-        //            if (!CurrentDisplayedExpense.Entries.Contains(deserializedEntry))
-        //                _toAdd.Add(deserializedEntry);
-        //            else
-        //            {
-        //                foreach (var entry in CurrentDisplayedExpense.Entries)
-        //                {
-        //                    if (entry == deserializedEntry)
-        //                    {
-        //                        entry.Amount = deserializedEntry.Amount;
-        //                        entry.Comments = deserializedEntry.Comments;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else
-        //        _toAdd = entries;
-
-        //    // Add
-        //    _toAdd.ForEach(CurrentDisplayedExpense.Entries.Add);
-        //}
-
-        //private void SortEntries()
-        //{
-        //    if (CurrentDisplayedExpense.Entries != null)
-        //    {
-        //        var sortedList = CurrentDisplayedExpense.Entries.OrderBy(f => f.Description).ToList();
-        //        CurrentDisplayedExpense.Entries.Clear();
-        //        foreach (var item in sortedList)
-        //        {
-        //            CurrentDisplayedExpense.Entries.Add(item);
-        //        }
-        //    }
-        //}
     }
 }
