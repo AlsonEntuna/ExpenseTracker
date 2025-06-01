@@ -7,6 +7,7 @@
     xmlns:data="clr-namespace:ExpenseTracker.Data"
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:templates="clr-namespace:ExpenseTracker.View.Templates"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     x:Name="RootWindow"
     d:DataContext="{d:DesignInstance viewmodel:VariableExpenseViewModel,
@@ -400,125 +401,16 @@
                 <TabControl
                     x:Name="TabControlExpenses"
                     Grid.Row="1"
+                    Margin="20"
                     FlowDirection="LeftToRight"
+                    ItemsSource="{Binding Expenses}"
+                    SelectionChanged="TabControlExpenses_SelectionChanged"
                     TabStripPlacement="Bottom">
-                    <TabItem Height="Auto" Header="Name">
-                        <DataGrid
-                            x:Name="DataGrid_Expenses"
-                            MinHeight="100"
-                            Margin="15"
-                            Focusable="True"
-                            HorizontalScrollBarVisibility="Auto"
-                            ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
-                            SelectionChanged="DataGrid_Expenses_SelectionChanged"
-                            SelectionMode="Extended"
-                            VerticalScrollBarVisibility="Auto">
-                            <DataGrid.CommandBindings>
-                                <CommandBinding Command="Copy" Executed="DataGrid_Expenses_OnCopy" />
-                            </DataGrid.CommandBindings>
-                            <DataGrid.Resources>
-                                <!--  Test Only  -->
-                                <DataTemplate x:Key="ResizableTemplate">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding Text}" />
-                                        <GridSplitter
-                                            Grid.Column="1"
-                                            Width="3"
-                                            DragDelta="GridSplitter_DragDelta"
-                                            DragIncrement="1"
-                                            Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGrid.Resources>
-                            <DataGrid.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
-                                    <MenuItem Command="{Binding CopyEntryCommand}" Header="Copy" />
-                                    <MenuItem Command="{Binding PasteEntryCommand}" Header="Paste" />
-                                    <Separator />
-                                    <MenuItem Command="{Binding SortEntriesCommand}" Header="Sort Entries" />
-                                </ContextMenu>
-                            </DataGrid.ContextMenu>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
-                                    Width="auto"
-                                    MinWidth="200"
-                                    Binding="{Binding Description}"
-                                    Header="Description" />
-                                <DataGridTemplateColumn
-                                    Width="auto"
-                                    MinWidth="150"
-                                    Header="Payment Channel">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <ComboBox
-                                                    Grid.Column="0"
-                                                    ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                                    SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <GridSplitter
-                                                    Grid.Column="1"
-                                                    Width="3"
-                                                    DragDelta="GridSplitter_DragDelta"
-                                                    DragIncrement="1"
-                                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn
-                                    Width="150"
-                                    CanUserResize="True"
-                                    Header="Category">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <ComboBox
-                                                    Grid.Column="0"
-                                                    ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                                    SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                                <GridSplitter
-                                                    Grid.Column="1"
-                                                    Width="3"
-                                                    DragDelta="GridSplitter_DragDelta"
-                                                    DragIncrement="1"
-                                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn
-                                    Width="130"
-                                    Binding="{Binding Amount}"
-                                    CanUserResize="True"
-                                    Header="Amount (Main)" />
-                                <DataGridTextColumn
-                                    Width="130"
-                                    Binding="{Binding OriginalAmount}"
-                                    Header="Amount (Local)" />
-                                <DataGridTextColumn
-                                    Width="100"
-                                    Binding="{Binding Currency.Symbol}"
-                                    Header="Currency" />
-                                <DataGridTextColumn
-                                    Width="200"
-                                    Binding="{Binding Comments}"
-                                    Header="Comments" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </TabItem>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <templates:ExpenseView />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
                 </TabControl>
             </Grid>
         </Grid>

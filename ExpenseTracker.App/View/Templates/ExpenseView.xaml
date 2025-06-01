@@ -8,7 +8,7 @@
     d:DataContext="{d:DesignInstance local:ExpenseViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignWidth="1080"
     mc:Ignorable="d">
     <Grid>
         <DataGrid
@@ -18,7 +18,7 @@
             Margin="15"
             Focusable="True"
             HorizontalScrollBarVisibility="Auto"
-            ItemsSource="{Binding CurrentDisplayedExpense.Entries, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding Expense.Entries, UpdateSourceTrigger=PropertyChanged}"
             SelectionChanged="ExpenseDataGrid_SelectionChanged"
             SelectionMode="Extended"
             VerticalScrollBarVisibility="Auto">

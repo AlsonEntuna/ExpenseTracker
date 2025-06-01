@@ -81,10 +81,14 @@ namespace ExpenseTracker
                     VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
                     if (deserializedData == null)
                         return;
-                    VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
+                    //VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
                     // Detects and migrates old legacy data...
-                    _variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-                    _variableExpenseViewModel.UpdateEventListeners();
+                    //VariableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
+                    //VariableExpenseViewModel.UpdateEventListeners();
+                    deserializedData.DetectAndMigrateLegacyData();
+                    VariableExpenseViewModel.Expenses.Add(deserializedData);
+                    VariableExpenseViewModel.UpdateEventListeners();
+                    //VariableExpenseViewModel.ExpenseOpenEvent?.Invoke(this, new EventArgs());
                 }
                 catch (Exception e)
                 {

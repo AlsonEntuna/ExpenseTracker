@@ -30,11 +30,20 @@ namespace ExpenseTracker.View
         {
             InitializeComponent();
             parentWindow.SizeChanged += OnParentSizeChanged;
+            _vm = AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>();
+            _vm.ExpenseOpenEvent += OnExpenseOpenedEvent;
+        }
+
+        private void OnExpenseOpenedEvent(object sender, EventArgs e)
+        {
+            //TODO: test
+            DisplayExpenses();
         }
 
         private void OnParentSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            DataGrid_Expenses.MaxHeight = Grid_DataEntryView.ActualHeight - 100;
+            //DataGrid_Expenses.MaxHeight = Grid_DataEntryView.ActualHeight - 100;
+            TabControlExpenses.MaxHeight = Grid_DataEntryView.ActualHeight - 100;
         }
 
         private void GetDataContext()
@@ -59,9 +68,9 @@ namespace ExpenseTracker.View
 
         private void Search()
         {
-            CollectionView collectionView = (CollectionView)CollectionViewSource.GetDefaultView(DataGrid_Expenses.ItemsSource);
-            collectionView.Filter = UserFilter;
-            CollectionViewSource.GetDefaultView(DataGrid_Expenses.ItemsSource).Refresh();
+            //CollectionView collectionView = (CollectionView)CollectionViewSource.GetDefaultView(DataGrid_Expenses.ItemsSource);
+            //collectionView.Filter = UserFilter;
+            //CollectionViewSource.GetDefaultView(DataGrid_Expenses.ItemsSource).Refresh();
         }
 
         private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -121,25 +130,44 @@ namespace ExpenseTracker.View
         private void DataGrid_Expenses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GetDataContext();
-            _vm.SelectedDataEntries = DataGrid_Expenses.SelectedItems.OfType<DataEntry>().ToList();
+            //_vm.SelectedDataEntries = DataGrid_Expenses.SelectedItems.OfType<DataEntry>().ToList();
         }
 
-        private void DataGrid_Expenses_OnCopy(object sender, ExecutedRoutedEventArgs e)
-        {
-            GetDataContext();
-            _vm.CopyEntriesToClipboard();
-        }
+        //private void DataGrid_Expenses_OnCopy(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    GetDataContext();
+        //    _vm.CopyEntriesToClipboard();
+        //}
 
         private void DisplayExpenses()
         {
-            foreach (var expense in  _vm.Expenses)
+            // TODO: check later
+            return;
+            TabControlExpenses.Items.Clear();
+            foreach (var expense in _vm.Expenses)
             {
                 var expenseView = new ExpenseView();
+                var viewmodel = new ExpenseViewModel();
+                viewmodel.Expense = expense;
+                expenseView.DataContext = viewmodel;
                 TabItem tabItem = new TabItem();
                 tabItem.Header = expense.Name;
                 tabItem.Content = expenseView;
                 TabControlExpenses.Items.Add(tabItem);
             }
+        }
+
+        private void TabControlExpenses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TabControlExpenses.SelectedItem is TabItem selectedTabItem)
+            {
+                if (selectedTabItem.Content is ExpenseView expenseViewControl)
+                {
+                    ExpenseViewModel expenseVm = expenseViewControl.DataContext as ExpenseViewModel;
+                    _vm.CurrentDisplayedExpense = expenseVm.Expense;
+                }
+            }
+
         }
     }
 }

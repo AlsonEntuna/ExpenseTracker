@@ -195,6 +195,7 @@ namespace ExpenseTracker.Data
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     return;
                 }
                 // Serialize immediately

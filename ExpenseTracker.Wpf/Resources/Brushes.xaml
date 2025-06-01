@@ -1,10 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+    <!--  Colors  -->
     <Color x:Key="Color.Main.Background">#0f0f0f</Color>
     <Color x:Key="Color.Main.Background.Alt">#000000</Color>
 
     <Color x:Key="Color.Main.Text">#dcd7d7</Color>
     <Color x:Key="Color.Main.Text.Alt">#9d9d9d</Color>
+    <Color x:Key="Color.Main.Text.Disabled">#9d9d9d</Color>
 
     <Color x:Key="Color.Button.Main">#143e0a</Color>
     <Color x:Key="Color.Button.Disable">#06100e</Color>
@@ -13,14 +14,29 @@
     <Color x:Key="Color.Border.Background">#0b2507</Color>
     <Color x:Key="Color.Border.Background.Alt">#0e2a0a</Color>
 
-    <Color x:Key="Color.Hover1">#217115</Color>
-    <Color x:Key="Color.Hover2">#2c971c</Color>
+    <Color x:Key="Color.Item.Selected">#0e2a0a</Color>
+    <Color x:Key="Color.Item.Unselected">#1a5013</Color>
 
+    <Color x:Key="Color.Scrollbar.Stop">#0e2a0a</Color>
+    <Color x:Key="Color.Scrollbar.Active">#1a5013</Color>
+
+    <Color x:Key="Color.Hover.Active">#217115</Color>
+    <Color x:Key="Color.Hover.Active.1">#123d0b</Color>
+    <Color x:Key="Color.Hover.Disabled">#2c971c</Color>
+
+    <!--  Brushes  -->
     <SolidColorBrush x:Key="Brush.Main.Background" Color="{StaticResource Color.Main.Background}" />
     <SolidColorBrush x:Key="Brush.Main.Background.Alt" Color="{StaticResource Color.Main.Background.Alt}" />
 
+    <SolidColorBrush x:Key="Brush.Item.Selected" Color="{StaticResource Color.Item.Selected}" />
+    <SolidColorBrush x:Key="Brush.Item.Unselected" Color="{StaticResource Color.Item.Unselected}" />
+
+    <SolidColorBrush x:Key="Brush.Scrollbar.Active" Color="{StaticResource Color.Scrollbar.Active}" />
+    <SolidColorBrush x:Key="Brush.Scrollbar.Stop" Color="{StaticResource Color.Scrollbar.Stop}" />
+
     <SolidColorBrush x:Key="Brush.Main.Text" Color="{StaticResource Color.Main.Text}" />
     <SolidColorBrush x:Key="Brush.Main.Text.Alt" Color="{StaticResource Color.Main.Text.Alt}" />
+    <SolidColorBrush x:Key="Brush.Main.Text.Disabled" Color="{StaticResource Color.Main.Text.Disabled}" />
 
     <SolidColorBrush x:Key="Brush.Button.Main" Color="{StaticResource Color.Button.Main}" />
     <SolidColorBrush x:Key="Brush.Button.Disable" Color="{StaticResource Color.Button.Disable}" />
@@ -29,7 +45,8 @@
     <SolidColorBrush x:Key="Brush.Border.Background" Color="{StaticResource Color.Border.Background}" />
     <SolidColorBrush x:Key="Brush.Border.Background.Alt" Color="{StaticResource Color.Border.Background.Alt}" />
 
-    <SolidColorBrush x:Key="Brush.Hover1" Color="{StaticResource Color.Hover1}" />
-    <SolidColorBrush x:Key="Brush.Hover2" Color="{StaticResource Color.Hover2}" />
+    <SolidColorBrush x:Key="Brush.Hover.Active" Color="{StaticResource Color.Hover.Active}" />
+    <SolidColorBrush x:Key="Brush.Hover.Active.1" Color="{StaticResource Color.Hover.Active.1}" />
+    <SolidColorBrush x:Key="Brush.Hover.Disabled" Color="{StaticResource Color.Hover.Disabled}" />
 
 </ResourceDictionary>

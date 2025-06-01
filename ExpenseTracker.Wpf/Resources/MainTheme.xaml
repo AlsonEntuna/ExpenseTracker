@@ -16,5 +16,6 @@
         <ResourceDictionary Source="Theme/Charts.xaml" />
         <ResourceDictionary Source="Theme/MenuItems.xaml" />
         <ResourceDictionary Source="Theme/Scrollbar.xaml" />
+        <ResourceDictionary Source="Theme/TabControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

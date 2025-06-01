@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 
 using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
+using ExpenseTracker.Data.Events;
 using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
@@ -36,7 +37,7 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        private ObservableCollection<VariableExpense> _expenses;
+        private ObservableCollection<VariableExpense> _expenses = new();
         public ObservableCollection<VariableExpense> Expenses
         {
             get => _expenses;
@@ -61,19 +62,24 @@ namespace ExpenseTracker.ViewModels
         public ICommand SaveVariableExpenseCommand => new RelayCommand(SaveVariableExepense);
         public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExpenseReport);
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
-        public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
+        //public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         public ICommand EditBudgetCommand => new RelayCommand(EditBudget);
         public ICommand EditExpenseNameCommand => new RelayCommand(EditExpenseName);
         public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
         public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
         public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
-        public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
-        public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
-        public ICommand SortEntriesCommand => new RelayCommand(SortEntries);
+        //public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
+        //public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
+        //public ICommand SortEntriesCommand => new RelayCommand(SortEntries);
         #endregion
 
         #region ViewModels
         public CurrencyConverterViewModel ConverterUIViewModel { get; set; }
+        #endregion
+
+        #region Events
+        [NonSerialized]
+        public EventHandler<EventArgs> ExpenseOpenEvent;
         #endregion
 
         public bool IsNewExpense { get; set; }
@@ -109,13 +115,22 @@ namespace ExpenseTracker.ViewModels
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 // TODO change logic here and add the new expenses
-                CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                //CurrentDisplayedExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                VariableExpense newExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 // Detect and migrate legacy data
-                CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-                UpdateEventListeners();
-                DataHandler.Config.DataLocation = dialog.FileName;
-                DataHandler.SaveAppConfiguration();
-                IsNewExpense = false;
+                //CurrentDisplayedExpense.DetectAndMigrateLegacyData();
+                newExpense.DetectAndMigrateLegacyData();
+                if (!Expenses.Contains(newExpense))
+                {
+                    Expenses.Add(newExpense);
+
+                    UpdateEventListeners();
+                    // TODO: test
+                    ExpenseOpenEvent?.Invoke(this, new EventArgs());
+                    DataHandler.Config.DataLocation = dialog.FileName;
+                    DataHandler.SaveAppConfiguration();
+                    IsNewExpense = false;
+                }
             }
         }
 
@@ -149,7 +164,10 @@ namespace ExpenseTracker.ViewModels
             }
             else
             {
-                JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentDisplayedExpense);
+               if (CurrentDisplayedExpense != null)
+                {
+                    JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentDisplayedExpense);
+                }
             }
         }
 
@@ -203,14 +221,14 @@ namespace ExpenseTracker.ViewModels
             return report;
         }
 
-        private void RemoveEntry()
-        {
-            if (SelectedDataEntries != null)
-            { 
-                SelectedDataEntries.ForEach(entry => CurrentDisplayedExpense.Entries.Remove(entry));
-                SelectedDataEntries.Clear();
-            }
-        }
+        //private void RemoveEntry()
+        //{
+        //    if (SelectedDataEntries != null)
+        //    { 
+        //        SelectedDataEntries.ForEach(entry => CurrentDisplayedExpense.Entries.Remove(entry));
+        //        SelectedDataEntries.Clear();
+        //    }
+        //}
 
         private void SaveVariableExepense()
         {
@@ -274,60 +292,60 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        public void CopyEntriesToClipboard()
-        {
-            if (SelectedDataEntries.Count == 0)
-                return;
-            string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
+        //public void CopyEntriesToClipboard()
+        //{
+        //    if (SelectedDataEntries.Count == 0)
+        //        return;
+        //    string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
 
-            Clipboard.SetText(clipboard);
-        }
+        //    Clipboard.SetText(clipboard);
+        //}
 
-        public void ProcessEntriesFromClipboard()
-        {
-            string clipboard = Clipboard.GetText();
-            var entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
-            if (entries == null)
-                return;
+        //public void ProcessEntriesFromClipboard()
+        //{
+        //    string clipboard = Clipboard.GetText();
+        //    var entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
+        //    if (entries == null)
+        //        return;
 
-            List<DataEntry> _toAdd = new List<DataEntry>();
-            if (CurrentDisplayedExpense.Entries.Count != 0)
-            {
-                foreach (var deserializedEntry in entries)
-                {
-                    if (!CurrentDisplayedExpense.Entries.Contains(deserializedEntry))
-                        _toAdd.Add(deserializedEntry);
-                    else
-                    {
-                        foreach (var entry in CurrentDisplayedExpense.Entries)
-                        {
-                            if (entry == deserializedEntry)
-                            {
-                                entry.Amount = deserializedEntry.Amount;
-                                entry.Comments = deserializedEntry.Comments;
-                            }
-                        }
-                    }
-                }
-            }
-            else
-                _toAdd = entries;
+        //    List<DataEntry> _toAdd = new List<DataEntry>();
+        //    if (CurrentDisplayedExpense.Entries.Count != 0)
+        //    {
+        //        foreach (var deserializedEntry in entries)
+        //        {
+        //            if (!CurrentDisplayedExpense.Entries.Contains(deserializedEntry))
+        //                _toAdd.Add(deserializedEntry);
+        //            else
+        //            {
+        //                foreach (var entry in CurrentDisplayedExpense.Entries)
+        //                {
+        //                    if (entry == deserializedEntry)
+        //                    {
+        //                        entry.Amount = deserializedEntry.Amount;
+        //                        entry.Comments = deserializedEntry.Comments;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //        _toAdd = entries;
 
-            // Add
-            _toAdd.ForEach(CurrentDisplayedExpense.Entries.Add);
-        }
+        //    // Add
+        //    _toAdd.ForEach(CurrentDisplayedExpense.Entries.Add);
+        //}
 
-        private void SortEntries()
-        {
-            if (CurrentDisplayedExpense.Entries != null)
-            {
-                var sortedList = CurrentDisplayedExpense.Entries.OrderBy(f => f.Description).ToList();
-                CurrentDisplayedExpense.Entries.Clear();
-                foreach (var item in sortedList)
-                {
-                    CurrentDisplayedExpense.Entries.Add(item);
-                }
-            }
-        }
+        //private void SortEntries()
+        //{
+        //    if (CurrentDisplayedExpense.Entries != null)
+        //    {
+        //        var sortedList = CurrentDisplayedExpense.Entries.OrderBy(f => f.Description).ToList();
+        //        CurrentDisplayedExpense.Entries.Clear();
+        //        foreach (var item in sortedList)
+        //        {
+        //            CurrentDisplayedExpense.Entries.Add(item);
+        //        }
+        //    }
+        //}
     }
 }
