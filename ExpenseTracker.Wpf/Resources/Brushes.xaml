@@ -13,6 +13,7 @@
 
     <Color x:Key="Color.Border.Background">#0b2507</Color>
     <Color x:Key="Color.Border.Background.Alt">#0e2a0a</Color>
+    <Color x:Key="Color.Border">#696666</Color>
 
     <Color x:Key="Color.Item.Selected">#0e2a0a</Color>
     <Color x:Key="Color.Item.Unselected">#1a5013</Color>
@@ -44,6 +45,7 @@
 
     <SolidColorBrush x:Key="Brush.Border.Background" Color="{StaticResource Color.Border.Background}" />
     <SolidColorBrush x:Key="Brush.Border.Background.Alt" Color="{StaticResource Color.Border.Background.Alt}" />
+    <SolidColorBrush x:Key="Brush.Border" Color="{StaticResource Color.Border}" />
 
     <SolidColorBrush x:Key="Brush.Hover.Active" Color="{StaticResource Color.Hover.Active}" />
     <SolidColorBrush x:Key="Brush.Hover.Active.1" Color="{StaticResource Color.Hover.Active.1}" />
