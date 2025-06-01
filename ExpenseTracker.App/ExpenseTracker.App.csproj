@@ -27,7 +27,6 @@
     <RootNamespace>ExpenseTracker</RootNamespace>
     <PackageId>ExpenseTracker</PackageId>
     <AssemblyName>ExpenseTracker</AssemblyName>
-    <BaseIntermediateOutputPath>..\intermediate\</BaseIntermediateOutputPath>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
