@@ -1,5 +1,6 @@
-﻿using System;
-using ExpenseTracker.CurrencyConverter;
+﻿using ExpenseTracker.CurrencyConverter;
+
+using System;
 
 namespace ExpenseTracker.Data.Reports
 {

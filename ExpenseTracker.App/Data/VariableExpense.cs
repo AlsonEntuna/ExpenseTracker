@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Wpf;
+
+using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 
-using ExpenseTracker.CurrencyConverter;
-using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {

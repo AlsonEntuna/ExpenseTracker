@@ -1,7 +1,8 @@
-﻿using System;
-using ExpenseTracker.Wpf.Dialog;
+﻿using ExpenseTracker.Wpf.Dialog;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Data.Events;
+
+using System;
 
 namespace ExpenseTracker.Data.Reports
 {

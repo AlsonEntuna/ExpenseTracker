@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ExpenseTracker.Environment;
+using ExpenseTracker.Tools;
+using ExpenseTracker.Utils;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
-using ExpenseTracker.Environment;
-using ExpenseTracker.Tools;
-using ExpenseTracker.Utils;
 
 using MessageBox = System.Windows.MessageBox;
 

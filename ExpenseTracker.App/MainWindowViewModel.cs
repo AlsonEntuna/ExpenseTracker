@@ -1,22 +1,26 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Reflection;
-using System.Diagnostics;
-
-using CommunityToolkit.Mvvm.Input;
-
-using ExpenseTracker.Data;
+﻿using ExpenseTracker.Data;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
 using ExpenseTracker.View.PiggyBank;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
-
-using ApplicationUpdater;
 using ExpenseTracker.View.Templates;
 
+#if !DEBUG
+using ApplicationUpdater;
+#endif
+
+using System;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Input;
+
+#if !DEBUG
+using System.Reflection;
+using System.Diagnostics;
+#endif
+
+using CommunityToolkit.Mvvm.Input;
 
 namespace ExpenseTracker
 {

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using ExpenseTracker.Data.Savings;
+using ExpenseTracker.Wpf;
+using ExpenseTracker.Wpf.Dialog;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-
-using ExpenseTracker.Data.Savings;
-using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.ViewModels
 {

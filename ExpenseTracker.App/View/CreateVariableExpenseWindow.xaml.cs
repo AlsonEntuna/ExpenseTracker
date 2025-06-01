@@ -1,8 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Input;
-
-using ExpenseTracker.CurrencyConverter;
+﻿using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Data;
+
+using System.Windows;
+using System.Windows.Input;
 
 namespace ExpenseTracker.View
 {

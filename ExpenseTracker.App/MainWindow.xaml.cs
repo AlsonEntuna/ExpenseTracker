@@ -23,7 +23,9 @@ namespace ExpenseTracker
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            {
+                DragMove();
+            }
         }
 
         private void Btn_Exit_Click(object sender, RoutedEventArgs e)
