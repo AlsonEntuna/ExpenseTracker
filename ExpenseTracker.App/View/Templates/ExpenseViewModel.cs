@@ -1,12 +1,14 @@
-using CommunityToolkit.Mvvm.Input;
 using ExpenseTracker.Data;
 using ExpenseTracker.Tools;
 using ExpenseTracker.Wpf;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+
+using CommunityToolkit.Mvvm.Input;
 
 namespace ExpenseTracker.View.Templates
 {
@@ -31,6 +33,7 @@ namespace ExpenseTracker.View.Templates
             set => SetProperty(ref _selectedDataEntries, value);
         }
 
+        // Used in the Control DataTemplate
         public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
         public List<string> PaymentChannels => DataHandler.DataCategories.PaymentChannels;
 

@@ -1,4 +1,5 @@
 using ExpenseTracker.Data;
+
 using System.Linq;
 using System.Windows.Controls;
 
@@ -6,11 +7,11 @@ namespace ExpenseTracker.View.Templates
 {
     public partial class ExpenseView : UserControl
     {
-
         private ExpenseViewModel _vm;
         public ExpenseView()
         {
             InitializeComponent();
+            _vm = DataContext as ExpenseViewModel;
 
         }
         private void GetDataContext()

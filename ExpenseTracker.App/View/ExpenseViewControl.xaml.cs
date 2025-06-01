@@ -1,15 +1,16 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using ExpenseTracker.Data;
+﻿using ExpenseTracker.Data;
 using ExpenseTracker.View.Templates;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
+
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+
+using CommunityToolkit.Mvvm.Input;
 
 using Timer = System.Windows.Forms.Timer;
 
@@ -48,7 +49,6 @@ namespace ExpenseTracker.View
                 return (item as DataEntry).Description.Contains(TxtBox_Search.Text, StringComparison.OrdinalIgnoreCase);
             }
         }
-
         public ICommand SearchCommand => new RelayCommand(Search);
 
         private void Search()
@@ -72,7 +72,6 @@ namespace ExpenseTracker.View
             collectionView.Filter = UserFilter;
             CollectionViewSource.GetDefaultView(expenseView.ExpenseDataGrid.ItemsSource).Refresh();
         }
-
         private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (_searchDelayTimer != null)
@@ -95,34 +94,22 @@ namespace ExpenseTracker.View
                 _searchDelayTimer.Stop();
         }
 
-        private void GridSplitter_DragDelta(object sender, DragDeltaEventArgs e)
-        {
-            var gridSplitter = sender as GridSplitter;
-
-            if (gridSplitter != null)
-            {
-                ((DataGridCell)gridSplitter.Tag).Column.Width
-                    = ((DataGridCell)gridSplitter.Tag).Column.ActualWidth +
-                      e.HorizontalChange;
-            }
-        }
-
-        private void Btn_Open_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Btn_Open_Click(object sender, RoutedEventArgs e)
         {
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenVariableExpense();
         }
 
-        private void Btn_New_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Btn_New_Click(object sender, RoutedEventArgs e)
         {
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().CreateVariableExpense();
         }
 
-        private void Btn_Tools_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Btn_Tools_Click(object sender, RoutedEventArgs e)
         {
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenToolsPanel();
         }
 
-        private void Btn_PiggyBank_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Btn_PiggyBank_Click(object sender, RoutedEventArgs e)
         {
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenPiggyBank();
         }

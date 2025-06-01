@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Forms;
-using System.Windows.Input;
-
-using CommunityToolkit.Mvvm.Input;
-
-using ExpenseTracker.CurrencyConverter.UI;
+﻿using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
-using ExpenseTracker.Data.Events;
 using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
@@ -17,12 +7,18 @@ using ExpenseTracker.View.Templates;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Forms;
+using System.Windows.Input;
+
+using CommunityToolkit.Mvvm.Input;
+
 
 namespace ExpenseTracker.ViewModels
 {
     class ExpenseControlViewModel : ViewModel
     {
-        // TODO: we need to change this into a ExpenseViewModel to align with the new archtitecture
         private ExpenseViewModel _currentDisplayedExpense;
         public ExpenseViewModel CurrentExpenseViewModel
         {
@@ -56,23 +52,16 @@ namespace ExpenseTracker.ViewModels
             set => SetProperty(ref _selectedDataEntries, value);
         }
 
-        public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
-        public List<string> PaymentChannels => DataHandler.DataCategories.PaymentChannels;
-
         #region Commands
         public ICommand AddEntryCommand => new RelayCommand(AddEntry);
         public ICommand SaveVariableExpenseCommand => new RelayCommand(SaveVariableExepense);
         public ICommand GenerateExpenseReportCommand => new RelayCommand(GenerateExpenseReport);
         public ICommand OpenReportCommand => new RelayCommand(OpenReport);
-        //public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         public ICommand EditBudgetCommand => new RelayCommand(EditBudget);
         public ICommand EditExpenseNameCommand => new RelayCommand(EditExpenseName);
         public ICommand EditExpenseDescriptionCommand => new RelayCommand(EditExpenseDescription);
         public ICommand EditDueDateCommand => new RelayCommand(EditDueDate);
         public ICommand UpdateEntryConversionCommand => new RelayCommand(UpdateEntryConversion);
-        //public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
-        //public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
-        //public ICommand SortEntriesCommand => new RelayCommand(SortEntries);
         #endregion
 
         #region ViewModels
@@ -111,7 +100,6 @@ namespace ExpenseTracker.ViewModels
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                // TODO change logic here and add the new expenses
                 VariableExpense newExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 // Detect and migrate legacy data
                 newExpense.DetectAndMigrateLegacyData();
@@ -124,6 +112,7 @@ namespace ExpenseTracker.ViewModels
                     Expenses.Add(viewModel);
 
                     UpdateEventListeners();
+                    // TODO: we need to change the data location from string to List<string> to contain more than 1 string
                     DataHandler.Config.DataLocation = dialog.FileName;
                     DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
@@ -153,7 +142,7 @@ namespace ExpenseTracker.ViewModels
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel);
+                    JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel.Expense);
                     DataHandler.Config.DataLocation = dialog.FileName;
                     DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
@@ -163,7 +152,7 @@ namespace ExpenseTracker.ViewModels
             {
                if (CurrentExpenseViewModel != null)
                 {
-                    JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentExpenseViewModel);
+                    JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentExpenseViewModel.Expense);
                 }
             }
         }
@@ -199,33 +188,6 @@ namespace ExpenseTracker.ViewModels
             reportWindow.expenseCategoryPieChart.DataContext = reportVm.Report.ExpenseCategoryChartData;
             reportWindow.ShowDialog();
         }
-
-        //private ExpenseDataReport GenerateExpenseDataReport()
-        //{
-        //    ExpenseDataReport report = new();
-        //    report.DataCurrency = CurrentExpenseViewModel.Expense.DataCurrency;
-            
-        //    foreach (DataEntry entry in CurrentExpenseViewModel.Expense.Entries)
-        //    {
-        //        report.TotalAmount += entry.Amount;
-        //        report.AddCategoryReport(entry);
-        //    }
-
-        //    report.TotalAmount = (float)Math.Round(report.TotalAmount, 2);
-        //    report.UnPaidAmount = report.TotalAmount;
-        //    report.Savings = (float)Math.Round(CurrentExpenseViewModel.Expense.Budget - report.TotalAmount, 2);
-            
-        //    return report;
-        //}
-
-        //private void RemoveEntry()
-        //{
-        //    if (SelectedDataEntries != null)
-        //    { 
-        //        SelectedDataEntries.ForEach(entry => CurrentDisplayedExpense.Entries.Remove(entry));
-        //        SelectedDataEntries.Clear();
-        //    }
-        //}
 
         private void SaveVariableExepense()
         {
