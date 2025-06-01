@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
+using System.IO;
 
 
 namespace ExpenseTracker.ViewModels
@@ -45,6 +46,8 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
+        private Dictionary<string, string> _expenseDictionary = new Dictionary<string, string>();
+
         private List<DataEntry> _selectedDataEntries;
         public List<DataEntry> SelectedDataEntries
         {
@@ -69,7 +72,7 @@ namespace ExpenseTracker.ViewModels
         #endregion
 
         public bool IsNewExpense { get; set; }
-        public ExpenseControlViewModel() 
+        public ExpenseControlViewModel()
         {
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
@@ -82,6 +85,15 @@ namespace ExpenseTracker.ViewModels
             if (entryWindow.ShowDialog() ?? true)
             {
                 CurrentExpenseViewModel.Expense.Entries.Add(entryWindow.Entry);
+            }
+        }
+
+        internal void AddExpense(ExpenseViewModel expenseViewModel, string absolutePath)
+        {
+            if (!Expenses.Contains(expenseViewModel) && !_expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
+            {
+                _expenseDictionary.Add(expenseViewModel.Expense.UniqueGuid.ToString(), absolutePath);
+                Expenses.Add(expenseViewModel);
             }
         }
 
@@ -109,17 +121,22 @@ namespace ExpenseTracker.ViewModels
                 };
                 if (!Expenses.Contains(viewModel))
                 {
-                    Expenses.Add(viewModel);
-
+                    //Expenses.Add(viewModel);
+                    AddExpense(viewModel, dialog.FileName);
                     UpdateEventListeners();
                     // TODO: we need to change the data location from string to List<string> to contain more than 1 string
-                    DataHandler.Config.DataLocation = dialog.FileName;
+                    //DataHandler.Config.DataLocation = dialog.FileName;
+                    DataHandler.Config.DataLocations.Add(dialog.FileName);
                     DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
                 }
             }
         }
 
+        /// <summary>
+        /// Is used when the tool creates an expense using the copy method
+        /// </summary>
+        /// <param name="expenseVm"></param>
         public void SetCurrentExpenseViewModel(ExpenseViewModel expenseVm)
         {
             CurrentExpenseViewModel = expenseVm;
@@ -128,7 +145,8 @@ namespace ExpenseTracker.ViewModels
 
         internal void SaveCurrentExpenseData()
         {
-            if (string.IsNullOrEmpty(DataHandler.Config.DataLocation) || IsNewExpense)
+            // If it's a new file
+            if (IsNewExpense)
             {
                 SaveFileDialog dialog = new()
                 {
@@ -143,17 +161,25 @@ namespace ExpenseTracker.ViewModels
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel.Expense);
-                    DataHandler.Config.DataLocation = dialog.FileName;
-                    DataHandler.SaveAppConfiguration();
+                    // TODO: fix this
+                    //DataHandler.Config.DataLocation = dialog.FileName;
+                    //DataHandler.SaveAppConfiguration();
+                    _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
+                    // TODO: fix the logic of the copying
+                    DataHandler.Config.DataLocations.Add(dialog.FileName);
                     IsNewExpense = false;
                 }
             }
             else
             {
                if (CurrentExpenseViewModel != null)
-                {
-                    JsonUtils.Serialize(DataHandler.Config.DataLocation, CurrentExpenseViewModel.Expense);
-                }
+               {
+                    bool success = _expenseDictionary.TryGetValue(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
+                    if (success && File.Exists(_absoluteFilePath))
+                    {
+                        JsonUtils.Serialize(_absoluteFilePath, CurrentExpenseViewModel.Expense);
+                    }
+               }
             }
         }
 

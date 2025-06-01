@@ -79,29 +79,56 @@ namespace ExpenseTracker
 
         private void InitializeData()
         {
-            if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
+            //if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
+            //{
+            //    try
+            //    {
+            //        VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
+            //        if (deserializedData == null)
+            //            return;
+
+            //        deserializedData.DetectAndMigrateLegacyData();
+
+            //        // Create a new ExpenseViewModel
+            //        ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
+            //        if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
+            //        {
+            //            VariableExpenseViewModel.Expenses.Add(expenseVm);
+            //            VariableExpenseViewModel.UpdateEventListeners();
+            //        }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        DataHandler.Config.DataLocation = string.Empty;
+            //        // TODO: have a logging system here...
+            //        Console.WriteLine(e.ToString());
+            //    }
+            //}
+            if (DataHandler.Config.DataLocations.Count != 0)
             {
-                try
+                foreach (var dataLocation in DataHandler.Config.DataLocations)
                 {
-                    VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
-                    if (deserializedData == null)
-                        return;
-
-                    deserializedData.DetectAndMigrateLegacyData();
-
-                    // Create a new ExpenseViewModel
-                    ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
-                    if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
+                    try
                     {
-                        VariableExpenseViewModel.Expenses.Add(expenseVm);
-                        VariableExpenseViewModel.UpdateEventListeners();
+                        VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(dataLocation);
+                        if (deserializedData == null)
+                            return;
+
+                        deserializedData.DetectAndMigrateLegacyData();
+
+                        // Create a new ExpenseViewModel
+                        ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
+                        if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
+                        {
+                            //VariableExpenseViewModel.Expenses.Add(expenseVm);
+                            VariableExpenseViewModel.AddExpense(expenseVm, dataLocation);
+                            VariableExpenseViewModel.UpdateEventListeners();
+                        }
                     }
-                }
-                catch (Exception e)
-                {
-                    DataHandler.Config.DataLocation = string.Empty;
-                    // TODO: have a logging system here...
-                    Console.WriteLine(e.ToString());
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
                 }
             }
         }
@@ -115,7 +142,6 @@ namespace ExpenseTracker
                 ExpenseViewModel expenseVm = new() { Expense = window.Expense };
                 if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
                 {
-                    VariableExpenseViewModel.Expenses.Add(expenseVm);
                     VariableExpenseViewModel.CurrentExpenseViewModel = expenseVm;
                     VariableExpenseViewModel.IsNewExpense = true;
                 }
@@ -178,7 +204,8 @@ namespace ExpenseTracker
                 Filter = "expense files (*.exp)|*.exp",
                 CheckPathExists = true,
                 FilterIndex = 2,
-                InitialDirectory = Path.GetDirectoryName(DataHandler.Config.DataLocation),
+                // TODO: fix
+                //InitialDirectory = Path.GetDirectoryName(DataHandler.Config.DataLocation),
                 RestoreDirectory = true
             };
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -191,8 +218,8 @@ namespace ExpenseTracker
                 copiedDataExpense.Description = "Copy - Replace Me";
 
                 ExpenseViewModel expenseViewModel = new() { Expense = copiedDataExpense };
+                // TODO: fix logic here. this is not ok
                 AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SetCurrentExpenseViewModel(expenseViewModel);
-
             }
         }
 

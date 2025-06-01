@@ -77,14 +77,17 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _report, value);
         }
 
+        public Guid UniqueGuid { get; set; }
 
-        public VariableExpense() { }
+        public VariableExpense()
+        {
+            // Generate Unique Guid
+            UniqueGuid = Guid.NewGuid();
+        }
+
         public void AddEntry(DataEntry Entry)
         {
-            if (Entry == null)
-                return;
-
-            if (!Entries.Contains(Entry))
+            if (Entry != null && !Entries.Contains(Entry))
             {
                 Entries.Add(Entry);
             }
@@ -100,6 +103,12 @@ namespace ExpenseTracker.Data
                     entry.PaymentChannel = entry.Category;
                     entry.Category = null;
                 }
+            }
+
+            // Check Guid
+            if (UniqueGuid == Guid.Empty)
+            {
+                UniqueGuid = Guid.NewGuid();
             }
         }
 

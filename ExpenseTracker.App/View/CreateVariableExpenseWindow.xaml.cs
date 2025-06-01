@@ -12,6 +12,7 @@ namespace ExpenseTracker.View
     public partial class CreateVariableExpenseWindow : Window
     {
         public VariableExpense Expense;
+        public string ExpensePath;
         public CreateVariableExpenseWindow()
         {
             InitializeComponent();

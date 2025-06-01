@@ -44,10 +44,7 @@ namespace ExpenseTracker.View.Templates
         public ICommand SortEntriesCommand => new RelayCommand(SortEntries);
         #endregion
 
-        public ExpenseViewModel()
-        {
-
-        }
+        public ExpenseViewModel() { }
 
         public override string ToString()
         {
@@ -58,7 +55,7 @@ namespace ExpenseTracker.View.Templates
         {
             if (obj is ExpenseViewModel _other)
             {
-                return _other.Expense.Name == Expense.Name;
+                return Guid.Equals(Expense.UniqueGuid, _other.Expense.UniqueGuid);
             }
             return false;
         }
