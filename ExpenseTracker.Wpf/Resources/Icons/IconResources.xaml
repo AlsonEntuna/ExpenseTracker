@@ -13,4 +13,5 @@
     <BitmapImage x:Key="Search" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/search.ico" />
     <BitmapImage x:Key="Swap" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/swap.ico" />
     <BitmapImage x:Key="PiggyBank" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/piggybank.ico" />
+    <BitmapImage x:Key="AddExpense" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/add_expense.ico" />
 </ResourceDictionary>

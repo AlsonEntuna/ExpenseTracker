@@ -117,43 +117,44 @@
                                 <TextBlock
                                     Margin="5,0,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="25"
+                                    FontSize="30"
                                     FontWeight="Light"
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                    Text="Expense Total" />
+                                    Text="Savings" />
                                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                     <TextBlock
                                         Grid.Column="0"
+                                        VerticalAlignment="Center"
                                         Style="{StaticResource TextBlockStyle.Header1}"
                                         Text="{Binding CurrentExpenseViewModel.Expense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                    <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrentExpenseViewModel.Expense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                        Text="{Binding CurrentExpenseViewModel.Expense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                             </StackPanel>
                         </Border>
                     </Grid>
                     <Border
                         Grid.Column="1"
+                        Height="120"
                         Margin="5"
                         Background="{StaticResource Brush.Border.Background}"
                         CornerRadius="5">
-                        <StackPanel Height="100" Margin="10">
+                        <StackPanel Margin="10">
                             <TextBlock
                                 Margin="5,0,0,0"
                                 VerticalAlignment="Center"
-                                FontSize="30"
+                                FontSize="25"
                                 FontWeight="Light"
                                 Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                Text="Savings" />
+                                Text="Expense Total" />
                             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                 <TextBlock
                                     Grid.Column="0"
-                                    VerticalAlignment="Center"
                                     Style="{StaticResource TextBlockStyle.Header1}"
                                     Text="{Binding CurrentExpenseViewModel.Expense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource TextBlockStyle.Header1}"
-                                    Text="{Binding CurrentExpenseViewModel.Expense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrentExpenseViewModel.Expense.Report.TotalAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -178,7 +179,7 @@
                                     <Image
                                         Width="30"
                                         Height="30"
-                                        Source="{StaticResource Add}" />
+                                        Source="{StaticResource AddExpense}" />
                                     <TextBlock
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
