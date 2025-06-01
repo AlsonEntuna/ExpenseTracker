@@ -1,174 +1,17 @@
 {
-  "Expense": {
-    "Name": "debug_data_multi - ALT",
-    "Description": "debug",
-    "CycleEndDate": "2023-08-02T00:00:00",
-    "EndDate": "Wednesday, 2 August 2023",
-    "Budget": 2000.0,
-    "DataCurrency": {
-      "Code": "EUR",
-      "Name": "Euro",
-      "Symbol": "€"
-    },
-    "Currency": "en-DE",
-    "CurrencySymbol": "€",
-    "Entries": [
-      {
-        "Description": "sample",
-        "Amount": 100.0,
-        "OriginalAmount": 0.0,
-        "Category": null,
-        "PaymentChannel": "Credit Card",
-        "ExpenseCategory": "Food",
-        "Comments": null,
-        "Currency": {
-          "Code": "EUR",
-          "Name": "Euro",
-          "Symbol": "€"
-        }
-      },
-      {
-        "Description": "testing php",
-        "Amount": 163.8,
-        "OriginalAmount": 10000.0,
-        "Category": null,
-        "PaymentChannel": "Credit Card",
-        "ExpenseCategory": "Food",
-        "Comments": null,
-        "Currency": {
-          "Code": "PHP",
-          "Name": "Philippine Piso",
-          "Symbol": "₱"
-        }
-      },
-      {
-        "Description": "tesing other php",
-        "Amount": 50.15,
-        "OriginalAmount": 3000.0,
-        "Category": null,
-        "PaymentChannel": "Loan",
-        "ExpenseCategory": "Shopping",
-        "Comments": "test2",
-        "Currency": {
-          "Code": "PHP",
-          "Name": "Philippine Piso",
-          "Symbol": "₱"
-        }
-      },
-      {
-        "Description": "Sample Credit Card Expense (1)",
-        "Amount": 100.0,
-        "OriginalAmount": 0.0,
-        "Category": null,
-        "PaymentChannel": "Credit Card",
-        "ExpenseCategory": "Bills",
-        "Comments": null,
-        "Currency": {
-          "Code": "EUR",
-          "Name": "Euro",
-          "Symbol": "€"
-        }
-      },
-      {
-        "Description": "Sample Credit Card Expense",
-        "Amount": 100.0,
-        "OriginalAmount": 0.0,
-        "Category": null,
-        "PaymentChannel": "Credit Card",
-        "ExpenseCategory": "Bills",
-        "Comments": null,
-        "Currency": {
-          "Code": "EUR",
-          "Name": "Euro",
-          "Symbol": "€"
-        }
-      }
-    ],
-    "Report": {
-      "ExpenseCategoryReportCounter": {
-        "Food": 2,
-        "Shopping": 1,
-        "Bills": 2
-      },
-      "TotalAmount": 513.95,
-      "Savings": 1486.05,
-      "UnPaidAmount": 513.95,
-      "PaidAmount": 0.0,
-      "Completed": false,
-      "CategoryReports": [
-        {
-          "PaymentChannel": "Credit Card",
-          "Amount": 463.8,
-          "Comments": null,
-          "Paid": false,
-          "PartialPayment": 0.0,
-          "OutstandingBalance": 463.8
-        },
-        {
-          "PaymentChannel": "Loan",
-          "Amount": 50.15,
-          "Comments": null,
-          "Paid": false,
-          "PartialPayment": 0.0,
-          "OutstandingBalance": 50.15
-        }
-      ],
-      "SelectedReport": null,
-      "DataCurrency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
-      },
-      "CurrencySymbol": "€",
-      "ReportChartData": [
-        {
-          "Key": "Credit Card",
-          "Value": 464
-        },
-        {
-          "Key": "Loan",
-          "Value": 50
-        }
-      ],
-      "ExpenseCategoryChartData": [
-        {
-          "Key": "Food",
-          "Value": 2
-        },
-        {
-          "Key": "Shopping",
-          "Value": 1
-        },
-        {
-          "Key": "Bills",
-          "Value": 2
-        }
-      ],
-      "CurrencyReport": [
-        {
-          "Currency": {
-            "Code": "PHP",
-            "Name": "Philippine Piso",
-            "Symbol": "₱"
-          },
-          "Amount": 13000.0
-        }
-      ],
-      "AltCurrencyBreakdown": [
-        {
-          "CurrencyCode": "PHP",
-          "PaymentChannel": "Credit Card",
-          "Amount": 10000.0
-        },
-        {
-          "CurrencyCode": "PHP",
-          "PaymentChannel": "Loan",
-          "Amount": 3000.0
-        }
-      ]
-    }
+  "Name": "debug_data_multi - ALT",
+  "Description": "debug",
+  "CycleEndDate": "2023-08-02T00:00:00",
+  "EndDate": "Wednesday, 2 August 2023",
+  "Budget": 2000.0,
+  "DataCurrency": {
+    "Code": "EUR",
+    "Name": "Euro",
+    "Symbol": "€"
   },
-  "SelectedDataEntries": [
+  "Currency": "en-DE",
+  "CurrencySymbol": "€",
+  "Entries": [
     {
       "Description": "sample",
       "Amount": 100.0,
@@ -182,24 +25,112 @@
         "Name": "Euro",
         "Symbol": "€"
       }
+    },
+    {
+      "Description": "testing php",
+      "Amount": 163.8,
+      "OriginalAmount": 10000.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Piso",
+        "Symbol": "₱"
+      }
+    },
+    {
+      "Description": "tesing other php",
+      "Amount": 50.15,
+      "OriginalAmount": 3000.0,
+      "Category": null,
+      "PaymentChannel": "Loan",
+      "ExpenseCategory": "Shopping",
+      "Comments": "test2",
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Piso",
+        "Symbol": "₱"
+      }
     }
   ],
-  "Categories": [
-    "Food",
-    "Shopping",
-    "Bills",
-    "Transportation",
-    "Rent",
-    "Mortgage",
-    "Utilities"
-  ],
-  "PaymentChannels": [
-    "Credit Card",
-    "Loan",
-    "Mortgage"
-  ],
-  "RemoveEntryCommand": {},
-  "CopyEntryCommand": {},
-  "PasteEntryCommand": {},
-  "SortEntriesCommand": {}
+  "Report": {
+    "ExpenseCategoryReportCounter": {
+      "Food": 2,
+      "Shopping": 1
+    },
+    "TotalAmount": 313.95,
+    "Savings": 1686.05,
+    "UnPaidAmount": 313.95,
+    "PaidAmount": 0.0,
+    "Completed": false,
+    "CategoryReports": [
+      {
+        "PaymentChannel": "Credit Card",
+        "Amount": 263.8,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 263.8
+      },
+      {
+        "PaymentChannel": "Loan",
+        "Amount": 50.15,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 50.15
+      }
+    ],
+    "SelectedReport": null,
+    "DataCurrency": {
+      "Code": "EUR",
+      "Name": "Euro",
+      "Symbol": "€"
+    },
+    "CurrencySymbol": "€",
+    "ReportChartData": [
+      {
+        "Key": "Credit Card",
+        "Value": 264
+      },
+      {
+        "Key": "Loan",
+        "Value": 50
+      }
+    ],
+    "ExpenseCategoryChartData": [
+      {
+        "Key": "Food",
+        "Value": 2
+      },
+      {
+        "Key": "Shopping",
+        "Value": 1
+      }
+    ],
+    "CurrencyReport": [
+      {
+        "Currency": {
+          "Code": "PHP",
+          "Name": "Philippine Piso",
+          "Symbol": "₱"
+        },
+        "Amount": 13000.0
+      }
+    ],
+    "AltCurrencyBreakdown": [
+      {
+        "CurrencyCode": "PHP",
+        "PaymentChannel": "Credit Card",
+        "Amount": 10000.0
+      },
+      {
+        "CurrencyCode": "PHP",
+        "PaymentChannel": "Loan",
+        "Amount": 3000.0
+      }
+    ]
+  }
 }
