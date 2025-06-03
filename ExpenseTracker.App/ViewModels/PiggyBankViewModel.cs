@@ -73,7 +73,8 @@ namespace ExpenseTracker.ViewModels
 
         private void AddSavingsAmount()
         {
-            if (SelectedSavingsData == null) return;
+            if (SelectedSavingsData == null)
+                return;
 
             NumDialog numDialog = new NumDialog("Enter the amount you saved");
             numDialog.ShowDialog();
@@ -86,19 +87,24 @@ namespace ExpenseTracker.ViewModels
 
         private void EditSavings()
         {
-            if (SelectedSavingsData == null) return;
+            if (SelectedSavingsData == null)
+                return;
+
             _userSavingsDataService.EditSavingsData(SelectedSavingsData);
             RaisePropertyChanged(nameof(SelectedSavingsData));
         }
         private void RemoveSavings() 
         {
-            if (SelectedSavingsData == null) return;
+            if (SelectedSavingsData == null)
+                return;
+
             _userSavingsDataService.RemoveSavingsData(SelectedSavingsData);
             RaisePropertyChanged(nameof(Savings));
         }
         private void RemoveSavingsInput() 
         {
-            if (SelectedSavingsInput == null || SelectedSavingsData == null) return;
+            if (SelectedSavingsInput == null || SelectedSavingsData == null)
+                return;
 
             SelectedSavingsInput.ForEach(input => SelectedSavingsData.RemoveSavingsIinput(input));
             SelectedSavingsInput.Clear();

@@ -197,6 +197,8 @@ namespace ExpenseTracker
         }
         private void CopyFromOtherExpense()
         {
+            ExpenseControlViewModel vm = AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>();
+            vm.GetPathFromExpenseDictionary(vm.CurrentExpenseViewModel, out string _path);
             OpenFileDialog dialog = new OpenFileDialog()
             {
                 Title = "Select file to copy",
@@ -204,22 +206,22 @@ namespace ExpenseTracker
                 Filter = "expense files (*.exp)|*.exp",
                 CheckPathExists = true,
                 FilterIndex = 2,
-                // TODO: fix
-                //InitialDirectory = Path.GetDirectoryName(DataHandler.Config.DataLocation),
+                InitialDirectory = Path.GetDirectoryName(_path),
                 RestoreDirectory = true
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var copiedDataExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
-                if (copiedDataExpense == null) return;
+                if (copiedDataExpense == null)
+                    return;
 
+                // TODO: Implement copy constructor here....
                 copiedDataExpense.DetectAndMigrateLegacyData();
                 copiedDataExpense.Name = "Copy - Replace Me";
                 copiedDataExpense.Description = "Copy - Replace Me";
-
                 ExpenseViewModel expenseViewModel = new() { Expense = copiedDataExpense };
                 // TODO: fix logic here. this is not ok
-                AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SetCurrentExpenseViewModel(expenseViewModel);
+                vm.SetCurrentExpenseViewModel(expenseViewModel);
             }
         }
 

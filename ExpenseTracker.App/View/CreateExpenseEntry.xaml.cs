@@ -1,11 +1,11 @@
-﻿using System.Globalization;
+﻿using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Data;
+using ExpenseTracker.Wpf.Dialog;
+
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-
-using ExpenseTracker.CurrencyConverter;
-using ExpenseTracker.Data;
-using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.View
 {

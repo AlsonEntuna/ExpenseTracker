@@ -85,6 +85,12 @@ namespace ExpenseTracker.Data
             UniqueGuid = Guid.NewGuid();
         }
 
+        public VariableExpense(VariableExpense other)
+        {
+            // TODO: implement proper copy constructor
+            UniqueGuid = Guid.NewGuid();
+        }
+
         public void AddEntry(DataEntry Entry)
         {
             if (Entry != null && !Entries.Contains(Entry))

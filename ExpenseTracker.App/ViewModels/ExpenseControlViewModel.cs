@@ -9,11 +9,11 @@ using ExpenseTracker.Wpf.Dialog;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-using System.IO;
 
 
 namespace ExpenseTracker.ViewModels
@@ -37,23 +37,9 @@ namespace ExpenseTracker.ViewModels
         }
 
         private ObservableCollection<ExpenseViewModel> _expenses = new();
-        public ObservableCollection<ExpenseViewModel> Expenses
-        {
-            get => _expenses;
-            set
-            {
-                SetProperty(ref _expenses, value);
-            }
-        }
+        public ObservableCollection<ExpenseViewModel> Expenses => _expenses;
 
         private Dictionary<string, string> _expenseDictionary = new Dictionary<string, string>();
-
-        private List<DataEntry> _selectedDataEntries;
-        public List<DataEntry> SelectedDataEntries
-        {
-            get => _selectedDataEntries;
-            set => SetProperty(ref _selectedDataEntries, value);
-        }
 
         #region Commands
         public ICommand AddEntryCommand => new RelayCommand(AddEntry);
@@ -71,7 +57,10 @@ namespace ExpenseTracker.ViewModels
         public CurrencyConverterViewModel ConverterUIViewModel { get; set; }
         #endregion
 
-        public bool IsNewExpense { get; set; }
+        /// <summary>
+        /// Is enabled when the user specifies to copy the expense
+        /// </summary>
+        public bool IsNewExpense { get; internal set; }
         public ExpenseControlViewModel()
         {
             // Register to the app instance connection
@@ -121,16 +110,20 @@ namespace ExpenseTracker.ViewModels
                 };
                 if (!Expenses.Contains(viewModel))
                 {
-                    //Expenses.Add(viewModel);
                     AddExpense(viewModel, dialog.FileName);
                     UpdateEventListeners();
-                    // TODO: we need to change the data location from string to List<string> to contain more than 1 string
-                    //DataHandler.Config.DataLocation = dialog.FileName;
                     DataHandler.Config.DataLocations.Add(dialog.FileName);
                     DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
                 }
             }
+        }
+
+        public void GetPathFromExpenseDictionary(ExpenseViewModel expenseVm, out string path)
+        {
+            // Check if the path is in the list of the dictionary and if it exists
+            bool success = _expenseDictionary.TryGetValue(expenseVm.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
+            path = success ? string.Empty : _absoluteFilePath;
         }
 
         /// <summary>
@@ -145,6 +138,9 @@ namespace ExpenseTracker.ViewModels
 
         internal void SaveCurrentExpenseData()
         {
+            if (CurrentExpenseViewModel == null)
+                return;
+
             // If it's a new file
             if (IsNewExpense)
             {
@@ -161,25 +157,21 @@ namespace ExpenseTracker.ViewModels
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel.Expense);
-                    // TODO: fix this
-                    //DataHandler.Config.DataLocation = dialog.FileName;
-                    //DataHandler.SaveAppConfiguration();
                     _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
                     // TODO: fix the logic of the copying
                     DataHandler.Config.DataLocations.Add(dialog.FileName);
+                    DataHandler.SaveAppConfiguration();
                     IsNewExpense = false;
                 }
             }
             else
             {
-               if (CurrentExpenseViewModel != null)
-               {
-                    bool success = _expenseDictionary.TryGetValue(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
-                    if (success && File.Exists(_absoluteFilePath))
-                    {
-                        JsonUtils.Serialize(_absoluteFilePath, CurrentExpenseViewModel.Expense);
-                    }
-               }
+                // Check if the path is in the list of the dictionary and if it exists
+                bool success = _expenseDictionary.TryGetValue(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
+                if (success && File.Exists(_absoluteFilePath))
+                {
+                    JsonUtils.Serialize(_absoluteFilePath, CurrentExpenseViewModel.Expense);
+                }
             }
         }
 
@@ -254,7 +246,7 @@ namespace ExpenseTracker.ViewModels
         {
             CalendarDialog dialog = new CalendarDialog("Select new date");
             dialog.ShowDialog();
-            if (dialog.DialogResult == true) 
+            if (dialog.DialogResult == true)
             {
                 CurrentExpenseViewModel.Expense.CycleEndDate = dialog.SeletectDateTimeValue;
             }
