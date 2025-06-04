@@ -32,12 +32,14 @@ namespace ExpenseTracker.CurrencyConverter
             string conversionKey = $"{toCurrencyCode}_{fromCurrencyCode}";
             await using Stream stream =
                 await client.GetStreamAsync($"https://free.currconv.com/api/v7/convert?q={conversionKey}&compact=ultra&apiKey={Keys.CURRENCY_CONVERTER_API_KEY}");
-            
-            var conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
 
-            conversionData.Result.TryGetValue(conversionKey, out float val);
-
-            return val;
+            ValueTask<Dictionary<string, float>?> conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
+            if (conversionData.Result != null)
+            {
+                conversionData.Result.TryGetValue(conversionKey, out float val);
+                return val;
+            }
+            return 0.0f;
         }
 
         /// <summary>

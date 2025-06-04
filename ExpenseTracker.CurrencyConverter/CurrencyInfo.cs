@@ -25,7 +25,8 @@ namespace ExpenseTracker.CurrencyConverter
         {
             if (obj is CurrencyInfo otherCurrency)
                 return string.Equals(Code, otherCurrency.Code);
-            else return false;
+            else
+                return false;
         }
 
         public override int GetHashCode()

@@ -59,39 +59,49 @@ namespace ExpenseTracker.Tools
             catch { return default(T); }
         }    
 
-        public static void Serialize<T>(string pFilePath, T pObject)
+        public static bool Serialize<T>(string pFilePath, T pObject)
         {
             if (pObject == null)
-                throw new NullReferenceException("Object to serialize is null.");
+            {
+                Console.WriteLine("Object to serialize is null.");
+                return false;
+            }
 
-            JObject tabData = (JObject)JToken.FromObject(pObject);
+            JObject jObjectData = (JObject)JToken.FromObject(pObject);
             using (StreamWriter file = File.CreateText(pFilePath))
             using (JsonTextWriter writer = new JsonTextWriter(file))
             {
                 writer.Formatting = Formatting.Indented;
-                tabData.WriteTo(writer);
+                jObjectData.WriteTo(writer);
             }
+            return jObjectData != null;
         }
 
         public static string SerializeToString<T>(T pObject)
         {
-            if (pObject == null) return string.Empty;
+            if (pObject == null)
+                return string.Empty;
+
             JObject tabData = (JObject)JToken.FromObject(pObject);
             return tabData.ToString();
         }
 
-        public static void SerializeArray<T>(string pFilePath, T pObject)
+        public static bool SerializeArray<T>(string pFilePath, T pObject)
         {
             if (pObject == null)
-                throw new NullReferenceException("Object to serialize is null.");
+            {
+                Console.WriteLine("Object to serialize is null.");
+                return false;
+            }
 
-            JArray tabData = (JArray)JToken.FromObject(pObject);
+            JArray jArrayData = (JArray)JToken.FromObject(pObject);
             using (StreamWriter file = File.CreateText(pFilePath))
             using (JsonTextWriter writer = new JsonTextWriter(file))
             {
                 writer.Formatting = Formatting.Indented;
-                tabData.WriteTo(writer);
+                jArrayData.WriteTo(writer);
             }
+            return jArrayData != null;
         }
 
         public static string SerializeArrayToString<T>(T pObject)

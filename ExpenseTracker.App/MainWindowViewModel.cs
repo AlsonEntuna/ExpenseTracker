@@ -79,31 +79,6 @@ namespace ExpenseTracker
 
         private void InitializeData()
         {
-            //if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
-            //{
-            //    try
-            //    {
-            //        VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
-            //        if (deserializedData == null)
-            //            return;
-
-            //        deserializedData.DetectAndMigrateLegacyData();
-
-            //        // Create a new ExpenseViewModel
-            //        ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
-            //        if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
-            //        {
-            //            VariableExpenseViewModel.Expenses.Add(expenseVm);
-            //            VariableExpenseViewModel.UpdateEventListeners();
-            //        }
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        DataHandler.Config.DataLocation = string.Empty;
-            //        // TODO: have a logging system here...
-            //        Console.WriteLine(e.ToString());
-            //    }
-            //}
             if (DataHandler.Config.DataLocations.Count != 0)
             {
                 foreach (var dataLocation in DataHandler.Config.DataLocations)
@@ -120,8 +95,7 @@ namespace ExpenseTracker
                         ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
                         if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
                         {
-                            //VariableExpenseViewModel.Expenses.Add(expenseVm);
-                            VariableExpenseViewModel.AddExpense(expenseVm, dataLocation);
+                            VariableExpenseViewModel.AddExpenseToRegistry(expenseVm, dataLocation);
                             VariableExpenseViewModel.UpdateEventListeners();
                         }
                     }
@@ -140,11 +114,7 @@ namespace ExpenseTracker
             if (window.DialogResult == true)
             {
                 ExpenseViewModel expenseVm = new() { Expense = window.Expense };
-                if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
-                {
-                    VariableExpenseViewModel.CurrentExpenseViewModel = expenseVm;
-                    VariableExpenseViewModel.IsNewExpense = true;
-                }
+                VariableExpenseViewModel.CurrentExpenseViewModel = expenseVm;
             }
         }
 
@@ -183,6 +153,22 @@ namespace ExpenseTracker
         {
             VariableExpenseViewModel.SaveCurrentExpenseData();
         }
+
+        /// <summary>
+        /// Creates a new ExpenseViewModel and copies the model
+        /// </summary>
+        /// <param name="currentExpense"></param>
+        /// <returns></returns>
+        private ExpenseViewModel CreateAndCopyVmFromExpense(VariableExpense currentExpense)
+        {
+            // Create a safe copy of the new expense
+            VariableExpense newExpense = new VariableExpense(currentExpense);
+            newExpense.Name = $"Copy - {newExpense.Name}";
+            newExpense.Description = $"Copy - {newExpense.Description}";
+
+            // Create a new viewmodel based on the copied model
+            return new() { Expense = newExpense };
+        }
         private void CopyFromCurrentExpense()
         {
             ExpenseControlViewModel vm = AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>();
@@ -191,9 +177,11 @@ namespace ExpenseTracker
                 return;
             }
 
-            vm.IsNewExpense = true;
-            vm.CurrentExpenseViewModel.Expense.Name = "Copy - Replace Me";
-            vm.CurrentExpenseViewModel.Expense.Description = "Copy - Replace Me";
+            ExpenseViewModel newVm = CreateAndCopyVmFromExpense(vm.CurrentExpenseViewModel.Expense);
+            // Only add it directly to the list of expenses because we don't need to store the copy immediately
+            // in the registry
+            vm.Expenses.Add(newVm);
+            vm.CurrentExpenseViewModel = newVm;
         }
         private void CopyFromOtherExpense()
         {
@@ -211,17 +199,15 @@ namespace ExpenseTracker
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                var copiedDataExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
-                if (copiedDataExpense == null)
+                VariableExpense expense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                if (expense == null)
                     return;
 
-                // TODO: Implement copy constructor here....
-                copiedDataExpense.DetectAndMigrateLegacyData();
-                copiedDataExpense.Name = "Copy - Replace Me";
-                copiedDataExpense.Description = "Copy - Replace Me";
-                ExpenseViewModel expenseViewModel = new() { Expense = copiedDataExpense };
-                // TODO: fix logic here. this is not ok
-                vm.SetCurrentExpenseViewModel(expenseViewModel);
+                ExpenseViewModel newVm = CreateAndCopyVmFromExpense(expense);
+                // Only add it directly to the list of expenses because we don't need to store the copy immediately
+                // in the registry
+                vm.Expenses.Add(newVm);
+                vm.CurrentExpenseViewModel = newVm;
             }
         }
 

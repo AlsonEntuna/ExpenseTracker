@@ -19,11 +19,11 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _name, value);
         }
 
-        private string _desc;
+        private string _description;
         public string Description
         {
-            get => _desc;
-            set => SetProperty(ref _desc, value);
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
 
         private DateTime _cycleEndDate;
@@ -36,6 +36,7 @@ namespace ExpenseTracker.Data
                 EndDate = CycleEndDate.ToLongDateString();
             }
         }
+        
         private string _endDate;
         public string EndDate
         {
@@ -87,8 +88,15 @@ namespace ExpenseTracker.Data
 
         public VariableExpense(VariableExpense other)
         {
-            // TODO: implement proper copy constructor
+            // Make sure that we generate a new unique GUID
             UniqueGuid = Guid.NewGuid();
+            Name = other.Name;
+            Description = other.Description;
+            Entries = other.Entries;
+            DataCurrency = other.DataCurrency;
+            CycleEndDate = other.CycleEndDate;
+            EndDate = other.EndDate;
+            Budget = other.Budget;
         }
 
         public void AddEntry(DataEntry Entry)
@@ -118,9 +126,6 @@ namespace ExpenseTracker.Data
             }
         }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() => Name;
     }
 }

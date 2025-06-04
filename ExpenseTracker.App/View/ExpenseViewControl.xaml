@@ -328,7 +328,7 @@
                         Height="60"
                         Margin="5,0,0,0"
                         Click="Btn_PiggyBank_Click"
-                        ToolTip="Tools">
+                        ToolTip="Piggy Bank">
                         <Button.Content>
                             <Image
                                 Width="48"
@@ -342,7 +342,7 @@
                         Height="60"
                         Margin="5,0,0,0"
                         Command="{Binding SaveVariableExpenseCommand}"
-                        ToolTip="Tools">
+                        ToolTip="Save">
                         <Button.Content>
                             <Image
                                 Width="48"

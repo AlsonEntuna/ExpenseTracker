@@ -57,10 +57,6 @@ namespace ExpenseTracker.ViewModels
         public CurrencyConverterViewModel ConverterUIViewModel { get; set; }
         #endregion
 
-        /// <summary>
-        /// Is enabled when the user specifies to copy the expense
-        /// </summary>
-        public bool IsNewExpense { get; internal set; }
         public ExpenseControlViewModel()
         {
             // Register to the app instance connection
@@ -77,7 +73,12 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        internal void AddExpense(ExpenseViewModel expenseViewModel, string absolutePath)
+        /// <summary>
+        /// Adds the Expenses to registry and the list of Expenses in the ViewModel
+        /// </summary>
+        /// <param name="expenseViewModel"></param>
+        /// <param name="absolutePath"></param>
+        internal void AddExpenseToRegistry(ExpenseViewModel expenseViewModel, string absolutePath)
         {
             if (!Expenses.Contains(expenseViewModel) && !_expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
             {
@@ -102,19 +103,20 @@ namespace ExpenseTracker.ViewModels
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 VariableExpense newExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                
                 // Detect and migrate legacy data
                 newExpense.DetectAndMigrateLegacyData();
                 ExpenseViewModel viewModel = new()
                 {
                     Expense = newExpense
                 };
+
                 if (!Expenses.Contains(viewModel))
                 {
-                    AddExpense(viewModel, dialog.FileName);
+                    AddExpenseToRegistry(viewModel, dialog.FileName);
                     UpdateEventListeners();
                     DataHandler.Config.DataLocations.Add(dialog.FileName);
                     DataHandler.SaveAppConfiguration();
-                    IsNewExpense = false;
                 }
             }
         }
@@ -126,23 +128,18 @@ namespace ExpenseTracker.ViewModels
             path = success ? string.Empty : _absoluteFilePath;
         }
 
-        /// <summary>
-        /// Is used when the tool creates an expense using the copy method
-        /// </summary>
-        /// <param name="expenseVm"></param>
-        public void SetCurrentExpenseViewModel(ExpenseViewModel expenseVm)
-        {
-            CurrentExpenseViewModel = expenseVm;
-            IsNewExpense = true;
-        }
-
         internal void SaveCurrentExpenseData()
         {
             if (CurrentExpenseViewModel == null)
                 return;
 
-            // If it's a new file
-            if (IsNewExpense)
+            // Check if the path is in the list of the dictionary and if it exists
+            bool hasExpense = _expenseDictionary.TryGetValue(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
+            if (hasExpense && File.Exists(_absoluteFilePath))
+            {
+                JsonUtils.Serialize(_absoluteFilePath, CurrentExpenseViewModel.Expense);
+            }
+            else
             {
                 SaveFileDialog dialog = new()
                 {
@@ -156,21 +153,13 @@ namespace ExpenseTracker.ViewModels
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel.Expense);
-                    _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
-                    // TODO: fix the logic of the copying
-                    DataHandler.Config.DataLocations.Add(dialog.FileName);
-                    DataHandler.SaveAppConfiguration();
-                    IsNewExpense = false;
-                }
-            }
-            else
-            {
-                // Check if the path is in the list of the dictionary and if it exists
-                bool success = _expenseDictionary.TryGetValue(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
-                if (success && File.Exists(_absoluteFilePath))
-                {
-                    JsonUtils.Serialize(_absoluteFilePath, CurrentExpenseViewModel.Expense);
+                    bool serializedSucceeded = JsonUtils.Serialize(dialog.FileName, CurrentExpenseViewModel.Expense);
+                    if (serializedSucceeded)
+                    {
+                        _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
+                        DataHandler.Config.DataLocations.Add(dialog.FileName);
+                        DataHandler.SaveAppConfiguration();
+                    }
                 }
             }
         }
