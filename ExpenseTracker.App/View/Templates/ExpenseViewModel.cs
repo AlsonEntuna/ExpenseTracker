@@ -78,7 +78,7 @@ namespace ExpenseTracker.View.Templates
             List<DataEntry> _toAdd = new List<DataEntry>();
             if (Expense.Entries.Count != 0)
             {
-                foreach (var deserializedEntry in entries)
+                foreach (DataEntry deserializedEntry in entries)
                 {
                     if (!Expense.Entries.Contains(deserializedEntry))
                         _toAdd.Add(deserializedEntry);

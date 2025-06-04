@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
+using Windows.System.Profile;
 
 
 namespace ExpenseTracker.ViewModels
@@ -27,12 +28,15 @@ namespace ExpenseTracker.ViewModels
             set
             {
                 SetProperty(ref _currentDisplayedExpense, value);
-                // Set the Main Currency
-                AppInstance.Connection.MainCurrency = _currentDisplayedExpense.Expense.DataCurrency;
+                if (_currentDisplayedExpense != null)
+                {
+                    // Set the Main Currency
+                    AppInstance.Connection.MainCurrency = _currentDisplayedExpense.Expense.DataCurrency;
 
-                // Initialize the Currency in the Converter, From and To Currencies are the same at startup
-                ConverterUIViewModel.FromCurrency = AppInstance.Connection.MainCurrency;
-                ConverterUIViewModel.ToCurrency = AppInstance.Connection.MainCurrency;
+                    // Initialize the Currency in the Converter, From and To Currencies are the same at startup
+                    ConverterUIViewModel.FromCurrency = AppInstance.Connection.MainCurrency;
+                    ConverterUIViewModel.ToCurrency = AppInstance.Connection.MainCurrency;
+                }
             }
         }
 
@@ -84,6 +88,29 @@ namespace ExpenseTracker.ViewModels
             {
                 _expenseDictionary.Add(expenseViewModel.Expense.UniqueGuid.ToString(), absolutePath);
                 Expenses.Add(expenseViewModel);
+            }
+        }
+
+        internal void RemoveExpenseFromRegistry(ExpenseViewModel expenseViewModel)
+        {
+            if (expenseViewModel == null)
+                return;
+
+            if (Expenses.Contains(expenseViewModel) && _expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
+            {
+                _expenseDictionary.TryGetValue(expenseViewModel.Expense.UniqueGuid.ToString(), out string _pathToRemove);
+                DataHandler.Config.DataLocations.Remove(_pathToRemove);
+                DataHandler.SaveAppConfiguration();
+                _expenseDictionary.Remove(expenseViewModel.Expense.UniqueGuid.ToString());
+                Expenses.Remove(expenseViewModel);
+                if (CurrentExpenseViewModel == expenseViewModel && Expenses.Count != 0)
+                {
+                    CurrentExpenseViewModel = Expenses[0];
+                }
+                else if (CurrentExpenseViewModel == expenseViewModel && Expenses.Count == 0)
+                {
+                    CurrentExpenseViewModel = null;
+                }
             }
         }
 

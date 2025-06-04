@@ -408,6 +408,30 @@
                     SelectedIndex="0"
                     SelectedItem="{Binding CurrentExpenseViewModel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     TabStripPlacement="Bottom">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="15" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="0,0,3,0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding}" />
+                                <Button
+                                    x:Name="Button_CloseExpenseItem"
+                                    Grid.Column="1"
+                                    Width="15"
+                                    Height="15"
+                                    BorderThickness="0"
+                                    Click="Button_CloseExpenseItem_Click"
+                                    Content="×"
+                                    ToolTip="Close" />
+                            </Grid>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
                         <DataTemplate>
                             <templates:ExpenseView />

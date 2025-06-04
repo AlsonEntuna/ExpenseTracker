@@ -62,7 +62,7 @@ namespace ExpenseTracker.View
             }
 
 
-            ContentPresenter contentPresenter = WpfHelpers.FindVisualChild<ContentPresenter>(TabControlExpenses);
+            ContentPresenter contentPresenter = WpfHelpers.FindVisualChildOfType<ContentPresenter>(TabControlExpenses);
             if (contentPresenter == null)
                 return;
 
@@ -121,6 +121,23 @@ namespace ExpenseTracker.View
                 _vm.CurrentExpenseViewModel = _expenseVm;
             }
 
+        }
+
+        private void Button_CloseExpenseItem_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null)
+                return;
+
+            // Find the parent TabItem
+            TabItem tabItem = WpfHelpers.FindVisualParentOfType<TabItem>(button);
+            if (tabItem != null)
+            {
+                if (tabItem.Content is ExpenseViewModel _expenseVm)
+                {
+                    _vm.RemoveExpenseFromRegistry(_expenseVm);
+                }
+            }
         }
     }
 }

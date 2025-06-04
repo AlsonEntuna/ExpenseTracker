@@ -27,10 +27,11 @@ namespace ExpenseTracker.Data
         #endregion
        
         public CurrencyInfo MainCurrency;
+
         private List<ViewModel> _appViewModels = new List<ViewModel>();
         public CurrencyConverter.CurrencyConverter CurrConverter;
 
-        private AppInstance() 
+        private AppInstance()
         {
             CurrConverter = new CurrencyConverter.CurrencyConverter(Path.Combine(PathUtils.AppDataPath(
                 new string[] { Constants.EXPENSETRACKER, "_cache" }), 

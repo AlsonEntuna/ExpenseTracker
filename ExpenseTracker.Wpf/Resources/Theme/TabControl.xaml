@@ -306,7 +306,7 @@
         <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text}" />
         <Setter Property="Background" Value="{DynamicResource Brush.Button.Main}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.Main.Background}" />
-        <Setter Property="Height" Value="21" />
+        <Setter Property="Height" Value="25" />
         <Setter Property="Width" Value="Auto" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
