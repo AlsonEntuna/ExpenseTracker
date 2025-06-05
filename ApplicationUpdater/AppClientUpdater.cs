@@ -1,5 +1,6 @@
-﻿using Octokit;
-using ExpenseTracker.Tools;
+﻿using ExpenseTracker.Tools;
+
+using Octokit;
 
 namespace ApplicationUpdater
 {
@@ -7,7 +8,7 @@ namespace ApplicationUpdater
     {
         public string InstallerPath;
         public string Version;
-        public DownloadInstallerCompleteArgs(string installerPath, string version) 
+        public DownloadInstallerCompleteArgs(string installerPath, string version)
         {
             InstallerPath = installerPath;
             Version = version;
