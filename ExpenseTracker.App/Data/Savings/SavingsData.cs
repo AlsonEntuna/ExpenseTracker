@@ -21,14 +21,17 @@ namespace ExpenseTracker.Data.Savings
         {
             if (obj is InputSavings other)
             {
-                return string.Equals(InputDate, other.InputDate) && Amount == other.Amount;
+                return string.Equals(InputDate, other.InputDate)
+                    && Amount == other.Amount;
             }
-            return base.Equals(obj);
+            return false;
         }
 
         public override int GetHashCode()
         {
-            return InputDate.GetHashCode();
+            return HashCode.Combine(base.GetHashCode()
+                , InputDate.GetHashCode()
+                , Amount.GetHashCode());
         }
     }
 

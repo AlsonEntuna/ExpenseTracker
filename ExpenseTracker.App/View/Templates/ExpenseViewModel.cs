@@ -59,6 +59,11 @@ namespace ExpenseTracker.View.Templates
             }
             return false;
         }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode()
+                , Expense.UniqueGuid.GetHashCode());
+        }
         public void CopyEntriesToClipboard()
         {
             if (SelectedDataEntries.Count == 0)
@@ -71,17 +76,19 @@ namespace ExpenseTracker.View.Templates
         public void ProcessEntriesFromClipboard()
         {
             string clipboard = Clipboard.GetText();
-            var entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
+            List<DataEntry> entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
             if (entries == null)
                 return;
 
-            List<DataEntry> _toAdd = new List<DataEntry>();
+            List<DataEntry> _entriesToAdd = new List<DataEntry>();
             if (Expense.Entries.Count != 0)
             {
                 foreach (DataEntry deserializedEntry in entries)
                 {
                     if (!Expense.Entries.Contains(deserializedEntry))
-                        _toAdd.Add(deserializedEntry);
+                    {
+                        _entriesToAdd.Add(deserializedEntry);
+                    }
                     else
                     {
                         foreach (var entry in Expense.Entries)
@@ -96,10 +103,10 @@ namespace ExpenseTracker.View.Templates
                 }
             }
             else
-                _toAdd = entries;
+                _entriesToAdd = entries;
 
             // Add
-            _toAdd.ForEach(Expense.Entries.Add);
+            _entriesToAdd.ForEach(Expense.Entries.Add);
         }
         private void RemoveEntry()
         {

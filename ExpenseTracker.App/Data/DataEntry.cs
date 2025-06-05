@@ -101,6 +101,12 @@ namespace ExpenseTracker.Data
             else 
                 return false;
         }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode()
+                , Description.GetHashCode()
+                , Currency.GetHashCode());
+        }
 
         public async void ConvertToMainCurrency()
         {
@@ -118,11 +124,6 @@ namespace ExpenseTracker.Data
                 conversionRate = data?.Value ?? 1.0f;
             }
             Amount = (float)Math.Round(Amount * conversionRate, 2);
-        }
-
-        public override int GetHashCode()
-        {
-            return Description.GetHashCode();
         }
     }
 }

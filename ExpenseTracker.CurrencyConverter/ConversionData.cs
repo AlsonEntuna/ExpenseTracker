@@ -4,7 +4,12 @@
     {
         public string Key;
         public float Value;
-        public ConversionData() { }
+
+        public ConversionData()
+        {
+            Key = string.Empty;
+            Value = 0;
+        }
         public ConversionData(string key, float value)
         {
             Key = key;
@@ -14,13 +19,16 @@
         public override bool Equals(object obj)
         {
             if (obj is ConversionData other)
+            {
                 return string.Equals(Key, other.Key);
-            return base.Equals(obj);
+            }
+            return false;
         }
 
         public override int GetHashCode()
         {
-            return Key.GetHashCode();
+            return HashCode.Combine(base.GetHashCode()
+                , Key.GetHashCode());
         }
     }
 }
