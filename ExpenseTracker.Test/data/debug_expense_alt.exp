@@ -67,6 +67,20 @@
         "Name": "Euro",
         "Symbol": "€"
       }
+    },
+    {
+      "Description": "testing expense - food",
+      "Amount": 40.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
     }
   ],
   "Report": {
