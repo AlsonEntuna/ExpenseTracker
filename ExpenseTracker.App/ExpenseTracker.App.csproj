@@ -12,7 +12,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/AlsonEntuna/ExpenseTracker</RepositoryUrl>
     <RepositoryType />
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\expense_tracker_app_icon.ico</ApplicationIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <BaseOutputPath>..\bin</BaseOutputPath>
@@ -31,10 +31,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\Assets\logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Remove="Resources\expense_tracker_app_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\expense_tracker_app_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\LICENSE.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -57,6 +61,12 @@
     <ProjectReference Include="..\ExpenseTracker.CurrencyConverter\ExpenseTracker.CurrencyConverter.csproj" />
     <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj" />
     <ProjectReference Include="..\ExpenseTracker.Wpf\ExpenseTracker.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\expense_tracker_app_icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
