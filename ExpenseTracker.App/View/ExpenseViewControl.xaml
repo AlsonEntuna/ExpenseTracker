@@ -433,8 +433,8 @@
                         </DataTemplate>
                     </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
-                        <DataTemplate>
-                            <templates:ExpenseView />
+                        <DataTemplate DataType="{x:Type templates:ExpenseViewModel}">
+                            <templates:ExpenseView ExpenseVm="{Binding}" />
                         </DataTemplate>
                     </TabControl.ContentTemplate>
                 </TabControl>

@@ -1,32 +1,33 @@
 using ExpenseTracker.Data;
 
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ExpenseTracker.View.Templates
 {
     public partial class ExpenseView : UserControl
     {
-        private ExpenseViewModel _vm;
+        public static readonly DependencyProperty ViewModelProperty =
+            DependencyProperty.Register("ExpenseVm"
+                , typeof(ExpenseViewModel)
+                , typeof(ExpenseView)
+                , new PropertyMetadata(null));
+
+        public ExpenseViewModel ExpenseVm
+        {
+            get => (ExpenseViewModel)GetValue(ViewModelProperty);
+            set => SetValue(ViewModelProperty, value);
+        }
+
         public ExpenseView()
         {
             InitializeComponent();
-            _vm = DataContext as ExpenseViewModel;
-
-        }
-        private void GetDataContext()
-        {
-            // TODO: investigate why this is happening. Apparently, the vm data context doesn't change per instance
-            // of the UserControl
-
-            //if (_vm != null)
-            //    return;
-            _vm = this.DataContext as ExpenseViewModel;
         }
 
         private void GridSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
-            var gridSplitter = sender as GridSplitter;
+            GridSplitter gridSplitter = sender as GridSplitter;
 
             if (gridSplitter != null)
             {
@@ -38,14 +39,12 @@ namespace ExpenseTracker.View.Templates
 
         private void ExpenseDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GetDataContext();
-            _vm.SelectedDataEntries = ExpenseDataGrid.SelectedItems.OfType<DataEntry>().ToList();
+            ExpenseVm.SelectedDataEntries = ExpenseDataGrid.SelectedItems.OfType<DataEntry>().ToList();
         }
 
         private void ExpenseDataGrid_OnCopy(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            GetDataContext();
-            _vm.CopyEntriesToClipboard();
+            ExpenseVm.CopyEntriesToClipboard();
         }
     }
 }
