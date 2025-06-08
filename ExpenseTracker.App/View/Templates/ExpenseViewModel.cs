@@ -26,7 +26,7 @@ namespace ExpenseTracker.View.Templates
             }
         }
 
-        private List<DataEntry> _selectedDataEntries;
+        private List<DataEntry> _selectedDataEntries = new();
         public List<DataEntry> SelectedDataEntries
         {
             get => _selectedDataEntries;

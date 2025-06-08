@@ -16,8 +16,12 @@ namespace ExpenseTracker.View.Templates
         }
         private void GetDataContext()
         {
-            if (_vm != null) return;
-            _vm = DataContext as ExpenseViewModel;
+            // TODO: investigate why this is happening. Apparently, the vm data context doesn't change per instance
+            // of the UserControl
+
+            //if (_vm != null)
+            //    return;
+            _vm = this.DataContext as ExpenseViewModel;
         }
 
         private void GridSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)

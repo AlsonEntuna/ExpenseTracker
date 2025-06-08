@@ -14,8 +14,6 @@ using System.Windows.Forms;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-using Windows.System.Profile;
-
 
 namespace ExpenseTracker.ViewModels
 {
@@ -99,7 +97,7 @@ namespace ExpenseTracker.ViewModels
             if (Expenses.Contains(expenseViewModel) && _expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
             {
                 _expenseDictionary.TryGetValue(expenseViewModel.Expense.UniqueGuid.ToString(), out string _pathToRemove);
-                DataHandler.Config.DataLocations.Remove(_pathToRemove);
+                DataHandler.Config.RemoveDataLocationEntry(_pathToRemove);
                 DataHandler.SaveAppConfiguration();
                 _expenseDictionary.Remove(expenseViewModel.Expense.UniqueGuid.ToString());
                 Expenses.Remove(expenseViewModel);
@@ -124,26 +122,30 @@ namespace ExpenseTracker.ViewModels
                 CheckPathExists = true,
                 FilterIndex = 2,
                 InitialDirectory = "C:/",
-                RestoreDirectory = true
+                RestoreDirectory = true,
+                Multiselect = true,
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                VariableExpense newExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
-                
-                // Detect and migrate legacy data
-                newExpense.DetectAndMigrateLegacyData();
-                ExpenseViewModel viewModel = new()
+                foreach(string fileName in dialog.FileNames)
                 {
-                    Expense = newExpense
-                };
+                    VariableExpense newExpense = JsonUtils.Deserialize<VariableExpense>(fileName);
 
-                if (!Expenses.Contains(viewModel))
-                {
-                    AddExpenseToRegistry(viewModel, dialog.FileName);
-                    UpdateEventListeners();
-                    DataHandler.Config.DataLocations.Add(dialog.FileName);
-                    DataHandler.SaveAppConfiguration();
+                    // Detect and migrate legacy data
+                    newExpense.DetectAndMigrateLegacyData();
+                    ExpenseViewModel viewModel = new()
+                    {
+                        Expense = newExpense
+                    };
+
+                    if (!Expenses.Contains(viewModel))
+                    {
+                        AddExpenseToRegistry(viewModel, fileName);
+                        UpdateEventListeners(viewModel);
+                        DataHandler.Config.AddDataLocationEntry(fileName);
+                        DataHandler.SaveAppConfiguration();
+                    }
                 }
             }
         }
@@ -184,7 +186,7 @@ namespace ExpenseTracker.ViewModels
                     if (serializedSucceeded)
                     {
                         _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
-                        DataHandler.Config.DataLocations.Add(dialog.FileName);
+                        DataHandler.Config.AddDataLocationEntry(dialog.FileName);
                         DataHandler.SaveAppConfiguration();
                     }
                 }
@@ -268,9 +270,9 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        public void UpdateEventListeners()
+        public void UpdateEventListeners(ExpenseViewModel expenseVm)
         {
-            CurrentExpenseViewModel?.Expense.Report?.UpdatePaidEventListeners();
+            expenseVm?.Expense.Report?.UpdatePaidEventListeners();
         }
 
         private void UpdateEntryConversion()

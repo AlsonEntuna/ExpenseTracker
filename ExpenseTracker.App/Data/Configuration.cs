@@ -8,7 +8,8 @@ namespace ExpenseTracker.Data
     [Serializable]
     public class Configuration
     {
-        public List<string> DataLocations { get; set; } = new List<string>();
+        private List<string> _dataLocations = new List<string>();
+        public IReadOnlyList<string> DataLocations => _dataLocations;
         public Configuration() { }
 
         public static Configuration GenerateConfigFile(string path)
@@ -16,6 +17,24 @@ namespace ExpenseTracker.Data
             Configuration config = new();
             JsonUtils.Serialize(path, config);
             return config;
+        }
+
+        public void AddDataLocationEntry(string entry)
+        {
+            if (_dataLocations.Contains(entry))
+            {
+                return;
+            }
+            _dataLocations.Add(entry);
+        }
+
+        public void RemoveDataLocationEntry(string entry)
+        {
+            if (!_dataLocations.Contains(entry))
+            {
+                return;
+            }
+            _dataLocations.Remove(entry);
         }
     }
 }

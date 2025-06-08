@@ -28,7 +28,7 @@ namespace ExpenseTracker
     {
         #region ViewModels
         private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
-        public ExpenseControlViewModel VariableExpenseViewModel => _variableExpenseViewModel;
+        public ExpenseControlViewModel ExpenseControlViewModel => _variableExpenseViewModel;
         #endregion
 
         #region Commands
@@ -93,10 +93,10 @@ namespace ExpenseTracker
 
                         // Create a new ExpenseViewModel
                         ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
-                        if (!VariableExpenseViewModel.Expenses.Contains(expenseVm))
+                        if (!ExpenseControlViewModel.Expenses.Contains(expenseVm))
                         {
-                            VariableExpenseViewModel.AddExpenseToRegistry(expenseVm, dataLocation);
-                            VariableExpenseViewModel.UpdateEventListeners();
+                            ExpenseControlViewModel.AddExpenseToRegistry(expenseVm, dataLocation);
+                            ExpenseControlViewModel.UpdateEventListeners(expenseVm);
                         }
                     }
                     catch (Exception e)
@@ -106,18 +106,6 @@ namespace ExpenseTracker
                 }
             }
         }
-
-        public void CreateVariableExpense()
-        {
-            CreateVariableExpenseWindow window = new();
-            window.ShowDialog();
-            if (window.DialogResult == true)
-            {
-                ExpenseViewModel expenseVm = new() { Expense = window.Expense };
-                VariableExpenseViewModel.CurrentExpenseViewModel = expenseVm;
-            }
-        }
-
         public void OpenToolsPanel()
         {
             ExpenseTrackerTools toolsWindow = new ExpenseTrackerTools
@@ -126,7 +114,6 @@ namespace ExpenseTracker
             };
             toolsWindow.ShowDialog();
         }
-
         public void OpenPiggyBank()
         {
             PiggyBankWindow window = new PiggyBankWindow();
@@ -134,7 +121,6 @@ namespace ExpenseTracker
             window.DataContext = vm;
             window.Show();
         }
-
         private void ImportCategories()
         {
             DataHandler.ImportCategories();
@@ -146,12 +132,26 @@ namespace ExpenseTracker
 
         public void OpenVariableExpense()
         {
-            VariableExpenseViewModel.OpenVariableExpense();
+            ExpenseControlViewModel.OpenVariableExpense();
         }
 
         internal void SaveData()
         {
-            VariableExpenseViewModel.SaveCurrentExpenseData();
+            ExpenseControlViewModel.SaveCurrentExpenseData();
+        }
+
+        public void CreateVariableExpense()
+        {
+            CreateVariableExpenseWindow window = new();
+            window.ShowDialog();
+            if (window.DialogResult == true)
+            {
+                ExpenseViewModel expenseVm = new() { Expense = window.Expense };
+                // Only add it directly to the list of expenses because we don't need to store the copy immediately
+                // in the registry
+                ExpenseControlViewModel.Expenses.Add(expenseVm);
+                ExpenseControlViewModel.CurrentExpenseViewModel = expenseVm;
+            }
         }
 
         /// <summary>
@@ -171,22 +171,15 @@ namespace ExpenseTracker
         }
         private void CopyFromCurrentExpense()
         {
-            ExpenseControlViewModel vm = AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>();
-            if (vm.CurrentExpenseViewModel == null)
-            { 
-                return;
-            }
-
-            ExpenseViewModel newVm = CreateAndCopyVmFromExpense(vm.CurrentExpenseViewModel.Expense);
+            ExpenseViewModel newVm = CreateAndCopyVmFromExpense(ExpenseControlViewModel.CurrentExpenseViewModel.Expense);
             // Only add it directly to the list of expenses because we don't need to store the copy immediately
             // in the registry
-            vm.Expenses.Add(newVm);
-            vm.CurrentExpenseViewModel = newVm;
+            ExpenseControlViewModel.Expenses.Add(newVm);
+            ExpenseControlViewModel.CurrentExpenseViewModel = newVm;
         }
         private void CopyFromOtherExpense()
         {
-            ExpenseControlViewModel vm = AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>();
-            vm.GetPathFromExpenseDictionary(vm.CurrentExpenseViewModel, out string _path);
+            ExpenseControlViewModel.GetPathFromExpenseDictionary(ExpenseControlViewModel.CurrentExpenseViewModel, out string _path);
             OpenFileDialog dialog = new OpenFileDialog()
             {
                 Title = "Select file to copy",
@@ -206,8 +199,8 @@ namespace ExpenseTracker
                 ExpenseViewModel newVm = CreateAndCopyVmFromExpense(expense);
                 // Only add it directly to the list of expenses because we don't need to store the copy immediately
                 // in the registry
-                vm.Expenses.Add(newVm);
-                vm.CurrentExpenseViewModel = newVm;
+                ExpenseControlViewModel.Expenses.Add(newVm);
+                ExpenseControlViewModel.CurrentExpenseViewModel = newVm;
             }
         }
 
