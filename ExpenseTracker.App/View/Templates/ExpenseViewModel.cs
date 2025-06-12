@@ -68,42 +68,35 @@ namespace ExpenseTracker.View.Templates
         {
             if (SelectedDataEntries.Count == 0)
                 return;
-            string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
 
+            string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
             Clipboard.SetText(clipboard);
         }
 
         public void ProcessEntriesFromClipboard()
         {
             string clipboard = Clipboard.GetText();
-            List<DataEntry> entries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
-            if (entries == null)
+            List<DataEntry> _deserializedEntries = JsonUtils.DeserializeArrayFromString<List<DataEntry>>(clipboard);
+            if (_deserializedEntries == null)
+            {
                 return;
+            }
 
             List<DataEntry> _entriesToAdd = new List<DataEntry>();
             if (Expense.Entries.Count != 0)
             {
-                foreach (DataEntry deserializedEntry in entries)
+                foreach (DataEntry deserializedEntry in _deserializedEntries)
                 {
                     if (!Expense.Entries.Contains(deserializedEntry))
                     {
                         _entriesToAdd.Add(deserializedEntry);
                     }
-                    else
-                    {
-                        foreach (var entry in Expense.Entries)
-                        {
-                            if (entry == deserializedEntry)
-                            {
-                                entry.Amount = deserializedEntry.Amount;
-                                entry.Comments = deserializedEntry.Comments;
-                            }
-                        }
-                    }
                 }
             }
             else
-                _entriesToAdd = entries;
+            {
+                _entriesToAdd = _deserializedEntries;
+            }
 
             // Add
             _entriesToAdd.ForEach(Expense.Entries.Add);
