@@ -24,13 +24,17 @@ namespace ExpenseTracker.CurrencyConverter
         public override bool Equals(object obj)
         {
             if (obj is CurrencyInfo otherCurrency)
+            {
                 return string.Equals(Code, otherCurrency.Code);
-            else return false;
+            }
+            else
+                return false;
         }
 
         public override int GetHashCode()
         {
-            return Code.GetHashCode();
+            return HashCode.Combine(base.GetHashCode()
+                , Code.GetHashCode());
         }
 
         public static IEnumerable<CurrencyInfo> GenerateCurrencyList()

@@ -15,18 +15,13 @@
     Style="{DynamicResource WindowStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <!--<WindowChrome.WindowChrome>
-        <WindowChrome
-        CaptionHeight="0"
-        ResizeBorderThickness="3" />
-    </WindowChrome.WindowChrome>-->
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Window.InputBindings>
-        <KeyBinding Gesture="Ctrl+S" Command="{Binding SaveExpenseCommand}"></KeyBinding>
+        <KeyBinding Command="{Binding SaveExpenseCommand}" Gesture="Ctrl+S" />
     </Window.InputBindings>
     <Grid Margin="5">
-        <view:VariableExpenseView DataContext="{Binding VariableExpenseViewModel}" />
+        <view:ExpenseViewControl DataContext="{Binding ExpenseControlViewModel}" />
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
-﻿using System;
-using ExpenseTracker.CurrencyConverter;
+﻿using ExpenseTracker.CurrencyConverter;
+
+using System;
 
 namespace ExpenseTracker.Data.Reports
 {
@@ -22,12 +23,13 @@ namespace ExpenseTracker.Data.Reports
                 return string.Equals(Currency.Code, other.Currency.Code);
             }
 
-            return base.Equals(obj);
+            return false;
         }
 
         public override int GetHashCode()
         {
-            return Currency.GetHashCode();
+            return HashCode.Combine(base.GetHashCode()
+                , Currency.GetHashCode());
         }
     }
 }

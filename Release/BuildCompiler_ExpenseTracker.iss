@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ExpenseTracker"
-#define MyAppVersion "1.6.2"
+#define MyAppVersion "1.5.3"
 #define MyAppPublisher "Alson Entuna"
 #define MyAppURL "https://github.com/AlsonEntuna/ExpenseTracker"
 #define MyAppExeName "ExpenseTracker.exe"
@@ -20,7 +20,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=..\LICENSE
+LicenseFile=..\LICENSE.md
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=Setup

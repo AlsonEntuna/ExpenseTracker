@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Data.Events;
+using ExpenseTracker.Data.Reports;
+using ExpenseTracker.Wpf;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -7,10 +12,6 @@ using System.Windows;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-using ExpenseTracker.CurrencyConverter;
-using ExpenseTracker.Data.Events;
-using ExpenseTracker.Data.Reports;
-using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {

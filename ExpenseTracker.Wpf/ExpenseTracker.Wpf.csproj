@@ -1,10 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <BaseOutputPath>..\bin\</BaseOutputPath>
-    <BaseIntermediateOutputPath>..\intermediate\</BaseIntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AppendTargetFrameworkToIntermediateOutputPath>false</AppendTargetFrameworkToIntermediateOutputPath>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +21,7 @@
     <None Remove="Fonts\MonoMedium.ttf" />
     <None Remove="Fonts\MonoRegular.ttf" />
     <None Remove="Resources\Icons\add.ico" />
+    <None Remove="Resources\Icons\add_expense.ico" />
     <None Remove="Resources\Icons\conversion_graph.ico" />
     <None Remove="Resources\Icons\create_report.ico" />
     <None Remove="Resources\Icons\currency_converter.ico" />
@@ -47,6 +51,9 @@
     <Resource Include="Resources\Icons\add.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Icons\add_expense.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\conversion_graph.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -56,7 +63,9 @@
     <Resource Include="Resources\Icons\currency_converter.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\file_close.ico" />
+    <Resource Include="Resources\Icons\file_close.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\file_edit.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

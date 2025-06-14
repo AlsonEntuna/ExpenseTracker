@@ -1,34 +1,34 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Reflection;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Collections.Generic;
-
-using CommunityToolkit.Mvvm.Input;
-
-using ExpenseTracker.Data;
-using ExpenseTracker.Environment;
+﻿using ExpenseTracker.Data;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View;
 using ExpenseTracker.View.PiggyBank;
 using ExpenseTracker.ViewModels;
 using ExpenseTracker.Wpf;
-using ExpenseTracker.CurrencyConverter.Config;
+using ExpenseTracker.View.Templates;
 
+#if !DEBUG
 using ApplicationUpdater;
+#endif
 
-using Keys = ExpenseTracker.CurrencyConverter.Config.Keys;
+using System;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Input;
+
+#if !DEBUG
+using System.Reflection;
+using System.Diagnostics;
+#endif
+
+using CommunityToolkit.Mvvm.Input;
 
 namespace ExpenseTracker
 {
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
-        private readonly VariableExpenseViewModel _variableExpenseViewModel = new VariableExpenseViewModel();
-        public VariableExpenseViewModel VariableExpenseViewModel => _variableExpenseViewModel;
+        private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
+        public ExpenseControlViewModel ExpenseControlViewModel => _variableExpenseViewModel;
         #endregion
 
         #region Commands
@@ -39,23 +39,12 @@ namespace ExpenseTracker
         public ICommand SaveExpenseCommand => new RelayCommand(SaveExpense);
         #endregion
 
-
 #if !DEBUG
         private AppClientUpdater _updater;
-        private readonly string _publicDataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.PUBLIC_FILE);
-#else
-        private static string _debugDataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\..\..\ExpenseTracker.Test\data\expense_tracker_public_data.json");
 #endif
 
         public MainWindowViewModel()
         {
-            // First download the public data
-#if !DEBUG
-            InitializeFromPublicData();
-#else
-            InitializeFromDebugData();
-#endif
-
             // Load the data...
             DataHandler.LoadAppConfiguration();
             InitializeData();
@@ -90,38 +79,33 @@ namespace ExpenseTracker
 
         private void InitializeData()
         {
-            if (!string.IsNullOrEmpty(DataHandler.Config.DataLocation))
+            if (DataHandler.Config.DataLocations.Count != 0)
             {
-                try
+                foreach (var dataLocation in DataHandler.Config.DataLocations)
                 {
-                    VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(DataHandler.Config.DataLocation);
-                    if (deserializedData == null)
-                        return;
-                    VariableExpenseViewModel.CurrentDisplayedExpense = deserializedData;
-                    // Detects and migrates old legacy data...
-                    _variableExpenseViewModel.CurrentDisplayedExpense.DetectAndMigrateLegacyData();
-                    _variableExpenseViewModel.UpdateEventListeners();
-                }
-                catch (Exception e)
-                {
-                    DataHandler.Config.DataLocation = string.Empty;
-                    // TODO: have a logging system here...
-                    Console.WriteLine(e.ToString());
+                    try
+                    {
+                        VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(dataLocation);
+                        if (deserializedData == null)
+                            return;
+
+                        deserializedData.DetectAndMigrateLegacyData();
+
+                        // Create a new ExpenseViewModel
+                        ExpenseViewModel expenseVm = new ExpenseViewModel() { Expense = deserializedData };
+                        if (!ExpenseControlViewModel.Expenses.Contains(expenseVm))
+                        {
+                            ExpenseControlViewModel.AddExpenseToRegistry(expenseVm, dataLocation);
+                            ExpenseControlViewModel.UpdateEventListeners(expenseVm);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
                 }
             }
         }
-
-        public void CreateVariableExpense()
-        {
-            CreateVariableExpenseWindow window = new();
-            window.ShowDialog();
-            if (window.DialogResult == true)
-            {
-                VariableExpenseViewModel.CurrentDisplayedExpense = window.Expense;
-                VariableExpenseViewModel.IsNewExpense = true;
-            }
-        }
-
         public void OpenToolsPanel()
         {
             ExpenseTrackerTools toolsWindow = new ExpenseTrackerTools
@@ -130,7 +114,6 @@ namespace ExpenseTracker
             };
             toolsWindow.ShowDialog();
         }
-
         public void OpenPiggyBank()
         {
             PiggyBankWindow window = new PiggyBankWindow();
@@ -138,7 +121,6 @@ namespace ExpenseTracker
             window.DataContext = vm;
             window.Show();
         }
-
         private void ImportCategories()
         {
             DataHandler.ImportCategories();
@@ -150,24 +132,54 @@ namespace ExpenseTracker
 
         public void OpenVariableExpense()
         {
-            VariableExpenseViewModel.OpenVariableExpense();
+            ExpenseControlViewModel.OpenVariableExpense();
         }
 
         internal void SaveData()
         {
-            VariableExpenseViewModel.SaveCurrentExpenseData();
+            ExpenseControlViewModel.SaveCurrentExpenseData();
+        }
+
+        public void CreateVariableExpense()
+        {
+            CreateVariableExpenseWindow window = new();
+            window.ShowDialog();
+            if (window.DialogResult == true)
+            {
+                ExpenseViewModel expenseVm = new() { Expense = window.Expense };
+                // Only add it directly to the list of expenses because we don't need to store the copy immediately
+                // in the registry
+                ExpenseControlViewModel.Expenses.Add(expenseVm);
+                ExpenseControlViewModel.CurrentExpenseViewModel = expenseVm;
+            }
+        }
+
+        /// <summary>
+        /// Creates a new ExpenseViewModel and copies the model
+        /// </summary>
+        /// <param name="currentExpense"></param>
+        /// <returns></returns>
+        private ExpenseViewModel CreateAndCopyVmFromExpense(VariableExpense currentExpense)
+        {
+            // Create a safe copy of the new expense
+            VariableExpense newExpense = new VariableExpense(currentExpense);
+            newExpense.Name = $"Copy - {newExpense.Name}";
+            newExpense.Description = $"Copy - {newExpense.Description}";
+
+            // Create a new viewmodel based on the copied model
+            return new() { Expense = newExpense };
         }
         private void CopyFromCurrentExpense()
         {
-            var vm = AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>();
-            if (vm.CurrentDisplayedExpense == null) { return; }
-
-            vm.IsNewExpense = true;
-            vm.CurrentDisplayedExpense.Name = "Copy - Replace Me";
-            vm.CurrentDisplayedExpense.Description = "Copy - Replace Me";
+            ExpenseViewModel newVm = CreateAndCopyVmFromExpense(ExpenseControlViewModel.CurrentExpenseViewModel.Expense);
+            // Only add it directly to the list of expenses because we don't need to store the copy immediately
+            // in the registry
+            ExpenseControlViewModel.Expenses.Add(newVm);
+            ExpenseControlViewModel.CurrentExpenseViewModel = newVm;
         }
         private void CopyFromOtherExpense()
         {
+            ExpenseControlViewModel.GetPathFromExpenseDictionary(ExpenseControlViewModel.CurrentExpenseViewModel, out string _path);
             OpenFileDialog dialog = new OpenFileDialog()
             {
                 Title = "Select file to copy",
@@ -175,61 +187,26 @@ namespace ExpenseTracker
                 Filter = "expense files (*.exp)|*.exp",
                 CheckPathExists = true,
                 FilterIndex = 2,
-                InitialDirectory = Path.GetDirectoryName(DataHandler.Config.DataLocation),
+                InitialDirectory = Path.GetDirectoryName(_path),
                 RestoreDirectory = true
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                var copiedDataExpense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
-                if (copiedDataExpense == null) return;
+                VariableExpense expense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
+                if (expense == null)
+                    return;
 
-                copiedDataExpense.DetectAndMigrateLegacyData();
-                copiedDataExpense.Name = "Copy - Replace Me";
-                copiedDataExpense.Description = "Copy - Replace Me";
-                AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SetCurrentDisplayedExpense(copiedDataExpense);
-
+                ExpenseViewModel newVm = CreateAndCopyVmFromExpense(expense);
+                // Only add it directly to the list of expenses because we don't need to store the copy immediately
+                // in the registry
+                ExpenseControlViewModel.Expenses.Add(newVm);
+                ExpenseControlViewModel.CurrentExpenseViewModel = newVm;
             }
         }
 
         private void SaveExpense()
         {
-            AppInstance.Connection.GetEditorViewModel<VariableExpenseViewModel>().SaveCurrentExpenseData();
+            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SaveCurrentExpenseData();
         }
-
-#if !DEBUG
-        private async void InitializeFromPublicData()
-        {
-            if (File.Exists(_publicDataFile))
-            {
-                File.Delete(_publicDataFile);
-            }
-
-            using (HttpClient httpClient = new HttpClient())
-            {
-                await httpClient.DownloadFileAsync(new Uri(Constants.EXPENSETRACKER_PUBLIC_DATA_URI), _publicDataFile);
-                if (File.Exists(_publicDataFile))
-                {
-                    Dictionary<string, string> publicData = JsonUtils.Deserialize<Dictionary<string, string>>(_publicDataFile);
-                    if (publicData.ContainsKey("APIKey"))
-                    {
-                        Keys.SetAPIKey(publicData["APIKey"]);
-                    }
-                }
-            }
-        }
-#else
-        private void InitializeFromDebugData()
-        {
-            // TODO: refine debug data handling
-            if (File.Exists(_debugDataPath))
-            {
-                Dictionary<string, string> debugData = JsonUtils.Deserialize<Dictionary<string, string>>(_debugDataPath);
-                if (debugData.ContainsKey("APIKey"))
-                {
-                    Keys.SetAPIKey(debugData["APIKey"]);
-                }
-            }
-        }
-#endif
     }
 }

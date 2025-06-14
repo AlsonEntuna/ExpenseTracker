@@ -21,7 +21,7 @@ If you want to step out from expenses and wanted to track and save for something
 
 ## Requirements
 - Visual Studio Version 17 (2022)
-- .Net 8.0
+- .Net 7.0
 - Nuget Package Manager - to install additional packages used by the tool
 
 ## Libraries

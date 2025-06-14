@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
-
-using ExpenseTracker.CurrencyConverter;
+﻿using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.Wpf;
+
+using System.Collections.Generic;
+using System.IO;
+
 
 namespace ExpenseTracker.Data
 {
@@ -26,10 +27,11 @@ namespace ExpenseTracker.Data
         #endregion
        
         public CurrencyInfo MainCurrency;
+
         private List<ViewModel> _appViewModels = new List<ViewModel>();
         public CurrencyConverter.CurrencyConverter CurrConverter;
 
-        private AppInstance() 
+        private AppInstance()
         {
             CurrConverter = new CurrencyConverter.CurrencyConverter(Path.Combine(PathUtils.AppDataPath(
                 new string[] { Constants.EXPENSETRACKER, "_cache" }), 

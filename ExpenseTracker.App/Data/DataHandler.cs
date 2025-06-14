@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ExpenseTracker.Environment;
+using ExpenseTracker.Tools;
+using ExpenseTracker.Utils;
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
-using ExpenseTracker.Environment;
-using ExpenseTracker.Tools;
-using ExpenseTracker.Utils;
 
 using MessageBox = System.Windows.MessageBox;
 
@@ -15,28 +16,32 @@ namespace ExpenseTracker.Data
     {
         public static Configuration Config;
         public static Categories DataCategories;
+
         private static string _dataFile;
-       
-        private static string configFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CONFIG_FILE);
+        private static string _configFile = Path.Combine(
+            PathUtils.AppDataPath(Constants.EXPENSETRACKER)
+            , Constants.CONFIG_FILE);
 #if DEBUG
-        private static string configDebugPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data");
+        private static string _configDebugPath = Path.Combine(
+            Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
+            , "_data");
 #endif
 
         public static void LoadAppConfiguration()
         {
-#if DEBUG          
-            configFile = Path.Combine(configDebugPath, Constants.CONFIG_FILE);
+#if DEBUG
+            _configFile = Path.Combine(_configDebugPath, Constants.CONFIG_FILE);
 #endif
-            if (File.Exists(configFile))
+            if (File.Exists(_configFile))
             {
-                Config = JsonUtils.Deserialize<Configuration>(configFile);
+                Config = JsonUtils.Deserialize<Configuration>(_configFile);
             }
             else
             {
 #if DEBUG
-                if (!Directory.Exists(configDebugPath))
+                if (!Directory.Exists(_configDebugPath))
                 {
-                    Directory.CreateDirectory(configDebugPath);
+                    Directory.CreateDirectory(_configDebugPath);
                 }
 #else
                 if (!Directory.Exists(PathUtils.AppDataPath(Constants.EXPENSETRACKER)))
@@ -44,7 +49,7 @@ namespace ExpenseTracker.Data
                     Directory.CreateDirectory(PathUtils.AppDataPath(Constants.EXPENSETRACKER));
                 }
 #endif
-                Config = Configuration.GenerateConfigFile(configFile);
+                Config = Configuration.GenerateConfigFile(_configFile);
             }
 
             LoadCategories();
@@ -52,18 +57,18 @@ namespace ExpenseTracker.Data
 
         public static void SaveAppConfiguration()
         {
-            if (!File.Exists(configFile))
+            if (!File.Exists(_configFile))
             {
                 return;
             }
 
-            JsonUtils.Serialize(configFile, Config);
+            JsonUtils.Serialize(_configFile, Config);
         }
 
         private static void LoadCategories()
         {
 #if DEBUG
-            _dataFile = Path.Combine(configDebugPath, Constants.CATEGORIES_FILE);
+            _dataFile = Path.Combine(_configDebugPath, Constants.CATEGORIES_FILE);
 #else
             _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
 #endif
@@ -195,6 +200,7 @@ namespace ExpenseTracker.Data
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     return;
                 }
                 // Serialize immediately

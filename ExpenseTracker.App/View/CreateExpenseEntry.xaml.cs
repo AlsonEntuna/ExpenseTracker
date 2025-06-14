@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Data;
+using ExpenseTracker.Wpf.Dialog;
+
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-
-using ExpenseTracker.CurrencyConverter;
-using ExpenseTracker.Data;
-using ExpenseTracker.Wpf.Dialog;
 
 namespace ExpenseTracker.View
 {
@@ -46,8 +45,7 @@ namespace ExpenseTracker.View
                 Amount = float.Parse(TxtBox_Amount.Text, CultureInfo.InvariantCulture.NumberFormat),
                 PaymentChannel = CmbBox_PaymentChannel.SelectedItem as string,
                 ExpenseCategory = CmbBox_ExpenseCategory.SelectedItem as string,
-                Currency = Combo_Currency.SelectedItem as CurrencyInfo,
-                EntryDate = DateTime.Now.ToString()
+                Currency = Combo_Currency.SelectedItem as CurrencyInfo
             };
 
             if (_mainCurrency != null)

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpenseTracker.Data.Reports
 {
@@ -24,13 +20,16 @@ namespace ExpenseTracker.Data.Reports
         public override bool Equals(object obj)
         {
             if (obj is MultiCurrencyReportData other)
+            {
                 return string.Equals(CurrencyCode, other.CurrencyCode);
-            return base.Equals(obj);
+            }
+            return false;
         }
 
         public override int GetHashCode()
         {
-            return CurrencyCode.GetHashCode();
+            return HashCode.Combine(base.GetHashCode()
+                , CurrencyCode.GetHashCode());
         }
     }
 }

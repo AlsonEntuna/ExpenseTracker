@@ -35,12 +35,12 @@
                 Opacity="0">
                 <Border
                     Margin="1"
-                    BorderBrush="{StaticResource Brush.Hover1}"
+                    BorderBrush="{StaticResource Brush.Hover.Active}"
                     BorderThickness="1,1,1,1"
                     CornerRadius="2" />
                 <Border
                     Margin="2"
-                    BorderBrush="{StaticResource Brush.Hover2}"
+                    BorderBrush="{StaticResource Brush.Hover.Disabled}"
                     BorderThickness="1,1,1,1"
                     CornerRadius="2" />
             </Grid>
@@ -186,7 +186,7 @@
         <Grid x:Name="Grid" Background="{TemplateBinding Background}">
             <Rectangle
                 x:Name="HoverRectangle"
-                Fill="{StaticResource Brush.Hover2}"
+                Fill="{StaticResource Brush.Hover.Disabled}"
                 IsHitTestVisible="False"
                 Opacity="0" />
             <ContentPresenter

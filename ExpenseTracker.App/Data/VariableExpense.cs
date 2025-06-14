@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Wpf;
+
+using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 
-using ExpenseTracker.CurrencyConverter;
-using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.Data
 {
@@ -18,11 +19,11 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _name, value);
         }
 
-        private string _desc;
+        private string _description;
         public string Description
         {
-            get => _desc;
-            set => SetProperty(ref _desc, value);
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
 
         private DateTime _cycleEndDate;
@@ -35,6 +36,7 @@ namespace ExpenseTracker.Data
                 EndDate = CycleEndDate.ToLongDateString();
             }
         }
+        
         private string _endDate;
         public string EndDate
         {
@@ -76,14 +78,30 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _report, value);
         }
 
+        public Guid UniqueGuid { get; set; }
 
-        public VariableExpense() { }
+        public VariableExpense()
+        {
+            // Generate Unique Guid
+            UniqueGuid = Guid.NewGuid();
+        }
+
+        public VariableExpense(VariableExpense other)
+        {
+            // Make sure that we generate a new unique GUID
+            UniqueGuid = Guid.NewGuid();
+            Name = other.Name;
+            Description = other.Description;
+            Entries = other.Entries;
+            DataCurrency = other.DataCurrency;
+            CycleEndDate = other.CycleEndDate;
+            EndDate = other.EndDate;
+            Budget = other.Budget;
+        }
+
         public void AddEntry(DataEntry Entry)
         {
-            if (Entry == null)
-                return;
-
-            if (!Entries.Contains(Entry))
+            if (Entry != null && !Entries.Contains(Entry))
             {
                 Entries.Add(Entry);
             }
@@ -100,11 +118,14 @@ namespace ExpenseTracker.Data
                     entry.Category = null;
                 }
             }
+
+            // Check Guid
+            if (UniqueGuid == Guid.Empty)
+            {
+                UniqueGuid = Guid.NewGuid();
+            }
         }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() => Name;
     }
 }

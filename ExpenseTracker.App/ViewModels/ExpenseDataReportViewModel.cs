@@ -11,7 +11,7 @@ namespace ExpenseTracker.ViewModels
             get => _report;
             set => SetProperty(ref _report, value);
         }
-        public ExpenseDataReportViewModel() 
+        public ExpenseDataReportViewModel()
         {
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);

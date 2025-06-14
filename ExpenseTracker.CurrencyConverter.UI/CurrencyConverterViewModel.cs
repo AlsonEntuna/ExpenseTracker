@@ -12,8 +12,8 @@ namespace ExpenseTracker.CurrencyConverter.UI
     public class CurrencyConverterViewModel : ViewModel
     {
         #region Properties
-        private CurrencyInfo _fromCurrency;
-        public CurrencyInfo FromCurrency
+        private CurrencyInfo? _fromCurrency;
+        public CurrencyInfo? FromCurrency
         {
             get => _fromCurrency;
             set
@@ -22,8 +22,9 @@ namespace ExpenseTracker.CurrencyConverter.UI
                 Convert();
             }
         }
-        private CurrencyInfo _toCurrency;
-        public CurrencyInfo ToCurrency
+        
+        private CurrencyInfo? _toCurrency;
+        public CurrencyInfo? ToCurrency
         {
             get => _toCurrency;
             set
@@ -32,7 +33,7 @@ namespace ExpenseTracker.CurrencyConverter.UI
                 Convert();
             }
         }
-        public List<CurrencyInfo> CurrencyInfos { get; set; }
+        public List<CurrencyInfo>? CurrencyInfos { get; set; }
 
         private float _inputValue;
         public float InputValue
@@ -56,9 +57,12 @@ namespace ExpenseTracker.CurrencyConverter.UI
         public ICommand SwapCurrenciesCommand => new RelayCommand(SwapCurrencies);
         #endregion
 
-        private CurrencyConverter _currencyConverter;
-        public CurrencyConverterViewModel() { }
-        public CurrencyConverterViewModel(CurrencyConverter converter) 
+        private CurrencyConverter? _currencyConverter;
+        public CurrencyConverterViewModel()
+        {
+        }
+
+        public CurrencyConverterViewModel(CurrencyConverter converter)
         {
             CurrencyInfos = CurrencyInfo.GenerateCurrencyList().ToList();
             if (converter != null)
@@ -69,7 +73,7 @@ namespace ExpenseTracker.CurrencyConverter.UI
 
         private async void Convert()
         {
-            if (FromCurrency == null || ToCurrency == null)
+            if (_currencyConverter == null || FromCurrency == null || ToCurrency == null)
             {
                 ConvertedValue = 0f;
                 return;
