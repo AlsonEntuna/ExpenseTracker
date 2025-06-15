@@ -83,8 +83,7 @@ namespace ExpenseTracker.CurrencyConverter.UI
             float conversionRate;
             try
             {
-                // TODO: testing
-                float testVal = await _currencyConverter.GetConversion(FromCurrency.Code, ToCurrency.Code);
+                // TODO: QA if currency conversion is correct
                 conversionRate = await _currencyConverter.GetCurrencyConversion(FromCurrency.Code, ToCurrency.Code);
                 _currencyConverter.SaveToCacheData(new ConversionData(conversionKey, conversionRate));
             }
@@ -96,7 +95,7 @@ namespace ExpenseTracker.CurrencyConverter.UI
                 else
                     conversionRate = 1;
             }
-            ConvertedValue = (float)Math.Round(InputValue / conversionRate, 2);
+            ConvertedValue = (float)Math.Round(InputValue * conversionRate, 2);
         }
 
         private void SwapCurrencies()

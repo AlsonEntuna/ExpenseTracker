@@ -1,7 +1,5 @@
-﻿using System.Text.Json;
-
-using ExpenseTracker.Tools;
-using ExpenseTracker.CurrencyConverter.Config;
+﻿using ExpenseTracker.Tools;
+using Newtonsoft.Json;
 
 namespace ExpenseTracker.CurrencyConverter
 {
@@ -24,27 +22,8 @@ namespace ExpenseTracker.CurrencyConverter
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
         }
 
-        [Obsolete("Please remove and replace with the GetConversion() function")]
-        public async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
-        {
-            using HttpClient client = new();
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            string conversionKey = $"{toCurrencyCode}_{fromCurrencyCode}";
-            await using Stream stream =
-                await client.GetStreamAsync($"https://free.currconv.com/api/v7/convert?q={conversionKey}&compact=ultra&apiKey={Keys.CURRENCY_CONVERTER_API_KEY}");
-
-            ValueTask<Dictionary<string, float>?> conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
-            if (conversionData.Result != null)
-            {
-                conversionData.Result.TryGetValue(conversionKey, out float val);
-                return val;
-            }
-            return 0.0f;
-        }
-
         // TODO: iron out the new conversion API
-        public async Task<float> GetConversion(string from, string to)
+        public async Task<float> GetCurrencyConversion(string from, string to)
         {
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -52,15 +31,14 @@ namespace ExpenseTracker.CurrencyConverter
             HttpResponseMessage response = await client.GetAsync($"https://open.er-api.com/v6/latest/{from}");
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
-
-            //await using Stream stream = await client.GetStreamAsync($"https://open.er-api.com/v6/latest/{from}");
-            //ValueTask<Dictionary<string, float>?> conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
-            //if (conversionData.Result != null)
-            //{
-            //    //conversionData.Result.TryGetValue(conversionKey, out float val);
-            //    //return val;
-            //    return 0.0f;
-            //}
+            if (responseBody != string.Empty)
+            {
+                ExchangeRateDataObject dataobject = JsonConvert.DeserializeObject<ExchangeRateDataObject>(responseBody);
+                if (dataobject != null && dataobject.rates.ContainsKey(to))
+                {
+                    return (float)dataobject.rates[to];
+                }
+            }
             return 0.0f;
         }
 
@@ -90,7 +68,9 @@ namespace ExpenseTracker.CurrencyConverter
         public void SaveToCacheData(ConversionData conversionData) 
         {
             if (!_cachedConversionData.Contains(conversionData))
+            {
                 _cachedConversionData.Add(conversionData);
+            }
             else
             {
                 var data = GetCachedConversionData(conversionData.Key);
