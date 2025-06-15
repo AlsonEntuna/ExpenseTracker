@@ -1,4 +1,5 @@
 ﻿using ExpenseTracker.Tools;
+
 using Newtonsoft.Json;
 
 namespace ExpenseTracker.CurrencyConverter
@@ -22,7 +23,6 @@ namespace ExpenseTracker.CurrencyConverter
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
         }
 
-        // TODO: iron out the new conversion API
         public async Task<float> GetCurrencyConversion(string from, string to)
         {
             using HttpClient client = new();
@@ -30,13 +30,13 @@ namespace ExpenseTracker.CurrencyConverter
 
             HttpResponseMessage response = await client.GetAsync($"https://open.er-api.com/v6/latest/{from}");
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            if (responseBody != string.Empty)
+            string responseString = await response.Content.ReadAsStringAsync();
+            if (responseString != string.Empty)
             {
-                ExchangeRateDataObject dataobject = JsonConvert.DeserializeObject<ExchangeRateDataObject>(responseBody);
-                if (dataobject != null && dataobject.rates.ContainsKey(to))
+                ExchangeRateDataObject exchangeRateObject = JsonConvert.DeserializeObject<ExchangeRateDataObject>(responseString);
+                if (exchangeRateObject != null && exchangeRateObject.rates.ContainsKey(to))
                 {
-                    return (float)dataobject.rates[to];
+                    return (float)exchangeRateObject.rates[to];
                 }
             }
             return 0.0f;

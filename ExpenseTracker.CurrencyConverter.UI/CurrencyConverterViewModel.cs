@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ExpenseTracker.Wpf;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-
-using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.CurrencyConverter.UI
 {
@@ -83,7 +83,6 @@ namespace ExpenseTracker.CurrencyConverter.UI
             float conversionRate;
             try
             {
-                // TODO: QA if currency conversion is correct
                 conversionRate = await _currencyConverter.GetCurrencyConversion(FromCurrency.Code, ToCurrency.Code);
                 _currencyConverter.SaveToCacheData(new ConversionData(conversionKey, conversionRate));
             }
