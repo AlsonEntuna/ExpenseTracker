@@ -1,7 +1,6 @@
-﻿using System.Text.Json;
+﻿using ExpenseTracker.Tools;
 
-using ExpenseTracker.Tools;
-using ExpenseTracker.CurrencyConverter.Config;
+using Newtonsoft.Json;
 
 namespace ExpenseTracker.CurrencyConverter
 {
@@ -24,20 +23,21 @@ namespace ExpenseTracker.CurrencyConverter
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
         }
 
-        public async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
+        public async Task<float> GetCurrencyConversion(string from, string to)
         {
             using HttpClient client = new();
             client.DefaultRequestHeaders.Accept.Clear();
 
-            string conversionKey = $"{toCurrencyCode}_{fromCurrencyCode}";
-            await using Stream stream =
-                await client.GetStreamAsync($"https://free.currconv.com/api/v7/convert?q={conversionKey}&compact=ultra&apiKey={Keys.CURRENCY_CONVERTER_API_KEY}");
-
-            ValueTask<Dictionary<string, float>?> conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
-            if (conversionData.Result != null)
+            HttpResponseMessage response = await client.GetAsync($"https://open.er-api.com/v6/latest/{from}");
+            response.EnsureSuccessStatusCode();
+            string responseString = await response.Content.ReadAsStringAsync();
+            if (responseString != string.Empty)
             {
-                conversionData.Result.TryGetValue(conversionKey, out float val);
-                return val;
+                ExchangeRateDataObject exchangeRateObject = JsonConvert.DeserializeObject<ExchangeRateDataObject>(responseString);
+                if (exchangeRateObject != null && exchangeRateObject.rates.ContainsKey(to))
+                {
+                    return (float)exchangeRateObject.rates[to];
+                }
             }
             return 0.0f;
         }
@@ -68,7 +68,9 @@ namespace ExpenseTracker.CurrencyConverter
         public void SaveToCacheData(ConversionData conversionData) 
         {
             if (!_cachedConversionData.Contains(conversionData))
+            {
                 _cachedConversionData.Add(conversionData);
+            }
             else
             {
                 var data = GetCachedConversionData(conversionData.Key);

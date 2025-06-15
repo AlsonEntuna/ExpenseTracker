@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ExpenseTracker.Wpf;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
-
-using ExpenseTracker.Wpf;
 
 namespace ExpenseTracker.CurrencyConverter.UI
 {
@@ -94,7 +94,7 @@ namespace ExpenseTracker.CurrencyConverter.UI
                 else
                     conversionRate = 1;
             }
-            ConvertedValue = (float)Math.Round(InputValue / conversionRate, 2);
+            ConvertedValue = (float)Math.Round(InputValue * conversionRate, 2);
         }
 
         private void SwapCurrencies()

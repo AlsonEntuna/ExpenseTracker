@@ -15,4 +15,13 @@
     <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CurrencyConverter-Licenses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="License\License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

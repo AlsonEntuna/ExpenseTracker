@@ -21,6 +21,14 @@
     </UserControl.Resources>
     <StackPanel>
         <Grid>
+            <Grid.ToolTip>
+                <TextBlock>
+                    <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://www.exchangerate-api.com">
+                        Rates By Exchange Rate API
+                    </Hyperlink>
+                </TextBlock>
+
+            </Grid.ToolTip>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto" />
