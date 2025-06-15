@@ -1,0 +1,5 @@
+################### Rates By Exchange Rate API
+
+https://www.exchangerate-api.com/docs/free
+
+<a href="https://www.exchangerate-api.com">Rates By Exchange Rate API</a>
