@@ -24,6 +24,7 @@ namespace ExpenseTracker.CurrencyConverter
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
         }
 
+        [Obsolete("Please remove and replace with the GetConversion() function")]
         public async Task<float> GetCurrencyConversion(string fromCurrencyCode, string toCurrencyCode)
         {
             using HttpClient client = new();
@@ -39,6 +40,27 @@ namespace ExpenseTracker.CurrencyConverter
                 conversionData.Result.TryGetValue(conversionKey, out float val);
                 return val;
             }
+            return 0.0f;
+        }
+
+        // TODO: iron out the new conversion API
+        public async Task<float> GetConversion(string from, string to)
+        {
+            using HttpClient client = new();
+            client.DefaultRequestHeaders.Accept.Clear();
+
+            HttpResponseMessage response = await client.GetAsync($"https://open.er-api.com/v6/latest/{from}");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            //await using Stream stream = await client.GetStreamAsync($"https://open.er-api.com/v6/latest/{from}");
+            //ValueTask<Dictionary<string, float>?> conversionData = JsonSerializer.DeserializeAsync<Dictionary<string, float>>(stream);
+            //if (conversionData.Result != null)
+            //{
+            //    //conversionData.Result.TryGetValue(conversionKey, out float val);
+            //    //return val;
+            //    return 0.0f;
+            //}
             return 0.0f;
         }
 

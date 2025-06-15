@@ -83,6 +83,8 @@ namespace ExpenseTracker.CurrencyConverter.UI
             float conversionRate;
             try
             {
+                // TODO: testing
+                float testVal = await _currencyConverter.GetConversion(FromCurrency.Code, ToCurrency.Code);
                 conversionRate = await _currencyConverter.GetCurrencyConversion(FromCurrency.Code, ToCurrency.Code);
                 _currencyConverter.SaveToCacheData(new ConversionData(conversionKey, conversionRate));
             }
