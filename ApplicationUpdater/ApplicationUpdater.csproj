@@ -12,13 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Lincense\OctoKitLicense.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Lincense\OctoKitLicense.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Compile Remove="Lincense\**" />
+    <EmbeddedResource Remove="Lincense\**" />
+    <None Remove="Lincense\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +23,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExpenseTracker.Tools\ExpenseTracker.Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="OctoKitLicense.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
