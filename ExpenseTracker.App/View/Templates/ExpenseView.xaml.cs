@@ -39,12 +39,18 @@ namespace ExpenseTracker.View.Templates
 
         private void ExpenseDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ExpenseVm.SelectedDataEntries = ExpenseDataGrid.SelectedItems.OfType<DataEntry>().ToList();
+            if (ExpenseVm != null)
+            {
+                ExpenseVm.SelectedDataEntries = ExpenseDataGrid.SelectedItems.OfType<DataEntry>().ToList();
+            }
         }
 
         private void ExpenseDataGrid_OnCopy(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            ExpenseVm.CopyEntriesToClipboard();
+            if (ExpenseVm != null)
+            {
+                ExpenseVm.CopyEntriesToClipboard();
+            }
         }
     }
 }
