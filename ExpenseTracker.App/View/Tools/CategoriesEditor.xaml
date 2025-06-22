@@ -1,0 +1,25 @@
+﻿<Window
+    x:Class="ExpenseTracker.View.Tools.CategoriesEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ExpenseTracker.View.Tools"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="CategoriesEditor"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignInstance local:CategoriesEditorViewModel,
+                                     IsDesignTimeCreatable=True}"
+    Style="{DynamicResource WindowStyle}"
+    mc:Ignorable="d">
+    <Grid Margin="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <local:ExpenseCategoryControl Grid.Column="0" DataContext="{Binding ExpenseCategoryVm}" />
+            <local:PaymentChannelControl Grid.Column="1" DataContext="{Binding PaymentChannelVm}" />
+        </Grid>
+    </Grid>
+</Window>

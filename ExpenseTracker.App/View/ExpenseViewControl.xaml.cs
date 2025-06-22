@@ -13,6 +13,7 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.Input;
 
 using Timer = System.Windows.Forms.Timer;
+using ExpenseTracker.View.Tools;
 
 namespace ExpenseTracker.View
 {
@@ -138,6 +139,14 @@ namespace ExpenseTracker.View
                     _vm.RemoveExpenseFromRegistry(_expenseVm);
                 }
             }
+        }
+
+        private void Btn_CategTools_Click(object sender, RoutedEventArgs e)
+        {
+            CategoriesEditor categoriesEditor = new CategoriesEditor();
+            CategoriesEditorViewModel categoriesViewModel = new CategoriesEditorViewModel();
+            categoriesEditor.DataContext = categoriesViewModel;
+            categoriesEditor.ShowDialog();
         }
     }
 }
