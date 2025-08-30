@@ -15,7 +15,19 @@
         <Grid>
             <StackPanel>
                 <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Categories" />
-                <ListView MinHeight="{Binding ActualHeight, ElementName=RootControl}" ItemsSource="{Binding ExpenseCategories}" />
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ListView
+                        MinHeight="{Binding ActualHeight, ElementName=RootControl}"
+                        ItemsSource="{Binding ExpenseCategories}"
+                        SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding AddExpenseCategoryCommand}" Header="Add" />
+                                <MenuItem Command="{Binding RemoveExpenseCategoryCommand}" Header="Remove" />
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </ScrollViewer>
             </StackPanel>
         </Grid>
     </Border>

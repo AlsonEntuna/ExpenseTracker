@@ -117,6 +117,24 @@ namespace ExpenseTracker.Data
             return false;
         }
 
+        public static bool RemoveExpenseCategory(string category)
+        {
+            if (string.IsNullOrEmpty(_dataFile))
+            {
+                _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
+            }
+
+            if (DataCategories.ExpenseCategories.Contains(category))
+            {
+                DataCategories.ExpenseCategories.Remove(category);
+                // Serialize immediately
+                JsonUtils.Serialize(_dataFile, DataCategories);
+                return true;
+            }
+
+            return false;
+        }
+
         public static bool AddPaymentChannel(string chanel)
         {
             if (string.IsNullOrEmpty(_dataFile))
@@ -127,6 +145,24 @@ namespace ExpenseTracker.Data
             if (!DataCategories.PaymentChannels.Contains(chanel))
             {
                 DataCategories.PaymentChannels.Add(chanel);
+
+                // Serialize immediately
+                JsonUtils.Serialize(_dataFile, DataCategories);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool RemovePaymentChannel(string chanel)
+        {
+            if (string.IsNullOrEmpty(_dataFile))
+            {
+                _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
+            }
+
+            if (DataCategories.PaymentChannels.Contains(chanel))
+            {
+                DataCategories.PaymentChannels.Remove(chanel);
 
                 // Serialize immediately
                 JsonUtils.Serialize(_dataFile, DataCategories);

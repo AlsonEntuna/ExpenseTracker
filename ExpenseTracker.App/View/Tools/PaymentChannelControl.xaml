@@ -15,7 +15,19 @@
         <Grid>
             <StackPanel>
                 <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Payment Channels" />
-                <ListView MinHeight="{Binding ActualHeight, ElementName=RootControl}" ItemsSource="{Binding PaymentChannels}" />
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ListView
+                        MinHeight="{Binding ActualHeight, ElementName=RootControl}"
+                        ItemsSource="{Binding PaymentChannels}"
+                        SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="{Binding AddPaymentChannelCommand}" Header="Add" />
+                                <MenuItem Command="{Binding RemovePaymentChannelCommand}" Header="Remove" />
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </ScrollViewer>
             </StackPanel>
         </Grid>
     </Border>
