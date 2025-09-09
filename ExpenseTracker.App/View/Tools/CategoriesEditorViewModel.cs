@@ -8,16 +8,41 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Linq;
 
 namespace ExpenseTracker.View.Tools
 {
-    internal class PaymentChannelsViewModel : ViewModel
+    interface IDataHandler
     {
-        private ObservableCollection<string> _paymentChannels;
-        public ObservableCollection<string> PaymentChannels => _paymentChannels;
+        public void Save();
+    }
+    internal class PaymentChannelItem
+    {
+        public string PaymenChannelName { get; set; }
+        public Guid Id { get; private set; }
+        public PaymentChannelItem() { }
+        public PaymentChannelItem(string name)
+        {
+            PaymenChannelName = name;
+            Id = Guid.NewGuid();
+        }
 
-        private string _selectedChannel;
-        public string SelectedChannel
+        public override bool Equals(object obj)
+        {
+            if (obj is PaymentChannelItem otherItem)
+            {
+                return otherItem.Id == Id;
+            }
+            return false;
+        }
+    }
+    internal class PaymentChannelsViewModel : ViewModel, IDataHandler
+    {
+        private ObservableCollection<PaymentChannelItem> _paymentChannels = new();
+        public ObservableCollection<PaymentChannelItem> PaymentChannels => _paymentChannels;
+
+        private PaymentChannelItem _selectedChannel;
+        public PaymentChannelItem SelectedChannel
         {
             get => _selectedChannel;
             set => SetProperty(ref _selectedChannel, value);
@@ -25,19 +50,48 @@ namespace ExpenseTracker.View.Tools
 
         public ICommand AddPaymentChannelCommand => new RelayCommand(AddPaymentChannel);
         public ICommand RemovePaymentChannelCommand => new RelayCommand(RemovePaymentChannel);
+
+        public EventHandler<string> NewPaymentChannelEvent;
+
+        private Dictionary<string, Guid> _cachedIdMappings = new Dictionary<string, Guid>();
         public PaymentChannelsViewModel(List<string> paymentChannels)
         {
-            _paymentChannels = ListUtils.ToObservableCollection(paymentChannels);
+            // Cache the PaymentChannel Name <> ID
+            foreach (string channelName in paymentChannels)
+            {
+                PaymentChannelItem pItem = new PaymentChannelItem(channelName);
+                _cachedIdMappings[channelName] = pItem.Id;
+                _paymentChannels.Add(pItem);
+            }
+
+            // Register to the app instance connection
+            AppInstance.Connection.AddViewModel(this);
         }
 
         private void AddPaymentChannel()
         {
-            throw new NotImplementedException();
+            string channelName = "New Channel";
+            SelectedChannel = new PaymentChannelItem(channelName);
+            //DataHandler.AddPaymentChannel(SelectedChannel);
+            _paymentChannels.Add(SelectedChannel);
+
+            NewPaymentChannelEvent?.Invoke(this, channelName);
         }
 
         private void RemovePaymentChannel()
         {
-            DataHandler.RemovePaymentChannel(SelectedChannel);
+            DataHandler.RemovePaymentChannel(SelectedChannel.PaymenChannelName);
+            // TODO: improve and not to remove from both ends
+            PaymentChannels.Remove(SelectedChannel);
+        }
+
+        public void Save()
+        {
+            DataHandler.DataCategories.PaymentChannels.Clear();
+            foreach (PaymentChannelItem pItem in _paymentChannels)
+            {
+                DataHandler.AddPaymentChannel(pItem.PaymenChannelName);
+            }
         }
     }
     internal class ExpenseCategoriesViewModel : ViewModel
@@ -59,17 +113,29 @@ namespace ExpenseTracker.View.Tools
         public ExpenseCategoriesViewModel(List<string> expenseCategories)
         {
             _expenseCategories = ListUtils.ToObservableCollection(expenseCategories);
+            // Register to the app instance connection
+            AppInstance.Connection.AddViewModel(this);
         }
 
         private void AddExpenseCategory()
         {
-            throw new NotImplementedException();
+            string expenseCategory = "New Category";
+            SelectedExpenseCategory = expenseCategory;
+            DataHandler.AddExpenseCategory(SelectedExpenseCategory);
         }
         private void RemoveExpenseCategory()
         {
+            // TODO: improve internal handling of copies
+            ExpenseCategories.Remove(_selectedExpenseCategory);
             DataHandler.RemoveExpenseCategory(_selectedExpenseCategory);
         }
+
+        private void Save()
+        {
+
+        }
     }
+
     internal class CategoriesEditorViewModel : ViewModel
     {
         public ExpenseCategoriesViewModel ExpenseCategoryVm { get; private set; }
@@ -79,6 +145,8 @@ namespace ExpenseTracker.View.Tools
         {
             ExpenseCategoryVm = new ExpenseCategoriesViewModel(DataHandler.DataCategories.ExpenseCategories);
             PaymentChannelVm = new PaymentChannelsViewModel(DataHandler.DataCategories.PaymentChannels);
+            // Register to the app instance connection
+            AppInstance.Connection.AddViewModel(this);
         }
     }
 }

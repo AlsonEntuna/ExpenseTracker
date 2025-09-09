@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace ExpenseTracker.Wpf
@@ -18,6 +20,23 @@ namespace ExpenseTracker.Wpf
                     return result;
             }
             return null;
+        }
+
+        public static List<T> FindVisualChildrenOfTypeRecursive<T>(DependencyObject parent) where T : DependencyObject
+        {
+            List<T> children = new List<T>();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T correctlyTyped)
+                {
+                    children.Add(correctlyTyped);
+                }
+
+                var recursedChildren = FindVisualChildrenOfTypeRecursive<T>(child);
+                children.AddRange(recursedChildren);
+            }
+            return children;
         }
 
         public static T FindVisualParentOfType<T>(DependencyObject child) where T : DependencyObject

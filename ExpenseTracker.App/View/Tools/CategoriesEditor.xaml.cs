@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpenseTracker.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,28 @@ namespace ExpenseTracker.View.Tools
     /// </summary>
     public partial class CategoriesEditor : Window
     {
+        private CategoriesEditorViewModel viewModel;
         public CategoriesEditor()
         {
             InitializeComponent();
+
+            Loaded += (s, e) =>
+            {
+                viewModel = DataContext as CategoriesEditorViewModel;
+            };
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            {
+                if (viewModel.PaymentChannelVm is IDataHandler _handler)
+                    _handler.Save();
+            }
+
+            {
+                if (viewModel.ExpenseCategoryVm is IDataHandler _handler)
+                    _handler.Save();
+            }
         }
     }
 }

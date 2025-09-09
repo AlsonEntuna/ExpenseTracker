@@ -17,15 +17,23 @@
                 <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Payment Channels" />
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <ListView
+                        x:Name="ListView_PaymenChannels"
                         MinHeight="{Binding ActualHeight, ElementName=RootControl}"
                         ItemsSource="{Binding PaymentChannels}"
-                        SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged}">
+                        SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <ListView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Command="{Binding AddPaymentChannelCommand}" Header="Add" />
                                 <MenuItem Command="{Binding RemovePaymentChannelCommand}" Header="Remove" />
                             </ContextMenu>
                         </ListView.ContextMenu>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBox Width="200" Text="{Binding PaymenChannelName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </ScrollViewer>
             </StackPanel>

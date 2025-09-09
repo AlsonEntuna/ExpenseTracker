@@ -19,7 +19,7 @@
                     <ListView
                         MinHeight="{Binding ActualHeight, ElementName=RootControl}"
                         ItemsSource="{Binding ExpenseCategories}"
-                        SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged}">
+                        SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <ListView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Command="{Binding AddExpenseCategoryCommand}" Header="Add" />
