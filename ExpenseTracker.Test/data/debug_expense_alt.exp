@@ -85,22 +85,33 @@
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 2,
-      "Shopping": 1
+      "Food": 3,
+      "Shopping": 1,
+      "Bills": 1
     },
-    "TotalAmount": 313.95,
-    "Savings": 1686.05,
-    "UnPaidAmount": 313.95,
+    "TotalAmount": 853.95,
+    "Savings": 1146.05,
+    "UnPaidAmount": 853.95,
     "PaidAmount": 0.0,
     "Completed": false,
     "CategoryReports": [
       {
         "PaymentChannel": "Credit Card",
-        "Amount": 263.8,
+        "Amount": 803.8,
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 263.8
+        "OutstandingBalance": 803.8,
+        "CategoryBreakdown": [
+          {
+            "Category": "Food",
+            "TotalAmount": 303.8
+          },
+          {
+            "Category": "Bills",
+            "TotalAmount": 500.0
+          }
+        ]
       },
       {
         "PaymentChannel": "Loan",
@@ -108,7 +119,13 @@
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 50.15
+        "OutstandingBalance": 50.15,
+        "CategoryBreakdown": [
+          {
+            "Category": "Shopping",
+            "TotalAmount": 50.15
+          }
+        ]
       }
     ],
     "SelectedReport": null,
@@ -121,7 +138,7 @@
     "ReportChartData": [
       {
         "Key": "Credit Card",
-        "Value": 264
+        "Value": 804
       },
       {
         "Key": "Loan",
@@ -131,11 +148,29 @@
     "ExpenseCategoryChartData": [
       {
         "Key": "Food",
-        "Value": 2
+        "Value": 3
       },
       {
         "Key": "Shopping",
         "Value": 1
+      },
+      {
+        "Key": "Bills",
+        "Value": 1
+      }
+    ],
+    "ExpenseCategoryExpenseTotalValueData": [
+      {
+        "Key": "Food",
+        "Value": 303.8
+      },
+      {
+        "Key": "Bills",
+        "Value": 500.0
+      },
+      {
+        "Key": "Shopping",
+        "Value": 50.15
       }
     ],
     "CurrencyReport": [

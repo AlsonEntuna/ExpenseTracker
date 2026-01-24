@@ -52,11 +52,11 @@ namespace ExpenseTracker.Data
             get => _completed;
             set => SetProperty(ref _completed, value);
         }
-        public List<CategoryReport> CategoryReports { get; set; }
+        public List<PaymentChannelReport> CategoryReports { get; set; }
         private List<string> categIds = new List<string>();
 
-        private CategoryReport _selectedReport;
-        public CategoryReport SelectedReport
+        private PaymentChannelReport _selectedReport;
+        public PaymentChannelReport SelectedReport
         {
             get => _selectedReport;
             set => SetProperty(ref _selectedReport, value);
@@ -79,12 +79,20 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _expenseCategoryChartData, value);
         }
 
+        private ObservableCollection<KeyValuePair<string, float>> _expenseCategoryExpenseTotalValueData;
+        public ObservableCollection<KeyValuePair<string, float>> ExpenseCategoryExpenseTotalValueData
+        {
+            get => _expenseCategoryExpenseTotalValueData;
+            set => SetProperty(ref _expenseCategoryExpenseTotalValueData, value);
+        }
+
         private ObservableCollection<ReportData> _currencyReport;
-        public ObservableCollection<ReportData> CurrencyReport 
+        public ObservableCollection<ReportData> CurrencyReport
         {
             get => _currencyReport;
             set => SetProperty(ref _currencyReport, value);
         }
+
 
         public Dictionary<string, int> ExpenseCategoryReportCounter;
         public List<MultiCurrencyReportData> AltCurrencyBreakdown { get; set; }
@@ -95,7 +103,7 @@ namespace ExpenseTracker.Data
 
         public ExpenseDataReport()
         {
-            CategoryReports = new List<CategoryReport>();
+            CategoryReports = new List<PaymentChannelReport>();
             CurrencyReport = new ObservableCollection<ReportData>();
             AltCurrencyBreakdown = new List<MultiCurrencyReportData>();
 
@@ -114,9 +122,9 @@ namespace ExpenseTracker.Data
             Completed = CategoryReports.All(f => f.Paid);
         }
 
-        private CategoryReport GetCategoryReport(string paymenChannel)
+        private PaymentChannelReport GetCategoryReport(string paymenChannel)
         {
-            foreach (CategoryReport report in CategoryReports)
+            foreach (PaymentChannelReport report in CategoryReports)
             {
                 if (report.PaymentChannel == paymenChannel)
                 {
@@ -131,12 +139,16 @@ namespace ExpenseTracker.Data
         {
             ReportChartData = new ObservableCollection<KeyValuePair<string, int>>();
             ExpenseCategoryChartData = new ObservableCollection<KeyValuePair<string, int>>();
+            ExpenseCategoryExpenseTotalValueData = new ObservableCollection<KeyValuePair<string, float>>();
 
-            foreach (CategoryReport report in CategoryReports)
+            foreach (PaymentChannelReport report in CategoryReports)
             {
                 try
                 {
                     ReportChartData.Add(new KeyValuePair<string, int>(report.PaymentChannel, (int)Math.Round(report.Amount)));
+                    report.CategoryBreakdown.ForEach(breakdown => {
+                        ExpenseCategoryExpenseTotalValueData.Add(new KeyValuePair<string, float>(breakdown.Category, breakdown.TotalAmount));
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -159,11 +171,11 @@ namespace ExpenseTracker.Data
 
         public void AddCategoryReport(DataEntry entry)
         {
-            CategoryReport report;
+            PaymentChannelReport report;
             if (!categIds.Contains(entry.PaymentChannel))
             {
                 categIds.Add(entry.PaymentChannel);
-                report = new CategoryReport(entry.PaymentChannel, entry.Amount);
+                report = new PaymentChannelReport(entry.PaymentChannel, entry.Amount);
                 CategoryReports.Add(report);
                 report.PaidEvent += OnPaidEvent;
             }
@@ -177,6 +189,8 @@ namespace ExpenseTracker.Data
                 }
             }
 
+            // Add the category breakdown data
+            report.AddToBreakdownData(entry.ExpenseCategory, entry.Amount);
 
             // Expense Category Report
             if (ExpenseCategoryReportCounter == null)
@@ -241,7 +255,7 @@ namespace ExpenseTracker.Data
 
         public void UpdatePaidEventListeners()
         {
-            foreach (CategoryReport report in CategoryReports)
+            foreach (PaymentChannelReport report in CategoryReports)
             {
                 report.PaidEvent += OnPaidEvent;
             }

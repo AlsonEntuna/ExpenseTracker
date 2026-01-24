@@ -206,6 +206,9 @@ namespace ExpenseTracker.ViewModels
 
         private void OpenExpenseReport(ExpenseDataReport report)
         {
+            if (report == null)
+                return;
+
             ExpenseDataReportViewModel reportVm = new ExpenseDataReportViewModel
             {
                 Report = report
@@ -218,8 +221,9 @@ namespace ExpenseTracker.ViewModels
 
             //Setting data for the charts
             reportVm.Report.GenerateReportChartData();
-            reportWindow.columnChart.DataContext = reportVm.Report.ReportChartData;
-            reportWindow.pieChart.DataContext = reportVm.Report.ReportChartData;
+            reportWindow.paymentChannelColumnChart.DataContext = reportVm.Report.ReportChartData;
+            reportWindow.categoryBreakdownColumnChart.DataContext = reportVm.Report.ExpenseCategoryExpenseTotalValueData;
+            reportWindow.paymentChannelPieChart.DataContext = reportVm.Report.ReportChartData;
             reportWindow.expenseCategoryColumnChart.DataContext = reportVm.Report.ExpenseCategoryChartData;
             reportWindow.expenseCategoryPieChart.DataContext = reportVm.Report.ExpenseCategoryChartData;
             reportWindow.ShowDialog();

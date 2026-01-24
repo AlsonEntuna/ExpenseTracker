@@ -187,19 +187,21 @@
                         <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Breakdown Chart" />
                     </Expander.Header>
                     <StackPanel>
-                        <Grid MinHeight="500">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
                             <toolkit:Chart
-                                Name="columnChart"
-                                Grid.Column="0"
+                                Name="paymentChannelColumnChart"
+                                Grid.Row="0"
+                                MinHeight="500"
                                 BorderBrush="Transparent"
                                 Style="{StaticResource ChartStyle.Main}"
                                 TitleStyle="{StaticResource ChartStyle.NoTitle}">
                                 <toolkit:ColumnSeries
-                                    Title="Report"
+                                    Title="Payment Channel Breakdown"
                                     DependentValuePath="Value"
                                     IndependentValuePath="Key"
                                     ItemsSource="{Binding}">
@@ -211,8 +213,28 @@
                                 </toolkit:ColumnSeries>
                             </toolkit:Chart>
                             <toolkit:Chart
-                                Name="pieChart"
-                                Grid.Column="1"
+                                Name="categoryBreakdownColumnChart"
+                                Grid.Row="1"
+                                MinHeight="500"
+                                BorderBrush="Transparent"
+                                Style="{StaticResource ChartStyle.Main}"
+                                TitleStyle="{StaticResource ChartStyle.NoTitle}">
+                                <toolkit:ColumnSeries
+                                    Title="Category Breakdown"
+                                    DependentValuePath="Value"
+                                    IndependentValuePath="Key"
+                                    ItemsSource="{Binding}">
+                                    <toolkit:ColumnSeries.LegendItemStyle>
+                                        <Style TargetType="toolkit:LegendItem">
+                                            <Setter Property="TextElement.Foreground" Value="Black" />
+                                        </Style>
+                                    </toolkit:ColumnSeries.LegendItemStyle>
+                                </toolkit:ColumnSeries>
+                            </toolkit:Chart>
+                            <toolkit:Chart
+                                Name="paymentChannelPieChart"
+                                Grid.Row="2"
+                                MinHeight="500"
                                 BorderBrush="Transparent"
                                 Style="{StaticResource ChartStyle.Main}"
                                 TitleStyle="{StaticResource ChartStyle.NoTitle}">
