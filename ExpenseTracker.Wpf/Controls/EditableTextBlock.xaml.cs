@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExpenseTracker.Wpf.Controls
 {
@@ -42,6 +31,7 @@ namespace ExpenseTracker.Wpf.Controls
         public static void SetTextSource(UIElement target, string value) => target.SetValue(TextSourceProperty, value);
 
         // TriggerObject
+        // TODO: find a better name for this, it seems weird
         public bool TriggerObject
         {
             get => (bool)GetValue(TriggerObjectProperty);
@@ -85,28 +75,21 @@ namespace ExpenseTracker.Wpf.Controls
 
         private void TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            _originalSourceText = TextSource;
-            TriggerObject = true;
+            if (e.ClickCount == 2)
+            {
+                _originalSourceText = TextSource;
+                TriggerObject = true;
 
-            EditorTextBox.Focus();
-            EditorTextBox.SelectAll();
+                EditorTextBox.Focus();
+                EditorTextBox.SelectAll();
 
-            e.Handled = true;
+                e.Handled = true;
+            }
         }
 
         private void EditorTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             TriggerObject = false;
-        }
-
-        private void EditorTextBox_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TriggerObject = true;
-
-            EditorTextBox.Focus();
-            EditorTextBox.SelectAll();
-
-            e.Handled = true;
         }
     }
 }

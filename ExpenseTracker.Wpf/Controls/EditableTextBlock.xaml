@@ -14,6 +14,7 @@
         <TextBlock
             x:Name="DisplayTextBlock"
             Width="200"
+            MouseDown="TextBox_MouseDoubleClick"
             Text="{Binding TextSource, ElementName=Root}">
             <TextBlock.Style>
                 <Style BasedOn="{StaticResource TextBlockStyle.Form}" TargetType="TextBlock">
@@ -31,8 +32,6 @@
             x:Name="EditorTextBox"
             KeyDown="TextBox_KeyDown"
             LostFocus="EditorTextBox_LostFocus"
-            MouseDoubleClick="TextBox_MouseDoubleClick"
-            MouseDown="EditorTextBox_MouseDown"
             Text="{Binding TextSource, ElementName=Root, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.Style>
                 <Style TargetType="TextBox">
