@@ -170,7 +170,6 @@ namespace ExpenseTracker.View.Tools
         }
         private void RemoveExpenseCategory()
         {
-            // TODO: improve internal handling of copies
             ExpenseCategories.Remove(_selectedExpenseCategory);
             DataHandler.RemoveExpenseCategory(_selectedExpenseCategory.CategoryName);
         }
