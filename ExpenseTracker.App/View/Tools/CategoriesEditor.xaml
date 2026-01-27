@@ -11,6 +11,7 @@
     d:DataContext="{d:DesignInstance local:CategoriesEditorViewModel,
                                      IsDesignTimeCreatable=True}"
     Closing="Window_Closing"
+    ResizeMode="CanResizeWithGrip"
     Style="{DynamicResource WindowStyle}"
     mc:Ignorable="d">
     <Grid Margin="5">

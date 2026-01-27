@@ -2,6 +2,7 @@
     x:Class="ExpenseTracker.View.Tools.ExpenseCategoryControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ExpenseTracker.Wpf.Controls;assembly=ExpenseTracker.Wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExpenseTracker.View.Tools"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -26,6 +27,11 @@
                                 <MenuItem Command="{Binding RemoveExpenseCategoryCommand}" Header="Remove" />
                             </ContextMenu>
                         </ListView.ContextMenu>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:EditableTextBlock TextSource="{Binding CategoryName}" TriggerObject="{Binding Editing}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                 </ScrollViewer>
             </StackPanel>

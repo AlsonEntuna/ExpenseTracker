@@ -30,7 +30,7 @@
                         </ListView.ContextMenu>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <controls:EditableTextBlock TextSource="{Binding PaymentChannelName}" TriggerObject="{Binding IsEditing}" />
+                                <controls:EditableTextBlock TextSource="{Binding PaymentChannelName}" TriggerObject="{Binding Editing}" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

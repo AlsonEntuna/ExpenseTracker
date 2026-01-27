@@ -25,11 +25,11 @@ namespace ExpenseTracker.View.Tools
             set => SetProperty(ref _paymentChannelName, value);
         }
         
-        private bool _isEditing = false;
-        public bool IsEditing
+        private bool _editing = false;
+        public bool Editing
         {
-            get => _isEditing;
-            set => SetProperty(ref _isEditing, value);
+            get => _editing;
+            set => SetProperty(ref _editing, value);
         }
 
         public Guid Id { get; private set; }
@@ -115,13 +115,37 @@ namespace ExpenseTracker.View.Tools
             }
         }
     }
+
+    internal class ExpenseCategoryWrapper : ViewModel
+    {
+        private string _categoryName;
+        public string CategoryName
+        {
+            get => _categoryName;
+            set => SetProperty(ref _categoryName, value);
+        }
+
+        private bool _editing;
+        public bool Editing
+        {
+            get => _editing;
+            set => SetProperty(ref _editing, value);
+        }
+        public ExpenseCategoryWrapper() { }
+        public ExpenseCategoryWrapper(string categoryName)
+        {
+            CategoryName = categoryName;
+            Editing = false;
+        }
+    }
+
     internal class ExpenseCategoriesViewModel : ViewModel
     {
-        private ObservableCollection<string> _expenseCategories;
-        public ObservableCollection<string> ExpenseCategories => _expenseCategories;
+        private ObservableCollection<ExpenseCategoryWrapper> _expenseCategories;
+        public ObservableCollection<ExpenseCategoryWrapper> ExpenseCategories => _expenseCategories;
 
-        private string _selectedExpenseCategory;
-        public string SelectedExpenseCategory
+        private ExpenseCategoryWrapper _selectedExpenseCategory;
+        public ExpenseCategoryWrapper SelectedExpenseCategory
         {
             get => _selectedExpenseCategory;
             set => SetProperty(ref _selectedExpenseCategory, value);
@@ -133,27 +157,22 @@ namespace ExpenseTracker.View.Tools
 
         public ExpenseCategoriesViewModel(List<string> expenseCategories)
         {
-            _expenseCategories = ListUtils.ToObservableCollection(expenseCategories);
+            _expenseCategories = ListUtils.ToObservableCollection(expenseCategories.Select(f => new ExpenseCategoryWrapper(f)));
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
         }
 
         private void AddExpenseCategory()
         {
-            string expenseCategory = "New Category";
-            SelectedExpenseCategory = expenseCategory;
-            DataHandler.AddExpenseCategory(SelectedExpenseCategory);
+            ExpenseCategoryWrapper newCategory = new ExpenseCategoryWrapper("New Category");
+            SelectedExpenseCategory = newCategory;
+            DataHandler.AddExpenseCategory(newCategory.CategoryName);
         }
         private void RemoveExpenseCategory()
         {
             // TODO: improve internal handling of copies
             ExpenseCategories.Remove(_selectedExpenseCategory);
-            DataHandler.RemoveExpenseCategory(_selectedExpenseCategory);
-        }
-
-        private void Save()
-        {
-
+            DataHandler.RemoveExpenseCategory(_selectedExpenseCategory.CategoryName);
         }
     }
 
