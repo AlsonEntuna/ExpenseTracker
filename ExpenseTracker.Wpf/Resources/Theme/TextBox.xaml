@@ -4,7 +4,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!--  TextBox  -->
-    <Style x:Key="TextBoxkStyle.Title" TargetType="{x:Type TextBox}">
+    <Style x:Key="TextBoxStyle.Title" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
         <Style.Resources>

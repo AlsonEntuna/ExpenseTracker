@@ -16,14 +16,27 @@ namespace ExpenseTracker.View.Tools
     {
         public void Save();
     }
-    internal class PaymentChannelItem
+    internal class PaymentChannelItem : ViewModel
     {
-        public string PaymenChannelName { get; set; }
+        private string _paymentChannelName;
+        public string PaymentChannelName
+        { 
+            get => _paymentChannelName;
+            set => SetProperty(ref _paymentChannelName, value);
+        }
+        
+        private bool _isEditing = false;
+        public bool IsEditing
+        {
+            get => _isEditing;
+            set => SetProperty(ref _isEditing, value);
+        }
+
         public Guid Id { get; private set; }
         public PaymentChannelItem() { }
         public PaymentChannelItem(string name)
         {
-            PaymenChannelName = name;
+            PaymentChannelName = name;
             Id = Guid.NewGuid();
         }
 
@@ -34,6 +47,13 @@ namespace ExpenseTracker.View.Tools
                 return otherItem.Id == Id;
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode()
+                , Id.GetHashCode()
+                , PaymentChannelName.GetHashCode());
         }
     }
     internal class PaymentChannelsViewModel : ViewModel, IDataHandler
@@ -54,6 +74,7 @@ namespace ExpenseTracker.View.Tools
         public EventHandler<string> NewPaymentChannelEvent;
 
         private Dictionary<string, Guid> _cachedIdMappings = new Dictionary<string, Guid>();
+
         public PaymentChannelsViewModel(List<string> paymentChannels)
         {
             // Cache the PaymentChannel Name <> ID
@@ -80,7 +101,7 @@ namespace ExpenseTracker.View.Tools
 
         private void RemovePaymentChannel()
         {
-            DataHandler.RemovePaymentChannel(SelectedChannel.PaymenChannelName);
+            DataHandler.RemovePaymentChannel(SelectedChannel.PaymentChannelName);
             // TODO: improve and not to remove from both ends
             PaymentChannels.Remove(SelectedChannel);
         }
@@ -90,7 +111,7 @@ namespace ExpenseTracker.View.Tools
             DataHandler.DataCategories.PaymentChannels.Clear();
             foreach (PaymentChannelItem pItem in _paymentChannels)
             {
-                DataHandler.AddPaymentChannel(pItem.PaymenChannelName);
+                DataHandler.AddPaymentChannel(pItem.PaymentChannelName);
             }
         }
     }

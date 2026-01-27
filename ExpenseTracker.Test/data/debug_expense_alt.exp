@@ -105,11 +105,11 @@
         "CategoryBreakdown": [
           {
             "Category": "Food",
-            "TotalAmount": 303.8
+            "TotalAmount": 0.0
           },
           {
             "Category": "Bills",
-            "TotalAmount": 500.0
+            "TotalAmount": 0.0
           }
         ]
       },
@@ -123,7 +123,7 @@
         "CategoryBreakdown": [
           {
             "Category": "Shopping",
-            "TotalAmount": 50.15
+            "TotalAmount": 0.0
           }
         ]
       }

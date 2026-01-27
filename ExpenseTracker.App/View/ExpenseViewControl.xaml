@@ -404,7 +404,7 @@
                             VerticalContentAlignment="Center"
                             Background="Transparent"
                             BorderThickness="0"
-                            Style="{StaticResource TextBoxkStyle.Title}"
+                            Style="{StaticResource TextBoxStyle.Title}"
                             TextChanged="TxtBox_Search_TextChanged">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />

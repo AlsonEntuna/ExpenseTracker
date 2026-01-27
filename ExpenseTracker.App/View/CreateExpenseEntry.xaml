@@ -36,7 +36,7 @@
                         x:Name="TxtBox_Description"
                         Grid.Row="0"
                         Grid.Column="1"
-                        Style="{StaticResource TextBoxkStyle.Title}" />
+                        Style="{StaticResource TextBoxStyle.Title}" />
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="0"
@@ -99,7 +99,7 @@
                         Grid.Row="3"
                         Grid.Column="1"
                         PreviewTextInput="TxtBox_Amount_PreviewTextInput"
-                        Style="{StaticResource TextBoxkStyle.Title}" />
+                        Style="{StaticResource TextBoxStyle.Title}" />
                 </Grid>
                 <Separator Height="10" />
                 <Grid>

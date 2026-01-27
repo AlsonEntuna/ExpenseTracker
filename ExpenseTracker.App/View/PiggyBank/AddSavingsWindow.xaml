@@ -21,12 +21,12 @@
                     x:Name="Txt_SavingsName"
                     Height="50"
                     FontSize="20"
-                    Style="{StaticResource TextBoxkStyle.Title}" />
+                    Style="{StaticResource TextBoxStyle.Title}" />
                 <TextBlock Style="{StaticResource TextBlockStyle.Header2.Alt}" Text="Give it a description..." />
                 <TextBox
                     x:Name="Txt_Description"
                     Height="60"
-                    Style="{StaticResource TextBoxkStyle.Title}" />
+                    Style="{StaticResource TextBoxStyle.Title}" />
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
@@ -56,7 +56,7 @@
                         Grid.Column="1"
                         VerticalContentAlignment="Center"
                         PreviewTextInput="Txt_Amount_PreviewTextInput"
-                        Style="{StaticResource TextBoxkStyle.Title}" />
+                        Style="{StaticResource TextBoxStyle.Title}" />
                 </Grid>
                 <Button
                     x:Name="Btn_AddSavings"

@@ -14,13 +14,11 @@
     Style="{DynamicResource WindowStyle}"
     mc:Ignorable="d">
     <Grid Margin="5">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <local:ExpenseCategoryControl Grid.Column="0" DataContext="{Binding ExpenseCategoryVm}" />
-            <local:PaymentChannelControl Grid.Column="1" DataContext="{Binding PaymentChannelVm}" />
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <local:ExpenseCategoryControl Grid.Column="0" DataContext="{Binding ExpenseCategoryVm}" />
+        <local:PaymentChannelControl Grid.Column="1" DataContext="{Binding PaymentChannelVm}" />
     </Grid>
 </Window>
