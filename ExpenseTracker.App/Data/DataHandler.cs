@@ -128,6 +128,7 @@ namespace ExpenseTracker.Data
             {
                 DataCategories.ExpenseCategories.Remove(category);
                 // Serialize immediately
+                // TODO: we have to remove this auto-serialization.
                 JsonUtils.Serialize(_dataFile, DataCategories);
                 return true;
             }
@@ -147,6 +148,7 @@ namespace ExpenseTracker.Data
                 DataCategories.PaymentChannels.Add(chanel);
 
                 // Serialize immediately
+                // TODO: we have to remove this auto-serialization.
                 JsonUtils.Serialize(_dataFile, DataCategories);
                 return true;
             }

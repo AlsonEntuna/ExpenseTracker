@@ -11,7 +11,7 @@ namespace ExpenseTracker.View.Tools
     /// </summary>
     public partial class PaymentChannelControl : UserControl
     {
-        private PaymentChannelsViewModel viewModel;
+        private PaymentChannelViewModel viewModel;
         public PaymentChannelControl()
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace ExpenseTracker.View.Tools
             // Only when loaded then we get the DataContext
             Loaded += (s, e) =>
             {
-                viewModel = DataContext as PaymentChannelsViewModel;
+                viewModel = DataContext as PaymentChannelViewModel;
                 viewModel.NewPaymentChannelEvent += OnNewPaymentChannelEvent;
             };
         }
