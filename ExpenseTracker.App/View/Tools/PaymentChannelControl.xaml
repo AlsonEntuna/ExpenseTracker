@@ -14,28 +14,36 @@
     mc:Ignorable="d">
     <Border BorderBrush="{StaticResource Brush.Button.Alt}">
         <Grid>
-            <StackPanel>
-                <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Payment Channels" />
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ListView
-                        x:Name="ListView_PaymenChannels"
-                        MinHeight="{Binding ActualHeight, ElementName=RootControl}"
-                        ItemsSource="{Binding PaymentChannels}"
-                        SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Command="{Binding AddPaymentChannelCommand}" Header="Add" />
-                                <MenuItem Command="{Binding RemovePaymentChannelCommand}" Header="Remove" />
-                            </ContextMenu>
-                        </ListView.ContextMenu>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <controls:EditableTextBlock TextSource="{Binding PaymentChannelName}" TriggerObject="{Binding Editing}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </ScrollViewer>
-            </StackPanel>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                Text="Payment Channels" />
+            <ScrollViewer
+                Grid.Row="1"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
+                <ListView
+                    x:Name="ListView_PaymenChannels"
+                    MinHeight="{Binding ActualHeight, ElementName=RootControl}"
+                    ItemsSource="{Binding PaymentChannels}"
+                    SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Command="{Binding AddPaymentChannelCommand}" Header="Add" />
+                            <MenuItem Command="{Binding RemovePaymentChannelCommand}" Header="Remove" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:EditableTextBlock TextSource="{Binding PaymentChannelName}" TriggerObject="{Binding Editing}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
         </Grid>
     </Border>
 </UserControl>

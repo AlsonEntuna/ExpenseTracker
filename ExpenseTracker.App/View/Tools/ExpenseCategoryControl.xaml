@@ -14,27 +14,35 @@
     mc:Ignorable="d">
     <Border BorderBrush="{StaticResource Brush.Button.Alt}">
         <Grid>
-            <StackPanel>
-                <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Categories" />
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ListView
-                        MinHeight="{Binding ActualHeight, ElementName=RootControl}"
-                        ItemsSource="{Binding ExpenseCategories}"
-                        SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Command="{Binding AddExpenseCategoryCommand}" Header="Add" />
-                                <MenuItem Command="{Binding RemoveExpenseCategoryCommand}" Header="Remove" />
-                            </ContextMenu>
-                        </ListView.ContextMenu>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <controls:EditableTextBlock TextSource="{Binding CategoryName}" TriggerObject="{Binding Editing}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </ScrollViewer>
-            </StackPanel>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Style="{StaticResource TextBlockStyle.Header1.Bold}"
+                Text="Categories" />
+            <ScrollViewer
+                Grid.Row="1"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
+                <ListView
+                    MinHeight="{Binding ActualHeight, ElementName=RootControl}"
+                    ItemsSource="{Binding ExpenseCategories}"
+                    SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Command="{Binding AddExpenseCategoryCommand}" Header="Add" />
+                            <MenuItem Command="{Binding RemoveExpenseCategoryCommand}" Header="Remove" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:EditableTextBlock TextSource="{Binding CategoryName}" TriggerObject="{Binding Editing}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
         </Grid>
     </Border>
 </UserControl>

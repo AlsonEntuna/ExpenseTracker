@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Colors  -->
-    <Color x:Key="Color.Main.Background">#0f0f0f</Color>
-    <Color x:Key="Color.Main.Background.Alt">#000000</Color>
+    <Color x:Key="Color.Main.Background">#FA0f0f0f</Color>
+    <Color x:Key="Color.Main.Background.Alt">#FA000000</Color>
 
     <Color x:Key="Color.Main.Text">#dcd7d7</Color>
     <Color x:Key="Color.Main.Text.Alt">#9d9d9d</Color>

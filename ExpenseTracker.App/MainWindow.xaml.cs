@@ -13,6 +13,8 @@ namespace ExpenseTracker
         {
             InitializeComponent();
             _vm = DataContext as MainWindowViewModel;
+
+            AllowsTransparency = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -22,7 +24,13 @@ namespace ExpenseTracker
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            if (e.ClickCount == 2)
+            {
+                WindowState = WindowState == WindowState.Maximized
+                    ? WindowState.Normal
+                    : WindowState.Maximized;
+            }
+            else if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
             }
@@ -46,6 +54,22 @@ namespace ExpenseTracker
         private void Btn_Tools_Click(object sender, RoutedEventArgs e)
         {
             _vm?.OpenToolsPanel();
+        }
+
+        private void TitleBarGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Maximize(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState == WindowState.Maximized
+                     ? WindowState.Normal
+                     : WindowState.Maximized;
+        }
+        private void Button_Minimize(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

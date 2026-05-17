@@ -39,48 +39,6 @@
         "Name": "Philippine Piso",
         "Symbol": "₱"
       }
-    },
-    {
-      "Description": "tesing other php",
-      "Amount": 50.15,
-      "OriginalAmount": 3000.0,
-      "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Shopping",
-      "Comments": "test2",
-      "Currency": {
-        "Code": "PHP",
-        "Name": "Philippine Piso",
-        "Symbol": "₱"
-      }
-    },
-    {
-      "Description": "Credit Card Due",
-      "Amount": 500.0,
-      "OriginalAmount": 0.0,
-      "Category": null,
-      "PaymentChannel": "Credit Card",
-      "ExpenseCategory": "Bills",
-      "Comments": null,
-      "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
-      }
-    },
-    {
-      "Description": "testing expense - food",
-      "Amount": 40.0,
-      "OriginalAmount": 0.0,
-      "Category": null,
-      "PaymentChannel": "Credit Card",
-      "ExpenseCategory": "Food",
-      "Comments": null,
-      "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
-      }
     }
   ],
   "Report": {

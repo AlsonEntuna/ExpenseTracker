@@ -162,59 +162,6 @@
                         VerticalAlignment="Center"
                         FontWeight="Light"
                         Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                        Text="Expense" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Button
-                            Grid.Column="0"
-                            Width="Auto"
-                            Height="45"
-                            Margin="5"
-                            Command="{Binding AddEntryCommand}">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image
-                                        Width="30"
-                                        Height="30"
-                                        Source="{StaticResource AddExpense}" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Add" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button
-                            Grid.Column="1"
-                            Width="Auto"
-                            Height="45"
-                            Margin="5"
-                            Command="{Binding UpdateEntryConversionCommand}">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image
-                                        Width="30"
-                                        Height="30"
-                                        Source="{StaticResource Currency_Converter}" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
-                                        Text="Update" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        FontWeight="Light"
-                        Style="{StaticResource TextBlockStyle.Header2.Bold}"
                         Text="Report Tools" />
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -452,6 +399,42 @@
                         </DataTemplate>
                     </TabControl.ContentTemplate>
                 </TabControl>
+                <Expander
+                    Grid.Row="1"
+                    Margin="0,0,45,100"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Background="Transparent"
+                    ExpandDirection="Left"
+                    FlowDirection="RightToLeft"
+                    Foreground="{StaticResource Brush.Main.Text}"
+                    IsExpanded="True">
+                    <WrapPanel
+                        MinHeight="100"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Orientation="Vertical">
+                        <WrapPanel.Resources>
+                            <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="0,2" />
+                                <Setter Property="Height" Value="35" />
+                                <Setter Property="Width" Value="35" />
+                            </Style>
+                        </WrapPanel.Resources>
+                        <Button Command="{Binding UpdateEntryConversionCommand}" ToolTip="Update Conversion">
+                            <Button.Content>
+                                <Image Source="{StaticResource Currency_Converter}" />
+                            </Button.Content>
+                        </Button>
+                        <Button Command="{Binding AddEntryCommand}" ToolTip="Add Entry">
+                            <Button.Content>
+                                <Image Source="{StaticResource AddExpense}" />
+                            </Button.Content>
+                        </Button>
+                    </WrapPanel>
+                </Expander>
+
+
             </Grid>
         </Grid>
     </Grid>
