@@ -1,3 +1,5 @@
+using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Data;
 using ExpenseTracker.Tools;
 using ExpenseTracker.Wpf;
@@ -7,8 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-
-using CommunityToolkit.Mvvm.Input;
 
 namespace ExpenseTracker.View.Templates
 {
@@ -36,7 +36,7 @@ namespace ExpenseTracker.View.Templates
         // Used in the Control DataTemplate
         public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
         public List<string> PaymentChannels => DataHandler.DataCategories.PaymentChannels;
-
+        public List<CurrencyInfo> CurrencyInfos => CurrencyInfo.GenerateCurrencyList().ToList();
         #region Commands
         public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);

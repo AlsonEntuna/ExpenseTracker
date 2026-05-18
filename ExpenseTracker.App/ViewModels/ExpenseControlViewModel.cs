@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.CurrencyConverter.UI;
+﻿using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
 using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
@@ -6,14 +7,11 @@ using ExpenseTracker.View;
 using ExpenseTracker.View.Templates;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
-
-using CommunityToolkit.Mvvm.Input;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -68,11 +66,20 @@ namespace ExpenseTracker.ViewModels
 
         private void AddEntry()
         {
-            CreateExpenseEntry entryWindow = new CreateExpenseEntry(CurrentExpenseViewModel.Expense.DataCurrency);
-            if (entryWindow.ShowDialog() ?? true)
+            if (CurrentExpenseViewModel == null || CurrentExpenseViewModel.Expense == null)
             {
-                CurrentExpenseViewModel.Expense.Entries.Add(entryWindow.Entry);
+                return;
             }
+
+            DataEntry entry = new DataEntry()
+            {
+                Description = "New Entry",
+                Amount = 0.0f,
+                PaymentChannel = DataHandler.DataCategories.PaymentChannels[0],
+                ExpenseCategory = DataHandler.DataCategories.ExpenseCategories[0],
+                Currency = CurrentExpenseViewModel.Expense.DataCurrency
+            };
+            CurrentExpenseViewModel.Expense.Entries.Add(entry);
         }
 
         /// <summary>
@@ -207,7 +214,9 @@ namespace ExpenseTracker.ViewModels
         private void OpenExpenseReport(ExpenseDataReport report)
         {
             if (report == null)
+            {
                 return;
+            }
 
             ExpenseDataReportViewModel reportVm = new ExpenseDataReportViewModel
             {
@@ -281,6 +290,11 @@ namespace ExpenseTracker.ViewModels
 
         private void UpdateEntryConversion()
         {
+            if (CurrentExpenseViewModel == null || CurrentExpenseViewModel.Expense == null)
+            {
+                return;
+            }
+
             foreach (var entry in CurrentExpenseViewModel.Expense.Entries)
             {
                 if (entry.Currency.Code != AppInstance.Connection.MainCurrency.Code)

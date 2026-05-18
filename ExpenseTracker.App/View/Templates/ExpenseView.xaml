@@ -117,10 +117,31 @@
                     Width="130"
                     Binding="{Binding OriginalAmount}"
                     Header="Amount (Local)" />
-                <DataGridTextColumn
-                    Width="100"
-                    Binding="{Binding Currency.Symbol}"
-                    Header="Currency" />
+                <DataGridTemplateColumn
+                    Width="auto"
+                    MinWidth="150"
+                    Header="Currency">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ComboBox
+                                    Grid.Column="0"
+                                    ItemsSource="{Binding Path=DataContext.CurrencyInfos, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                    SelectedItem="{Binding Currency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <GridSplitter
+                                    Grid.Column="1"
+                                    Width="3"
+                                    DragDelta="GridSplitter_DragDelta"
+                                    DragIncrement="1"
+                                    Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn
                     Width="200"
                     Binding="{Binding Comments}"

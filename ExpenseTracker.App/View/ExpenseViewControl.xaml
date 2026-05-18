@@ -428,13 +428,11 @@
                         </Button>
                         <Button Command="{Binding AddEntryCommand}" ToolTip="Add Entry">
                             <Button.Content>
-                                <Image Source="{StaticResource AddExpense}" />
+                                <Image Source="{StaticResource Add}" />
                             </Button.Content>
                         </Button>
                     </WrapPanel>
                 </Expander>
-
-
             </Grid>
         </Grid>
     </Grid>

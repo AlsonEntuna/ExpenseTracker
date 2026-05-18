@@ -15,7 +15,7 @@
     <Border BorderBrush="{StaticResource Brush.Button.Alt}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="45" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock
@@ -27,7 +27,7 @@
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto">
                 <ListView
-                    MinHeight="{Binding ActualHeight, ElementName=RootControl}"
+                    MinHeight="{Binding ActualHeight, ElementName=RootControl, Converter={StaticResource SubtractConverter}, ConverterParameter=50}"
                     ItemsSource="{Binding ExpenseCategories}"
                     SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <ListView.ContextMenu>
