@@ -64,7 +64,7 @@
 
     <Style x:Key="ButtonStyle.Element" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="30" />
-        <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
+        <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="TextElement.Foreground" Value="{StaticResource Brush.Main.Text}" />
         <Setter Property="TextElement.FontSize" Value="12" />
         <Setter Property="Template">

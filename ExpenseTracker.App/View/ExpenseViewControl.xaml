@@ -337,6 +337,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image
                             Grid.Column="0"
@@ -358,6 +359,29 @@
                                 <KeyBinding Key="Enter" Command="{Binding ElementName=RootWindow, Path=SearchCommand}" />
                             </TextBox.InputBindings>
                         </TextBox>
+                        <WrapPanel
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                            <WrapPanel.Resources>
+                                <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
+                                    <Setter Property="Margin" Value="5,5,0,5" />
+                                    <Setter Property="Height" Value="35" />
+                                    <Setter Property="Width" Value="35" />
+                                </Style>
+                            </WrapPanel.Resources>
+                            <Button Command="{Binding AddEntryCommand}" ToolTip="Add Entry">
+                                <Button.Content>
+                                    <Image Source="{StaticResource Add}" />
+                                </Button.Content>
+                            </Button>
+                            <Button Command="{Binding UpdateEntryConversionCommand}" ToolTip="Update Conversion">
+                                <Button.Content>
+                                    <Image Source="{StaticResource Currency_Converter}" />
+                                </Button.Content>
+                            </Button>
+                        </WrapPanel>
                     </Grid>
                 </Grid>
                 <TabControl
@@ -399,40 +423,6 @@
                         </DataTemplate>
                     </TabControl.ContentTemplate>
                 </TabControl>
-                <Expander
-                    Grid.Row="1"
-                    Margin="0,0,45,100"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Background="Transparent"
-                    ExpandDirection="Left"
-                    FlowDirection="RightToLeft"
-                    Foreground="{StaticResource Brush.Main.Text}"
-                    IsExpanded="True">
-                    <WrapPanel
-                        MinHeight="100"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Orientation="Vertical">
-                        <WrapPanel.Resources>
-                            <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
-                                <Setter Property="Margin" Value="0,2" />
-                                <Setter Property="Height" Value="35" />
-                                <Setter Property="Width" Value="35" />
-                            </Style>
-                        </WrapPanel.Resources>
-                        <Button Command="{Binding UpdateEntryConversionCommand}" ToolTip="Update Conversion">
-                            <Button.Content>
-                                <Image Source="{StaticResource Currency_Converter}" />
-                            </Button.Content>
-                        </Button>
-                        <Button Command="{Binding AddEntryCommand}" ToolTip="Add Entry">
-                            <Button.Content>
-                                <Image Source="{StaticResource Add}" />
-                            </Button.Content>
-                        </Button>
-                    </WrapPanel>
-                </Expander>
             </Grid>
         </Grid>
     </Grid>

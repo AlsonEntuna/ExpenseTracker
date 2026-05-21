@@ -37,7 +37,6 @@
             x:Name="TitleBarGrid"
             Grid.Row="0"
             Panel.ZIndex="1"
-            Background="{StaticResource Brush.Main.Background}"
             MouseDown="TitleBarGrid_MouseDown"
             WindowChrome.IsHitTestVisibleInChrome="True">
             <Grid.ColumnDefinitions>
@@ -54,6 +53,11 @@
 
             <!--  Buttons  -->
             <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                    </Style>
+                </StackPanel.Resources>
                 <!--  Minimize  -->
                 <Button
                     x:Name="Btn_Minimize"
@@ -61,9 +65,7 @@
                     Height="32"
                     Margin="3"
                     Click="Button_Minimize"
-                    Content="—"
-                    Style="{StaticResource ButtonStyle.Element}" />
-
+                    Content="—" />
                 <!--  Maximize  -->
                 <Button
                     x:Name="Btn_Maximize"
@@ -71,17 +73,14 @@
                     Height="32"
                     Margin="3"
                     Click="Button_Maximize"
-                    Content="☐"
-                    Style="{StaticResource ButtonStyle.Element}" />
-
+                    Content="☐" />
                 <!--  Close  -->
                 <Button
                     Width="45"
                     Height="32"
                     Margin="3"
                     Click="Btn_Exit_Click"
-                    Content="✕"
-                    Style="{StaticResource ButtonStyle.Element}" />
+                    Content="✕" />
             </StackPanel>
         </Grid>
         <view:ExpenseViewControl Grid.Row="1" DataContext="{Binding ExpenseControlViewModel}" />

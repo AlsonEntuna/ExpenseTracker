@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace ExpenseTracker
 {
@@ -12,11 +15,77 @@ namespace ExpenseTracker
         public MainWindow()
         {
             InitializeComponent();
-            _vm = DataContext as MainWindowViewModel;
-
+           
             AllowsTransparency = true;
+            // TODO: move this to the themes
+            SourceInitialized += (_, _) => EnableAcrylic();
+
+            _vm = DataContext as MainWindowViewModel;
+        }
+        #region Blur
+        private void EnableAcrylic()
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+
+            // Mica
+            int trueValue = 1;
+
+            // Enable Mica
+            DwmSetWindowAttribute(hwnd, 1029, ref trueValue, sizeof(int));
+
+            var accent = new AccentPolicy
+            {
+                AccentState = 3, // ACCENT_ENABLE_ACRYLICBLURBEHIND
+                //GradientColor = 0x99FFFFFF // ARGB (adjust opacity here)
+            };
+
+            var accentStructSize = Marshal.SizeOf(accent);
+
+            var accentPtr = Marshal.AllocHGlobal(accentStructSize);
+            Marshal.StructureToPtr(accent, accentPtr, false);
+
+            var data = new WindowCompositionAttributeData
+            {
+                Attribute = 19, // WCA_ACCENT_POLICY
+                SizeOfData = accentStructSize,
+                Data = accentPtr
+            };
+
+            SetWindowCompositionAttribute(hwnd, ref data);
+
+            Marshal.FreeHGlobal(accentPtr);
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct AccentPolicy
+        {
+            public int AccentState;
+            public int AccentFlags;
+            public int GradientColor;
+            public int AnimationId;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct WindowCompositionAttributeData
+        {
+            public int Attribute;
+            public IntPtr Data;
+            public int SizeOfData;
+        }
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowCompositionAttribute(
+            IntPtr hwnd,
+            ref WindowCompositionAttributeData data);
+
+        [DllImport("dwmapi.dll")]
+        public static extern int DwmSetWindowAttribute(
+        IntPtr hwnd,
+        int dwAttribute,
+        ref int pvAttribute,
+        int cbAttribute);
+
+        #endregion
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _vm?.SaveData();
