@@ -53,7 +53,16 @@ namespace ExpenseTracker
 
             SetWindowCompositionAttribute(hwnd, ref data);
 
+            // Win11 native round corner attribute
+            int windowRoundCornerAttribute = 2; // DWMWCP_ROUND
+            DwmSetWindowAttribute(hwnd, (int)DwmWindowAttribute.DWMWA_WINDOW_CORNER_PREFERENCE, ref windowRoundCornerAttribute, sizeof(int));
+
             Marshal.FreeHGlobal(accentPtr);
+        }
+
+        internal enum DwmWindowAttribute
+        {
+            DWMWA_WINDOW_CORNER_PREFERENCE = 33
         }
 
         [StructLayout(LayoutKind.Sequential)]
