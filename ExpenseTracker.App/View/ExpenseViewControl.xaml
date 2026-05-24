@@ -71,7 +71,7 @@
                             Height="100"
                             Margin="5"
                             Background="{StaticResource Brush.Border.Background}"
-                            CornerRadius="5">
+                            CornerRadius="8">
                             <Border.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Command="{Binding EditBudgetCommand}" Header="Edit Budget" />
@@ -112,7 +112,7 @@
                             Height="100"
                             Margin="5"
                             Background="{StaticResource Brush.Border.Background}"
-                            CornerRadius="5">
+                            CornerRadius="8">
                             <StackPanel Margin="10">
                                 <TextBlock
                                     Margin="5,0,0,0"
@@ -140,7 +140,7 @@
                         Height="120"
                         Margin="5"
                         Background="{StaticResource Brush.Border.Background}"
-                        CornerRadius="5">
+                        CornerRadius="8">
                         <StackPanel Margin="10">
                             <TextBlock
                                 Margin="5,0,0,0"
@@ -284,20 +284,6 @@
                         </Button.Content>
                     </Button>
                     <Button
-                        x:Name="Btn_PiggyBank"
-                        Width="60"
-                        Height="60"
-                        Margin="5,0,0,0"
-                        Click="Btn_PiggyBank_Click"
-                        ToolTip="Piggy Bank">
-                        <Button.Content>
-                            <Image
-                                Width="48"
-                                Height="48"
-                                Source="{StaticResource PiggyBank}" />
-                        </Button.Content>
-                    </Button>
-                    <Button
                         x:Name="Btn_Save"
                         Width="60"
                         Height="60"
@@ -332,7 +318,7 @@
                     <Border
                         Margin="10"
                         Background="{StaticResource Brush.Main.Background}"
-                        CornerRadius="5" />
+                        CornerRadius="8" />
                     <Grid Margin="15,0,15,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30" />
@@ -410,9 +396,11 @@
                                     Grid.Column="1"
                                     Width="15"
                                     Height="15"
+                                    HorizontalContentAlignment="Right"
                                     BorderThickness="0"
                                     Click="Button_CloseExpenseItem_Click"
                                     Content="×"
+                                    FontSize="12"
                                     ToolTip="Close" />
                             </Grid>
                         </DataTemplate>

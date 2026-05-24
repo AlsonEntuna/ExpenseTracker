@@ -27,11 +27,29 @@ namespace ExpenseTracker
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
+        private readonly HomepageViewModel _homepageViewModel = new HomepageViewModel();
+        public HomepageViewModel HomepageViewModel => _homepageViewModel;
         private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
         public ExpenseControlViewModel ExpenseControlViewModel => _variableExpenseViewModel;
+
+        private readonly PiggyBankViewModel _piggyBankViewModel = new PiggyBankViewModel();
+        public PiggyBankViewModel PiggyBankViewModel => _piggyBankViewModel;
         #endregion
 
+        // Page
+        private object _currentView;
+        public object CurrentView
+        {
+            get => _currentView;
+            set => SetProperty(ref _currentView, value);
+        }
+
         #region Commands
+        // PageNavigationCommands
+        public ICommand HomepageViewCommand => new RelayCommand(() => { CurrentView = HomepageViewModel; });
+        public ICommand ExpenseViewCommand => new RelayCommand(() => { CurrentView = ExpenseControlViewModel; });
+        public ICommand PiggyBankViewCommand => new RelayCommand(() => { CurrentView = PiggyBankViewModel; });
+
         public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
         public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
         public ICommand CopyFromCurrentExpenseCommand => new RelayCommand(CopyFromCurrentExpense);
@@ -113,13 +131,6 @@ namespace ExpenseTracker
                 DataContext = this
             };
             toolsWindow.ShowDialog();
-        }
-        public void OpenPiggyBank()
-        {
-            PiggyBankWindow window = new PiggyBankWindow();
-            PiggyBankViewModel vm = new PiggyBankViewModel();
-            window.DataContext = vm;
-            window.Show();
         }
         private void ImportCategories()
         {

@@ -15,16 +15,16 @@
         <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
     </Style>
 
-    <Style x:Key="UserControlStyle" TargetType="{x:Type UserControl}">
+    <Style TargetType="{x:Type UserControl}">
         <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
     </Style>
 
     <!--  All controls  -->
     <Style x:Key="CommonStyle" TargetType="{x:Type Control}">
-        <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text}" />
         <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
-        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="FontStretch" Value="Expanded" />
         <Setter Property="FontStyle" Value="Normal" />
     </Style>

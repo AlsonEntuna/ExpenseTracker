@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace ExpenseTracker.ViewModels
 {
-    class ExpenseControlViewModel : ViewModel
+    public class ExpenseControlViewModel : ViewModel
     {
         private ExpenseViewModel _currentDisplayedExpense;
         public ExpenseViewModel CurrentExpenseViewModel

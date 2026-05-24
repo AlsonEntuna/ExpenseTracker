@@ -110,11 +110,6 @@ namespace ExpenseTracker.View
             AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenToolsPanel();
         }
 
-        private void Btn_PiggyBank_Click(object sender, RoutedEventArgs e)
-        {
-            AppInstance.Connection.GetEditorViewModel<MainWindowViewModel>().OpenPiggyBank();
-        }
-
         private void TabControlExpenses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TabControlExpenses.SelectedItem is ExpenseViewModel _expenseVm)

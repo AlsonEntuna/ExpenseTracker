@@ -13,13 +13,12 @@
     MouseDown="Window_MouseDown"
     ResizeMode="CanResize"
     Style="{DynamicResource WindowStyle}"
-    WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>
         <WindowChrome
             CaptionHeight="30"
-            CornerRadius="5"
+            CornerRadius="8"
             ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>
     <Window.DataContext>
@@ -33,6 +32,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <!--  TitleBar Chrome  -->
         <Grid
             x:Name="TitleBarGrid"
             Grid.Row="0"
@@ -83,6 +83,63 @@
                     Content="✕" />
             </StackPanel>
         </Grid>
-        <view:ExpenseViewControl Grid.Row="1" DataContext="{Binding ExpenseControlViewModel}" />
+        <Grid Grid.Row="1" Margin="15">
+            <Grid.Resources>
+                <Style BasedOn="{StaticResource ButtonStyle.Navigation}" TargetType="{x:Type Button}">
+                    <Setter Property="FontSize" Value="24" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <StackPanel>
+                            <Button Command="{Binding HomepageViewCommand}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-Home}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Home" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button Command="{Binding ExpenseViewCommand}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-Expense}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Expense" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button Command="{Binding PiggyBankViewCommand}" ToolTip="Savings">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-PiggyBank}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Savings" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                        <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource Menu-Preferences}" />
+                                    <TextBlock VerticalAlignment="Center" Text="Preferences" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <ContentPresenter Grid.Column="1" Content="{Binding CurrentView}" />
+        </Grid>
     </Grid>
 </Window>
