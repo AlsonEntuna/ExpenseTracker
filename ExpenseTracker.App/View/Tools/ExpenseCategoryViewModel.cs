@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace ExpenseTracker.View.Tools
 {
-    internal class ExpenseCategoryWrapper : ViewModel
+    public class ExpenseCategoryWrapper : ViewModel
     {
         private string _categoryName;
         public string CategoryName
@@ -32,7 +32,7 @@ namespace ExpenseTracker.View.Tools
         }
     }
 
-    internal class ExpenseCategoriesViewModel : ViewModel, IDataHandler
+    public class ExpenseCategoriesViewModel : ViewModel, IDataHandler
     {
         private ObservableCollection<ExpenseCategoryWrapper> _expenseCategories;
         public ObservableCollection<ExpenseCategoryWrapper> ExpenseCategories => _expenseCategories;

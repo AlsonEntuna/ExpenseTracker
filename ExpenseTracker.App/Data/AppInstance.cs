@@ -31,6 +31,8 @@ namespace ExpenseTracker.Data
         private List<ViewModel> _appViewModels = new List<ViewModel>();
         public CurrencyConverter.CurrencyConverter CurrConverter;
 
+        // TODO: add an event dispatching system here
+
         private AppInstance()
         {
             CurrConverter = new CurrencyConverter.CurrencyConverter(Path.Combine(PathUtils.AppDataPath(

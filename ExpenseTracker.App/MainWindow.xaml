@@ -128,11 +128,11 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Margin="0,0,0,10">
-                        <Button>
+                        <Button Command="{Binding ToolsViewCommand}">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{StaticResource Menu-Preferences}" />
-                                    <TextBlock VerticalAlignment="Center" Text="Preferences" />
+                                    <TextBlock VerticalAlignment="Center" Text="Tools" />
                                 </StackPanel>
                             </Button.Content>
                         </Button>

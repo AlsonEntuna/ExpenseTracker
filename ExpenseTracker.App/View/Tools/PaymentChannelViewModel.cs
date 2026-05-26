@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace ExpenseTracker.View.Tools
 {
-    internal class PaymentChannelItem : ViewModel
+    public class PaymentChannelItem : ViewModel
     {
         private string _paymentChannelName;
         public string PaymentChannelName
@@ -51,7 +51,7 @@ namespace ExpenseTracker.View.Tools
                 , PaymentChannelName.GetHashCode());
         }
     }
-    internal class PaymentChannelViewModel : ViewModel, IDataHandler
+    public class PaymentChannelViewModel : ViewModel, IDataHandler
     {
         private ObservableCollection<PaymentChannelItem> _paymentChannels = new();
         public ObservableCollection<PaymentChannelItem> PaymentChannels => _paymentChannels;

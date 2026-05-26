@@ -135,13 +135,5 @@ namespace ExpenseTracker.View
                 }
             }
         }
-
-        private void Btn_CategTools_Click(object sender, RoutedEventArgs e)
-        {
-            CategoriesEditor categoriesEditor = new CategoriesEditor();
-            CategoriesEditorViewModel categoriesViewModel = new CategoriesEditorViewModel();
-            categoriesEditor.DataContext = categoriesViewModel;
-            categoriesEditor.ShowDialog();
-        }
     }
 }

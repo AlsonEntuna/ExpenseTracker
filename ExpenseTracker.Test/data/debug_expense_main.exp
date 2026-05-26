@@ -102,7 +102,8 @@
         "Comments": null,
         "Paid": true,
         "PartialPayment": 308.8,
-        "OutstandingBalance": 0.0
+        "OutstandingBalance": 0.0,
+        "CategoryBreakdown": []
       },
       {
         "PaymentChannel": "Loan",
@@ -110,7 +111,8 @@
         "Comments": null,
         "Paid": true,
         "PartialPayment": 200.0,
-        "OutstandingBalance": 350.15
+        "OutstandingBalance": 350.15,
+        "CategoryBreakdown": []
       }
     ],
     "SelectedReport": {
@@ -119,7 +121,8 @@
       "Comments": null,
       "Paid": true,
       "PartialPayment": 200.0,
-      "OutstandingBalance": 350.15
+      "OutstandingBalance": 350.15,
+      "CategoryBreakdown": []
     },
     "DataCurrency": {
       "Code": "EUR",
@@ -155,6 +158,7 @@
         "Value": 1
       }
     ],
+    "ExpenseCategoryExpenseTotalValueData": null,
     "CurrencyReport": [
       {
         "Currency": {

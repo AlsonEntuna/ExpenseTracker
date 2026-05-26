@@ -23,7 +23,7 @@
     <Style x:Key="CommonStyle" TargetType="{x:Type Control}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text}" />
-        <Setter Property="FontFamily" Value="../Fonts/#JetBrains Mono NL" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontStretch" Value="Expanded" />
         <Setter Property="FontStyle" Value="Normal" />
