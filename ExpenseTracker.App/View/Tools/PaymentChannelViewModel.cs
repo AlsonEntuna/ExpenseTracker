@@ -96,17 +96,17 @@ namespace ExpenseTracker.View.Tools
 
         private void RemovePaymentChannel()
         {
-            DataHandler.RemovePaymentChannel(SelectedChannel.PaymentChannelName);
+            DataManager.Instance.RemovePaymentChannel(SelectedChannel.PaymentChannelName);
             // TODO: improve and not to remove from both ends
             PaymentChannels.Remove(SelectedChannel);
         }
 
         public void Save()
         {
-            DataHandler.DataCategories.PaymentChannels.Clear();
+            DataManager.Instance.DataCategories.PaymentChannels.Clear();
             foreach (PaymentChannelItem pItem in _paymentChannels)
             {
-                DataHandler.AddPaymentChannel(pItem.PaymentChannelName);
+                DataManager.Instance.AddPaymentChannel(pItem.PaymentChannelName);
             }
         }
     }

@@ -14,10 +14,10 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <Expander Header="Expense">
-                    <tools:CategoriesEditorView DataContext="{Binding CategoriesEditorViewModel}"/>
+                <Expander Header="Expense" IsExpanded="True">
+                    <tools:CategoriesEditorView DataContext="{Binding CategoriesEditorViewModel}" />
                 </Expander>
             </StackPanel>
         </ScrollViewer>

@@ -21,13 +21,18 @@ namespace ExpenseTracker.View.Tools
         {
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
+
+            // Register the event once all providers have been loaded
+            DataManager.Instance.ProvidersLoadedEvent += (_,_) => { Initialize(); };
         }
 
         // TODO: implement this properly
         public void Initialize()
         {
-            ExpenseCategoryVm = new ExpenseCategoriesViewModel(DataHandler.DataCategories.ExpenseCategories);
-            PaymentChannelVm = new PaymentChannelViewModel(DataHandler.DataCategories.PaymentChannels);
+            ExpenseCategoryVm = new ExpenseCategoriesViewModel(DataManager.Instance.DataCategories.ExpenseCategories);
+            RaisePropertyChanged(nameof(ExpenseCategoryVm));
+            PaymentChannelVm = new PaymentChannelViewModel(DataManager.Instance.DataCategories.PaymentChannels);
+            RaisePropertyChanged(nameof(PaymentChannelVm));
         }
     }
 }

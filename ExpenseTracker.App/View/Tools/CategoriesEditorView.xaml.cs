@@ -16,9 +16,14 @@ namespace ExpenseTracker.View.Tools
             {
                 viewModel = DataContext as CategoriesEditorViewModel;
             };
+
+            Unloaded += (_, _) =>
+            {
+                SaveHadlers();
+            };
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void SaveHadlers()
         {
             {
                 if (viewModel.PaymentChannelVm is IDataHandler _handler)

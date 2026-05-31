@@ -34,8 +34,8 @@ namespace ExpenseTracker.View.Templates
         }
 
         // Used in the Control DataTemplate
-        public List<string> Categories => DataHandler.DataCategories.ExpenseCategories;
-        public List<string> PaymentChannels => DataHandler.DataCategories.PaymentChannels;
+        public List<string> Categories => DataManager.Instance.DataCategories.ExpenseCategories;
+        public List<string> PaymentChannels => DataManager.Instance.DataCategories.PaymentChannels;
         public List<CurrencyInfo> CurrencyInfos => CurrencyInfo.GenerateCurrencyList().ToList();
         #region Commands
         public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);

@@ -17,9 +17,8 @@ namespace ExpenseTracker.View.Tools
             InitializeComponent();
 
             // Only when loaded then we get the DataContext
-            Loaded += (s, e) =>
+            Initialized += (s, e) =>
             {
-                // TODO: error entry point here...
                 viewModel = DataContext as PaymentChannelViewModel;
                 viewModel.NewPaymentChannelEvent += OnNewPaymentChannelEvent;
             };

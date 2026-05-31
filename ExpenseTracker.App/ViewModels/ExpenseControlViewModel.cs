@@ -75,8 +75,8 @@ namespace ExpenseTracker.ViewModels
             {
                 Description = "New Entry",
                 Amount = 0.0f,
-                PaymentChannel = DataHandler.DataCategories.PaymentChannels[0],
-                ExpenseCategory = DataHandler.DataCategories.ExpenseCategories[0],
+                PaymentChannel = DataManager.Instance.DataCategories.PaymentChannels[0],
+                ExpenseCategory = DataManager.Instance.DataCategories.ExpenseCategories[0],
                 Currency = CurrentExpenseViewModel.Expense.DataCurrency
             };
             CurrentExpenseViewModel.Expense.Entries.Add(entry);
@@ -104,8 +104,8 @@ namespace ExpenseTracker.ViewModels
             if (Expenses.Contains(expenseViewModel) && _expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
             {
                 _expenseDictionary.TryGetValue(expenseViewModel.Expense.UniqueGuid.ToString(), out string _pathToRemove);
-                DataHandler.Config.RemoveDataLocationEntry(_pathToRemove);
-                DataHandler.SaveAppConfiguration();
+                DataManager.Instance.Config.RemoveDataLocationEntry(_pathToRemove);
+                DataManager.Instance.SaveAppConfiguration();
                 _expenseDictionary.Remove(expenseViewModel.Expense.UniqueGuid.ToString());
                 Expenses.Remove(expenseViewModel);
                 if (CurrentExpenseViewModel == expenseViewModel && Expenses.Count != 0)
@@ -150,8 +150,8 @@ namespace ExpenseTracker.ViewModels
                     {
                         AddExpenseToRegistry(viewModel, fileName);
                         UpdateEventListeners(viewModel);
-                        DataHandler.Config.AddDataLocationEntry(fileName);
-                        DataHandler.SaveAppConfiguration();
+                        DataManager.Instance.Config.AddDataLocationEntry(fileName);
+                        DataManager.Instance.SaveAppConfiguration();
                     }
                 }
             }
@@ -193,8 +193,8 @@ namespace ExpenseTracker.ViewModels
                     if (serializedSucceeded)
                     {
                         _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
-                        DataHandler.Config.AddDataLocationEntry(dialog.FileName);
-                        DataHandler.SaveAppConfiguration();
+                        DataManager.Instance.Config.AddDataLocationEntry(dialog.FileName);
+                        DataManager.Instance.SaveAppConfiguration();
                     }
                 }
             }

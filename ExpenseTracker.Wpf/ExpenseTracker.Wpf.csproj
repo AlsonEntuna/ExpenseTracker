@@ -40,6 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Resources\Icons\IconResources.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.1.94" />
   </ItemGroup>
 
@@ -83,6 +87,7 @@
     <Resource Include="Resources\Icons\file_save.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Icons\IconResources.xaml" />
     <Resource Include="Resources\Icons\menu-expense.ico" />
     <Resource Include="Resources\Icons\menu-home.ico" />
     <Resource Include="Resources\Icons\menu-preferences.ico" />

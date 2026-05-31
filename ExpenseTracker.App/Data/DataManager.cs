@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.Environment;
+﻿using ExpenseTracker.Data.DataProviders;
+using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.Utils;
 
@@ -12,13 +13,30 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace ExpenseTracker.Data
 {
-    public static class DataHandler
+    public class DataManager
     {
-        public static Configuration Config;
-        public static Categories DataCategories;
+        #region Singleton
+        private static DataManager _instance;
+        public static DataManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new DataManager();
+                }
+                return _instance;
+            }
+        }
+        #endregion
 
-        private static string _dataFile;
-        private static string _configFile = Path.Combine(
+        public Configuration Config;
+        public Categories DataCategories;
+
+        private List<IDataProvider> _dataProviders;
+
+        private string _dataFile;
+        private string _configFile = Path.Combine(
             PathUtils.AppDataPath(Constants.EXPENSETRACKER)
             , Constants.CONFIG_FILE);
 #if DEBUG
@@ -27,7 +45,16 @@ namespace ExpenseTracker.Data
             , "_data");
 #endif
 
-        public static void LoadAppConfiguration()
+        // Events
+        public EventHandler ProvidersLoadedEvent;
+        public EventHandler ProvidersSavedEvent;
+
+        public DataManager()
+        {
+
+        }
+
+        public void LoadAppConfiguration()
         {
 #if DEBUG
             _configFile = Path.Combine(_configDebugPath, Constants.CONFIG_FILE);
@@ -53,9 +80,12 @@ namespace ExpenseTracker.Data
             }
 
             LoadCategories();
+
+            // Invoke
+            ProvidersLoadedEvent.Invoke(this, EventArgs.Empty);
         }
 
-        public static void SaveAppConfiguration()
+        public void SaveAppConfiguration()
         {
             if (!File.Exists(_configFile))
             {
@@ -65,7 +95,7 @@ namespace ExpenseTracker.Data
             JsonUtils.Serialize(_configFile, Config);
         }
 
-        private static void LoadCategories()
+        private void LoadCategories()
         {
 #if DEBUG
             _dataFile = Path.Combine(_configDebugPath, Constants.CATEGORIES_FILE);
@@ -99,11 +129,11 @@ namespace ExpenseTracker.Data
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        public static bool AddExpenseCategory(string category)
+        public bool AddExpenseCategory(string category)
         {
-            if (string.IsNullOrEmpty(_dataFile))
+            if (string.IsNullOrEmpty(_instance._dataFile))
             {
-                _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
+                _instance._dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
             }
 
             if (!DataCategories.ExpenseCategories.Contains(category))
@@ -117,7 +147,7 @@ namespace ExpenseTracker.Data
             return false;
         }
 
-        public static bool RemoveExpenseCategory(string category)
+        public bool RemoveExpenseCategory(string category)
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
@@ -136,7 +166,7 @@ namespace ExpenseTracker.Data
             return false;
         }
 
-        public static bool AddPaymentChannel(string chanel)
+        public bool AddPaymentChannel(string chanel)
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
@@ -155,7 +185,7 @@ namespace ExpenseTracker.Data
             return false;
         }
 
-        public static bool RemovePaymentChannel(string chanel)
+        public bool RemovePaymentChannel(string chanel)
         {
             if (string.IsNullOrEmpty(_dataFile))
             {
@@ -173,7 +203,7 @@ namespace ExpenseTracker.Data
             return false;
         }
 
-        public static bool DetectLegacyData()
+        public bool DetectLegacyData()
         {
             try
             {
@@ -198,7 +228,7 @@ namespace ExpenseTracker.Data
             return false;
         }
 
-        public static void ExportCategories()
+        public void ExportCategories()
         {
             SaveFileDialog dialog = new()
             {
@@ -217,7 +247,7 @@ namespace ExpenseTracker.Data
             }
         }
 
-        public static void ImportCategories()
+        public void ImportCategories()
         {
             OpenFileDialog dialog = new()
             {

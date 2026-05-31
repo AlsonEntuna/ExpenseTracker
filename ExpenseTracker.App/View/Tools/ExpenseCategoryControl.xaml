@@ -7,42 +7,44 @@
     xmlns:local="clr-namespace:ExpenseTracker.View.Tools"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="RootControl"
+    MinHeight="200"
     d:DataContext="{d:DesignInstance local:ExpenseCategoriesViewModel,
-                                     IsDesignTimeCreatable=True}"
+                                     IsDesignTimeCreatable=False}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Border BorderBrush="{StaticResource Brush.Button.Alt}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="45" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock
-                Grid.Row="0"
-                Style="{StaticResource TextBlockStyle.Header1.Bold}"
-                Text="Categories" />
-            <ScrollViewer
-                Grid.Row="1"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollBarVisibility="Auto">
-                <ListView
-                    MinHeight="{Binding ActualHeight, ElementName=RootControl, Converter={StaticResource SubtractConverter}, ConverterParameter=50}"
-                    ItemsSource="{Binding ExpenseCategories}"
-                    SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                    <ListView.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Command="{Binding AddExpenseCategoryCommand}" Header="Add" />
-                            <MenuItem Command="{Binding RemoveExpenseCategoryCommand}" Header="Remove" />
-                        </ContextMenu>
-                    </ListView.ContextMenu>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <controls:EditableTextBlock TextSource="{Binding CategoryName}" TriggerObject="{Binding Editing}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollViewer>
-        </Grid>
-    </Border>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--  Title  -->
+        <TextBlock
+            Grid.Row="0"
+            Style="{StaticResource TextBlockStyle.Header1.Bold}"
+            Text="Expense Categories" />
+        <ScrollViewer
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+            <ListView
+                MinHeight="{Binding ActualHeight, ElementName=RootControl, Converter={StaticResource SubtractConverter}, ConverterParameter=500}"
+                Background="#2CCC"
+                BorderBrush="Transparent"
+                ItemsSource="{Binding ExpenseCategories}"
+                SelectedItem="{Binding SelectedExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding AddExpenseCategoryCommand}" Header="Add" />
+                        <MenuItem Command="{Binding RemoveExpenseCategoryCommand}" Header="Remove" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:EditableTextBlock TextSource="{Binding CategoryName}" TriggerObject="{Binding Editing}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

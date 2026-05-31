@@ -67,7 +67,8 @@ namespace ExpenseTracker
         public MainWindowViewModel()
         {
             // Load the data...
-            DataHandler.LoadAppConfiguration();
+            // TODO: check if we need this
+            DataManager.Instance.LoadAppConfiguration();
             InitializeData();
 
             // Register to the app instance connection
@@ -100,9 +101,9 @@ namespace ExpenseTracker
 
         private void InitializeData()
         {
-            if (DataHandler.Config.DataLocations.Count != 0)
+            if (DataManager.Instance.Config.DataLocations.Count != 0)
             {
-                foreach (var dataLocation in DataHandler.Config.DataLocations)
+                foreach (var dataLocation in DataManager.Instance.Config.DataLocations)
                 {
                     try
                     {
@@ -137,11 +138,11 @@ namespace ExpenseTracker
         }
         private void ImportCategories()
         {
-            DataHandler.ImportCategories();
+            DataManager.Instance.ImportCategories();
         }
         private void ExportCategories()
         {
-            DataHandler.ExportCategories();
+            DataManager.Instance.ExportCategories();
         }
 
         public void OpenVariableExpense()

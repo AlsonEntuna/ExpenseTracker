@@ -7,15 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance local:CategoriesEditorViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="450"
+    d:DesignHeight="1050"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <local:ExpenseCategoryControl Grid.Column="0" DataContext="{Binding ExpenseCategoryVm}" />
-        <local:PaymentChannelControl Grid.Column="1" DataContext="{Binding PaymentChannelVm}" />
-    </Grid>
+    <StackPanel Margin="5">
+        <local:ExpenseCategoryControl DataContext="{Binding ExpenseCategoryVm}" />
+        <local:PaymentChannelControl DataContext="{Binding PaymentChannelVm}" />
+    </StackPanel>
 </UserControl>
