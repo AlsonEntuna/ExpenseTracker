@@ -108,7 +108,6 @@
                                 x:Name="SubMenuBorder"
                                 Margin="0"
                                 Background="{DynamicResource Brush.Main.Background}"
-                                BitmapEffect="{DynamicResource DropDownShadow}"
                                 BorderBrush="{DynamicResource Brush.Main.Background}"
                                 BorderThickness="1">
                                 <Grid x:Name="SubMenu" Grid.IsSharedSizeScope="True">

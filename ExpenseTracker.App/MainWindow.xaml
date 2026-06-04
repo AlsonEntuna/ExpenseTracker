@@ -56,6 +56,11 @@
                 <StackPanel.Resources>
                     <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background.Alt}" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </StackPanel.Resources>
                 <!--  Minimize  -->
@@ -139,7 +144,11 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            <ContentPresenter Grid.Column="1" Content="{Binding CurrentView}" />
+            <ContentControl Grid.Column="1" Content="{Binding CurrentView}">
+                <ContentControl.RenderTransform>
+                    <TranslateTransform />
+                </ContentControl.RenderTransform>
+            </ContentControl>
         </Grid>
     </Grid>
 </Window>

@@ -2,13 +2,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <DropShadowBitmapEffect
-        x:Key="DropDownShadow"
-        Direction="315"
-        Opacity="0.35"
-        ShadowDepth="4"
-        Softness="0.15"
-        Color="{StaticResource Color.Main.Background}" />
 
     <!--  Main Styles  -->
     <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
@@ -25,7 +18,6 @@
         <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text}" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="FontStretch" Value="Expanded" />
         <Setter Property="FontStyle" Value="Normal" />
     </Style>
 </ResourceDictionary>

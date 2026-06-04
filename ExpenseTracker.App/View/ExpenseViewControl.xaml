@@ -18,18 +18,21 @@
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding SaveVariableExpenseCommand}" Gesture="Ctrl+S" />
     </UserControl.InputBindings>
-    <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="90" />
-            </Grid.RowDefinitions>
-            <StackPanel IsEnabled="{Binding CurrentExpenseViewModel.Expense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
-                <StackPanel Margin="10">
+        <Border
+            Grid.Column="0"
+            Background="{StaticResource Brush.Main.Background.Alt}"
+            CornerRadius="6">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="90" />
+                </Grid.RowDefinitions>
+                <StackPanel IsEnabled="{Binding CurrentExpenseViewModel.Expense, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolFromObjectConverter}}">
                     <TextBlock
                         VerticalAlignment="Center"
                         FontSize="40"
@@ -222,12 +225,9 @@
                         Style="{StaticResource TextBlockStyle.Header2.Bold}"
                         Text="Currency Converter" />
                     <currencyConverterControl:CurrencyConverterControl Margin="5" DataContext="{Binding ConverterUIViewModel}" />
-
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Grid.Row="1">
-                <Separator Margin="10,0,10,0" />
                 <StackPanel
+                    Grid.Row="1"
                     Margin="15"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
@@ -273,8 +273,9 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
+            </Grid>
+        </Border>
+
         <Grid
             x:Name="Grid_DataEntryView"
             Grid.Column="2"
