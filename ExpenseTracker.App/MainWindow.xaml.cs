@@ -100,7 +100,7 @@ namespace ExpenseTracker
             _vm?.SaveData();
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void TitleBarGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
             {
@@ -134,20 +134,30 @@ namespace ExpenseTracker
             _vm?.OpenToolsPanel();
         }
 
-        private void TitleBarGrid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void Button_Maximize(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState == WindowState.Maximized
                      ? WindowState.Normal
                      : WindowState.Maximized;
+
+            Btn_Maximize.Content = WindowState == WindowState.Maximized ? "❐" : "☐";
         }
         private void Button_Minimize(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            base.OnStateChanged(e);
+
+            if (WindowState == WindowState.Maximized)
+            {
+                var screen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
+
+                MaxHeight = screen.WorkingArea.Height;
+                MaxWidth = screen.WorkingArea.Width;
+            }
         }
     }
 }

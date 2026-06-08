@@ -10,15 +10,14 @@
     Width="1720"
     Height="1000"
     Closing="Window_Closing"
-    MouseDown="Window_MouseDown"
     ResizeMode="CanResize"
     Style="{DynamicResource WindowStyle}"
     WindowStyle="None"
     mc:Ignorable="d">
     <WindowChrome.WindowChrome>
         <WindowChrome
-            CaptionHeight="30"
-            CornerRadius="8"
+            CaptionHeight="32"
+            CornerRadius="6"
             ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>
     <Window.DataContext>
