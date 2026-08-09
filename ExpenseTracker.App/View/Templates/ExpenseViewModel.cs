@@ -6,9 +6,13 @@ using ExpenseTracker.Wpf;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
+using Clipboard = System.Windows.Clipboard;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ExpenseTracker.View.Templates
 {
@@ -103,6 +107,16 @@ namespace ExpenseTracker.View.Templates
         }
         private void RemoveEntry()
         {
+            DialogResult dialogResult = (DialogResult)MessageBox.Show("Are your sure you want to remove the entry?"
+               , "Remove Entry"
+               , MessageBoxButton.YesNo
+               , MessageBoxImage.Question);
+
+            if (dialogResult != DialogResult.Yes)
+            {
+                return;
+            }
+
             if (SelectedDataEntries != null)
             {
                 SelectedDataEntries.ForEach(entry => Expense.Entries.Remove(entry));
