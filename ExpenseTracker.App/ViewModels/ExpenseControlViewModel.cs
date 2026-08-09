@@ -1,4 +1,5 @@
-﻿using ExpenseTracker.CurrencyConverter.UI;
+﻿using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.CurrencyConverter.UI;
 using ExpenseTracker.Data;
 using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
@@ -6,18 +7,15 @@ using ExpenseTracker.View;
 using ExpenseTracker.View.Templates;
 using ExpenseTracker.Wpf;
 using ExpenseTracker.Wpf.Dialog;
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-using CommunityToolkit.Mvvm.Input;
-
 namespace ExpenseTracker.ViewModels
 {
-    class ExpenseControlViewModel : ViewModel
+    public class ExpenseControlViewModel : ViewModel
     {
         private ExpenseViewModel _currentDisplayedExpense;
         public ExpenseViewModel CurrentExpenseViewModel
@@ -68,11 +66,20 @@ namespace ExpenseTracker.ViewModels
 
         private void AddEntry()
         {
-            CreateExpenseEntry entryWindow = new CreateExpenseEntry(CurrentExpenseViewModel.Expense.DataCurrency);
-            if (entryWindow.ShowDialog() ?? true)
+            if (CurrentExpenseViewModel == null || CurrentExpenseViewModel.Expense == null)
             {
-                CurrentExpenseViewModel.Expense.Entries.Add(entryWindow.Entry);
+                return;
             }
+
+            DataEntry entry = new DataEntry()
+            {
+                Description = "New Entry",
+                Amount = 0.0f,
+                PaymentChannel = DataManager.Instance.DataCategories.PaymentChannels[0],
+                ExpenseCategory = DataManager.Instance.DataCategories.ExpenseCategories[0],
+                Currency = CurrentExpenseViewModel.Expense.DataCurrency
+            };
+            CurrentExpenseViewModel.Expense.Entries.Add(entry);
         }
 
         /// <summary>
@@ -97,8 +104,8 @@ namespace ExpenseTracker.ViewModels
             if (Expenses.Contains(expenseViewModel) && _expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
             {
                 _expenseDictionary.TryGetValue(expenseViewModel.Expense.UniqueGuid.ToString(), out string _pathToRemove);
-                DataHandler.Config.RemoveDataLocationEntry(_pathToRemove);
-                DataHandler.SaveAppConfiguration();
+                DataManager.Instance.Config.RemoveDataLocationEntry(_pathToRemove);
+                DataManager.Instance.SaveAppConfiguration();
                 _expenseDictionary.Remove(expenseViewModel.Expense.UniqueGuid.ToString());
                 Expenses.Remove(expenseViewModel);
                 if (CurrentExpenseViewModel == expenseViewModel && Expenses.Count != 0)
@@ -143,8 +150,8 @@ namespace ExpenseTracker.ViewModels
                     {
                         AddExpenseToRegistry(viewModel, fileName);
                         UpdateEventListeners(viewModel);
-                        DataHandler.Config.AddDataLocationEntry(fileName);
-                        DataHandler.SaveAppConfiguration();
+                        DataManager.Instance.Config.AddDataLocationEntry(fileName);
+                        DataManager.Instance.SaveAppConfiguration();
                     }
                 }
             }
@@ -186,8 +193,8 @@ namespace ExpenseTracker.ViewModels
                     if (serializedSucceeded)
                     {
                         _expenseDictionary.Add(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), dialog.FileName);
-                        DataHandler.Config.AddDataLocationEntry(dialog.FileName);
-                        DataHandler.SaveAppConfiguration();
+                        DataManager.Instance.Config.AddDataLocationEntry(dialog.FileName);
+                        DataManager.Instance.SaveAppConfiguration();
                     }
                 }
             }
@@ -207,7 +214,9 @@ namespace ExpenseTracker.ViewModels
         private void OpenExpenseReport(ExpenseDataReport report)
         {
             if (report == null)
+            {
                 return;
+            }
 
             ExpenseDataReportViewModel reportVm = new ExpenseDataReportViewModel
             {
@@ -281,6 +290,11 @@ namespace ExpenseTracker.ViewModels
 
         private void UpdateEntryConversion()
         {
+            if (CurrentExpenseViewModel == null || CurrentExpenseViewModel.Expense == null)
+            {
+                return;
+            }
+
             foreach (var entry in CurrentExpenseViewModel.Expense.Entries)
             {
                 if (entry.Currency.Code != AppInstance.Connection.MainCurrency.Code)

@@ -80,7 +80,7 @@
                             Background="{x:Null}"
                             BorderBrush="{DynamicResource Brush.Button.Alt}"
                             BorderThickness="1,1,1,1"
-                            CornerRadius="5" />
+                            CornerRadius="2" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDragging" Value="True">
@@ -117,14 +117,14 @@
                             Background="{x:Null}"
                             BorderBrush="{DynamicResource Brush.Button.Alt}"
                             BorderThickness="1,1,0,0"
-                            CornerRadius="5" />
+                            CornerRadius="8" />
                         <Border
                             x:Name="Border2"
                             Margin="1"
                             Background="{x:Null}"
                             BorderBrush="{DynamicResource Brush.Button.Alt}"
                             BorderThickness="0,0,1,1"
-                            CornerRadius="5" />
+                            CornerRadius="8" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDragging" Value="True">

@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace ExpenseTracker.View.Tools
 {
-    internal class PaymentChannelItem : ViewModel
+    public class PaymentChannelItem : ViewModel
     {
         private string _paymentChannelName;
         public string PaymentChannelName
@@ -51,7 +51,7 @@ namespace ExpenseTracker.View.Tools
                 , PaymentChannelName.GetHashCode());
         }
     }
-    internal class PaymentChannelViewModel : ViewModel, IDataHandler
+    public class PaymentChannelViewModel : ViewModel, IDataHandler
     {
         private ObservableCollection<PaymentChannelItem> _paymentChannels = new();
         public ObservableCollection<PaymentChannelItem> PaymentChannels => _paymentChannels;
@@ -96,17 +96,17 @@ namespace ExpenseTracker.View.Tools
 
         private void RemovePaymentChannel()
         {
-            DataHandler.RemovePaymentChannel(SelectedChannel.PaymentChannelName);
+            DataManager.Instance.RemovePaymentChannel(SelectedChannel.PaymentChannelName);
             // TODO: improve and not to remove from both ends
             PaymentChannels.Remove(SelectedChannel);
         }
 
         public void Save()
         {
-            DataHandler.DataCategories.PaymentChannels.Clear();
+            DataManager.Instance.DataCategories.PaymentChannels.Clear();
             foreach (PaymentChannelItem pItem in _paymentChannels)
             {
-                DataHandler.AddPaymentChannel(pItem.PaymentChannelName);
+                DataManager.Instance.AddPaymentChannel(pItem.PaymentChannelName);
             }
         }
     }

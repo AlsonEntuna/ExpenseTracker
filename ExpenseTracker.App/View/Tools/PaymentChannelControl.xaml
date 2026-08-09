@@ -7,35 +7,45 @@
     xmlns:local="clr-namespace:ExpenseTracker.View.Tools"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="RootControl"
+    MinHeight="200"
     d:DataContext="{d:DesignInstance local:PaymentChannelViewModel,
-                                     IsDesignTimeCreatable=True}"
+                                     IsDesignTimeCreatable=False}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Border BorderBrush="{StaticResource Brush.Button.Alt}">
-        <Grid>
-            <StackPanel>
-                <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Payment Channels" />
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <ListView
-                        x:Name="ListView_PaymenChannels"
-                        MinHeight="{Binding ActualHeight, ElementName=RootControl}"
-                        ItemsSource="{Binding PaymentChannels}"
-                        SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                        <ListView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Command="{Binding AddPaymentChannelCommand}" Header="Add" />
-                                <MenuItem Command="{Binding RemovePaymentChannelCommand}" Header="Remove" />
-                            </ContextMenu>
-                        </ListView.ContextMenu>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <controls:EditableTextBlock TextSource="{Binding PaymentChannelName}" TriggerObject="{Binding Editing}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </ScrollViewer>
-            </StackPanel>
-        </Grid>
-    </Border>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--  Title  -->
+        <TextBlock
+            Grid.Row="0"
+            Style="{StaticResource TextBlockStyle.Header1.Bold}"
+            Text="Payment Channels" />
+        <ScrollViewer
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+            <ListView
+                x:Name="ListView_PaymenChannels"
+                MinHeight="{Binding ActualHeight, ElementName=RootControl, Converter={StaticResource SubtractConverter}, ConverterParameter=500}"
+                Background="#2CCC"
+                BorderBrush="Transparent"
+                ItemsSource="{Binding PaymentChannels}"
+                SelectedItem="{Binding SelectedChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="{Binding AddPaymentChannelCommand}" Header="Add" />
+                        <MenuItem Command="{Binding RemovePaymentChannelCommand}" Header="Remove" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:EditableTextBlock TextSource="{Binding PaymentChannelName}" TriggerObject="{Binding Editing}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

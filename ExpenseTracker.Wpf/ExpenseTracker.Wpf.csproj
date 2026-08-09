@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <BaseOutputPath>..\bin\</BaseOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -31,11 +31,16 @@
     <None Remove="Resources\Icons\file_new.ico" />
     <None Remove="Resources\Icons\file_open.ico" />
     <None Remove="Resources\Icons\file_save.ico" />
+    <None Remove="Resources\Icons\menu-expense.ico" />
+    <None Remove="Resources\Icons\menu-preferences.ico" />
     <None Remove="Resources\Icons\open_report.ico" />
-    <None Remove="Resources\Icons\piggybank.ico" />
     <None Remove="Resources\Icons\search.ico" />
     <None Remove="Resources\Icons\settings.ico" />
     <None Remove="Resources\Icons\swap.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\Icons\IconResources.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,10 +87,14 @@
     <Resource Include="Resources\Icons\file_save.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Icons\IconResources.xaml" />
+    <Resource Include="Resources\Icons\menu-expense.ico" />
+    <Resource Include="Resources\Icons\menu-home.ico" />
+    <Resource Include="Resources\Icons\menu-preferences.ico" />
     <Resource Include="Resources\Icons\open_report.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\piggybank.ico">
+    <Resource Include="Resources\Icons\menu-piggybank.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\search.ico">

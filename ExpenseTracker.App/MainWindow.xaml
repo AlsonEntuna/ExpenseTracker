@@ -10,18 +10,144 @@
     Width="1720"
     Height="1000"
     Closing="Window_Closing"
-    MouseDown="Window_MouseDown"
-    ResizeMode="CanResizeWithGrip"
+    ResizeMode="CanResize"
     Style="{DynamicResource WindowStyle}"
-    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="32"
+            CornerRadius="6"
+            ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveExpenseCommand}" Gesture="Ctrl+S" />
     </Window.InputBindings>
-    <Grid Margin="5">
-        <view:ExpenseViewControl DataContext="{Binding ExpenseControlViewModel}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--  TitleBar Chrome  -->
+        <Grid
+            x:Name="TitleBarGrid"
+            Grid.Row="0"
+            Panel.ZIndex="1"
+            MouseDown="TitleBarGrid_MouseDown"
+            WindowChrome.IsHitTestVisibleInChrome="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Title  -->
+            <TextBlock
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Foreground="White"
+                Text="" />
+
+            <!--  Buttons  -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background.Alt}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Resources>
+                <!--  Minimize  -->
+                <Button
+                    x:Name="Btn_Minimize"
+                    Width="45"
+                    Height="32"
+                    Margin="3"
+                    Click="Button_Minimize"
+                    Content="—" />
+                <!--  Maximize  -->
+                <Button
+                    x:Name="Btn_Maximize"
+                    Width="45"
+                    Height="32"
+                    Margin="3"
+                    Click="Button_Maximize"
+                    Content="☐" />
+                <!--  Close  -->
+                <Button
+                    Width="45"
+                    Height="32"
+                    Margin="3"
+                    Click="Btn_Exit_Click"
+                    Content="✕" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Margin="15">
+            <Grid.Resources>
+                <Style BasedOn="{StaticResource ButtonStyle.Navigation}" TargetType="{x:Type Button}">
+                    <Setter Property="FontSize" Value="24" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <StackPanel>
+                            <Button Command="{Binding HomepageViewCommand}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-Home}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Home" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button Command="{Binding ExpenseViewCommand}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-Expense}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Expense" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button Command="{Binding PiggyBankViewCommand}" ToolTip="Savings">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-PiggyBank}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Savings" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                        <Button Command="{Binding ToolsViewCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource Menu-Preferences}" />
+                                    <TextBlock VerticalAlignment="Center" Text="Tools" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <ContentControl Grid.Column="1" Content="{Binding CurrentView}">
+                <ContentControl.RenderTransform>
+                    <TranslateTransform />
+                </ContentControl.RenderTransform>
+            </ContentControl>
+        </Grid>
     </Grid>
 </Window>

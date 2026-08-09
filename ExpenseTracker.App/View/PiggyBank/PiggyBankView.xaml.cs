@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using ExpenseTracker.Data.Savings;
 using ExpenseTracker.ViewModels;
 
@@ -8,10 +9,10 @@ namespace ExpenseTracker.View.PiggyBank
     /// <summary>
     /// Interaction logic for PiggyBankWindow.xaml
     /// </summary>
-    public partial class PiggyBankWindow : Window
+    public partial class PiggyBankView : UserControl
     {
         private PiggyBankViewModel _vm;
-        public PiggyBankWindow()
+        public PiggyBankView()
         {
             InitializeComponent();
         }

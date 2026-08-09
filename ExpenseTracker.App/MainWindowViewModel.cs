@@ -27,11 +27,32 @@ namespace ExpenseTracker
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
+        private readonly HomepageViewModel _homepageViewModel = new HomepageViewModel();
+        public HomepageViewModel HomepageViewModel => _homepageViewModel;
         private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
         public ExpenseControlViewModel ExpenseControlViewModel => _variableExpenseViewModel;
+
+        private readonly PiggyBankViewModel _piggyBankViewModel = new PiggyBankViewModel();
+        public PiggyBankViewModel PiggyBankViewModel => _piggyBankViewModel;
+        private readonly ToolsAndPreferencesViewModel _toolsViewModel = new ToolsAndPreferencesViewModel();
+        public ToolsAndPreferencesViewModel ToolsViewModel => _toolsViewModel;
         #endregion
 
+        // Page
+        private object _currentView;
+        public object CurrentView
+        {
+            get => _currentView;
+            set => SetProperty(ref _currentView, value);
+        }
+
         #region Commands
+        // PageNavigationCommands
+        public ICommand HomepageViewCommand => new RelayCommand(() => { CurrentView = HomepageViewModel; });
+        public ICommand ExpenseViewCommand => new RelayCommand(() => { CurrentView = ExpenseControlViewModel; });
+        public ICommand PiggyBankViewCommand => new RelayCommand(() => { CurrentView = PiggyBankViewModel; });
+        public ICommand ToolsViewCommand => new RelayCommand(() => { CurrentView = ToolsViewModel; });
+
         public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
         public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);
         public ICommand CopyFromCurrentExpenseCommand => new RelayCommand(CopyFromCurrentExpense);
@@ -46,8 +67,12 @@ namespace ExpenseTracker
         public MainWindowViewModel()
         {
             // Load the data...
-            DataHandler.LoadAppConfiguration();
+            // TODO: check if we need this
+            DataManager.Instance.LoadAppConfiguration();
             InitializeData();
+
+            // TODO: Assign the Default view to the Expense tab while we haven't finished the Home Tab
+            CurrentView = ExpenseControlViewModel;
 
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
@@ -79,9 +104,9 @@ namespace ExpenseTracker
 
         private void InitializeData()
         {
-            if (DataHandler.Config.DataLocations.Count != 0)
+            if (DataManager.Instance.Config.DataLocations.Count != 0)
             {
-                foreach (var dataLocation in DataHandler.Config.DataLocations)
+                foreach (var dataLocation in DataManager.Instance.Config.DataLocations)
                 {
                     try
                     {
@@ -114,20 +139,13 @@ namespace ExpenseTracker
             };
             toolsWindow.ShowDialog();
         }
-        public void OpenPiggyBank()
-        {
-            PiggyBankWindow window = new PiggyBankWindow();
-            PiggyBankViewModel vm = new PiggyBankViewModel();
-            window.DataContext = vm;
-            window.Show();
-        }
         private void ImportCategories()
         {
-            DataHandler.ImportCategories();
+            DataManager.Instance.ImportCategories();
         }
         private void ExportCategories()
         {
-            DataHandler.ExportCategories();
+            DataManager.Instance.ExportCategories();
         }
 
         public void OpenVariableExpense()

@@ -89,7 +89,8 @@ namespace ExpenseTracker.Data
             set => SetProperty(ref _currency, value);
         }
 
-        public DataEntry() { }
+        public DataEntry()
+        { }
 
         public override bool Equals(object obj)
         {

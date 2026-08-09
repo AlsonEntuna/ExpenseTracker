@@ -18,7 +18,7 @@ namespace ExpenseTracker.CurrencyConverter
 
         public override string ToString()
         {
-            return $"{Name} - {Symbol}";
+            return $"{Name} ({Symbol})";
         }
 
         public override bool Equals(object obj)

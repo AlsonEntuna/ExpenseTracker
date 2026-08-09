@@ -144,7 +144,6 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template" Value="{DynamicResource TabControlTemplate}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border}" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Border.Background.Alt}" />
         <Setter Property="Background" Value="{DynamicResource Brush.Border.Background}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace ExpenseTracker.View.Tools
 {
-    internal class ExpenseCategoryWrapper : ViewModel
+    public class ExpenseCategoryWrapper : ViewModel
     {
         private string _categoryName;
         public string CategoryName
@@ -32,7 +32,7 @@ namespace ExpenseTracker.View.Tools
         }
     }
 
-    internal class ExpenseCategoriesViewModel : ViewModel, IDataHandler
+    public class ExpenseCategoriesViewModel : ViewModel, IDataHandler
     {
         private ObservableCollection<ExpenseCategoryWrapper> _expenseCategories;
         public ObservableCollection<ExpenseCategoryWrapper> ExpenseCategories => _expenseCategories;
@@ -59,20 +59,20 @@ namespace ExpenseTracker.View.Tools
         {
             ExpenseCategoryWrapper newCategory = new ExpenseCategoryWrapper("New Category");
             SelectedExpenseCategory = newCategory;
-            DataHandler.AddExpenseCategory(newCategory.CategoryName);
+            ExpenseCategories.Add(newCategory);
         }
         private void RemoveExpenseCategory()
         {
             ExpenseCategories.Remove(_selectedExpenseCategory);
-            DataHandler.RemoveExpenseCategory(_selectedExpenseCategory.CategoryName);
+            DataManager.Instance.RemoveExpenseCategory(_selectedExpenseCategory.CategoryName);
         }
 
         public void Save()
         {
-            DataHandler.DataCategories.ExpenseCategories.Clear();
+            DataManager.Instance.DataCategories.ExpenseCategories.Clear();
             foreach (ExpenseCategoryWrapper pItem in _expenseCategories)
             {
-                DataHandler.AddExpenseCategory(pItem.CategoryName);
+                DataManager.Instance.AddExpenseCategory(pItem.CategoryName);
             }
         }
     }

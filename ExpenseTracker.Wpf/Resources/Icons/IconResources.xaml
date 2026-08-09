@@ -12,7 +12,10 @@
     <BitmapImage x:Key="Conversion_Graph" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/conversion_graph.ico" />
     <BitmapImage x:Key="Search" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/search.ico" />
     <BitmapImage x:Key="Swap" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/swap.ico" />
-    <BitmapImage x:Key="PiggyBank" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/piggybank.ico" />
+    <BitmapImage x:Key="Menu-PiggyBank" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-piggybank.ico" />
     <BitmapImage x:Key="AddExpense" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/add_expense.ico" />
     <BitmapImage x:Key="CategoryEditor" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/category_editor.ico" />
+    <BitmapImage x:Key="Menu-Home" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-home.ico" />
+    <BitmapImage x:Key="Menu-Expense" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-expense.ico" />
+    <BitmapImage x:Key="Menu-Preferences" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-preferences.ico" />
 </ResourceDictionary>
