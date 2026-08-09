@@ -13,12 +13,12 @@
   "CurrencySymbol": "€",
   "Entries": [
     {
-      "Description": "sample",
-      "Amount": 100.0,
+      "Description": "Loan - House",
+      "Amount": 500.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
-      "ExpenseCategory": "Food",
+      "PaymentChannel": "Loan",
+      "ExpenseCategory": "Mortgage",
       "Comments": null,
       "Currency": {
         "Code": "EUR",
@@ -27,40 +27,12 @@
       }
     },
     {
-      "Description": "testing php",
-      "Amount": 163.8,
-      "OriginalAmount": 10000.0,
+      "Description": "sample",
+      "Amount": 100.0,
+      "OriginalAmount": 0.0,
       "Category": null,
       "PaymentChannel": "Credit Card",
       "ExpenseCategory": "Food",
-      "Comments": null,
-      "Currency": {
-        "Code": "PHP",
-        "Name": "Philippine Piso",
-        "Symbol": "₱"
-      }
-    },
-    {
-      "Description": "tesing other php",
-      "Amount": 50.15,
-      "OriginalAmount": 3000.0,
-      "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Shopping",
-      "Comments": "test2",
-      "Currency": {
-        "Code": "PHP",
-        "Name": "Philippine Piso",
-        "Symbol": "₱"
-      }
-    },
-    {
-      "Description": "Loan - House",
-      "Amount": 500.0,
-      "OriginalAmount": 0.0,
-      "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Mortgage",
       "Comments": null,
       "Currency": {
         "Code": "EUR",
@@ -80,6 +52,34 @@
         "Code": "EUR",
         "Name": "Euro",
         "Symbol": "€"
+      }
+    },
+    {
+      "Description": "tesing other php",
+      "Amount": 50.15,
+      "OriginalAmount": 3000.0,
+      "Category": null,
+      "PaymentChannel": "Loan",
+      "ExpenseCategory": "Shopping",
+      "Comments": "test2",
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Piso",
+        "Symbol": "₱"
+      }
+    },
+    {
+      "Description": "testing php",
+      "Amount": 163.8,
+      "OriginalAmount": 10000.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Piso",
+        "Symbol": "₱"
       }
     }
   ],

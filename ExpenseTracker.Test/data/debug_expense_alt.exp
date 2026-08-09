@@ -43,45 +43,25 @@
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 3,
-      "Shopping": 1,
-      "Bills": 1
+      "Food": 2
     },
-    "TotalAmount": 853.95,
-    "Savings": 1146.05,
-    "UnPaidAmount": 853.95,
+    "TotalAmount": 263.8,
+    "Savings": 1736.2,
+    "UnPaidAmount": 263.8,
     "PaidAmount": 0.0,
     "Completed": false,
     "CategoryReports": [
       {
         "PaymentChannel": "Credit Card",
-        "Amount": 803.8,
+        "Amount": 263.8,
         "Comments": null,
         "Paid": false,
         "PartialPayment": 0.0,
-        "OutstandingBalance": 803.8,
+        "OutstandingBalance": 263.8,
         "CategoryBreakdown": [
           {
             "Category": "Food",
-            "TotalAmount": 0.0
-          },
-          {
-            "Category": "Bills",
-            "TotalAmount": 0.0
-          }
-        ]
-      },
-      {
-        "PaymentChannel": "Loan",
-        "Amount": 50.15,
-        "Comments": null,
-        "Paid": false,
-        "PartialPayment": 0.0,
-        "OutstandingBalance": 50.15,
-        "CategoryBreakdown": [
-          {
-            "Category": "Shopping",
-            "TotalAmount": 0.0
+            "TotalAmount": 263.8
           }
         ]
       }
@@ -96,39 +76,19 @@
     "ReportChartData": [
       {
         "Key": "Credit Card",
-        "Value": 804
-      },
-      {
-        "Key": "Loan",
-        "Value": 50
+        "Value": 264
       }
     ],
     "ExpenseCategoryChartData": [
       {
         "Key": "Food",
-        "Value": 3
-      },
-      {
-        "Key": "Shopping",
-        "Value": 1
-      },
-      {
-        "Key": "Bills",
-        "Value": 1
+        "Value": 2
       }
     ],
     "ExpenseCategoryExpenseTotalValueData": [
       {
         "Key": "Food",
-        "Value": 303.8
-      },
-      {
-        "Key": "Bills",
-        "Value": 500.0
-      },
-      {
-        "Key": "Shopping",
-        "Value": 50.15
+        "Value": 263.8
       }
     ],
     "CurrencyReport": [
@@ -138,7 +98,7 @@
           "Name": "Philippine Piso",
           "Symbol": "₱"
         },
-        "Amount": 13000.0
+        "Amount": 10000.0
       }
     ],
     "AltCurrencyBreakdown": [
@@ -146,11 +106,6 @@
         "CurrencyCode": "PHP",
         "PaymentChannel": "Credit Card",
         "Amount": 10000.0
-      },
-      {
-        "CurrencyCode": "PHP",
-        "PaymentChannel": "Loan",
-        "Amount": 3000.0
       }
     ]
   },

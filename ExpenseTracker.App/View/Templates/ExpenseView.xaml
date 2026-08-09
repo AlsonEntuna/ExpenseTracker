@@ -45,9 +45,11 @@
             </DataGrid.Resources>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
+                    <Separator />
                     <MenuItem Command="{Binding CopyEntryCommand}" Header="Copy" />
                     <MenuItem Command="{Binding PasteEntryCommand}" Header="Paste" />
+                    <Separator />
+                    <MenuItem Command="{Binding RemoveEntryCommand}" Header="Remove" />
                     <Separator />
                     <MenuItem Command="{Binding SortEntriesCommand}" Header="Sort Entries" />
                 </ContextMenu>

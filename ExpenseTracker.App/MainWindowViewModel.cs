@@ -71,6 +71,9 @@ namespace ExpenseTracker
             DataManager.Instance.LoadAppConfiguration();
             InitializeData();
 
+            // TODO: Assign the Default view to the Expense tab while we haven't finished the Home Tab
+            CurrentView = ExpenseControlViewModel;
+
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
 
