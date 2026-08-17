@@ -12,6 +12,15 @@ namespace ExpenseTracker
     public partial class MainWindow : Window
     {
         private readonly MainWindowViewModel _vm;
+
+        private nint _hwndHandle;
+
+        // DWM Window Corner Preference
+        // 0 - Default
+        // 1 - DoNotRound
+        // 2 - Round
+        // 3 - RoundSmall
+        private int _cornerPref = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -25,13 +34,13 @@ namespace ExpenseTracker
         #region Blur
         private void EnableAcrylic()
         {
-            var hwnd = new WindowInteropHelper(this).Handle;
+            _hwndHandle = new WindowInteropHelper(this).Handle;
 
             // Mica
             int trueValue = 1;
 
             // Enable Mica
-            DwmSetWindowAttribute(hwnd, 1029, ref trueValue, sizeof(int));
+            DwmSetWindowAttribute(_hwndHandle, 1029, ref trueValue, sizeof(int));
 
             var accent = new AccentPolicy
             {
@@ -51,11 +60,12 @@ namespace ExpenseTracker
                 Data = accentPtr
             };
 
-            SetWindowCompositionAttribute(hwnd, ref data);
+            SetWindowCompositionAttribute(_hwndHandle, ref data);
 
             // Win11 native round corner attribute
             int windowRoundCornerAttribute = 2; // DWMWCP_ROUND
-            DwmSetWindowAttribute(hwnd, (int)DwmWindowAttribute.DWMWA_WINDOW_CORNER_PREFERENCE, ref windowRoundCornerAttribute, sizeof(int));
+            DwmSetWindowAttribute(_hwndHandle, (int)DwmWindowAttribute.DWMWA_WINDOW_CORNER_PREFERENCE, ref windowRoundCornerAttribute, sizeof(int));
+            _cornerPref = windowRoundCornerAttribute;
 
             Marshal.FreeHGlobal(accentPtr);
         }
@@ -104,9 +114,7 @@ namespace ExpenseTracker
         {
             if (e.ClickCount == 2)
             {
-                WindowState = WindowState == WindowState.Maximized
-                    ? WindowState.Normal
-                    : WindowState.Maximized;
+                ToggleMaximizedState();
             }
             else if (e.ChangedButton == MouseButton.Left)
             {
@@ -136,12 +144,31 @@ namespace ExpenseTracker
 
         private void Button_Maximize(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState == WindowState.Maximized
-                     ? WindowState.Normal
-                     : WindowState.Maximized;
+            ToggleMaximizedState();
+        }
+
+        private void ToggleMaximizedState()
+        {
+            int pref = 1; // DoNotRound
+            if (WindowState != WindowState.Maximized)
+            {
+                WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                WindowState = WindowState.Normal;
+                pref = _cornerPref; // cached corner pref
+            }
+
+            // Apply the corner pref
+            DwmSetWindowAttribute(_hwndHandle
+                , (int)DwmWindowAttribute.DWMWA_WINDOW_CORNER_PREFERENCE
+                , ref pref
+                , Marshal.SizeOf(pref));
 
             Btn_Maximize.Content = WindowState == WindowState.Maximized ? "❐" : "☐";
         }
+
         private void Button_Minimize(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -159,5 +186,106 @@ namespace ExpenseTracker
                 MaxWidth = screen.WorkingArea.Width;
             }
         }
+
+        // TODO: put or separate this into a separate WinApi Lib
+        #region Maximize Fix
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            ((HwndSource)PresentationSource.FromVisual(this)).AddHook(HookProc);
+        }
+        private const int WM_GETMINMAXINFO = 0x0024;
+
+        private const uint MONITOR_DEFAULTTONEAREST = 0x00000002;
+
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+
+            public RECT(int left, int top, int right, int bottom)
+            {
+                Left = left;
+                Top = top;
+                Right = right;
+                Bottom = bottom;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MONITORINFO
+        {
+            public int cbSize;
+            public RECT rcMonitor;
+            public RECT rcWork;
+            public uint dwFlags;
+        }
+
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int X;
+            public int Y;
+
+            public POINT(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MINMAXINFO
+        {
+            public POINT ptReserved;
+            public POINT ptMaxSize;
+            public POINT ptMaxPosition;
+            public POINT ptMinTrackSize;
+            public POINT ptMaxTrackSize;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr MonitorFromWindow(IntPtr handle, uint flags);
+
+        [DllImport("user32.dll")]
+        public static extern bool GetMonitorInfo(IntPtr hMonitor, ref MONITORINFO lpmi);
+
+        public static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (msg == WM_GETMINMAXINFO)
+            {
+                // We need to tell the system what our size should be when maximized. Otherwise it will cover the whole screen,
+                // including the task bar.
+                MINMAXINFO mmi = (MINMAXINFO)Marshal.PtrToStructure(lParam, typeof(MINMAXINFO));
+
+                // Adjust the maximized size and position to fit the work area of the correct monitor
+                IntPtr monitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+
+                if (monitor != IntPtr.Zero)
+                {
+                    MONITORINFO monitorInfo = new MONITORINFO();
+                    monitorInfo.cbSize = Marshal.SizeOf(typeof(MONITORINFO));
+                    GetMonitorInfo(monitor, ref monitorInfo);
+                    RECT rcWorkArea = monitorInfo.rcWork;
+                    RECT rcMonitorArea = monitorInfo.rcMonitor;
+                    mmi.ptMaxPosition.X = Math.Abs(rcWorkArea.Left - rcMonitorArea.Left);
+                    mmi.ptMaxPosition.Y = Math.Abs(rcWorkArea.Top - rcMonitorArea.Top);
+                    mmi.ptMaxSize.X = Math.Abs(rcWorkArea.Right - rcWorkArea.Left);
+                    mmi.ptMaxSize.Y = Math.Abs(rcWorkArea.Bottom - rcWorkArea.Top);
+                }
+
+                Marshal.StructureToPtr(mmi, lParam, true);
+            }
+
+            return IntPtr.Zero;
+        }
+        #endregion
     }
+
 }
