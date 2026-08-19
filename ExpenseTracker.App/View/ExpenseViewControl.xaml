@@ -176,7 +176,6 @@
                         </Grid.ColumnDefinitions>
                         <Button
                             Grid.Column="0"
-                            Width="Auto"
                             Height="45"
                             Margin="5"
                             Command="{Binding GenerateExpenseReportCommand}">
@@ -197,7 +196,6 @@
                         </Button>
                         <Button
                             Grid.Column="1"
-                            Width="Auto"
                             Height="45"
                             Margin="5"
                             Command="{Binding OpenReportCommand}"

@@ -11,8 +11,11 @@
     Height="1000"
     MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
     MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
+    d:DataContext="{d:DesignData Type=local:MainWindowViewModel,
+                                 IsDesignTimeCreatable=False}"
     AllowsTransparency="True"
     Closing="Window_Closing"
+    DataContext="{StaticResource MainVm}"
     ResizeMode="CanResize"
     Style="{DynamicResource WindowStyle}"
     WindowStyle="None"
@@ -23,9 +26,6 @@
             CornerRadius="6"
             ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>
-    <Window.DataContext>
-        <local:MainWindowViewModel />
-    </Window.DataContext>
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveExpenseCommand}" Gesture="Ctrl+S" />
     </Window.InputBindings>
@@ -58,9 +58,18 @@
                 <StackPanel.Resources>
                     <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background.Alt}" />
+                                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -70,7 +79,6 @@
                     x:Name="Btn_Minimize"
                     Width="45"
                     Height="32"
-                    Margin="3"
                     Click="Button_Minimize"
                     Content="—" />
                 <!--  Maximize  -->
@@ -78,21 +86,29 @@
                     x:Name="Btn_Maximize"
                     Width="45"
                     Height="32"
-                    Margin="3"
                     Click="Button_Maximize"
                     Content="☐" />
                 <!--  Close  -->
                 <Button
                     Width="45"
                     Height="32"
-                    Margin="3"
                     Click="Btn_Exit_Click"
-                    Content="✕" />
+                    Content="✕">
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Red" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Margin="15">
             <Grid.Resources>
-                <Style BasedOn="{StaticResource ButtonStyle.Navigation}" TargetType="{x:Type Button}">
+                <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                     <Setter Property="FontSize" Value="24" />
                 </Style>
             </Grid.Resources>

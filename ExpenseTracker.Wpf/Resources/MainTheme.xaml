@@ -5,7 +5,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Brushes.xaml" />
         <ResourceDictionary Source="Theme/Button.xaml" />
         <ResourceDictionary Source="Theme/TextBlock.xaml" />
         <ResourceDictionary Source="Theme/TextBox.xaml" />

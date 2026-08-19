@@ -61,7 +61,7 @@
         "CategoryBreakdown": [
           {
             "Category": "Food",
-            "TotalAmount": 263.8
+            "TotalAmount": 0.0
           }
         ]
       }
@@ -88,7 +88,7 @@
     "ExpenseCategoryExpenseTotalValueData": [
       {
         "Key": "Food",
-        "Value": 263.8
+        "Value": 0.0
       }
     ],
     "CurrencyReport": [

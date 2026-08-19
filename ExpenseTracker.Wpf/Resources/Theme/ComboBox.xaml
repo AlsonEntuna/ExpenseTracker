@@ -2,7 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MainStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <!--  ComboBox  -->
+    <!--  ComboBox ToggleButton  -->
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Grid x:Name="Grid">
             <Grid.ColumnDefinitions>
@@ -80,18 +80,21 @@
             Focusable="False" />
         <ControlTemplate.Triggers />
     </ControlTemplate>
+
+    <!--  Control Template ComboBox  -->
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="Grid">
             <ToggleButton
                 x:Name="ToggleButton"
                 Grid.Column="2"
+                Height="Auto"
                 ClickMode="Press"
                 Focusable="False"
                 IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 Template="{DynamicResource ComboBoxToggleButton}" />
             <ContentPresenter
                 x:Name="ContentSite"
-                Margin="3,3,23,3"
+                Margin="3,3,20,3"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Content="{TemplateBinding SelectionBoxItem}"
@@ -100,7 +103,7 @@
                 IsHitTestVisible="False" />
             <TextBox
                 x:Name="PART_EditableTextBox"
-                Margin="3,3,23,3"
+                Margin="3,3,20,3"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Background="{StaticResource Brush.Main.Background}"
@@ -127,7 +130,6 @@
                     <Border
                         x:Name="DropDownBorder"
                         Background="{StaticResource Brush.Main.Background}"
-                        BitmapEffect="{DynamicResource DropDownShadow}"
                         BorderBrush="{StaticResource Brush.Main.Background}"
                         BorderThickness="1"
                         CornerRadius="3" />
@@ -179,7 +181,7 @@
         <Setter Property="Background" Value="{StaticResource Brush.Button.Main}" />
         <Setter Property="BorderBrush" Value="{StaticResource Brush.Border.Background}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Height" Value="20" />
+        <Setter Property="Height" Value="Auto" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     </Style>
     <ControlTemplate x:Key="ComboBoxItemTemplate" TargetType="{x:Type ComboBoxItem}">
@@ -209,6 +211,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+
     <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
