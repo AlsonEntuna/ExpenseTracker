@@ -36,6 +36,9 @@ namespace ExpenseTracker
         public PiggyBankViewModel PiggyBankViewModel => _piggyBankViewModel;
         private readonly ToolsAndPreferencesViewModel _toolsViewModel = new ToolsAndPreferencesViewModel();
         public ToolsAndPreferencesViewModel ToolsViewModel => _toolsViewModel;
+
+        private readonly WishlistViewModel _wishlistViewModel = new WishlistViewModel();
+        public WishlistViewModel WishlistViewModel => _wishlistViewModel;
         #endregion
 
         // Page
@@ -52,6 +55,7 @@ namespace ExpenseTracker
         public ICommand ExpenseViewCommand => new RelayCommand(() => { CurrentView = ExpenseControlViewModel; });
         public ICommand PiggyBankViewCommand => new RelayCommand(() => { CurrentView = PiggyBankViewModel; });
         public ICommand ToolsViewCommand => new RelayCommand(() => { CurrentView = ToolsViewModel; });
+        public ICommand WishlistViewCommand => new RelayCommand(() => { CurrentView = WishlistViewModel; });
 
         public ICommand ExportCategoriesCommand => new RelayCommand(ExportCategories);
         public ICommand ImportCategoriesCommand => new RelayCommand(ImportCategories);

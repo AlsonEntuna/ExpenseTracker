@@ -6,6 +6,7 @@
     xmlns:piggybank="clr-namespace:ExpenseTracker.View.PiggyBank"
     xmlns:views="clr-namespace:ExpenseTracker.View"
     xmlns:vms="clr-namespace:ExpenseTracker.ViewModels"
+    xmlns:wishlist="clr-namespace:ExpenseTracker.View.Wishlist"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -28,6 +29,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:ToolsAndPreferencesViewModel}">
                 <views:ToolsAndPreferencesView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:WishlistViewModel}">
+                <wishlist:WishlistView />
             </DataTemplate>
 
         </ResourceDictionary>
