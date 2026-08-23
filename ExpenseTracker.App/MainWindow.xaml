@@ -118,6 +118,11 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0">
                 <Grid>
+                    <Grid.Resources>
+                        <Style BasedOn="{StaticResource ButtonStyle.Navigation}" TargetType="{x:Type Button}">
+                            <Setter Property="FontSize" Value="20" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />

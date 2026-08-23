@@ -30,6 +30,14 @@ namespace ExpenseTracker.View.Templates
             }
         }
 
+        public string MainCurrencyString
+        {
+            get
+            {
+                return Expense != null ? Expense.CurrencySymbol : string.Empty;
+            }
+        }
+
         private List<DataEntry> _selectedDataEntries = new();
         public List<DataEntry> SelectedDataEntries
         {
