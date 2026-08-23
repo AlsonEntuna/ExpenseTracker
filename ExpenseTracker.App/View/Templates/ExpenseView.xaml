@@ -26,22 +26,9 @@
                 <CommandBinding Command="Copy" Executed="ExpenseDataGrid_OnCopy" />
             </DataGrid.CommandBindings>
             <DataGrid.Resources>
-                <!--  Test Only  -->
-                <DataTemplate x:Key="ResizableTemplate">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Text}" />
-                        <GridSplitter
-                            Grid.Column="1"
-                            Width="3"
-                            DragDelta="GridSplitter_DragDelta"
-                            DragIncrement="1"
-                            Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
-                    </Grid>
-                </DataTemplate>
+                <Style BasedOn="{StaticResource {x:Type GridSplitter}}" TargetType="{x:Type GridSplitter}">
+                    <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
+                </Style>
             </DataGrid.Resources>
             <DataGrid.ContextMenu>
                 <ContextMenu>
@@ -77,7 +64,7 @@
                                     SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <GridSplitter
                                     Grid.Column="1"
-                                    Width="3"
+                                    Width="1"
                                     DragDelta="GridSplitter_DragDelta"
                                     DragIncrement="1"
                                     Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
@@ -102,7 +89,7 @@
                                     SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <GridSplitter
                                     Grid.Column="1"
-                                    Width="3"
+                                    Width="1"
                                     DragDelta="GridSplitter_DragDelta"
                                     DragIncrement="1"
                                     Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />
@@ -136,7 +123,7 @@
                                     SelectedItem="{Binding Currency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <GridSplitter
                                     Grid.Column="1"
-                                    Width="3"
+                                    Width="1"
                                     DragDelta="GridSplitter_DragDelta"
                                     DragIncrement="1"
                                     Tag="{Binding BindsDirectlyToSource=True, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" />

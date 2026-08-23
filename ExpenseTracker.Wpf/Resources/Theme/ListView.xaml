@@ -21,6 +21,7 @@
             <!--  This is used for ListView that does not use GridView  -->
             <ContentPresenter
                 x:Name="contentPresenter"
+                Height="Auto"
                 Margin="{TemplateBinding Margin}"
                 HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
                 VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"

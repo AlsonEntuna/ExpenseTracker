@@ -2,6 +2,7 @@
     x:Class="ExpenseTracker.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ExpenseTracker"
     xmlns:piggybank="clr-namespace:ExpenseTracker.View.PiggyBank"
     xmlns:views="clr-namespace:ExpenseTracker.View"
     xmlns:vms="clr-namespace:ExpenseTracker.ViewModels"
@@ -11,6 +12,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ExpenseTracker.Wpf;component/Resources/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!--  DataContext  -->
+            <local:MainWindowViewModel x:Key="MainVm" />
 
             <!--  Views  -->
             <DataTemplate DataType="{x:Type vms:HomepageViewModel}">
