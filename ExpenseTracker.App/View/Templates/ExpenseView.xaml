@@ -115,7 +115,7 @@
                     <!--  Editable view  -->
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox PreviewTextInput="Txt_Amount_PreviewTextInput" Text="{Binding Amount, UpdateSourceTrigger=LostFocus}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>

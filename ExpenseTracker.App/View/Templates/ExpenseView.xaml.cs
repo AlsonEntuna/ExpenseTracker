@@ -1,8 +1,10 @@
 using ExpenseTracker.Data;
 
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ExpenseTracker.View.Templates
 {
@@ -51,6 +53,18 @@ namespace ExpenseTracker.View.Templates
             {
                 ExpenseVm.CopyEntriesToClipboard();
             }
+        }
+
+        // TODO: change and make this as a NumericTextBox
+        private static readonly Regex _regex = new Regex("[^0-9.-]+");
+        private static bool IsNumeric(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
+
+        private void Txt_Amount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsNumeric(e.Text);
         }
     }
 }
