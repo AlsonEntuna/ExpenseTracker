@@ -105,11 +105,19 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.HeaderTemplate>
 
+                    <!--  Read only view  -->
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Amount}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+
+                    <!--  Editable view  -->
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn
                     Width="130"
