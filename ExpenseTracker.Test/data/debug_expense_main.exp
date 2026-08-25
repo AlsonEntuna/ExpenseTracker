@@ -28,7 +28,7 @@
     },
     {
       "Description": "sample",
-      "Amount": 100.0,
+      "Amount": 150.333,
       "OriginalAmount": 0.0,
       "Category": null,
       "PaymentChannel": "Credit Card",
@@ -42,7 +42,7 @@
     },
     {
       "Description": "Sample - Insurance",
-      "Amount": 45.0,
+      "Amount": 45.5,
       "OriginalAmount": 0.0,
       "Category": null,
       "PaymentChannel": "Credit Card",
