@@ -8,6 +8,13 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="WishlistItemTemplate" Source="/View/Wishlist/Template/WishlistItemTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -17,8 +24,41 @@
             <TextBlock
                 Grid.Row="0"
                 Style="{StaticResource TextBlockStyle.Header1}"
-                Text="My Wishlist" />
-            <Grid Grid.Row="1" />
+                Text="Wishlists" />
+            <Grid Grid.Row="1">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="6" />
+                            <Setter Property="Margin" Value="5" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Style="{StaticResource TextBlockStyle.Header2}"
+                                Text="Items" />
+                            <ListView Grid.Row="1" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1">
+                        <ListView />
+                    </Border>
+                    <Border Grid.Column="2">
+                        <ListView />
+                    </Border>
+                </Grid>
+            </Grid>
         </Grid>
     </ScrollViewer>
 </UserControl>
