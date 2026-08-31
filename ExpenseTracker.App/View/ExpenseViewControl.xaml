@@ -355,27 +355,31 @@
                     TabStripPlacement="Bottom">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="0,0,0,1">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="15" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock
                                     Grid.Column="0"
-                                    Margin="0,0,3,0"
+                                    Margin="0,0,5,0"
                                     VerticalAlignment="Center"
                                     Text="{Binding}" />
                                 <Button
                                     x:Name="Button_CloseExpenseItem"
                                     Grid.Column="1"
-                                    Width="15"
-                                    Height="15"
+                                    Width="18"
+                                    Height="18"
                                     HorizontalContentAlignment="Right"
-                                    BorderThickness="0"
+                                    VerticalContentAlignment="Center"
                                     Click="Button_CloseExpenseItem_Click"
-                                    Content="×"
                                     FontSize="12"
-                                    ToolTip="Close" />
+                                    Style="{StaticResource ButtonStyle.Navigation}"
+                                    ToolTip="Close">
+                                    <Button.Content>
+                                        <Image Source="{StaticResource File_Close}" />
+                                    </Button.Content>
+                                </Button>
                             </Grid>
                         </DataTemplate>
                     </TabControl.ItemTemplate>
