@@ -6,16 +6,51 @@
     xmlns:local="clr-namespace:ExpenseTracker.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
-    d:DataContext="{d:DesignInstance viewmodel:HomepageViewModel,
-                                     IsDesignTimeCreatable=True}"
+    d:DataContext="{d:DesignInstance viewmodel:HomepageViewModel, IsDesignTimeCreatable=True}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid>
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Style="{StaticResource TextBlockStyle.Header1.Bold}"
-            Text="Work in Progress" />
+    <Grid Margin="20">
+        <Grid Visibility="{Binding HasCurrentExpense, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Select or open an expense in the Expense tab to see its overview here." />
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{Binding HasCurrentExpense, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="Current expense" />
+                <TextBlock Margin="0,12,0,0" FontSize="36" Style="{StaticResource TextBlockStyle.Header1.Bold}" Text="{Binding ExpenseName}" />
+                <TextBlock Margin="0,4,0,0" Style="{StaticResource TextBlockStyle.Header2.Alt}" Text="{Binding ExpenseDescription}" TextWrapping="Wrap" />
+                <TextBlock Margin="0,4,0,18" Style="{StaticResource TextBlockStyle.Header2.Alt}" Text="{Binding CycleEndDate}" />
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /></Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="0,0,10,0" Padding="18" Background="{StaticResource Brush.Border.Background}" CornerRadius="8"><StackPanel><TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Budget" /><StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrencySymbol}" /><TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding Budget, StringFormat={}{0:N2}}" /></StackPanel></StackPanel></Border>
+                    <Border Grid.Column="1" Margin="5,0" Padding="18" Background="{StaticResource Brush.Border.Background}" CornerRadius="8"><StackPanel><TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Expenses" /><StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrencySymbol}" /><TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding TotalExpenses, StringFormat={}{0:N2}}" /></StackPanel></StackPanel></Border>
+                    <Border Grid.Column="2" Margin="10,0,0,0" Padding="18" Background="{StaticResource Brush.Border.Background}" CornerRadius="8"><StackPanel><TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Remaining" /><StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrencySymbol}" /><TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding RemainingBudget, StringFormat={}{0:N2}}" /></StackPanel></StackPanel></Border>
+                </Grid>
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Margin="0,0,0,8" Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="By category" />
+                        <DataGrid MinHeight="160" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding CategoryBreakdown}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Binding="{Binding Key}" Header="Category" />
+                                <DataGridTextColumn Width="120" Binding="{Binding Value, StringFormat={}{0:N2}}" Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Margin="0,0,0,8" Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="By payment channel" />
+                        <DataGrid MinHeight="160" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding PaymentChannelBreakdown}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Binding="{Binding Key}" Header="Payment channel" />
+                                <DataGridTextColumn Width="120" Binding="{Binding Value, StringFormat={}{0:N2}}" Header="Amount" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
