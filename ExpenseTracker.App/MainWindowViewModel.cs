@@ -27,10 +27,10 @@ namespace ExpenseTracker
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
-        private readonly HomepageViewModel _homepageViewModel = new HomepageViewModel();
-        public HomepageViewModel HomepageViewModel => _homepageViewModel;
         private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
         public ExpenseControlViewModel ExpenseControlViewModel => _variableExpenseViewModel;
+        private readonly HomepageViewModel _homepageViewModel;
+        public HomepageViewModel HomepageViewModel => _homepageViewModel;
 
         private readonly PiggyBankViewModel _piggyBankViewModel = new PiggyBankViewModel();
         public PiggyBankViewModel PiggyBankViewModel => _piggyBankViewModel;
@@ -66,13 +66,14 @@ namespace ExpenseTracker
 
         public MainWindowViewModel()
         {
+            _homepageViewModel = new HomepageViewModel(ExpenseControlViewModel);
+
             // Load the data...
             // TODO: check if we need this
             DataManager.Instance.LoadAppConfiguration();
             InitializeData();
 
-            // TODO: Assign the Default view to the Expense tab while we haven't finished the Home Tab
-            CurrentView = ExpenseControlViewModel;
+            CurrentView = HomepageViewModel;
 
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
