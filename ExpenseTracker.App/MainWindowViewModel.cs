@@ -156,6 +156,7 @@ namespace ExpenseTracker
         internal void SaveData()
         {
             ExpenseControlViewModel.SaveCurrentExpenseData();
+            PiggyBankViewModel.SaveData();
         }
 
         public void CreateVariableExpense()

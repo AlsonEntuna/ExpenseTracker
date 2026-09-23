@@ -111,7 +111,8 @@ namespace ExpenseTracker.ViewModels
             ForceComputeSavingsData();
         }
 
-        public void Dispose()
+        // TODO: make this into an interface
+        public void SaveData()
         {
             _userSavingsDataService.SaveUserSavingsData();
         }
