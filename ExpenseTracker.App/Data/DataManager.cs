@@ -82,7 +82,7 @@ namespace ExpenseTracker.Data
             LoadCategories();
 
             // Invoke
-            ProvidersLoadedEvent.Invoke(this, EventArgs.Empty);
+            Instance.ProvidersLoadedEvent.Invoke(this, EventArgs.Empty);
         }
 
         public void SaveAppConfiguration()

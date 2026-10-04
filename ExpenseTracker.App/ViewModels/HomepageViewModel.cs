@@ -1,6 +1,7 @@
 ﻿using ExpenseTracker.Data;
 using ExpenseTracker.View.Templates;
 using ExpenseTracker.Wpf;
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -108,10 +109,12 @@ namespace ExpenseTracker.ViewModels
         private void RefreshBreakdowns()
         {
             var entries = CurrentExpense?.Expense?.Entries ?? new ObservableCollection<DataEntry>();
+
             CategoryBreakdown = new ObservableCollection<KeyValuePair<string, float>>(entries
                 .GroupBy(entry => string.IsNullOrWhiteSpace(entry.ExpenseCategory) ? "Uncategorized" : entry.ExpenseCategory)
                 .Select(group => new KeyValuePair<string, float>(group.Key, group.Sum(entry => entry.Amount)))
                 .OrderByDescending(group => group.Value));
+
             PaymentChannelBreakdown = new ObservableCollection<KeyValuePair<string, float>>(entries
                 .GroupBy(entry => string.IsNullOrWhiteSpace(entry.PaymentChannel) ? "Unspecified" : entry.PaymentChannel)
                 .Select(group => new KeyValuePair<string, float>(group.Key, group.Sum(entry => entry.Amount)))

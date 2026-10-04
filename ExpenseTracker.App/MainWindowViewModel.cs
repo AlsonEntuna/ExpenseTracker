@@ -68,10 +68,12 @@ namespace ExpenseTracker
         {
             _homepageViewModel = new HomepageViewModel(ExpenseControlViewModel);
 
+            // Register the event once all providers have been loaded
+            DataManager.Instance.ProvidersLoadedEvent += (_, _) => { InitializeData(); };
+
             // Load the data...
             // TODO: check if we need this
             DataManager.Instance.LoadAppConfiguration();
-            InitializeData();
 
             CurrentView = HomepageViewModel;
 
@@ -130,6 +132,10 @@ namespace ExpenseTracker
                         Console.WriteLine(e.ToString());
                     }
                 }
+
+                // Assign the first one in the expense list
+                if (ExpenseControlViewModel.Expenses != null)
+                    ExpenseControlViewModel.CurrentExpenseViewModel = ExpenseControlViewModel.Expenses[0];
             }
         }
         public void OpenToolsPanel()
