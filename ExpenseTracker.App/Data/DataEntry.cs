@@ -8,6 +8,8 @@ namespace ExpenseTracker.Data
     [Serializable]
     public class DataEntry : ViewModel
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
+
         private string _description;
         public string Description
         {
@@ -95,18 +97,13 @@ namespace ExpenseTracker.Data
         public override bool Equals(object obj)
         {
             if (obj is DataEntry otherEntry)
-                return string.Equals(Description, otherEntry.Description)
-                    && string.Equals(PaymentChannel, otherEntry.PaymentChannel)
-                    && string.Equals(Category, otherEntry.Category)
-                    && string.Equals(Currency.Code, otherEntry.Currency.Code);
+                return Id == otherEntry.Id;
             else 
                 return false;
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode()
-                , Description.GetHashCode()
-                , Currency.GetHashCode());
+            return Id.GetHashCode();
         }
 
         public async void ConvertToMainCurrency()
