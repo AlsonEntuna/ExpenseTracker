@@ -94,24 +94,12 @@ namespace ExpenseTracker.View.Templates
                 return;
             }
 
-            List<DataEntry> _entriesToAdd = new List<DataEntry>();
-            if (Expense.Entries.Count != 0)
+            foreach (DataEntry entry in _deserializedEntries)
             {
-                foreach (DataEntry deserializedEntry in _deserializedEntries)
-                {
-                    if (!Expense.Entries.Contains(deserializedEntry))
-                    {
-                        _entriesToAdd.Add(deserializedEntry);
-                    }
-                }
+                // A pasted entry is a new entry, even when it came from this expense.
+                entry.Id = Guid.NewGuid();
+                Expense.Entries.Add(entry);
             }
-            else
-            {
-                _entriesToAdd = _deserializedEntries;
-            }
-
-            // Add
-            _entriesToAdd.ForEach(Expense.Entries.Add);
         }
         private void RemoveEntry()
         {

@@ -2,6 +2,7 @@
 using ExpenseTracker.Wpf;
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -109,6 +110,16 @@ namespace ExpenseTracker.Data
 
         public void DetectAndMigrateLegacyData()
         {
+            var entryIds = new HashSet<Guid>();
+            foreach (var entry in Entries)
+            {
+                if (entry.Id == Guid.Empty || !entryIds.Add(entry.Id))
+                {
+                    entry.Id = Guid.NewGuid();
+                    entryIds.Add(entry.Id);
+                }
+            }
+
             bool hasLegacyData = Entries.Any(f => f.Category != null && f.Category.Length != 0);
             if (hasLegacyData)
             {
