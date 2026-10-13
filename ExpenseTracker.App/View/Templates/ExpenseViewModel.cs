@@ -6,11 +6,11 @@ using ExpenseTracker.Wpf;
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+
 using Clipboard = System.Windows.Clipboard;
 using MessageBox = System.Windows.MessageBox;
 
@@ -53,7 +53,7 @@ namespace ExpenseTracker.View.Templates
         public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
         public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
         public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
-        public ICommand SortEntriesCommand => new RelayCommand(SortEntries);
+        public ICommand SortEntriesCommand => new RelayCommand(SortEntriesByDescription);
         #endregion
 
         public ExpenseViewModel() { }
@@ -119,16 +119,20 @@ namespace ExpenseTracker.View.Templates
                 SelectedDataEntries.Clear();
             }
         }
-        private void SortEntries()
+        private void SortEntriesByDescription()
         {
-            if (Expense.Entries != null)
+            if (Expense.Entries == null)
+                return;
+
+            var sortedList = Expense.Entries
+                .OrderBy(f => f.Description)
+                .ToList();
+
+            for (int i = 0; i < sortedList.Count; ++i)
             {
-                var sortedList = Expense.Entries.OrderBy(f => f.Description).ToList();
-                Expense.Entries.Clear();
-                foreach (var item in sortedList)
-                {
-                    Expense.Entries.Add(item);
-                }
+                int currentIndex = Expense.Entries.IndexOf(sortedList[i]);
+                if (currentIndex != i)
+                    Expense.Entries.Move(currentIndex, i);
             }
         }
 

@@ -1,11 +1,11 @@
 ﻿using ExpenseTracker.Data.Savings;
 using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
 
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Linq;
 
 using CommunityToolkit.Mvvm.Input;
 
@@ -43,6 +43,8 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditSavingsCommand => new RelayCommand(EditSavings);
         public ICommand RemoveSavingsCommand => new RelayCommand(RemoveSavings);
         public ICommand RemoveSavingsInputCommand => new RelayCommand(RemoveSavingsInput);
+        public ICommand SortByDateCommand => new RelayCommand(SortByDate);
+
         public PiggyBankViewModel()
         {
             _userSavingsDataService = new UserSavingsDataService();
@@ -105,6 +107,23 @@ namespace ExpenseTracker.ViewModels
             SelectedSavingsInput.ForEach(input => SelectedSavingsData.RemoveSavingsIinput(input));
             SelectedSavingsInput.Clear();
             ForceComputeSavingsData();
+        }
+
+        private void SortByDate()
+        {
+            if (SelectedSavingsData?.SavingsInput == null)
+                return;
+
+            var sorted = SelectedSavingsData.SavingsInput
+                .OrderBy(input => input.InputDate)
+                .ToList();
+
+            for (int i = 0; i < sorted.Count; ++i)
+            {
+                int currentIndex = SelectedSavingsData.SavingsInput.IndexOf(sorted[i]);
+                if (currentIndex != i)
+                    SelectedSavingsData.SavingsInput.Move(currentIndex, i);
+            }
         }
 
         // TODO: make this into an interface
