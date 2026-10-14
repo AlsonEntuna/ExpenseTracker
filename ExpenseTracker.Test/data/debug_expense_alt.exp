@@ -34,7 +34,7 @@
       "OriginalAmount": 10000.0,
       "Category": null,
       "PaymentChannel": "Loan",
-      "ExpenseCategory": "Food",
+      "ExpenseCategory": "Shopping",
       "Comments": null,
       "Currency": {
         "Code": "PHP",
