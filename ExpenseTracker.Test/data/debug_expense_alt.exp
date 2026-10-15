@@ -33,7 +33,7 @@
       "Amount": 163.8,
       "OriginalAmount": 10000.0,
       "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Mortgage",
       "ExpenseCategory": "Shopping",
       "Comments": null,
       "Currency": {
@@ -45,16 +45,16 @@
     {
       "Id": "61d16592-8ade-4c1a-925c-e32c53c9633a",
       "Description": "123",
-      "Amount": 0.0,
-      "OriginalAmount": 0.0,
+      "Amount": 17.55,
+      "OriginalAmount": 1233.0,
       "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Food",
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Example",
       "Comments": null,
       "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
+        "Code": "PHP",
+        "Name": "Philippine Peso",
+        "Symbol": "₱"
       }
     },
     {
@@ -63,7 +63,7 @@
       "Amount": 0.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -75,16 +75,16 @@
     {
       "Id": "9641e3b2-c62d-4442-bb4e-e1d2908a59eb",
       "Description": "asdfasdf",
-      "Amount": 0.0,
-      "OriginalAmount": 0.0,
+      "Amount": 1316.21,
+      "OriginalAmount": 123333.0,
       "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
+        "Code": "RUB",
+        "Name": "Russian Ruble",
+        "Symbol": "RUB"
       }
     },
     {
@@ -93,22 +93,7 @@
       "Amount": 12.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Food",
-      "Comments": null,
-      "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
-      }
-    },
-    {
-      "Id": "4af42ebf-091a-40bf-ac65-f1ab5b3eb8b6",
-      "Description": "asdf",
-      "Amount": 11.0,
-      "OriginalAmount": 0.0,
-      "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
