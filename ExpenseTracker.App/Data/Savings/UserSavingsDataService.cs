@@ -1,13 +1,14 @@
 ﻿using ExpenseTracker.Environment;
 using ExpenseTracker.Tools;
 using ExpenseTracker.View.PiggyBank;
+using ExpenseTracker.Data.DataProviders;
 
 using System.IO;
 using System.Collections.Generic;
 
 namespace ExpenseTracker.Data.Savings
 {
-    public class UserSavingsDataService
+    public class UserSavingsDataService : IDataProvider
     {
         private List<SavingsData> _userSavings;
         public List<SavingsData> UserSavings => _userSavings;
@@ -67,10 +68,17 @@ namespace ExpenseTracker.Data.Savings
             _userSavings.Remove(savingsToRemove);
         }
 
-        public void SaveUserSavingsData()
+        public bool Save()
         {
-            if (_userSavings == null) return;
-            JsonUtils.SerializeArray(_savingsDataPath, _userSavings);
+            if (_userSavings == null)
+                return false;
+
+            return JsonUtils.SerializeArray(_savingsDataPath, _userSavings);
+        }
+
+        public bool Load()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

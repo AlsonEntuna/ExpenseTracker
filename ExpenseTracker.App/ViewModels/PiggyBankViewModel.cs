@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Linq;
 
 using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.Data.DataProviders;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -126,10 +127,10 @@ namespace ExpenseTracker.ViewModels
             }
         }
 
-        // TODO: make this into an interface
-        public void SaveData()
+        public void Save()
         {
-            _userSavingsDataService.SaveUserSavingsData();
+            // TODO: we should have like a registry of data providers so we can just save everything
+            _userSavingsDataService.Save();
         }
     }
 }

@@ -162,8 +162,9 @@ namespace ExpenseTracker
 
         internal void SaveData()
         {
-            ExpenseControlViewModel.SaveCurrentExpenseData();
-            PiggyBankViewModel.SaveData();
+            // TODO: make registry providers to save
+            ExpenseControlViewModel.Save();
+            PiggyBankViewModel.Save();
         }
 
         public void CreateVariableExpense()
@@ -232,7 +233,7 @@ namespace ExpenseTracker
 
         private void SaveExpense()
         {
-            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SaveCurrentExpenseData();
+            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().Save();
         }
     }
 }

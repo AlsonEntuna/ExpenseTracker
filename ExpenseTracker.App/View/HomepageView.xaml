@@ -77,7 +77,7 @@
                         Background="{StaticResource Brush.Border.Background}"
                         CornerRadius="8">
                         <StackPanel>
-                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Remaining" />
+                            <TextBlock Style="{StaticResource TextBlockStyle.Header2.Bold}" Text="Savings" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding CurrencySymbol}" />
                                 <TextBlock Style="{StaticResource TextBlockStyle.Header1}" Text="{Binding RemainingBudget, StringFormat={}{0:N2}}" />

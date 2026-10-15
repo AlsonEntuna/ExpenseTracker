@@ -26,9 +26,10 @@
         </Grid.ColumnDefinitions>
         <Border
             Grid.Column="0"
+            Margin="2"
             Background="{StaticResource Brush.Main.Background.Alt}"
             CornerRadius="6">
-            <Grid>
+            <Grid Margin="15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="90" />
@@ -274,15 +275,18 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+        <GridSplitter
+            Grid.Column="1"
+            Width="2"
+            HorizontalAlignment="Stretch" />
         <Grid
             x:Name="Grid_DataEntryView"
             Grid.Column="2"
             VerticalAlignment="Stretch">
             <Border
-                Margin="5"
+                Margin="2"
                 Background="{StaticResource Brush.Border.Background}"
-                CornerRadius="10"
+                CornerRadius="6"
                 IsHitTestVisible="False" />
             <Grid>
                 <Grid.RowDefinitions>

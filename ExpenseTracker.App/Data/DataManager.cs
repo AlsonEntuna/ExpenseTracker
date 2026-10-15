@@ -276,5 +276,11 @@ namespace ExpenseTracker.Data
                 MessageBox.Show("Successfully imported categories data.", "Import", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        // TODO: implement
+        public void SaveAllProviders()
+        {
+
+        }
     }
 }
