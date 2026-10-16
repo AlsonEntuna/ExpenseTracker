@@ -45,18 +45,19 @@
                             FontWeight="DemiBold"
                             Style="{StaticResource TextBlockStyle.Title}"
                             Text="My Savings" />
-                        <ListView
-                            Grid.Row="2"
-                            Margin="3"
-                            ItemsSource="{Binding Savings}"
-                            SelectedItem="{Binding SelectedSavingsData, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding EditSavingsCommand}" Header="Edit" />
-                                    <MenuItem Command="{Binding RemoveSavingsCommand}" Header="Remove" />
-                                </ContextMenu>
-                            </ListView.ContextMenu>
-                        </ListView>
+                        <Border Grid.Row="2">
+                            <ListView
+                                Margin="10"
+                                ItemsSource="{Binding Savings}"
+                                SelectedItem="{Binding SelectedSavingsData, UpdateSourceTrigger=PropertyChanged}">
+                                <ListView.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Command="{Binding EditSavingsCommand}" Header="Edit" />
+                                        <MenuItem Command="{Binding RemoveSavingsCommand}" Header="Remove" />
+                                    </ContextMenu>
+                                </ListView.ContextMenu>
+                            </ListView>
+                        </Border>
                     </Grid>
                 </Border>
             </Grid>
@@ -101,7 +102,7 @@
                                         <ProgressBar
                                             Height="20"
                                             Margin="5"
-                                            Background="{StaticResource Brush.Button.Alt}"
+                                            Background="{DynamicResource Brush.Main.Background}"
                                             Foreground="{StaticResource Brush.Button.Main}"
                                             Maximum="{Binding SelectedSavingsData.SavingsTotalAmount}"
                                             Value="{Binding SelectedSavingsData.SavingsCurrentAmount}" />

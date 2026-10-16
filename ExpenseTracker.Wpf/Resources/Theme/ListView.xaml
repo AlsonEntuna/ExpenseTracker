@@ -70,6 +70,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Margin" Value="2,0,0,0" />
     </Style>
+
     <Style TargetType="{x:Type ListView}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <!--  Setter Property="OverridesDefaultStyle" Value="True" /  -->
@@ -89,9 +90,9 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
-                        CornerRadius="2">
+                        CornerRadius="10">
                         <ScrollViewer Style="{DynamicResource CustomScrollViewer}">
-                            <ItemsPresenter />
+                            <ItemsPresenter Margin="5" />
                         </ScrollViewer>
                     </Border>
                     <ControlTemplate.Triggers>

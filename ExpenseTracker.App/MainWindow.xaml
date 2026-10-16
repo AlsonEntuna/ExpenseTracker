@@ -123,12 +123,13 @@
                             <Setter Property="FontSize" Value="20" />
                         </Style>
                     </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
                     <StackPanel>
                         <StackPanel>
+                            <StackPanel.Resources>
+                                <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                                    <Setter Property="Margin" Value="0,0,0,13" />
+                                </Style>
+                            </StackPanel.Resources>
                             <Button Command="{Binding HomepageViewCommand}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
@@ -153,17 +154,15 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
+                            <Button Command="{Binding ToolsViewCommand}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource Menu-Preferences}" />
+                                        <TextBlock VerticalAlignment="Center" Text="Tools" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
                         </StackPanel>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Margin="0,0,0,10">
-                        <Button Command="{Binding ToolsViewCommand}">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource Menu-Preferences}" />
-                                    <TextBlock VerticalAlignment="Center" Text="Tools" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
                     </StackPanel>
                 </Grid>
             </Border>

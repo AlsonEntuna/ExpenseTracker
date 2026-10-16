@@ -120,13 +120,17 @@
                     <!--  Editable view  -->
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox PreviewTextInput="Txt_Amount_PreviewTextInput" Text="{Binding Amount, UpdateSourceTrigger=LostFocus}" />
+                            <TextBox
+                                PreviewTextInput="Txt_Amount_PreviewTextInput"
+                                Style="{StaticResource TextBoxStyle.DataGridRowEditor}"
+                                Text="{Binding Amount, UpdateSourceTrigger=LostFocus}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn
                     Width="130"
                     Binding="{Binding OriginalAmount}"
+                    EditingElementStyle="{StaticResource TextBoxStyle.DataGridRowEditor}"
                     Header="Amount (Local)" />
                 <DataGridTemplateColumn
                     Width="auto"

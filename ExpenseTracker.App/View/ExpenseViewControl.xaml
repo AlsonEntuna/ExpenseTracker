@@ -362,7 +362,7 @@
                 <TabControl
                     x:Name="TabControlExpenses"
                     Grid.Row="1"
-                    Margin="20"
+                    Margin="10"
                     BorderBrush="{DynamicResource Brush.Border}"
                     BorderThickness="1"
                     FlowDirection="LeftToRight"
