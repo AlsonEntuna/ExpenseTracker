@@ -156,7 +156,7 @@
                             <Button Command="{Binding WishlistViewCommand}" ToolTip="Wishlists">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="{StaticResource Menu-PiggyBank}" />
+                                        <Image Source="{StaticResource Menu-Wishlist}" />
                                         <TextBlock VerticalAlignment="Center" Text="Wishlists" />
                                     </StackPanel>
                                 </Button.Content>
