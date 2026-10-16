@@ -18,4 +18,5 @@
     <BitmapImage x:Key="Menu-Home" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-home.ico" />
     <BitmapImage x:Key="Menu-Expense" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-expense.ico" />
     <BitmapImage x:Key="Menu-Preferences" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-preferences.ico" />
+    <BitmapImage x:Key="Menu-Wishlist" UriSource="/ExpenseTracker.Wpf;component/Resources/Icons/menu-wishlist.ico" />
 </ResourceDictionary>
