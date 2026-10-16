@@ -11,14 +11,22 @@
     d:DesignHeight="720"
     d:DesignWidth="1080"
     mc:Ignorable="d">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid Margin="5">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </Grid.Resources>
         <Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Border>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -50,8 +58,10 @@
                             </ListView.ContextMenu>
                         </ListView>
                     </Grid>
-                </Grid>
-                <Grid Grid.Column="1" Margin="5">
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Border>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -216,15 +226,15 @@
                                         Binding="{Binding Amount}"
                                         Header="Amout" />
                                     <!--<DataGridTextColumn
-                                        MinWidth="50"
-                                        Binding="{Binding SelectedSavingsData.SavingsCurrency.Symbol, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                        Header="Currency" />-->
+                MinWidth="50"
+                Binding="{Binding SelectedSavingsData.SavingsCurrency.Symbol, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"
+                Header="Currency" />-->
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
                     </Grid>
-                </Grid>
+                </Border>
             </Grid>
         </Grid>
-    </ScrollViewer>
+    </Grid>
 </UserControl>

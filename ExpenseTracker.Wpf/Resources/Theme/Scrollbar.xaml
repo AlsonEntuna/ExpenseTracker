@@ -69,26 +69,23 @@
                     <Grid SnapsToDevicePixels="True">
                         <Rectangle
                             x:Name="Ellipse"
-                            Fill="{DynamicResource Brush.Button.Alt}"
+                            Fill="{DynamicResource Brush.Scrollbar.Stop}"
                             RadiusX="5"
                             RadiusY="5"
-                            Stroke="{DynamicResource Brush.Button.Disable}"
-                            StrokeThickness="1" />
-                        <Border
-                            x:Name="Border1"
-                            Margin="1"
-                            Background="{x:Null}"
-                            BorderBrush="{DynamicResource Brush.Button.Alt}"
-                            BorderThickness="1,1,1,1"
-                            CornerRadius="2" />
+                            Stroke="{DynamicResource Brush.Scrollbar.Stop}"
+                            StrokeThickness="0" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Disable}" />
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Scrollbar.Active}" />
+                            <Setter TargetName="Ellipse" Property="Stroke" Value="{DynamicResource Brush.Scrollbar.Active}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Scrollbar.Active}" />
+                            <Setter TargetName="Ellipse" Property="Stroke" Value="{DynamicResource Brush.Scrollbar.Active}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Alt}" />
-                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Scrollbar.Stop}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -99,41 +96,30 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="BorderBrush" Value="{DynamicResource DynamicResource Brush.Button.Alt}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Scrollbar.Stop}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Grid SnapsToDevicePixels="True">
                         <Rectangle
                             x:Name="Ellipse"
-                            Fill="{DynamicResource Brush.Button.Alt}"
+                            Fill="{DynamicResource Brush.Scrollbar.Stop}"
                             RadiusX="5"
                             RadiusY="5"
-                            Stroke="{DynamicResource Brush.Button.Alt}"
-                            StrokeThickness="1" />
-                        <Border
-                            x:Name="Border1"
-                            Margin="1"
-                            Background="{x:Null}"
-                            BorderBrush="{DynamicResource Brush.Button.Alt}"
-                            BorderThickness="1,1,0,0"
-                            CornerRadius="8" />
-                        <Border
-                            x:Name="Border2"
-                            Margin="1"
-                            Background="{x:Null}"
-                            BorderBrush="{DynamicResource Brush.Button.Alt}"
-                            BorderThickness="0,0,1,1"
-                            CornerRadius="8" />
+                            Stroke="{DynamicResource Brush.Scrollbar.Stop}"
+                            StrokeThickness="0" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Scrollbar.Active}" />
+                            <Setter TargetName="Ellipse" Property="Stroke" Value="{DynamicResource Brush.Scrollbar.Active}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Scrollbar.Active}" />
+                            <Setter TargetName="Ellipse" Property="Stroke" Value="{DynamicResource Brush.Scrollbar.Active}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Button.Alt}" />
-                            <Setter TargetName="Border1" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
-                            <Setter TargetName="Border2" Property="BorderBrush" Value="{DynamicResource Brush.Button.Alt}" />
+                            <Setter TargetName="Ellipse" Property="Fill" Value="{DynamicResource Brush.Scrollbar.Stop}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -373,7 +359,7 @@
         </Setter>
     </Style>
     <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Grid Background="{DynamicResource CheckerBackground}">
+        <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -400,7 +386,7 @@
         </Grid>
     </ControlTemplate>
     <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Grid Background="{DynamicResource CheckerBackground}">
+        <Grid Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
