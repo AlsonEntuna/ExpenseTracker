@@ -840,44 +840,107 @@
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 2,
-      "Shopping": 1,
       "Mortgage": 1,
-      "Bills": 1
+      "Food": 52,
+      "Bills": 1,
+      "Shopping": 1
     },
-    "TotalAmount": 858.95,
-    "Savings": 1141.05,
-    "UnPaidAmount": 0.0,
-    "PaidAmount": 858.95,
+    "TotalAmount": 921.78,
+    "Savings": 1078.22,
+    "UnPaidAmount": 921.78,
+    "PaidAmount": 0.0,
     "Completed": false,
     "CategoryReports": [
       {
-        "PaymentChannel": "Credit Card",
-        "Amount": 308.8,
+        "PaymentChannel": "Loan",
+        "Amount": 700.48,
         "Comments": null,
-        "Paid": true,
-        "PartialPayment": 308.8,
-        "OutstandingBalance": 0.0,
-        "CategoryBreakdown": []
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 700.48,
+        "CategoryBreakdown": [
+          {
+            "Category": "Mortgage",
+            "TotalAmount": 500.0
+          },
+          {
+            "Category": "Food",
+            "TotalAmount": 150.333
+          },
+          {
+            "Category": "Shopping",
+            "TotalAmount": 50.15
+          }
+        ]
       },
       {
-        "PaymentChannel": "Loan",
-        "Amount": 550.15,
+        "PaymentChannel": "Credit Card",
+        "Amount": 209.3,
         "Comments": null,
-        "Paid": true,
-        "PartialPayment": 200.0,
-        "OutstandingBalance": 350.15,
-        "CategoryBreakdown": []
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 209.3,
+        "CategoryBreakdown": [
+          {
+            "Category": "Bills",
+            "TotalAmount": 45.5
+          },
+          {
+            "Category": "Food",
+            "TotalAmount": 163.8
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Mortgage",
+        "Amount": 12.0,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 12.0,
+        "CategoryBreakdown": [
+          {
+            "Category": "Food",
+            "TotalAmount": 12.0
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Deutsche Bank",
+        "Amount": 0.0,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 0.0,
+        "CategoryBreakdown": [
+          {
+            "Category": "Food",
+            "TotalAmount": 0.0
+          }
+        ]
       }
     ],
     "SelectedReport": {
       "PaymentChannel": "Loan",
-      "Amount": 550.15,
+      "Amount": 700.48,
       "Comments": null,
-      "Paid": true,
-      "PartialPayment": 200.0,
-      "OutstandingBalance": 350.15,
-      "CategoryBreakdown": []
+      "Paid": false,
+      "PartialPayment": 0.0,
+      "OutstandingBalance": 700.48,
+      "CategoryBreakdown": [
+        {
+          "Category": "Mortgage",
+          "TotalAmount": 500.0
+        },
+        {
+          "Category": "Food",
+          "TotalAmount": 150.333
+        },
+        {
+          "Category": "Shopping",
+          "TotalAmount": 50.15
+        }
+      ]
     },
     "DataCurrency": {
       "Code": "EUR",
@@ -887,33 +950,70 @@
     "CurrencySymbol": "€",
     "ReportChartData": [
       {
-        "Key": "Credit Card",
-        "Value": 309
+        "Key": "Loan",
+        "Value": 700
       },
       {
-        "Key": "Loan",
-        "Value": 550
+        "Key": "Credit Card",
+        "Value": 209
+      },
+      {
+        "Key": "Mortgage",
+        "Value": 12
+      },
+      {
+        "Key": "Deutsche Bank",
+        "Value": 0
       }
     ],
     "ExpenseCategoryChartData": [
-      {
-        "Key": "Food",
-        "Value": 2
-      },
-      {
-        "Key": "Shopping",
-        "Value": 1
-      },
       {
         "Key": "Mortgage",
         "Value": 1
       },
       {
+        "Key": "Food",
+        "Value": 52
+      },
+      {
         "Key": "Bills",
+        "Value": 1
+      },
+      {
+        "Key": "Shopping",
         "Value": 1
       }
     ],
-    "ExpenseCategoryExpenseTotalValueData": null,
+    "ExpenseCategoryExpenseTotalValueData": [
+      {
+        "Key": "Mortgage",
+        "Value": 500.0
+      },
+      {
+        "Key": "Food",
+        "Value": 150.333
+      },
+      {
+        "Key": "Shopping",
+        "Value": 50.15
+      },
+      {
+        "Key": "Bills",
+        "Value": 45.5
+      },
+      {
+        "Key": "Food",
+        "Value": 163.8
+      },
+      {
+        "Key": "Food",
+        "Value": 12.0
+      },
+      {
+        "Key": "Food",
+        "Value": 0.0
+      }
+    ],
     "CurrencyReport": [
       {
         "Currency": {
@@ -927,13 +1027,13 @@
     "AltCurrencyBreakdown": [
       {
         "CurrencyCode": "PHP",
-        "PaymentChannel": "Credit Card",
-        "Amount": 10000.0
+        "PaymentChannel": "Loan",
+        "Amount": 3000.0
       },
       {
         "CurrencyCode": "PHP",
-        "PaymentChannel": "Loan",
-        "Amount": 3000.0
+        "PaymentChannel": "Credit Card",
+        "Amount": 10000.0
       }
     ]
   },
