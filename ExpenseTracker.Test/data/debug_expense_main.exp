@@ -33,7 +33,7 @@
       "Amount": 150.333,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
+      "PaymentChannel": "Loan",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -363,7 +363,7 @@
       "Amount": 0.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
+      "PaymentChannel": "Loan",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -405,10 +405,10 @@
     {
       "Id": "dc19bd61-f728-4451-a9f7-46870aa8e980",
       "Description": "New Entry",
-      "Amount": 0.0,
+      "Amount": 12.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
+      "PaymentChannel": "Mortgage",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
