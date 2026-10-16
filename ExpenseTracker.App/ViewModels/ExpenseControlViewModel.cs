@@ -164,7 +164,7 @@ namespace ExpenseTracker.ViewModels
             path = success ? string.Empty : _absoluteFilePath;
         }
 
-        internal void SaveCurrentExpenseData()
+        internal void Save()
         {
             if (CurrentExpenseViewModel == null)
                 return;
@@ -240,7 +240,7 @@ namespace ExpenseTracker.ViewModels
 
         private void SaveVariableExepense()
         {
-            SaveCurrentExpenseData();
+            Save();
         }
 
         private void EditBudget()

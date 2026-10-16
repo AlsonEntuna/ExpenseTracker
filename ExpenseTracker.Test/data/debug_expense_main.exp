@@ -13,6 +13,7 @@
   "CurrencySymbol": "€",
   "Entries": [
     {
+      "Id": "f0850ee9-7cfc-40c8-a164-f8b3a256c07e",
       "Description": "Loan - House",
       "Amount": 500.0,
       "OriginalAmount": 0.0,
@@ -27,6 +28,7 @@
       }
     },
     {
+      "Id": "a52e53a1-351b-4d72-8b2a-709376a3c934",
       "Description": "sample",
       "Amount": 150.333,
       "OriginalAmount": 0.0,
@@ -41,6 +43,7 @@
       }
     },
     {
+      "Id": "e8fdbca2-a3ee-474d-8f79-38793e3250a1",
       "Description": "Sample - Insurance",
       "Amount": 45.5,
       "OriginalAmount": 0.0,
@@ -55,6 +58,7 @@
       }
     },
     {
+      "Id": "bfc51082-dd9c-40d9-a890-5e04c406cf6f",
       "Description": "tesing other php",
       "Amount": 50.15,
       "OriginalAmount": 3000.0,
@@ -69,6 +73,7 @@
       }
     },
     {
+      "Id": "6a5ef425-8035-4528-ad60-67fc53582a3f",
       "Description": "testing php",
       "Amount": 163.8,
       "OriginalAmount": 10000.0,
@@ -80,6 +85,756 @@
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
+      }
+    },
+    {
+      "Id": "8353d380-76a1-4021-9447-72cf6b17fb10",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "c0dacf2c-fba6-401b-9f5b-e5d01d64040e",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "0ae3b970-4b06-4065-a232-798d7e59d432",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "6cc55473-2881-4faf-aadd-6286df9e54ff",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Mortgage",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "66e66c1d-fcad-43fe-8f87-5e6d9c53e024",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "c80b6684-616a-47ec-8320-2aa530889162",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "9baa71a1-4bed-477b-b6b5-409978aedfa8",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "8200c123-c3a2-4e55-a99b-4ca776f739df",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "6a2f32e4-02fd-41df-be91-6b772d1b342d",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "3aeb967a-c39e-4968-9af9-934b5128f5cd",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Food",
+      "Comments": "random test",
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "82e91bf5-718e-4794-853f-e435414bb037",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "b905f9ae-999a-4de8-ba94-952f4e9212ff",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "427aaadf-13c8-4e56-a834-f118e35f4be9",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "9a336323-d1c8-4bcd-9054-60bf7638eb2b",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "33cf6208-398f-49fb-b21e-b1a34b376597",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "21b17311-2d1a-4097-a27a-d74841489ac5",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "6797caa8-edf6-44e7-8d04-54cd48fb481c",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "4c7ccb42-1917-453d-a921-e03d78497b38",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "fd77e0a2-4f0b-40a8-a712-e6300efbffb7",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "ea13353a-4d31-42c0-af05-2ee45844dfab",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "ff5735ae-0015-4666-a17f-179e100d3b29",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "dc19bd61-f728-4451-a9f7-46870aa8e980",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "cd4492bd-30a3-4bc6-8e44-e1ebdc4ac15d",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "f1778294-7670-476f-8e16-43ead1e5f6f2",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "34717361-e8bc-4bac-a92b-ef2acae4722e",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "1ea64a7f-438a-48b6-9920-6ed1344bb53e",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "286bf873-69bd-4203-bc0f-2b6674d63d0d",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "b57ec927-5407-4b4f-892b-fc43dab64fd9",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "86b72936-18dc-4796-ba45-d092377963de",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "8e139d8a-02c7-4f4e-8f3a-9080afecc982",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "0a2882ba-2df1-48ab-9857-c7411e43fd4a",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "5f598a41-2bef-466b-92b9-080da45dbd37",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "de464015-861c-4593-9ff3-48f8bbccec86",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "68c02c95-5950-4477-bfb1-cb1bb1580c67",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "f1f674b8-a961-4ed5-9f98-4ad9a84b2633",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "156ea1b4-44b0-429c-949f-2b90620a69cd",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "e32f8924-9c67-4801-9cc1-02f26ec9e36a",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "c920908d-3300-4ec5-95fb-7225f4ddedf2",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "6b94145b-1b72-4803-893c-7207bb8e9270",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "1040225b-833f-472a-8349-2bed59ed383c",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "cbe11524-65d0-48cc-a94d-2b18de6daf7d",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "209fc1b1-8697-4def-9ce8-5feaf63acbb8",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "a79b7f28-baac-4d91-b2c2-96e5b682ba51",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "f80e5d9e-3ec8-4772-8ac5-c6426ec57459",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "905de3bd-6e83-438c-94f1-f56bcfc1f8de",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "719a20e5-643f-4069-82ea-fcb739754d3d",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "9a4ff560-1e9e-4f0c-961d-42e767d48794",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "106fd5e1-a1cd-4688-8843-a100a8582974",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "abc896ec-96b6-4aa0-b0f2-a59d4e8195e6",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "04b2cfb8-147f-4cb9-aa54-c0c2d49f3e50",
+      "Description": "New Entry",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Credit Card",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
       }
     }
   ],

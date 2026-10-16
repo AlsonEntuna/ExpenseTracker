@@ -8,6 +8,8 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     d:DataContext="{d:DesignInstance viewmodel:PiggyBankViewModel,
                                      IsDesignTimeCreatable=True}"
+    d:DesignHeight="720"
+    d:DesignWidth="1080"
     mc:Ignorable="d">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -201,6 +203,7 @@
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Command="{Binding RemoveSavingsInputCommand}" Header="Remove" />
+                                        <MenuItem Command="{Binding SortByDateCommand}" Header="Sort by Date" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
                                 <DataGrid.Columns>

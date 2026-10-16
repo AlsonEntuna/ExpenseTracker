@@ -27,10 +27,10 @@ namespace ExpenseTracker
     class MainWindowViewModel : ViewModel
     {
         #region ViewModels
-        private readonly HomepageViewModel _homepageViewModel = new HomepageViewModel();
-        public HomepageViewModel HomepageViewModel => _homepageViewModel;
         private readonly ExpenseControlViewModel _variableExpenseViewModel = new ExpenseControlViewModel();
         public ExpenseControlViewModel ExpenseControlViewModel => _variableExpenseViewModel;
+        private readonly HomepageViewModel _homepageViewModel;
+        public HomepageViewModel HomepageViewModel => _homepageViewModel;
 
         private readonly PiggyBankViewModel _piggyBankViewModel = new PiggyBankViewModel();
         public PiggyBankViewModel PiggyBankViewModel => _piggyBankViewModel;
@@ -70,13 +70,16 @@ namespace ExpenseTracker
 
         public MainWindowViewModel()
         {
+            _homepageViewModel = new HomepageViewModel(ExpenseControlViewModel);
+
+            // Register the event once all providers have been loaded
+            DataManager.Instance.ProvidersLoadedEvent += (_, _) => { InitializeData(); };
+
             // Load the data...
             // TODO: check if we need this
             DataManager.Instance.LoadAppConfiguration();
-            InitializeData();
 
-            // TODO: Assign the Default view to the Expense tab while we haven't finished the Home Tab
-            CurrentView = ExpenseControlViewModel;
+            CurrentView = HomepageViewModel;
 
             // Register to the app instance connection
             AppInstance.Connection.AddViewModel(this);
@@ -133,6 +136,10 @@ namespace ExpenseTracker
                         Console.WriteLine(e.ToString());
                     }
                 }
+
+                // Assign the first one in the expense list
+                if (ExpenseControlViewModel.Expenses != null)
+                    ExpenseControlViewModel.CurrentExpenseViewModel = ExpenseControlViewModel.Expenses[0];
             }
         }
         public void OpenToolsPanel()
@@ -159,7 +166,9 @@ namespace ExpenseTracker
 
         internal void SaveData()
         {
-            ExpenseControlViewModel.SaveCurrentExpenseData();
+            // TODO: make registry providers to save
+            ExpenseControlViewModel.Save();
+            PiggyBankViewModel.Save();
         }
 
         public void CreateVariableExpense()
@@ -228,7 +237,7 @@ namespace ExpenseTracker
 
         private void SaveExpense()
         {
-            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SaveCurrentExpenseData();
+            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().Save();
         }
     }
 }

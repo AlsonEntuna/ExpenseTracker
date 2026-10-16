@@ -1,13 +1,14 @@
 ﻿using ExpenseTracker.Data.Savings;
 using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
 
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Linq;
 
 using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.Data.DataProviders;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -43,6 +44,8 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditSavingsCommand => new RelayCommand(EditSavings);
         public ICommand RemoveSavingsCommand => new RelayCommand(RemoveSavings);
         public ICommand RemoveSavingsInputCommand => new RelayCommand(RemoveSavingsInput);
+        public ICommand SortByDateCommand => new RelayCommand(SortByDate);
+
         public PiggyBankViewModel()
         {
             _userSavingsDataService = new UserSavingsDataService();
@@ -64,7 +67,7 @@ namespace ExpenseTracker.ViewModels
 
         public void ForceComputeSavingsData()
         {
-            if (SelectedSavingsData != null) 
+            if (SelectedSavingsData != null)
             {
                 SelectedSavingsData.Compute();
                 RaisePropertyChanged(nameof(SelectedSavingsData));
@@ -76,13 +79,9 @@ namespace ExpenseTracker.ViewModels
             if (SelectedSavingsData == null)
                 return;
 
-            NumDialog numDialog = new NumDialog("Enter the amount you saved");
-            numDialog.ShowDialog();
-            if (numDialog.DialogResult == true)
-            {
-                SelectedSavingsData.AddInputSavings(numDialog.NumValue, DateTime.Now.Date.ToShortDateString());
-                RaisePropertyChanged(nameof(SelectedSavingsData));
-            }
+            // Add Default value
+            SelectedSavingsData.AddInputSavings(0.0f, DateTime.Now.Date.ToShortDateString());
+            RaisePropertyChanged(nameof(SelectedSavingsData));
         }
 
         private void EditSavings()
@@ -111,9 +110,27 @@ namespace ExpenseTracker.ViewModels
             ForceComputeSavingsData();
         }
 
-        public void Dispose()
+        private void SortByDate()
         {
-            _userSavingsDataService.SaveUserSavingsData();
+            if (SelectedSavingsData?.SavingsInput == null)
+                return;
+
+            var sorted = SelectedSavingsData.SavingsInput
+                .OrderBy(input => input.InputDate)
+                .ToList();
+
+            for (int i = 0; i < sorted.Count; ++i)
+            {
+                int currentIndex = SelectedSavingsData.SavingsInput.IndexOf(sorted[i]);
+                if (currentIndex != i)
+                    SelectedSavingsData.SavingsInput.Move(currentIndex, i);
+            }
+        }
+
+        public void Save()
+        {
+            // TODO: we should have like a registry of data providers so we can just save everything
+            _userSavingsDataService.Save();
         }
     }
 }

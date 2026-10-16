@@ -23,12 +23,6 @@ namespace ExpenseTracker.View.PiggyBank
             _vm = DataContext as PiggyBankViewModel;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            EnsureDataContext();
-            _vm.Dispose();
-        }
-
         private void DataGrid_SavingsInput_CurrentCellChanged(object sender, System.EventArgs e)
         {
             EnsureDataContext();

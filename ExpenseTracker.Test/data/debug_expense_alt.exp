@@ -13,11 +13,12 @@
   "CurrencySymbol": "€",
   "Entries": [
     {
+      "Id": "da4997b0-c2bf-4ebc-b8b1-6b3f44504aca",
       "Description": "sample",
       "Amount": 100.0,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
+      "PaymentChannel": "Mortgage",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -27,17 +28,78 @@
       }
     },
     {
+      "Id": "0d864fda-aad5-462e-a20b-38eb1c38a366",
       "Description": "testing php",
       "Amount": 163.8,
       "OriginalAmount": 10000.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
-      "ExpenseCategory": "Food",
+      "PaymentChannel": "Mortgage",
+      "ExpenseCategory": "Shopping",
       "Comments": null,
       "Currency": {
         "Code": "PHP",
         "Name": "Philippine Piso",
         "Symbol": "₱"
+      }
+    },
+    {
+      "Id": "61d16592-8ade-4c1a-925c-e32c53c9633a",
+      "Description": "123",
+      "Amount": 17.55,
+      "OriginalAmount": 1233.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Example",
+      "Comments": null,
+      "Currency": {
+        "Code": "PHP",
+        "Name": "Philippine Peso",
+        "Symbol": "₱"
+      }
+    },
+    {
+      "Id": "0c3d57d6-7da9-4f36-8f3e-5ba693de8348",
+      "Description": "asdffff",
+      "Amount": 0.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
+    },
+    {
+      "Id": "9641e3b2-c62d-4442-bb4e-e1d2908a59eb",
+      "Description": "asdfasdf",
+      "Amount": 1316.21,
+      "OriginalAmount": 123333.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "RUB",
+        "Name": "Russian Ruble",
+        "Symbol": "RUB"
+      }
+    },
+    {
+      "Id": "b2f5cbf2-026a-4cbe-bbb4-07e50b6736ec",
+      "Description": "asdf",
+      "Amount": 12.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Food",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
       }
     }
   ],

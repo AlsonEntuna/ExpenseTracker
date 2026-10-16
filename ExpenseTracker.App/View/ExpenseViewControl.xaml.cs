@@ -116,7 +116,6 @@ namespace ExpenseTracker.View
             {
                 _vm.CurrentExpenseViewModel = _expenseVm;
             }
-
         }
 
         private void Button_CloseExpenseItem_Click(object sender, RoutedEventArgs e)

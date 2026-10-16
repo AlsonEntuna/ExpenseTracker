@@ -82,7 +82,7 @@ namespace ExpenseTracker.Data
             LoadCategories();
 
             // Invoke
-            ProvidersLoadedEvent.Invoke(this, EventArgs.Empty);
+            Instance.ProvidersLoadedEvent.Invoke(this, EventArgs.Empty);
         }
 
         public void SaveAppConfiguration()
@@ -275,6 +275,12 @@ namespace ExpenseTracker.Data
                 JsonUtils.Serialize(_dataFile, DataCategories);
                 MessageBox.Show("Successfully imported categories data.", "Import", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        // TODO: implement
+        public void SaveAllProviders()
+        {
+
         }
     }
 }
