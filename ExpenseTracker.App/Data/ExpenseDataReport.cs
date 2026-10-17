@@ -35,7 +35,7 @@ namespace ExpenseTracker.Data
         private float _unpaidAmount;
         public float UnPaidAmount
         {
-            get => _unpaidAmount;
+            get => (float)MathF.Round(_unpaidAmount, 2);
             set => SetProperty(ref _unpaidAmount, value);
         }
 

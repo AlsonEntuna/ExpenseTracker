@@ -49,8 +49,11 @@ namespace ExpenseTracker.ViewModels
                 LoadSummaryForCurrentExpense();
             }
         }
-
+#if !DEBUG
         public bool HasCurrentExpense => CurrentExpense?.Expense != null;
+#else
+        public bool HasCurrentExpense => true;
+#endif
         public string ExpenseName => CurrentExpense?.Expense?.Name ?? string.Empty;
         public string ExpenseDescription => CurrentExpense?.Expense?.Description ?? string.Empty;
         public string CycleEndDate => CurrentExpense?.Expense?.EndDate ?? string.Empty;
