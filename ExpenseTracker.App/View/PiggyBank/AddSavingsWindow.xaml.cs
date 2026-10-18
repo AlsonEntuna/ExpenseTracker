@@ -1,16 +1,17 @@
-﻿using System.Text.RegularExpressions;
+﻿using ExpenseTracker.CurrencyConverter;
+using ExpenseTracker.Data.Savings;
+using ExpenseTracker.Wpf.Controls;
+
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-
-using ExpenseTracker.CurrencyConverter;
-using ExpenseTracker.Data.Savings;
 
 namespace ExpenseTracker.View.PiggyBank
 {
     /// <summary>
     /// Interaction logic for AddSavingsWindow.xaml
     /// </summary>
-    public partial class AddSavingsWindow : Window
+    public partial class AddSavingsWindow : ExWindow
     {
         public SavingsData NewSavingsData;
         public AddSavingsWindow()

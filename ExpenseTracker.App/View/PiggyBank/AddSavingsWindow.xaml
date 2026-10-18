@@ -1,4 +1,4 @@
-﻿<Window
+﻿<controls:ExWindow
     x:Class="ExpenseTracker.View.PiggyBank.AddSavingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -69,4 +69,4 @@
             </StackPanel>
         </Grid>
     </Grid>
-</Window>
+</controls:ExWindow>

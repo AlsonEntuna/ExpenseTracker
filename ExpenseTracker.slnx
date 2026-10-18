@@ -9,5 +9,6 @@
   </Folder>
   <Project Path="ExpenseTracker.App/ExpenseTracker.App.csproj" />
   <Project Path="ExpenseTracker.Tools/ExpenseTracker.Tools.csproj" />
+  <Project Path="ExpenseTracker.WinApi/ExpenseTracker.WinApi.csproj" />
   <Project Path="ExpenseTracker.Wpf/ExpenseTracker.Wpf.csproj" />
 </Solution>
