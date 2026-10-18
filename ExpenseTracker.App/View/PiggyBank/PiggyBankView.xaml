@@ -61,7 +61,7 @@
                     </Grid>
                 </Border>
             </Grid>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Margin="10,0,0,0">
                 <Border>
                     <Grid>
                         <Grid.RowDefinitions>

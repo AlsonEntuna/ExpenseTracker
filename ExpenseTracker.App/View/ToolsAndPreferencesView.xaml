@@ -16,7 +16,7 @@
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <Expander Header="Expense" IsExpanded="True">
+                <Expander Header="Categories and Payment Channels" IsExpanded="True">
                     <tools:CategoriesEditorView DataContext="{Binding CategoriesEditorViewModel}" />
                 </Expander>
             </StackPanel>
