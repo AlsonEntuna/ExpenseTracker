@@ -3,6 +3,7 @@
 - A WPF Application that I'm creating because of my own needs based on my own experience on how to handle bills and payments.
 - Trying to implement my own libraries from the ground up and trying to make them as useful for my future projects.
 - Read more about this tool here on my website [Alson Entuna - Expense Tracker](https://alsonentuna.github.io/expense-tracker.html)
+- New documentation/wiki can be found here: [ExpenseTracker-Wiki](https://alsonentuna.github.io/ExpenseTracker-Wiki/)
 
 ## Tracker Main Dashboard
 Main dashboard of you finances; supporting different currencies, Categories, Payment Channels, and many more
@@ -33,8 +34,8 @@ If you want to step out from expenses and wanted to track and save for something
 - [ApplicationUpdater](https://github.com/AlsonEntuna/ExpenseTracker/tree/master/ApplicationUpdater)
 
 ---
-## Documentation
-Documentation is available via this external link: [ExpenseTracker Documentation](https://alsonentuna.notion.site/Expense-Tracker-Documentation-a3cf8c5dd56d44f1a26e7cd72ea1d154)
+## ExpenseTracker Wiki
+Documentation is available via this external link: [ExpenseTracker Wiki](https://alsonentuna.github.io/ExpenseTracker-Wiki/)
 
 ## Release
 You can simply try out the tool by going to the release page here: [Release](https://github.com/AlsonEntuna/ExpenseTracker/releases)
