@@ -43,7 +43,14 @@ namespace ExpenseTracker
         public object CurrentView
         {
             get => _currentView;
-            set => SetProperty(ref _currentView, value);
+            set
+            {
+                // Save the tools page when navigating away from it
+                if (_currentView == ToolsViewModel && value != ToolsViewModel)
+                    ToolsViewModel.Save();
+
+                SetProperty(ref _currentView, value);
+            }
         }
 
         #region Commands
@@ -165,6 +172,7 @@ namespace ExpenseTracker
             // TODO: make registry providers to save
             ExpenseControlViewModel.Save();
             PiggyBankViewModel.Save();
+            ToolsViewModel.Save();
         }
 
         public void CreateVariableExpense()
