@@ -122,6 +122,10 @@ namespace ExpenseTracker.Data
                 // Serialize immediately
                 JsonUtils.Serialize(_dataFile, DataCategories);
             }
+
+            // Keep both lists alphabetical
+            DataCategories?.PaymentChannels?.Sort(StringComparer.OrdinalIgnoreCase);
+            DataCategories?.ExpenseCategories?.Sort(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
