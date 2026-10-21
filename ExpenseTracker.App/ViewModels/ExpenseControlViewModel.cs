@@ -99,7 +99,9 @@ namespace ExpenseTracker.ViewModels
         internal void RemoveExpenseFromRegistry(ExpenseViewModel expenseViewModel)
         {
             if (expenseViewModel == null)
+            {
                 return;
+            }
 
             if (Expenses.Contains(expenseViewModel) && _expenseDictionary.ContainsKey(expenseViewModel.Expense.UniqueGuid.ToString()))
             {
@@ -164,10 +166,12 @@ namespace ExpenseTracker.ViewModels
             path = success ? string.Empty : _absoluteFilePath;
         }
 
-        internal void SaveCurrentExpenseData()
+        internal void Save()
         {
             if (CurrentExpenseViewModel == null)
+            {
                 return;
+            }
 
             // Check if the path is in the list of the dictionary and if it exists
             bool hasExpense = _expenseDictionary.TryGetValue(CurrentExpenseViewModel.Expense.UniqueGuid.ToString(), out string _absoluteFilePath);
@@ -240,7 +244,7 @@ namespace ExpenseTracker.ViewModels
 
         private void SaveVariableExepense()
         {
-            SaveCurrentExpenseData();
+            Save();
         }
 
         private void EditBudget()

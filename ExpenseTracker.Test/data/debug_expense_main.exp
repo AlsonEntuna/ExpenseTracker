@@ -13,6 +13,7 @@
   "CurrencySymbol": "€",
   "Entries": [
     {
+      "Id": "f0850ee9-7cfc-40c8-a164-f8b3a256c07e",
       "Description": "Loan - House",
       "Amount": 500.0,
       "OriginalAmount": 0.0,
@@ -27,11 +28,12 @@
       }
     },
     {
+      "Id": "a52e53a1-351b-4d72-8b2a-709376a3c934",
       "Description": "sample",
       "Amount": 150.333,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Credit Card",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -41,6 +43,7 @@
       }
     },
     {
+      "Id": "e8fdbca2-a3ee-474d-8f79-38793e3250a1",
       "Description": "Sample - Insurance",
       "Amount": 45.5,
       "OriginalAmount": 0.0,
@@ -55,6 +58,7 @@
       }
     },
     {
+      "Id": "bfc51082-dd9c-40d9-a890-5e04c406cf6f",
       "Description": "tesing other php",
       "Amount": 50.15,
       "OriginalAmount": 3000.0,
@@ -69,6 +73,7 @@
       }
     },
     {
+      "Id": "6a5ef425-8035-4528-ad60-67fc53582a3f",
       "Description": "testing php",
       "Amount": 163.8,
       "OriginalAmount": 10000.0,
@@ -81,48 +86,147 @@
         "Name": "Philippine Piso",
         "Symbol": "₱"
       }
+    },
+    {
+      "Id": "1852d54d-8aac-475a-b127-87f18b1d96b1",
+      "Description": "My New Entry",
+      "Amount": 89.07,
+      "OriginalAmount": 100.0,
+      "Category": null,
+      "PaymentChannel": "Channel-2",
+      "ExpenseCategory": "Bills",
+      "Comments": null,
+      "Currency": {
+        "Code": "USD",
+        "Name": "US Dollar",
+        "Symbol": "$"
+      }
+    },
+    {
+      "Id": "325d39c0-7372-4500-8d47-93d4da3bae91",
+      "Description": "something new",
+      "Amount": 200.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Channel-3",
+      "ExpenseCategory": "Bills",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
     }
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 2,
-      "Shopping": 1,
       "Mortgage": 1,
-      "Bills": 1
+      "Food": 2,
+      "Bills": 3,
+      "Shopping": 1
     },
-    "TotalAmount": 858.95,
-    "Savings": 1141.05,
-    "UnPaidAmount": 0.0,
-    "PaidAmount": 858.95,
+    "TotalAmount": 1198.85,
+    "Savings": 801.15,
+    "UnPaidAmount": 289.07,
+    "PaidAmount": 909.78,
     "Completed": false,
     "CategoryReports": [
-      {
-        "PaymentChannel": "Credit Card",
-        "Amount": 308.8,
-        "Comments": null,
-        "Paid": true,
-        "PartialPayment": 308.8,
-        "OutstandingBalance": 0.0,
-        "CategoryBreakdown": []
-      },
       {
         "PaymentChannel": "Loan",
         "Amount": 550.15,
         "Comments": null,
         "Paid": true,
-        "PartialPayment": 200.0,
-        "OutstandingBalance": 350.15,
-        "CategoryBreakdown": []
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 550.15,
+        "CategoryBreakdown": [
+          {
+            "Category": "Mortgage",
+            "TotalAmount": 0.0
+          },
+          {
+            "Category": "Shopping",
+            "TotalAmount": 0.0
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Deutsche Bank",
+        "Amount": 150.33,
+        "Comments": null,
+        "Paid": true,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 150.33,
+        "CategoryBreakdown": [
+          {
+            "Category": "Food",
+            "TotalAmount": 0.0
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Credit Card",
+        "Amount": 209.3,
+        "Comments": null,
+        "Paid": true,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 209.3,
+        "CategoryBreakdown": [
+          {
+            "Category": "Bills",
+            "TotalAmount": 0.0
+          },
+          {
+            "Category": "Food",
+            "TotalAmount": 0.0
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Channel-2",
+        "Amount": 89.07,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 89.07,
+        "CategoryBreakdown": [
+          {
+            "Category": "Bills",
+            "TotalAmount": 0.0
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Channel-3",
+        "Amount": 200.0,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 200.0,
+        "CategoryBreakdown": [
+          {
+            "Category": "Bills",
+            "TotalAmount": 0.0
+          }
+        ]
       }
     ],
     "SelectedReport": {
-      "PaymentChannel": "Loan",
-      "Amount": 550.15,
+      "PaymentChannel": "Credit Card",
+      "Amount": 209.3,
       "Comments": null,
       "Paid": true,
-      "PartialPayment": 200.0,
-      "OutstandingBalance": 350.15,
-      "CategoryBreakdown": []
+      "PartialPayment": 0.0,
+      "OutstandingBalance": 209.3,
+      "CategoryBreakdown": [
+        {
+          "Category": "Bills",
+          "TotalAmount": 0.0
+        },
+        {
+          "Category": "Food",
+          "TotalAmount": 0.0
+        }
+      ]
     },
     "DataCurrency": {
       "Code": "EUR",
@@ -132,33 +236,74 @@
     "CurrencySymbol": "€",
     "ReportChartData": [
       {
-        "Key": "Credit Card",
-        "Value": 309
-      },
-      {
         "Key": "Loan",
         "Value": 550
+      },
+      {
+        "Key": "Deutsche Bank",
+        "Value": 150
+      },
+      {
+        "Key": "Credit Card",
+        "Value": 209
+      },
+      {
+        "Key": "Channel-2",
+        "Value": 89
+      },
+      {
+        "Key": "Channel-3",
+        "Value": 200
       }
     ],
     "ExpenseCategoryChartData": [
-      {
-        "Key": "Food",
-        "Value": 2
-      },
-      {
-        "Key": "Shopping",
-        "Value": 1
-      },
       {
         "Key": "Mortgage",
         "Value": 1
       },
       {
+        "Key": "Food",
+        "Value": 2
+      },
+      {
         "Key": "Bills",
+        "Value": 3
+      },
+      {
+        "Key": "Shopping",
         "Value": 1
       }
     ],
-    "ExpenseCategoryExpenseTotalValueData": null,
+    "ExpenseCategoryExpenseTotalValueData": [
+      {
+        "Key": "Mortgage",
+        "Value": 0.0
+      },
+      {
+        "Key": "Shopping",
+        "Value": 0.0
+      },
+      {
+        "Key": "Food",
+        "Value": 0.0
+      },
+      {
+        "Key": "Bills",
+        "Value": 0.0
+      },
+      {
+        "Key": "Food",
+        "Value": 0.0
+      },
+      {
+        "Key": "Bills",
+        "Value": 0.0
+      },
+      {
+        "Key": "Bills",
+        "Value": 0.0
+      }
+    ],
     "CurrencyReport": [
       {
         "Currency": {
@@ -167,18 +312,31 @@
           "Symbol": "₱"
         },
         "Amount": 13000.0
+      },
+      {
+        "Currency": {
+          "Code": "USD",
+          "Name": "US Dollar",
+          "Symbol": "$"
+        },
+        "Amount": 100.0
       }
     ],
     "AltCurrencyBreakdown": [
+      {
+        "CurrencyCode": "PHP",
+        "PaymentChannel": "Loan",
+        "Amount": 3000.0
+      },
       {
         "CurrencyCode": "PHP",
         "PaymentChannel": "Credit Card",
         "Amount": 10000.0
       },
       {
-        "CurrencyCode": "PHP",
-        "PaymentChannel": "Loan",
-        "Amount": 3000.0
+        "CurrencyCode": "USD",
+        "PaymentChannel": "Channel-2",
+        "Amount": 100.0
       }
     ]
   },

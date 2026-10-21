@@ -35,7 +35,7 @@ namespace ExpenseTracker.Data
         private float _unpaidAmount;
         public float UnPaidAmount
         {
-            get => _unpaidAmount;
+            get => (float)MathF.Round(_unpaidAmount, 2);
             set => SetProperty(ref _unpaidAmount, value);
         }
 
@@ -194,12 +194,18 @@ namespace ExpenseTracker.Data
 
             // Expense Category Report
             if (ExpenseCategoryReportCounter == null)
+            {
                 ExpenseCategoryReportCounter = new Dictionary<string, int>();
+            }
 
             if (ExpenseCategoryReportCounter.Keys.Contains(entry.ExpenseCategory))
+            {
                 ExpenseCategoryReportCounter[entry.ExpenseCategory] += 1;
+            }
             else
+            {
                 ExpenseCategoryReportCounter.Add(entry.ExpenseCategory, 1);
+            }
 
             // AltCurrencyBreakdown
             if (DataCurrency.Code != entry.Currency.Code)
@@ -234,11 +240,15 @@ namespace ExpenseTracker.Data
         public void GenerateCurrencyReport(DataEntry entry)
         {
             if (AppInstance.Connection.MainCurrency.Code == entry.Currency.Code)
+            {
                 return;
+            }
 
             ReportData data = new ReportData(entry.Currency, entry.OriginalAmount);
             if (!CurrencyReport.Contains(data))
+            {
                 CurrencyReport.Add(data);
+            }
             else
             {
                 foreach(var curData in CurrencyReport)

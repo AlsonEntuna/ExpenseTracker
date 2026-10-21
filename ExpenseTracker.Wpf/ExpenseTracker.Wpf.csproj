@@ -109,6 +109,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExpenseTracker.WinApi\ExpenseTracker.WinApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Dialog\NumDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

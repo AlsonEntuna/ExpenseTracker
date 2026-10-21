@@ -19,5 +19,7 @@ namespace ExpenseTracker.ViewModels
         {
             AppInstance.Connection.AddViewModel(this);
         }
+
+        public void Save() => CategoriesEditorViewModel.Save();
     }
 }

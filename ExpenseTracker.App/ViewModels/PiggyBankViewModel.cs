@@ -1,13 +1,14 @@
 ﻿using ExpenseTracker.Data.Savings;
 using ExpenseTracker.Wpf;
-using ExpenseTracker.Wpf.Dialog;
 
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.Linq;
 
 using CommunityToolkit.Mvvm.Input;
+using ExpenseTracker.Data.DataProviders;
 
 namespace ExpenseTracker.ViewModels
 {
@@ -18,9 +19,13 @@ namespace ExpenseTracker.ViewModels
             get
             {
                 if (_userSavingsDataService == null)
+                {
                     return new ObservableCollection<SavingsData>();
+                }
                 else
+                {
                     return new ObservableCollection<SavingsData>(_userSavingsDataService.UserSavings);
+                }
             }
         }
 
@@ -43,6 +48,8 @@ namespace ExpenseTracker.ViewModels
         public ICommand EditSavingsCommand => new RelayCommand(EditSavings);
         public ICommand RemoveSavingsCommand => new RelayCommand(RemoveSavings);
         public ICommand RemoveSavingsInputCommand => new RelayCommand(RemoveSavingsInput);
+        public ICommand SortByDateCommand => new RelayCommand(SortByDate);
+
         public PiggyBankViewModel()
         {
             _userSavingsDataService = new UserSavingsDataService();
@@ -74,7 +81,9 @@ namespace ExpenseTracker.ViewModels
         private void AddSavingsAmount()
         {
             if (SelectedSavingsData == null)
+            {
                 return;
+            }
 
             // Add Default value
             SelectedSavingsData.AddInputSavings(0.0f, DateTime.Now.Date.ToShortDateString());
@@ -84,7 +93,9 @@ namespace ExpenseTracker.ViewModels
         private void EditSavings()
         {
             if (SelectedSavingsData == null)
+            {
                 return;
+            }
 
             _userSavingsDataService.EditSavingsData(SelectedSavingsData);
             RaisePropertyChanged(nameof(SelectedSavingsData));
@@ -92,7 +103,9 @@ namespace ExpenseTracker.ViewModels
         private void RemoveSavings() 
         {
             if (SelectedSavingsData == null)
+            {
                 return;
+            }
 
             _userSavingsDataService.RemoveSavingsData(SelectedSavingsData);
             RaisePropertyChanged(nameof(Savings));
@@ -100,17 +113,40 @@ namespace ExpenseTracker.ViewModels
         private void RemoveSavingsInput() 
         {
             if (SelectedSavingsInput == null || SelectedSavingsData == null)
+            {
                 return;
+            }
 
             SelectedSavingsInput.ForEach(input => SelectedSavingsData.RemoveSavingsIinput(input));
             SelectedSavingsInput.Clear();
             ForceComputeSavingsData();
         }
 
-        // TODO: make this into an interface
-        public void SaveData()
+        private void SortByDate()
         {
-            _userSavingsDataService.SaveUserSavingsData();
+            if (SelectedSavingsData?.SavingsInput == null)
+            {
+                return;
+            }
+
+            var sorted = SelectedSavingsData.SavingsInput
+                .OrderBy(input => input.InputDate)
+                .ToList();
+
+            for (int i = 0; i < sorted.Count; ++i)
+            {
+                int currentIndex = SelectedSavingsData.SavingsInput.IndexOf(sorted[i]);
+                if (currentIndex != i)
+                {
+                    SelectedSavingsData.SavingsInput.Move(currentIndex, i);
+                }
+            }
+        }
+
+        public void Save()
+        {
+            // TODO: we should have like a registry of data providers so we can just save everything
+            _userSavingsDataService.Save();
         }
     }
 }

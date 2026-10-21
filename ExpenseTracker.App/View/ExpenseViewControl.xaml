@@ -12,22 +12,30 @@
     x:Name="RootWindow"
     d:DataContext="{d:DesignInstance viewmodel:ExpenseControlViewModel,
                                      IsDesignTimeCreatable=True}"
-    d:DesignHeight="950"
-    d:DesignWidth="1500"
+    d:DesignHeight="720"
+    d:DesignWidth="1080"
     mc:Ignorable="d">
     <UserControl.InputBindings>
         <KeyBinding Command="{Binding SaveVariableExpenseCommand}" Gesture="Ctrl+S" />
     </UserControl.InputBindings>
     <Grid Margin="5">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border}" />
+                <Setter Property="BorderThickness" Value="1" />
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Border
             Grid.Column="0"
-            Background="{StaticResource Brush.Main.Background.Alt}"
-            CornerRadius="6">
-            <Grid>
+            Margin="2"
+            Background="{DynamicResource Brush.Main.Background}"
+            CornerRadius="10">
+            <Grid Margin="15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="90" />
@@ -146,6 +154,8 @@
                         Height="120"
                         Margin="5"
                         Background="{StaticResource Brush.Border.Background}"
+                        BorderBrush="{DynamicResource Brush.Border}"
+                        BorderThickness="1"
                         CornerRadius="8">
                         <StackPanel Margin="10">
                             <TextBlock
@@ -273,14 +283,17 @@
                 </StackPanel>
             </Grid>
         </Border>
-
+        <GridSplitter
+            Grid.Column="1"
+            Width="2"
+            HorizontalAlignment="Stretch" />
         <Grid
             x:Name="Grid_DataEntryView"
             Grid.Column="2"
             VerticalAlignment="Stretch">
             <Border
-                Margin="5"
-                Background="{StaticResource Brush.Border.Background}"
+                Margin="2"
+                Background="{DynamicResource Brush.Main.Background}"
                 CornerRadius="10"
                 IsHitTestVisible="False" />
             <Grid>
@@ -292,7 +305,9 @@
                     <Border
                         Margin="10"
                         Background="{StaticResource Brush.Main.Background}"
-                        CornerRadius="8" />
+                        BorderBrush="{DynamicResource Brush.Border}"
+                        BorderThickness="1"
+                        CornerRadius="10" />
                     <Grid Margin="15,0,15,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30" />
@@ -347,7 +362,9 @@
                 <TabControl
                     x:Name="TabControlExpenses"
                     Grid.Row="1"
-                    Margin="20"
+                    Margin="10"
+                    BorderBrush="{DynamicResource Brush.Border}"
+                    BorderThickness="1"
                     FlowDirection="LeftToRight"
                     ItemsSource="{Binding Expenses}"
                     SelectedIndex="0"

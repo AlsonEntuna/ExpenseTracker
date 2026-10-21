@@ -13,11 +13,15 @@ namespace ExpenseTracker.Wpf
             {
                 var child = VisualTreeHelper.GetChild(parent, i);
                 if (child is T correctlyTyped)
+                {
                     return correctlyTyped;
+                }
 
                 var result = FindVisualChildOfType<T>(child);
                 if (result != null)
+                {
                     return result;
+                }
             }
             return null;
         }
@@ -46,7 +50,9 @@ namespace ExpenseTracker.Wpf
             while (parentObject != null)
             {
                 if (parentObject is T _parent)
+                {
                     return _parent;
+                }
 
                 parentObject = VisualTreeHelper.GetParent(parentObject);
             }

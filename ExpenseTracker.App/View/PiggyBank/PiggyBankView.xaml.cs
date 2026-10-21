@@ -19,7 +19,10 @@ namespace ExpenseTracker.View.PiggyBank
 
         private void EnsureDataContext()
         {
-            if (_vm != null) return;
+            if (_vm != null)
+            {
+                return;
+            }
             _vm = DataContext as PiggyBankViewModel;
         }
 

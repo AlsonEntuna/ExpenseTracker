@@ -12,15 +12,23 @@ namespace ExpenseTracker.CurrencyConverter
         {
             _cachePath = cachePath;
             if (string.IsNullOrEmpty(cachePath))
+            {
                 throw new ArgumentNullException(nameof(cachePath));
+            }
 
             if (!Directory.Exists(Path.GetDirectoryName(_cachePath)))
+            {
                 Directory.CreateDirectory(_cachePath);
+            }
 
             if (!File.Exists(_cachePath))
+            {
                 JsonUtils.SerializeArray(_cachePath, _cachedConversionData);
+            }
             else
+            {
                 _cachedConversionData = JsonUtils.DeserializeArray<List<ConversionData>>(_cachePath);
+            }
         }
 
         public async Task<float> GetCurrencyConversion(string from, string to)

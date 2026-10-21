@@ -80,7 +80,9 @@ namespace ExpenseTracker.Tools
         public static string SerializeToString<T>(T pObject)
         {
             if (pObject == null)
+            {
                 return string.Empty;
+            }
 
             JObject tabData = (JObject)JToken.FromObject(pObject);
             return tabData.ToString();
@@ -106,7 +108,11 @@ namespace ExpenseTracker.Tools
 
         public static string SerializeArrayToString<T>(T pObject)
         {
-            if (pObject == null) return string.Empty;
+            if (pObject == null)
+            {
+                return string.Empty;
+            }
+
             JArray tabData = (JArray)JToken.FromObject(pObject);
             return tabData.ToString();
         }

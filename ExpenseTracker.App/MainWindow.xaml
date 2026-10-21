@@ -1,162 +1,98 @@
-﻿<Window
+<controls:ExWindow
     x:Class="ExpenseTracker.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ExpenseTracker.Wpf.Controls;assembly=ExpenseTracker.Wpf"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ExpenseTracker"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="clr-namespace:ExpenseTracker.View"
-    Title="Expense Tracker"
     Width="1720"
     Height="1000"
+    WindowTitle="Expense Tracker"
     MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
     MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
     d:DataContext="{d:DesignData Type=local:MainWindowViewModel,
                                  IsDesignTimeCreatable=False}"
-    AllowsTransparency="True"
     Closing="Window_Closing"
     DataContext="{StaticResource MainVm}"
-    ResizeMode="CanResize"
-    Style="{DynamicResource WindowStyle}"
-    WindowStyle="None"
     mc:Ignorable="d">
-    <WindowChrome.WindowChrome>
-        <WindowChrome
-            CaptionHeight="32"
-            CornerRadius="6"
-            ResizeBorderThickness="5" />
-    </WindowChrome.WindowChrome>
-    <Window.InputBindings>
+    <controls:ExWindow.InputBindings>
         <KeyBinding Command="{Binding SaveExpenseCommand}" Gesture="Ctrl+S" />
-    </Window.InputBindings>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <!--  TitleBar Chrome  -->
-        <Grid
-            x:Name="TitleBarGrid"
-            Grid.Row="0"
-            Panel.ZIndex="1"
-            MouseDown="TitleBarGrid_MouseDown"
-            WindowChrome.IsHitTestVisibleInChrome="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <!--  Title  -->
-            <TextBlock
-                Margin="10,0,0,0"
-                VerticalAlignment="Center"
-                Foreground="White"
-                Text="" />
-
-            <!--  Buttons  -->
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <StackPanel.Resources>
-                    <Style BasedOn="{StaticResource ButtonStyle.Element}" TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
-                            </Trigger>
-                        </Style.Triggers>
+    </controls:ExWindow.InputBindings>
+    <Grid Margin="15">
+        <Grid.Resources>
+            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0">
+            <Grid>
+                <Grid.Resources>
+                    <Style BasedOn="{StaticResource ButtonStyle.Navigation}" TargetType="{x:Type Button}">
+                        <Setter Property="FontSize" Value="20" />
                     </Style>
-                </StackPanel.Resources>
-                <!--  Minimize  -->
-                <Button
-                    x:Name="Btn_Minimize"
-                    Width="45"
-                    Height="32"
-                    Click="Button_Minimize"
-                    Content="—" />
-                <!--  Maximize  -->
-                <Button
-                    x:Name="Btn_Maximize"
-                    Width="45"
-                    Height="32"
-                    Click="Button_Maximize"
-                    Content="☐" />
-                <!--  Close  -->
-                <Button
-                    Width="45"
-                    Height="32"
-                    Click="Btn_Exit_Click"
-                    Content="✕">
-                    <Button.Style>
-                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Red" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1" Margin="15">
-            <Grid.Resources>
-                <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                    <Setter Property="FontSize" Value="24" />
-                </Style>
-            </Grid.Resources>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0">
-                <Grid>
-                    <Grid.Resources>
-                        <Style BasedOn="{StaticResource ButtonStyle.Navigation}" TargetType="{x:Type Button}">
-                            <Setter Property="FontSize" Value="20" />
-                        </Style>
-                    </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                </Grid.Resources>
+                <StackPanel>
                     <StackPanel>
-                        <StackPanel>
-                            <Button Command="{Binding HomepageViewCommand}">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{StaticResource Menu-Home}" />
-                                        <TextBlock VerticalAlignment="Center" Text="Home" />
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                            <Button Command="{Binding ExpenseViewCommand}">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{StaticResource Menu-Expense}" />
-                                        <TextBlock VerticalAlignment="Center" Text="Expense" />
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                            <Button Command="{Binding PiggyBankViewCommand}" ToolTip="Savings">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{StaticResource Menu-PiggyBank}" />
-                                        <TextBlock VerticalAlignment="Center" Text="Savings" />
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                        <StackPanel.Resources>
+                            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="0,0,0,13" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <Button Command="{Binding HomepageViewCommand}">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="HomepageViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource Menu-Home}" />
+                                    <TextBlock VerticalAlignment="Center" Text="Home" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Command="{Binding ExpenseViewCommand}">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="ExpenseControlViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource Menu-Expense}" />
+                                    <TextBlock VerticalAlignment="Center" Text="Expense" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Command="{Binding PiggyBankViewCommand}" ToolTip="Savings">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="PiggyBankViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource Menu-PiggyBank}" />
+                                    <TextBlock VerticalAlignment="Center" Text="Savings" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                         <Button Command="{Binding ToolsViewCommand}">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="ToolsViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{StaticResource Menu-Preferences}" />
@@ -165,13 +101,13 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                </Grid>
-            </Border>
-            <ContentControl Grid.Column="1" Content="{Binding CurrentView}">
-                <ContentControl.RenderTransform>
-                    <TranslateTransform />
-                </ContentControl.RenderTransform>
-            </ContentControl>
-        </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}">
+            <ContentControl.RenderTransform>
+                <TranslateTransform />
+            </ContentControl.RenderTransform>
+        </ContentControl>
     </Grid>
-</Window>
+</controls:ExWindow>

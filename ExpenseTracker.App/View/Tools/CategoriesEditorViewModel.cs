@@ -34,5 +34,12 @@ namespace ExpenseTracker.View.Tools
             PaymentChannelVm = new PaymentChannelViewModel(DataManager.Instance.DataCategories.PaymentChannels);
             RaisePropertyChanged(nameof(PaymentChannelVm));
         }
+
+        public void Save()
+        {
+            // Handlers are null until the providers have loaded
+            (PaymentChannelVm as IDataHandler)?.Save();
+            (ExpenseCategoryVm as IDataHandler)?.Save();
+        }
     }
 }

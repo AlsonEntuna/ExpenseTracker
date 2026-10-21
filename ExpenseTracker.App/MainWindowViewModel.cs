@@ -43,7 +43,16 @@ namespace ExpenseTracker
         public object CurrentView
         {
             get => _currentView;
-            set => SetProperty(ref _currentView, value);
+            set
+            {
+                // Save the tools page when navigating away from it
+                if (_currentView == ToolsViewModel && value != ToolsViewModel)
+                {
+                    ToolsViewModel.Save();
+                }
+
+                SetProperty(ref _currentView, value);
+            }
         }
 
         #region Commands
@@ -115,7 +124,9 @@ namespace ExpenseTracker
                     {
                         VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(dataLocation);
                         if (deserializedData == null)
+                        {
                             return;
+                        }
 
                         deserializedData.DetectAndMigrateLegacyData();
 
@@ -135,7 +146,9 @@ namespace ExpenseTracker
 
                 // Assign the first one in the expense list
                 if (ExpenseControlViewModel.Expenses != null)
+                {
                     ExpenseControlViewModel.CurrentExpenseViewModel = ExpenseControlViewModel.Expenses[0];
+                }
             }
         }
         public void OpenToolsPanel()
@@ -162,8 +175,10 @@ namespace ExpenseTracker
 
         internal void SaveData()
         {
-            ExpenseControlViewModel.SaveCurrentExpenseData();
-            PiggyBankViewModel.SaveData();
+            // TODO: make registry providers to save
+            ExpenseControlViewModel.Save();
+            PiggyBankViewModel.Save();
+            ToolsViewModel.Save();
         }
 
         public void CreateVariableExpense()
@@ -220,7 +235,9 @@ namespace ExpenseTracker
             {
                 VariableExpense expense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 if (expense == null)
+                {
                     return;
+                }
 
                 ExpenseViewModel newVm = CreateAndCopyVmFromExpense(expense);
                 // Only add it directly to the list of expenses because we don't need to store the copy immediately
@@ -232,7 +249,7 @@ namespace ExpenseTracker
 
         private void SaveExpense()
         {
-            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().SaveCurrentExpenseData();
+            AppInstance.Connection.GetEditorViewModel<ExpenseControlViewModel>().Save();
         }
     }
 }

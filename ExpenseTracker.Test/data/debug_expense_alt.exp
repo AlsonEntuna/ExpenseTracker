@@ -33,8 +33,8 @@
       "Amount": 163.8,
       "OriginalAmount": 10000.0,
       "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Food",
+      "PaymentChannel": "Mortgage",
+      "ExpenseCategory": "Shopping",
       "Comments": null,
       "Currency": {
         "Code": "PHP",
@@ -45,25 +45,25 @@
     {
       "Id": "61d16592-8ade-4c1a-925c-e32c53c9633a",
       "Description": "123",
-      "Amount": 0.0,
-      "OriginalAmount": 0.0,
+      "Amount": 17.55,
+      "OriginalAmount": 1233.0,
       "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Food",
+      "PaymentChannel": "Deutsche Bank",
+      "ExpenseCategory": "Example",
       "Comments": null,
       "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
+        "Code": "PHP",
+        "Name": "Philippine Peso",
+        "Symbol": "₱"
       }
     },
     {
       "Id": "0c3d57d6-7da9-4f36-8f3e-5ba693de8348",
       "Description": "asdffff",
-      "Amount": 0.0,
+      "Amount": 50.32,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -75,40 +75,25 @@
     {
       "Id": "9641e3b2-c62d-4442-bb4e-e1d2908a59eb",
       "Description": "asdfasdf",
-      "Amount": 0.0,
-      "OriginalAmount": 0.0,
+      "Amount": 1316.21,
+      "OriginalAmount": 123333.0,
       "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
+        "Code": "RUB",
+        "Name": "Russian Ruble",
+        "Symbol": "RUB"
       }
     },
     {
       "Id": "b2f5cbf2-026a-4cbe-bbb4-07e50b6736ec",
       "Description": "asdf",
-      "Amount": 12.0,
+      "Amount": 12.23,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Loan",
-      "ExpenseCategory": "Food",
-      "Comments": null,
-      "Currency": {
-        "Code": "EUR",
-        "Name": "Euro",
-        "Symbol": "€"
-      }
-    },
-    {
-      "Id": "4af42ebf-091a-40bf-ac65-f1ab5b3eb8b6",
-      "Description": "asdf",
-      "Amount": 11.0,
-      "OriginalAmount": 0.0,
-      "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {
@@ -120,16 +105,18 @@
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
-      "Food": 2
+      "Food": 4,
+      "Shopping": 1,
+      "Example": 1
     },
-    "TotalAmount": 263.8,
-    "Savings": 1736.2,
+    "TotalAmount": 1660.11,
+    "Savings": 339.89,
     "UnPaidAmount": 263.8,
-    "PaidAmount": 0.0,
+    "PaidAmount": 1396.31,
     "Completed": false,
     "CategoryReports": [
       {
-        "PaymentChannel": "Credit Card",
+        "PaymentChannel": "Mortgage",
         "Amount": 263.8,
         "Comments": null,
         "Paid": false,
@@ -138,12 +125,51 @@
         "CategoryBreakdown": [
           {
             "Category": "Food",
-            "TotalAmount": 0.0
+            "TotalAmount": 100.0
+          },
+          {
+            "Category": "Shopping",
+            "TotalAmount": 163.8
+          }
+        ]
+      },
+      {
+        "PaymentChannel": "Deutsche Bank",
+        "Amount": 1396.31,
+        "Comments": null,
+        "Paid": true,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 1396.31,
+        "CategoryBreakdown": [
+          {
+            "Category": "Example",
+            "TotalAmount": 17.55
+          },
+          {
+            "Category": "Food",
+            "TotalAmount": 1378.7599
           }
         ]
       }
     ],
-    "SelectedReport": null,
+    "SelectedReport": {
+      "PaymentChannel": "Deutsche Bank",
+      "Amount": 1396.31,
+      "Comments": null,
+      "Paid": true,
+      "PartialPayment": 0.0,
+      "OutstandingBalance": 1396.31,
+      "CategoryBreakdown": [
+        {
+          "Category": "Example",
+          "TotalAmount": 17.55
+        },
+        {
+          "Category": "Food",
+          "TotalAmount": 1378.7599
+        }
+      ]
+    },
     "DataCurrency": {
       "Code": "EUR",
       "Name": "Euro",
@@ -152,20 +178,44 @@
     "CurrencySymbol": "€",
     "ReportChartData": [
       {
-        "Key": "Credit Card",
+        "Key": "Mortgage",
         "Value": 264
+      },
+      {
+        "Key": "Deutsche Bank",
+        "Value": 1396
       }
     ],
     "ExpenseCategoryChartData": [
       {
         "Key": "Food",
-        "Value": 2
+        "Value": 4
+      },
+      {
+        "Key": "Shopping",
+        "Value": 1
+      },
+      {
+        "Key": "Example",
+        "Value": 1
       }
     ],
     "ExpenseCategoryExpenseTotalValueData": [
       {
         "Key": "Food",
-        "Value": 0.0
+        "Value": 100.0
+      },
+      {
+        "Key": "Shopping",
+        "Value": 163.8
+      },
+      {
+        "Key": "Example",
+        "Value": 17.55
+      },
+      {
+        "Key": "Food",
+        "Value": 1378.7599
       }
     ],
     "CurrencyReport": [
@@ -175,14 +225,32 @@
           "Name": "Philippine Piso",
           "Symbol": "₱"
         },
-        "Amount": 10000.0
+        "Amount": 11233.0
+      },
+      {
+        "Currency": {
+          "Code": "RUB",
+          "Name": "Russian Ruble",
+          "Symbol": "RUB"
+        },
+        "Amount": 123333.0
       }
     ],
     "AltCurrencyBreakdown": [
       {
         "CurrencyCode": "PHP",
-        "PaymentChannel": "Credit Card",
+        "PaymentChannel": "Mortgage",
         "Amount": 10000.0
+      },
+      {
+        "CurrencyCode": "PHP",
+        "PaymentChannel": "Deutsche Bank",
+        "Amount": 1233.0
+      },
+      {
+        "CurrencyCode": "RUB",
+        "PaymentChannel": "Deutsche Bank",
+        "Amount": 123333.0
       }
     ]
   },

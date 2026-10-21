@@ -70,15 +70,16 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Margin" Value="2,0,0,0" />
     </Style>
+
     <Style TargetType="{x:Type ListView}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <!--  Setter Property="OverridesDefaultStyle" Value="True" /  -->
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource Brush.Border.Background}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border}" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Main.Text}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Background.Alt}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
@@ -89,9 +90,9 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="1"
-                        CornerRadius="2">
+                        CornerRadius="10">
                         <ScrollViewer Style="{DynamicResource CustomScrollViewer}">
-                            <ItemsPresenter />
+                            <ItemsPresenter Margin="5" />
                         </ScrollViewer>
                     </Border>
                     <ControlTemplate.Triggers>

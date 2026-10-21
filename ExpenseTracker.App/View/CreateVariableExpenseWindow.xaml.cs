@@ -1,15 +1,15 @@
 ﻿using ExpenseTracker.CurrencyConverter;
 using ExpenseTracker.Data;
+using ExpenseTracker.Wpf.Controls;
 
 using System.Windows;
-using System.Windows.Input;
 
 namespace ExpenseTracker.View
 {
     /// <summary>
     /// Interaction logic for CreateVariableExpenseWindow.xaml
     /// </summary>
-    public partial class CreateVariableExpenseWindow : Window
+    public partial class CreateVariableExpenseWindow : ExWindow
     {
         public VariableExpense Expense;
         public string ExpensePath;
@@ -31,12 +31,6 @@ namespace ExpenseTracker.View
                 DataCurrency = Combo_Currency.SelectedItem as CurrencyInfo
             };
             Close();
-        }
-
-        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                DragMove();
         }
 
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)

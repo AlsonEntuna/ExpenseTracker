@@ -8,15 +8,25 @@
     xmlns:viewmodel="clr-namespace:ExpenseTracker.ViewModels"
     d:DataContext="{d:DesignInstance viewmodel:PiggyBankViewModel,
                                      IsDesignTimeCreatable=True}"
+    d:DesignHeight="720"
+    d:DesignWidth="1080"
     mc:Ignorable="d">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid Margin="5">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </Grid.Resources>
         <Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Border>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -35,21 +45,24 @@
                             FontWeight="DemiBold"
                             Style="{StaticResource TextBlockStyle.Title}"
                             Text="My Savings" />
-                        <ListView
-                            Grid.Row="2"
-                            Margin="3"
-                            ItemsSource="{Binding Savings}"
-                            SelectedItem="{Binding SelectedSavingsData, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Command="{Binding EditSavingsCommand}" Header="Edit" />
-                                    <MenuItem Command="{Binding RemoveSavingsCommand}" Header="Remove" />
-                                </ContextMenu>
-                            </ListView.ContextMenu>
-                        </ListView>
+                        <Border Grid.Row="2">
+                            <ListView
+                                Margin="10"
+                                ItemsSource="{Binding Savings}"
+                                SelectedItem="{Binding SelectedSavingsData, UpdateSourceTrigger=PropertyChanged}">
+                                <ListView.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Command="{Binding EditSavingsCommand}" Header="Edit" />
+                                        <MenuItem Command="{Binding RemoveSavingsCommand}" Header="Remove" />
+                                    </ContextMenu>
+                                </ListView.ContextMenu>
+                            </ListView>
+                        </Border>
                     </Grid>
-                </Grid>
-                <Grid Grid.Column="1" Margin="5">
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1" Margin="10,0,0,0">
+                <Border>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -89,7 +102,7 @@
                                         <ProgressBar
                                             Height="20"
                                             Margin="5"
-                                            Background="{StaticResource Brush.Button.Alt}"
+                                            Background="{DynamicResource Brush.Main.Background}"
                                             Foreground="{StaticResource Brush.Button.Main}"
                                             Maximum="{Binding SelectedSavingsData.SavingsTotalAmount}"
                                             Value="{Binding SelectedSavingsData.SavingsCurrentAmount}" />
@@ -201,6 +214,7 @@
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Command="{Binding RemoveSavingsInputCommand}" Header="Remove" />
+                                        <MenuItem Command="{Binding SortByDateCommand}" Header="Sort by Date" />
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
                                 <DataGrid.Columns>
@@ -213,15 +227,15 @@
                                         Binding="{Binding Amount}"
                                         Header="Amout" />
                                     <!--<DataGridTextColumn
-                                        MinWidth="50"
-                                        Binding="{Binding SelectedSavingsData.SavingsCurrency.Symbol, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                        Header="Currency" />-->
+                MinWidth="50"
+                Binding="{Binding SelectedSavingsData.SavingsCurrency.Symbol, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"
+                Header="Currency" />-->
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
                     </Grid>
-                </Grid>
+                </Border>
             </Grid>
         </Grid>
-    </ScrollViewer>
+    </Grid>
 </UserControl>

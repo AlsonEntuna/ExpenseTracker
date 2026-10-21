@@ -53,7 +53,9 @@ namespace ExpenseTracker.Data
             foreach (ViewModel vm in _appViewModels)
             {
                 if (vm is T)
+                {
                     return (T)vm;
+                }
             }
             return null;
         }

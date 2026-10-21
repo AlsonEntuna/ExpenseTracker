@@ -65,7 +65,9 @@ namespace ExpenseTracker.View
 
             ContentPresenter contentPresenter = WpfHelpers.FindVisualChildOfType<ContentPresenter>(TabControlExpenses);
             if (contentPresenter == null)
+            {
                 return;
+            }
 
             // Get the ExpenseView UserControl as it is a template
             ExpenseView expenseView = VisualTreeHelper.GetChild(contentPresenter, 0) as ExpenseView;
@@ -76,7 +78,9 @@ namespace ExpenseTracker.View
         private void TxtBox_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (_searchDelayTimer != null)
+            {
                 _searchDelayTimer.Stop();
+            }
 
             if (_searchDelayTimer == null)
             {
@@ -92,7 +96,9 @@ namespace ExpenseTracker.View
         {
             Search();
             if (_searchDelayTimer != null)
+            {
                 _searchDelayTimer.Stop();
+            }
         }
 
         private void Btn_Open_Click(object sender, RoutedEventArgs e)
@@ -122,7 +128,9 @@ namespace ExpenseTracker.View
         {
             var button = sender as Button;
             if (button == null)
+            {
                 return;
+            }
 
             // Find the parent TabItem
             TabItem tabItem = WpfHelpers.FindVisualParentOfType<TabItem>(button);

@@ -1,0 +1,132 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ExpenseTracker.Wpf.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MainStyle.xaml" />
+        <ResourceDictionary Source="Button.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  Title bar caption buttons  -->
+    <Style
+        x:Key="ExWindow.CaptionButton"
+        BasedOn="{StaticResource ButtonStyle.Element}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="45" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Brush.Main.Background}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="ExWindow.CloseButton"
+        BasedOn="{StaticResource ExWindow.CaptionButton}"
+        TargetType="{x:Type Button}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Red" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  ExWindow  -->
+    <Style
+        x:Key="ExWindowStyle"
+        BasedOn="{StaticResource WindowStyle}"
+        TargetType="{x:Type controls:ExWindow}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="ResizeMode" Value="CanResize" />
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
+                    CaptionHeight="32"
+                    CornerRadius="6"
+                    ResizeBorderThickness="5" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ExWindow}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Title bar  -->
+                            <Grid
+                                x:Name="PART_TitleBar"
+                                Grid.Row="0"
+                                Panel.ZIndex="1"
+                                Background="Transparent"
+                                WindowChrome.IsHitTestVisibleInChrome="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    x:Name="PART_Title"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="{TemplateBinding WindowTitle}" />
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Button
+                                        x:Name="PART_MinimizeButton"
+                                        Content="—"
+                                        Style="{StaticResource ExWindow.CaptionButton}" />
+                                    <Button
+                                        x:Name="PART_MaximizeButton"
+                                        Content="☐"
+                                        Style="{StaticResource ExWindow.CaptionButton}" />
+                                    <Button
+                                        x:Name="PART_CloseButton"
+                                        Content="✕"
+                                        Style="{StaticResource ExWindow.CloseButton}" />
+                                </StackPanel>
+                            </Grid>
+
+                            <!--  Content  -->
+                            <AdornerDecorator Grid.Row="1">
+                                <ContentPresenter />
+                            </AdornerDecorator>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="PART_MaximizeButton" Property="Content" Value="❐" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Setter TargetName="PART_MaximizeButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

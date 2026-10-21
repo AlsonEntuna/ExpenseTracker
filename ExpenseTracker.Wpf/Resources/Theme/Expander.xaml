@@ -2,26 +2,27 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="MainStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
     <!--  Control Template  -->
     <ControlTemplate x:Key="ExpanderTemplate" TargetType="{x:Type Expander}">
         <StackPanel>
             <StackPanel.Resources>
+                <!--  ToggleButton Style  -->
                 <Style BasedOn="{StaticResource CommonStyle}" TargetType="{x:Type ToggleButton}">
                     <Setter Property="HorizontalContentAlignment" Value="Left" />
-                    <Setter Property="Background" Value="#2CCC" />
+                    <Setter Property="Background" Value="{StaticResource Brush.Main.Background.Alt}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource Brush.Border}" />
+                    <Setter Property="BorderThickness" Value="1" />
                     <Setter Property="Foreground" Value="White" />
                     <Setter Property="FontSize" Value="22" />
                     <Setter Property="Height" Value="50" />
-                    <Setter Property="BorderThickness" Value="0" />
                     <Setter Property="Padding" Value="2,0" />
-
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="10">
                                     <ContentPresenter Margin="10,0" VerticalAlignment="Center" />
                                 </Border>
-
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="{StaticResource Brush.Main.Background}" />
@@ -35,6 +36,7 @@
                     </Setter>
                 </Style>
             </StackPanel.Resources>
+
             <!--  Header  -->
             <ToggleButton
                 x:Name="HeaderButton"
@@ -43,26 +45,21 @@
             <!--  Content  -->
             <Border
                 x:Name="ContentBorder"
-                MaxHeight="0"
                 Margin="0,5,0,0"
-                Background="{StaticResource Brush.Main.Background.Alt}"
-                ClipToBounds="True"
-                CornerRadius="6"
+                Background="{StaticResource Brush.Main.Background}"
+                BorderBrush="{StaticResource Brush.Border}"
+                BorderThickness="1"
+                CornerRadius="10"
                 Opacity="0">
                 <ContentPresenter Content="{TemplateBinding Content}" />
             </Border>
         </StackPanel>
+        <!--  Animations  -->
         <ControlTemplate.Triggers>
             <Trigger Property="IsExpanded" Value="True">
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation
-                                Storyboard.TargetName="ContentBorder"
-                                Storyboard.TargetProperty="MaxHeight"
-                                To="500"
-                                Duration="0:0:0.2" />
-
                             <DoubleAnimation
                                 Storyboard.TargetName="ContentBorder"
                                 Storyboard.TargetProperty="Opacity"
@@ -76,11 +73,6 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation
-                                Storyboard.TargetName="ContentBorder"
-                                Storyboard.TargetProperty="MaxHeight"
-                                To="0"
-                                Duration="0:0:0.2" />
                             <DoubleAnimation
                                 Storyboard.TargetName="ContentBorder"
                                 Storyboard.TargetProperty="Opacity"
