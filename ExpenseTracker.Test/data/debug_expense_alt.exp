@@ -125,11 +125,11 @@
         "CategoryBreakdown": [
           {
             "Category": "Food",
-            "TotalAmount": 0.0
+            "TotalAmount": 100.0
           },
           {
             "Category": "Shopping",
-            "TotalAmount": 0.0
+            "TotalAmount": 163.8
           }
         ]
       },
@@ -143,11 +143,11 @@
         "CategoryBreakdown": [
           {
             "Category": "Example",
-            "TotalAmount": 0.0
+            "TotalAmount": 17.55
           },
           {
             "Category": "Food",
-            "TotalAmount": 0.0
+            "TotalAmount": 1378.7599
           }
         ]
       }
@@ -162,11 +162,11 @@
       "CategoryBreakdown": [
         {
           "Category": "Example",
-          "TotalAmount": 0.0
+          "TotalAmount": 17.55
         },
         {
           "Category": "Food",
-          "TotalAmount": 0.0
+          "TotalAmount": 1378.7599
         }
       ]
     },
@@ -203,19 +203,19 @@
     "ExpenseCategoryExpenseTotalValueData": [
       {
         "Key": "Food",
-        "Value": 0.0
+        "Value": 100.0
       },
       {
         "Key": "Shopping",
-        "Value": 0.0
+        "Value": 163.8
       },
       {
         "Key": "Example",
-        "Value": 0.0
+        "Value": 17.55
       },
       {
         "Key": "Food",
-        "Value": 0.0
+        "Value": 1378.7599
       }
     ],
     "CurrencyReport": [
