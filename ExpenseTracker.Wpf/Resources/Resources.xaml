@@ -14,4 +14,5 @@
     <converter:StringToBoolConverter x:Key="StringToBoolConverter" />
     <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     <converter:SubtractConverter x:Key="SubtractConverter" />
+    <converter:ReferenceEqualsMultiConverter x:Key="ReferenceEqualsMultiConverter" />
 </ResourceDictionary>

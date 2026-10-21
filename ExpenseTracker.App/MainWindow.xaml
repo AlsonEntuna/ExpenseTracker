@@ -9,6 +9,7 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Width="1720"
     Height="1000"
+    WindowTitle="Expense Tracker"
     MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
     MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
     d:DataContext="{d:DesignData Type=local:MainWindowViewModel,
@@ -44,6 +45,12 @@
                             </Style>
                         </StackPanel.Resources>
                         <Button Command="{Binding HomepageViewCommand}">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="HomepageViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{StaticResource Menu-Home}" />
@@ -52,6 +59,12 @@
                             </Button.Content>
                         </Button>
                         <Button Command="{Binding ExpenseViewCommand}">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="ExpenseControlViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{StaticResource Menu-Expense}" />
@@ -60,6 +73,12 @@
                             </Button.Content>
                         </Button>
                         <Button Command="{Binding PiggyBankViewCommand}" ToolTip="Savings">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="PiggyBankViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{StaticResource Menu-PiggyBank}" />
@@ -68,6 +87,12 @@
                             </Button.Content>
                         </Button>
                         <Button Command="{Binding ToolsViewCommand}">
+                            <Button.Tag>
+                                <MultiBinding Converter="{StaticResource ReferenceEqualsMultiConverter}">
+                                    <Binding Path="CurrentView" />
+                                    <Binding Path="ToolsViewModel" />
+                                </MultiBinding>
+                            </Button.Tag>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{StaticResource Menu-Preferences}" />

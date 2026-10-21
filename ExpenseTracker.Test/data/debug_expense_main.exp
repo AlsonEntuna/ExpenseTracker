@@ -101,18 +101,33 @@
         "Name": "US Dollar",
         "Symbol": "$"
       }
+    },
+    {
+      "Id": "325d39c0-7372-4500-8d47-93d4da3bae91",
+      "Description": "something new",
+      "Amount": 200.0,
+      "OriginalAmount": 0.0,
+      "Category": null,
+      "PaymentChannel": "Channel-3",
+      "ExpenseCategory": "Bills",
+      "Comments": null,
+      "Currency": {
+        "Code": "EUR",
+        "Name": "Euro",
+        "Symbol": "€"
+      }
     }
   ],
   "Report": {
     "ExpenseCategoryReportCounter": {
       "Mortgage": 1,
       "Food": 2,
-      "Bills": 2,
+      "Bills": 3,
       "Shopping": 1
     },
-    "TotalAmount": 998.85,
-    "Savings": 1001.15,
-    "UnPaidAmount": 998.85,
+    "TotalAmount": 1198.85,
+    "Savings": 801.15,
+    "UnPaidAmount": 1198.85,
     "PaidAmount": 0.0,
     "Completed": false,
     "CategoryReports": [
@@ -179,6 +194,20 @@
             "TotalAmount": 89.07
           }
         ]
+      },
+      {
+        "PaymentChannel": "Channel-3",
+        "Amount": 200.0,
+        "Comments": null,
+        "Paid": false,
+        "PartialPayment": 0.0,
+        "OutstandingBalance": 200.0,
+        "CategoryBreakdown": [
+          {
+            "Category": "Bills",
+            "TotalAmount": 200.0
+          }
+        ]
       }
     ],
     "SelectedReport": null,
@@ -204,6 +233,10 @@
       {
         "Key": "Channel-2",
         "Value": 89
+      },
+      {
+        "Key": "Channel-3",
+        "Value": 200
       }
     ],
     "ExpenseCategoryChartData": [
@@ -217,7 +250,7 @@
       },
       {
         "Key": "Bills",
-        "Value": 2
+        "Value": 3
       },
       {
         "Key": "Shopping",
@@ -248,6 +281,10 @@
       {
         "Key": "Bills",
         "Value": 89.07
+      },
+      {
+        "Key": "Bills",
+        "Value": 200.0
       }
     ],
     "CurrencyReport": [
