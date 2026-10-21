@@ -20,6 +20,13 @@ namespace ExpenseTracker.Data.Reports
             _category = category;
         }
 
+        [Newtonsoft.Json.JsonConstructor]
+        public ExpenseCategoryBreakdown(string category, float totalAmount)
+        {
+            _category = category;
+            _totalAmount = totalAmount;
+        }
+
         public void AddAmount(float amount)
         {
             _totalAmount += amount;
