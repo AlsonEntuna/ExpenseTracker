@@ -33,7 +33,7 @@
       "Amount": 150.333,
       "OriginalAmount": 0.0,
       "Category": null,
-      "PaymentChannel": "Loan",
+      "PaymentChannel": "Deutsche Bank",
       "ExpenseCategory": "Food",
       "Comments": null,
       "Currency": {

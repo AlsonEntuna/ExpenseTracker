@@ -10,7 +10,7 @@
     d:DataContext="{d:DesignInstance local:ExpenseViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
-    d:DesignWidth="1080"
+    d:DesignWidth="1200"
     mc:Ignorable="d">
     <Grid>
         <DataGrid
@@ -22,11 +22,15 @@
             EnableRowVirtualization="True"
             Focusable="True"
             HorizontalScrollBarVisibility="Auto"
-            ItemsSource="{Binding Expense.Entries, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding Expense.Entries}"
+            PreparingCellForEdit="ExpenseDataGrid_PreparingCellForEdit"
             SelectionChanged="ExpenseDataGrid_SelectionChanged"
             SelectionMode="Extended"
             VerticalScrollBarVisibility="Auto"
+            VirtualizingPanel.CacheLength="2,2"
+            VirtualizingPanel.CacheLengthUnit="Page"
             VirtualizingPanel.IsVirtualizing="True"
+            VirtualizingPanel.ScrollUnit="Item"
             VirtualizingPanel.VirtualizationMode="Recycling">
             <DataGrid.CommandBindings>
                 <CommandBinding Command="Copy" Executed="ExpenseDataGrid_OnCopy" />
@@ -34,6 +38,13 @@
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type GridSplitter}}" TargetType="{x:Type GridSplitter}">
                     <Setter Property="Background" Value="{StaticResource Brush.Border.Background.Alt}" />
+                </Style>
+                <!--  Lets the dropdown columns open with a single click  -->
+                <Style
+                    x:Key="ComboCellStyle"
+                    BasedOn="{StaticResource {x:Type DataGridCell}}"
+                    TargetType="{x:Type DataGridCell}">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ComboCell_PreviewMouseLeftButtonDown" />
                 </Style>
             </DataGrid.Resources>
             <DataGrid.ContextMenu>
@@ -49,14 +60,16 @@
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="auto"
+                    Width="250"
                     MinWidth="200"
                     Binding="{Binding Description}"
                     Header="Description" />
                 <DataGridTemplateColumn
-                    Width="auto"
+                    Width="170"
                     MinWidth="150"
+                    CellStyle="{StaticResource ComboCellStyle}"
                     Header="Payment Channel">
+                    <!--  Read only view: plain text keeps rows cheap to create while scrolling  -->
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -64,10 +77,12 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <controls:SearchableComboBox
+                                <TextBlock
                                     Grid.Column="0"
-                                    ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    Margin="4,0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding PaymentChannel}"
+                                    TextTrimming="CharacterEllipsis" />
                                 <GridSplitter
                                     Grid.Column="1"
                                     Width="1"
@@ -77,10 +92,17 @@
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <!--  Editable view: Payment Channel  -->
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <controls:SearchableComboBox ItemsSource="{Binding Path=DataContext.PaymentChannels, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding PaymentChannel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn
                     Width="150"
                     CanUserResize="True"
+                    CellStyle="{StaticResource ComboCellStyle}"
                     Header="Category">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -89,10 +111,12 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <controls:SearchableComboBox
+                                <TextBlock
                                     Grid.Column="0"
-                                    ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    Margin="4,0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding ExpenseCategory}"
+                                    TextTrimming="CharacterEllipsis" />
                                 <GridSplitter
                                     Grid.Column="1"
                                     Width="1"
@@ -102,6 +126,12 @@
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <!--  Editable view: Category  -->
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <controls:SearchableComboBox ItemsSource="{Binding Path=DataContext.Categories, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding ExpenseCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="130" CanUserResize="True">
                     <DataGridTemplateColumn.HeaderTemplate>
@@ -133,8 +163,9 @@
                     EditingElementStyle="{StaticResource TextBoxStyle.DataGridRowEditor}"
                     Header="Amount (Local)" />
                 <DataGridTemplateColumn
-                    Width="auto"
+                    Width="170"
                     MinWidth="150"
+                    CellStyle="{StaticResource ComboCellStyle}"
                     Header="Currency">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -143,10 +174,12 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <controls:SearchableComboBox
+                                <TextBlock
                                     Grid.Column="0"
-                                    ItemsSource="{Binding Path=DataContext.CurrencyInfos, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                    SelectedItem="{Binding Currency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    Margin="4,0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Currency}"
+                                    TextTrimming="CharacterEllipsis" />
                                 <GridSplitter
                                     Grid.Column="1"
                                     Width="1"
@@ -156,6 +189,12 @@
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <!--  Editable view: Currency  -->
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <controls:SearchableComboBox ItemsSource="{Binding Path=DataContext.CurrencyInfos, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" SelectedItem="{Binding Currency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn
                     Width="200"

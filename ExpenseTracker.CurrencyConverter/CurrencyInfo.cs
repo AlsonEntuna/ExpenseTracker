@@ -37,6 +37,13 @@ namespace ExpenseTracker.CurrencyConverter
                 , Code.GetHashCode());
         }
 
+        private static List<CurrencyInfo>? _cachedCurrencies;
+
+        /// <summary>
+        /// Shared currency list, built once. Building it walks every culture, so avoid calling GenerateCurrencyList repeatedly.
+        /// </summary>
+        public static IReadOnlyList<CurrencyInfo> AllCurrencies => _cachedCurrencies ??= GenerateCurrencyList().ToList();
+
         public static IEnumerable<CurrencyInfo> GenerateCurrencyList()
         {
             List<CurrencyInfo> list = new List<CurrencyInfo>();

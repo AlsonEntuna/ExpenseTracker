@@ -1,19 +1,19 @@
 {
   "PaymentChannels": [
+    "Channel-2",
+    "Channel-3",
     "Credit Card",
     "Deutsche Bank",
     "Loan",
     "Mortgage",
-    "Same",
-    "Channel-2",
-    "Channel-3"
+    "Same"
   ],
   "ExpenseCategories": [
     "Bills",
+    "Category-1",
     "Example",
     "Food",
     "Mortgage",
-    "Category-1",
     "Rent",
     "Shopping",
     "Transportation",

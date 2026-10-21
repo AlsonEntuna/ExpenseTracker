@@ -48,15 +48,21 @@ namespace ExpenseTracker.View.Templates
         // Used in the Control DataTemplate
         public List<string> Categories => DataManager.Instance.DataCategories.ExpenseCategories;
         public List<string> PaymentChannels => DataManager.Instance.DataCategories.PaymentChannels;
-        public List<CurrencyInfo> CurrencyInfos => CurrencyInfo.GenerateCurrencyList().ToList();
+        public IReadOnlyList<CurrencyInfo> CurrencyInfos => CurrencyInfo.AllCurrencies;
         #region Commands
-        public ICommand RemoveEntryCommand => new RelayCommand(RemoveEntry);
-        public ICommand CopyEntryCommand => new RelayCommand(CopyEntriesToClipboard);
-        public ICommand PasteEntryCommand => new RelayCommand(ProcessEntriesFromClipboard);
-        public ICommand SortEntriesCommand => new RelayCommand(SortEntriesByDescription);
+        public ICommand RemoveEntryCommand { get; }
+        public ICommand CopyEntryCommand { get; }
+        public ICommand PasteEntryCommand { get; }
+        public ICommand SortEntriesCommand { get; }
         #endregion
 
-        public ExpenseViewModel() { }
+        public ExpenseViewModel()
+        {
+            RemoveEntryCommand = new RelayCommand(RemoveEntry);
+            CopyEntryCommand = new RelayCommand(CopyEntriesToClipboard);
+            PasteEntryCommand = new RelayCommand(ProcessEntriesFromClipboard);
+            SortEntriesCommand = new RelayCommand(SortEntriesByDescription);
+        }
 
         public override string ToString()
         {
