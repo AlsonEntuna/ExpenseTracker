@@ -10,7 +10,10 @@
         {
             string appDataPath = Path.Combine(AppDataPath(), subFolder);
             if (createIfNotExist)
+            {
                 Directory.CreateDirectory(appDataPath);
+            }
+
             return appDataPath;
         }
         public static string AppDataPath(string[] subFolders, bool createIfNotExist = true)
@@ -22,7 +25,10 @@
             }
             string path = Path.Combine(AppDataPath(), subFolderStr);
             if (createIfNotExist)
+            {
                 Directory.CreateDirectory(path);
+            }
+
             return path;
         }
     }

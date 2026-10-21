@@ -16,11 +16,15 @@ namespace ExpenseTracker.WinApi
 
             IntPtr monitor = NativeMethods.MonitorFromWindow(hwnd, NativeMethods.MONITOR_DEFAULTTONEAREST);
             if (monitor == IntPtr.Zero)
+            {
                 return false;
+            }
 
             var info = new NativeMethods.MONITORINFO { cbSize = Marshal.SizeOf<NativeMethods.MONITORINFO>() };
             if (!NativeMethods.GetMonitorInfo(monitor, ref info))
+            {
                 return false;
+            }
 
             workArea = info.rcWork;
             monitorArea = info.rcMonitor;

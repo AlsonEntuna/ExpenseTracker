@@ -28,7 +28,9 @@ namespace ExpenseTracker.CurrencyConverter
                 return string.Equals(Code, otherCurrency.Code);
             }
             else
+            {
                 return false;
+            }
         }
 
         public override int GetHashCode()

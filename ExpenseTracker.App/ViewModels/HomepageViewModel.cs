@@ -40,7 +40,9 @@ namespace ExpenseTracker.ViewModels
             private set
             {
                 if (_currentExpense == value)
+                {
                     return;
+                }
 
                 UnsubscribeFromExpense(_currentExpense);
                 _currentExpense = value;
@@ -80,29 +82,39 @@ namespace ExpenseTracker.ViewModels
         private void OnExpenseControlPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(ExpenseControlViewModel.CurrentExpenseViewModel))
+            {
                 CurrentExpense = _expenseControlViewModel.CurrentExpenseViewModel;
+            }
         }
 
         private void SubscribeToExpense(ExpenseViewModel expense)
         {
             if (expense?.Expense == null)
+            {
                 return;
+            }
 
             expense.Expense.PropertyChanged += OnExpensePropertyChanged;
             expense.Expense.Entries.CollectionChanged += OnEntriesChanged;
             foreach (DataEntry entry in expense.Expense.Entries)
+            {
                 entry.PropertyChanged += OnEntryPropertyChanged;
+            }
         }
 
         private void UnsubscribeFromExpense(ExpenseViewModel expense)
         {
             if (expense?.Expense == null)
+            {
                 return;
+            }
 
             expense.Expense.PropertyChanged -= OnExpensePropertyChanged;
             expense.Expense.Entries.CollectionChanged -= OnEntriesChanged;
             foreach (DataEntry entry in expense.Expense.Entries)
+            {
                 entry.PropertyChanged -= OnEntryPropertyChanged;
+            }
         }
 
         private void OnExpensePropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -126,12 +138,20 @@ namespace ExpenseTracker.ViewModels
         private void OnEntriesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
+            {
                 foreach (DataEntry entry in e.OldItems)
+                {
                     entry.PropertyChanged -= OnEntryPropertyChanged;
+                }
+            }
 
             if (e.NewItems != null)
+            {
                 foreach (DataEntry entry in e.NewItems)
+                {
                     entry.PropertyChanged += OnEntryPropertyChanged;
+                }
+            }
 
             InvalidateCurrentSummary();
             RaisePropertyChanged(nameof(EntryCount));
@@ -152,7 +172,9 @@ namespace ExpenseTracker.ViewModels
         private void InvalidateCurrentSummary()
         {
             if (CurrentExpense != null)
+            {
                 _summaryCache.Remove(CurrentExpense);
+            }
         }
 
         private async void LoadSummaryForCurrentExpense()
@@ -192,7 +214,9 @@ namespace ExpenseTracker.ViewModels
 
             ExpenseSummary summary = await Task.Run(() => CalculateSummary(snapshot));
             if (request != _summaryRequest || CurrentExpense != expense)
+            {
                 return;
+            }
 
             _summaryCache[expense] = summary;
             ApplySummary(summary);

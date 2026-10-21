@@ -48,7 +48,10 @@ namespace ExpenseTracker.Data
             while (dir != null)
             {
                 if (File.Exists(Path.Combine(dir.FullName, "ExpenseTracker.slnx")))
+                {
                     return Path.Combine(dir.FullName, "ExpenseTracker.Test", "data");
+                }
+
                 dir = dir.Parent;
             }
 

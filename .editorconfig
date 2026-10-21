@@ -1,0 +1,6 @@
+root = true
+
+[*.cs]
+# Always use braces, even for single-statement bodies
+csharp_prefer_braces = true:warning
+dotnet_diagnostic.IDE0011.severity = warning

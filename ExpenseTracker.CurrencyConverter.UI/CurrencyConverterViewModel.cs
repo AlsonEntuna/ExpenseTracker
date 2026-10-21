@@ -66,7 +66,9 @@ namespace ExpenseTracker.CurrencyConverter.UI
         {
             CurrencyInfos = CurrencyInfo.GenerateCurrencyList().ToList();
             if (converter != null)
+            {
                 _currencyConverter = converter;
+            }
 
             InputValue = 1;
         }
@@ -90,9 +92,13 @@ namespace ExpenseTracker.CurrencyConverter.UI
             {
                 var data = _currencyConverter.GetCachedConversionData(conversionKey);
                 if (data != null)
+                {
                     conversionRate = data.Value;
+                }
                 else
+                {
                     conversionRate = 1;
+                }
             }
             ConvertedValue = (float)Math.Round(InputValue * conversionRate, 2);
         }

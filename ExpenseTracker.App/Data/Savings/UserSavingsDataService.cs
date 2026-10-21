@@ -71,7 +71,9 @@ namespace ExpenseTracker.Data.Savings
         public bool Save()
         {
             if (_userSavings == null)
+            {
                 return false;
+            }
 
             return JsonUtils.SerializeArray(_savingsDataPath, _userSavings);
         }

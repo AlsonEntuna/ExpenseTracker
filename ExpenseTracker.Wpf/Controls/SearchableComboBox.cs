@@ -55,7 +55,9 @@ public class SearchableComboBox : ComboBox
     {
         base.OnItemsSourceChanged(oldValue, newValue);
         if (_isReplacingItemsSource)
+        {
             return;
+        }
 
         // Each ComboBox needs its own view. WPF's default view is shared for a
         // source collection, so filtering or moving its current item can affect
@@ -90,7 +92,9 @@ public class SearchableComboBox : ComboBox
     private void EditableTextChanged(object sender, TextChangedEventArgs e)
     {
         if (_isApplyingFilter || !_isUserEditing || e.OriginalSource is not TextBox searchBox)
+        {
             return;
+        }
 
         _isUserEditing = false;
         var searchText = searchBox.Text;
@@ -104,7 +108,9 @@ public class SearchableComboBox : ComboBox
             // Refreshing the view can make ComboBox rewrite its editable text from
             // the current selection. Keep the user's query in the editor instead.
             if (searchBox.Text != searchText)
+            {
                 searchBox.Text = searchText;
+            }
 
             selectionStart = Math.Min(selectionStart, searchBox.Text.Length);
             selectionLength = Math.Min(selectionLength, searchBox.Text.Length - selectionStart);
@@ -116,7 +122,9 @@ public class SearchableComboBox : ComboBox
         }
 
         if (!IsDropDownOpen)
+        {
             IsDropDownOpen = true;
+        }
     }
 
     private void EditableTextInput(object sender, TextCompositionEventArgs e) => _isUserEditing = true;
@@ -125,7 +133,9 @@ public class SearchableComboBox : ComboBox
     {
         if (e.Key is Key.Back or Key.Delete
             || (Keyboard.Modifiers.HasFlag(ModifierKeys.Control) && (e.Key is Key.V or Key.X)))
+        {
             _isUserEditing = true;
+        }
     }
 
     private void EditablePasting(object sender, DataObjectPastingEventArgs e) => _isUserEditing = true;
@@ -145,7 +155,9 @@ public class SearchableComboBox : ComboBox
     private void ApplyFilter(string? text = null)
     {
         if (_itemsView is null)
+        {
             return;
+        }
 
         var searchText = (text ?? Text)?.Trim();
         _itemsView.Filter = string.IsNullOrEmpty(searchText)
@@ -158,17 +170,23 @@ public class SearchableComboBox : ComboBox
     private string GetItemText(object? item)
     {
         if (item is null)
+        {
             return string.Empty;
+        }
 
         var path = DisplayMemberPath;
         if (string.IsNullOrEmpty(path))
+        {
             return item.ToString() ?? string.Empty;
+        }
 
         object? value = item;
         foreach (var segment in path.Split('.'))
         {
             if (value is null)
+            {
                 return string.Empty;
+            }
 
             value = TypeDescriptor.GetProperties(value)[segment]?.GetValue(value);
         }

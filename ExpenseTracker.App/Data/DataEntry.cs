@@ -46,9 +46,13 @@ namespace ExpenseTracker.Data
                 else
                 {
                     if (AppInstance.Connection.MainCurrency != null)
+                    {
                         SetProperty(ref _originalAmount, 0);
+                    }
                     else
+                    {
                         SetProperty(ref _originalAmount, value);
+                    }
                 }
             }
         }
@@ -97,9 +101,13 @@ namespace ExpenseTracker.Data
         public override bool Equals(object obj)
         {
             if (obj is DataEntry otherEntry)
+            {
                 return Id == otherEntry.Id;
-            else 
+            }
+            else
+            {
                 return false;
+            }
         }
         public override int GetHashCode()
         {

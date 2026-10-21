@@ -47,7 +47,9 @@ namespace ExpenseTracker
             {
                 // Save the tools page when navigating away from it
                 if (_currentView == ToolsViewModel && value != ToolsViewModel)
+                {
                     ToolsViewModel.Save();
+                }
 
                 SetProperty(ref _currentView, value);
             }
@@ -122,7 +124,9 @@ namespace ExpenseTracker
                     {
                         VariableExpense deserializedData = JsonUtils.Deserialize<VariableExpense>(dataLocation);
                         if (deserializedData == null)
+                        {
                             return;
+                        }
 
                         deserializedData.DetectAndMigrateLegacyData();
 
@@ -142,7 +146,9 @@ namespace ExpenseTracker
 
                 // Assign the first one in the expense list
                 if (ExpenseControlViewModel.Expenses != null)
+                {
                     ExpenseControlViewModel.CurrentExpenseViewModel = ExpenseControlViewModel.Expenses[0];
+                }
             }
         }
         public void OpenToolsPanel()
@@ -229,7 +235,9 @@ namespace ExpenseTracker
             {
                 VariableExpense expense = JsonUtils.Deserialize<VariableExpense>(dialog.FileName);
                 if (expense == null)
+                {
                     return;
+                }
 
                 ExpenseViewModel newVm = CreateAndCopyVmFromExpense(expense);
                 // Only add it directly to the list of expenses because we don't need to store the copy immediately

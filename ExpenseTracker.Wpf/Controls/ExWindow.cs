@@ -54,16 +54,24 @@ namespace ExpenseTracker.Wpf.Controls
         public override void OnApplyTemplate()
         {
             if (_titleBar != null)
+            {
                 _titleBar.MouseDown -= TitleBar_MouseDown;
+            }
 
             if (_minimizeButton != null)
+            {
                 _minimizeButton.Click -= MinimizeButton_Click;
+            }
 
             if (_maximizeButton != null)
+            {
                 _maximizeButton.Click -= MaximizeButton_Click;
+            }
 
             if (_closeButton != null)
+            {
                 _closeButton.Click -= CloseButton_Click;
+            }
 
             base.OnApplyTemplate();
 
@@ -73,16 +81,24 @@ namespace ExpenseTracker.Wpf.Controls
             _closeButton = GetTemplateChild(PartCloseButton) as Button;
 
             if (_titleBar != null)
+            {
                 _titleBar.MouseDown += TitleBar_MouseDown;
+            }
 
             if (_minimizeButton != null)
+            {
                 _minimizeButton.Click += MinimizeButton_Click;
+            }
 
             if (_maximizeButton != null)
+            {
                 _maximizeButton.Click += MaximizeButton_Click;
+            }
 
             if (_closeButton != null)
+            {
                 _closeButton.Click += CloseButton_Click;
+            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -102,10 +118,14 @@ namespace ExpenseTracker.Wpf.Controls
             base.OnStateChanged(e);
 
             if (_hwnd == IntPtr.Zero)
+            {
                 return;
+            }
 
             if (WindowState == WindowState.Maximized)
+            {
                 FitMaxSizeToMonitor();
+            }
 
             ApplyCornerPreference();
         }
@@ -125,7 +145,9 @@ namespace ExpenseTracker.Wpf.Controls
         private void FitMaxSizeToMonitor()
         {
             if (!MonitorHelper.TryGetMonitorAreas(_hwnd, out RECT work, out _))
+            {
                 return;
+            }
 
             // Monitor info is in physical pixels; WPF sizes are in DIPs.
             DpiScale dpi = VisualTreeHelper.GetDpi(this);
@@ -138,12 +160,16 @@ namespace ExpenseTracker.Wpf.Controls
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton != MouseButton.Left)
+            {
                 return;
+            }
 
             if (e.ClickCount == 2)
             {
                 if (ResizeMode == ResizeMode.CanResize || ResizeMode == ResizeMode.CanResizeWithGrip)
+                {
                     ToggleMaximizedState();
+                }
             }
             else
             {

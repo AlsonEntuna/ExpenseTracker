@@ -85,7 +85,9 @@ namespace ExpenseTracker.View.Templates
         public void CopyEntriesToClipboard()
         {
             if (SelectedDataEntries.Count == 0)
+            {
                 return;
+            }
 
             string clipboard = JsonUtils.SerializeArrayToString(SelectedDataEntries);
             Clipboard.SetText(clipboard);
@@ -128,7 +130,9 @@ namespace ExpenseTracker.View.Templates
         private void SortEntriesByDescription()
         {
             if (Expense.Entries == null)
+            {
                 return;
+            }
 
             var sortedList = Expense.Entries
                 .OrderBy(f => f.Description)
@@ -138,7 +142,9 @@ namespace ExpenseTracker.View.Templates
             {
                 int currentIndex = Expense.Entries.IndexOf(sortedList[i]);
                 if (currentIndex != i)
+                {
                     Expense.Entries.Move(currentIndex, i);
+                }
             }
         }
 

@@ -19,9 +19,13 @@ namespace ExpenseTracker.ViewModels
             get
             {
                 if (_userSavingsDataService == null)
+                {
                     return new ObservableCollection<SavingsData>();
+                }
                 else
+                {
                     return new ObservableCollection<SavingsData>(_userSavingsDataService.UserSavings);
+                }
             }
         }
 
@@ -77,7 +81,9 @@ namespace ExpenseTracker.ViewModels
         private void AddSavingsAmount()
         {
             if (SelectedSavingsData == null)
+            {
                 return;
+            }
 
             // Add Default value
             SelectedSavingsData.AddInputSavings(0.0f, DateTime.Now.Date.ToShortDateString());
@@ -87,7 +93,9 @@ namespace ExpenseTracker.ViewModels
         private void EditSavings()
         {
             if (SelectedSavingsData == null)
+            {
                 return;
+            }
 
             _userSavingsDataService.EditSavingsData(SelectedSavingsData);
             RaisePropertyChanged(nameof(SelectedSavingsData));
@@ -95,7 +103,9 @@ namespace ExpenseTracker.ViewModels
         private void RemoveSavings() 
         {
             if (SelectedSavingsData == null)
+            {
                 return;
+            }
 
             _userSavingsDataService.RemoveSavingsData(SelectedSavingsData);
             RaisePropertyChanged(nameof(Savings));
@@ -103,7 +113,9 @@ namespace ExpenseTracker.ViewModels
         private void RemoveSavingsInput() 
         {
             if (SelectedSavingsInput == null || SelectedSavingsData == null)
+            {
                 return;
+            }
 
             SelectedSavingsInput.ForEach(input => SelectedSavingsData.RemoveSavingsIinput(input));
             SelectedSavingsInput.Clear();
@@ -113,7 +125,9 @@ namespace ExpenseTracker.ViewModels
         private void SortByDate()
         {
             if (SelectedSavingsData?.SavingsInput == null)
+            {
                 return;
+            }
 
             var sorted = SelectedSavingsData.SavingsInput
                 .OrderBy(input => input.InputDate)
@@ -123,7 +137,9 @@ namespace ExpenseTracker.ViewModels
             {
                 int currentIndex = SelectedSavingsData.SavingsInput.IndexOf(sorted[i]);
                 if (currentIndex != i)
+                {
                     SelectedSavingsData.SavingsInput.Move(currentIndex, i);
+                }
             }
         }
 
