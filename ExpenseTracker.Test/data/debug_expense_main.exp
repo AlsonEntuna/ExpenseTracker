@@ -861,15 +861,15 @@
         "CategoryBreakdown": [
           {
             "Category": "Mortgage",
-            "TotalAmount": 500.0
+            "TotalAmount": 0.0
           },
           {
             "Category": "Food",
-            "TotalAmount": 150.333
+            "TotalAmount": 0.0
           },
           {
             "Category": "Shopping",
-            "TotalAmount": 50.15
+            "TotalAmount": 0.0
           }
         ]
       },
@@ -883,11 +883,11 @@
         "CategoryBreakdown": [
           {
             "Category": "Bills",
-            "TotalAmount": 45.5
+            "TotalAmount": 0.0
           },
           {
             "Category": "Food",
-            "TotalAmount": 163.8
+            "TotalAmount": 0.0
           }
         ]
       },
@@ -901,7 +901,7 @@
         "CategoryBreakdown": [
           {
             "Category": "Food",
-            "TotalAmount": 12.0
+            "TotalAmount": 0.0
           }
         ]
       },
@@ -930,15 +930,15 @@
       "CategoryBreakdown": [
         {
           "Category": "Mortgage",
-          "TotalAmount": 500.0
+          "TotalAmount": 0.0
         },
         {
           "Category": "Food",
-          "TotalAmount": 150.333
+          "TotalAmount": 0.0
         },
         {
           "Category": "Shopping",
-          "TotalAmount": 50.15
+          "TotalAmount": 0.0
         }
       ]
     },
@@ -987,27 +987,27 @@
     "ExpenseCategoryExpenseTotalValueData": [
       {
         "Key": "Mortgage",
-        "Value": 500.0
+        "Value": 0.0
       },
       {
         "Key": "Food",
-        "Value": 150.333
+        "Value": 0.0
       },
       {
         "Key": "Shopping",
-        "Value": 50.15
+        "Value": 0.0
       },
       {
         "Key": "Bills",
-        "Value": 45.5
+        "Value": 0.0
       },
       {
         "Key": "Food",
-        "Value": 163.8
+        "Value": 0.0
       },
       {
         "Key": "Food",
-        "Value": 12.0
+        "Value": 0.0
       },
       {
         "Key": "Food",

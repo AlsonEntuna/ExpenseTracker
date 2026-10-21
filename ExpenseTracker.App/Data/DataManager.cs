@@ -40,9 +40,21 @@ namespace ExpenseTracker.Data
             PathUtils.AppDataPath(Constants.EXPENSETRACKER)
             , Constants.CONFIG_FILE);
 #if DEBUG
-        private static string _configDebugPath = Path.Combine(
-            Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
-            , "_data");
+        private static string _configDebugPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "_data");
+        private static string _categoriesDebugPath = FindTestDataPath();
+        private static string FindTestDataPath()
+        {
+            DirectoryInfo dir = new DirectoryInfo(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+            while (dir != null)
+            {
+                if (File.Exists(Path.Combine(dir.FullName, "ExpenseTracker.slnx")))
+                    return Path.Combine(dir.FullName, "ExpenseTracker.Test", "data");
+                dir = dir.Parent;
+            }
+
+            // Not running from inside the repo, fall back to the bin folder
+            return _configDebugPath;
+        }
 #endif
 
         // Events
@@ -98,7 +110,8 @@ namespace ExpenseTracker.Data
         private void LoadCategories()
         {
 #if DEBUG
-            _dataFile = Path.Combine(_configDebugPath, Constants.CATEGORIES_FILE);
+            Directory.CreateDirectory(_categoriesDebugPath);
+            _dataFile = Path.Combine(_categoriesDebugPath, Constants.CATEGORIES_FILE);
 #else
             _dataFile = Path.Combine(PathUtils.AppDataPath(Constants.EXPENSETRACKER), Constants.CATEGORIES_FILE);
 #endif
