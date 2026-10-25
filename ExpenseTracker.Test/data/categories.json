@@ -6,11 +6,13 @@
     "Deutsche Bank",
     "Loan",
     "Mortgage",
+    "PaymentChannel-Test",
     "Same"
   ],
   "ExpenseCategories": [
     "Bills",
     "Category-1",
+    "Category-Test",
     "Example",
     "Food",
     "Mortgage",

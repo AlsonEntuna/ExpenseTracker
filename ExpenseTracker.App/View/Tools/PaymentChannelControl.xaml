@@ -30,6 +30,7 @@
             <ListView
                 x:Name="ListView_PaymenChannels"
                 MinHeight="{Binding ActualHeight, ElementName=RootControl, Converter={StaticResource SubtractConverter}, ConverterParameter=500}"
+                MaxHeight="500"
                 Background="#2CCC"
                 BorderBrush="Transparent"
                 ItemsSource="{Binding PaymentChannels}"
