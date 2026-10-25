@@ -127,12 +127,89 @@ public class SearchableComboBox : ComboBox
         }
     }
 
+    /// <summary>
+    /// Puts keyboard focus in the editable text box so typing and arrow keys work right away.
+    /// </summary>
+    public void FocusEditor()
+    {
+        ApplyTemplate();
+        if (_editableTextBox is not null)
+        {
+            _editableTextBox.Focus();
+            _editableTextBox.SelectAll();
+        }
+        else
+        {
+            Focus();
+        }
+    }
+
+    protected override void OnPreviewKeyDown(KeyEventArgs e)
+    {
+        var hasAlt = Keyboard.Modifiers.HasFlag(ModifierKeys.Alt);
+
+        // Handle arrows here instead of relying on WPF's highlight navigation,
+        // which loses its place whenever the filtered view refreshes.
+        if (!hasAlt && e.Key is Key.Down or Key.Up)
+        {
+            MoveSelection(e.Key == Key.Down ? 1 : -1);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key is Key.Enter && IsDropDownOpen)
+        {
+            // Selection is already committed; the first Enter only closes the list.
+            IsDropDownOpen = false;
+            e.Handled = true;
+            return;
+        }
+
+        base.OnPreviewKeyDown(e);
+    }
+
+    private void MoveSelection(int step)
+    {
+        if (!IsDropDownOpen)
+        {
+            IsDropDownOpen = true;
+        }
+
+        var count = Items.Count;
+        if (count == 0)
+        {
+            return;
+        }
+
+        var current = SelectedIndex;
+        var next = current < 0
+            ? (step > 0 ? 0 : count - 1)
+            : Math.Clamp(current + step, 0, count - 1);
+
+        // The text change caused by the new selection must not be treated as typing.
+        _isUserEditing = false;
+        SetCurrentValue(SelectedIndexProperty, next);
+
+        (ItemContainerGenerator.ContainerFromIndex(next) as FrameworkElement)?.BringIntoView();
+    }
+
     private void EditableTextInput(object sender, TextCompositionEventArgs e) => _isUserEditing = true;
 
     private void EditableKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key is Key.Back or Key.Delete
-            || (Keyboard.Modifiers.HasFlag(ModifierKeys.Control) && (e.Key is Key.V or Key.X)))
+        if (sender is not TextBox textBox)
+        {
+            return;
+        }
+
+        var hasSelection = textBox.SelectionLength > 0;
+        var canBackspace = hasSelection || textBox.CaretIndex > 0;
+        var canDelete = hasSelection || textBox.CaretIndex < textBox.Text.Length;
+
+        if ((e.Key == Key.Back && canBackspace)
+            || (e.Key == Key.Delete && canDelete)
+            || (Keyboard.Modifiers.HasFlag(ModifierKeys.Control) && e.Key == Key.V)
+            || (Keyboard.Modifiers.HasFlag(ModifierKeys.Control) && e.Key == Key.X && hasSelection))
         {
             _isUserEditing = true;
         }

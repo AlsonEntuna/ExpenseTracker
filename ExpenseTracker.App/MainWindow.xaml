@@ -9,13 +9,13 @@
     xmlns:view="clr-namespace:ExpenseTracker.View"
     Width="1720"
     Height="1000"
-    WindowTitle="Expense Tracker"
     MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
     MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
     d:DataContext="{d:DesignData Type=local:MainWindowViewModel,
                                  IsDesignTimeCreatable=False}"
     Closing="Window_Closing"
     DataContext="{StaticResource MainVm}"
+    WindowTitle="Expense Tracker"
     mc:Ignorable="d">
     <controls:ExWindow.InputBindings>
         <KeyBinding Command="{Binding SaveExpenseCommand}" Gesture="Ctrl+S" />

@@ -77,7 +77,9 @@ namespace ExpenseTracker.View.Templates
         private void ExpenseDataGrid_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
         {
             // Open the dropdown once the editing template is in the visual tree
-            Dispatcher.BeginInvoke(DispatcherPriority.Input, () =>
+            // ContextIdle runs after the click and the grid's own focus handling finish,
+            // so focus stays in the editor instead of going back to the cell.
+            Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle, () =>
             {
                 SearchableComboBox comboBox = e.EditingElement as SearchableComboBox
                     ?? WpfHelpers.FindVisualChildOfType<SearchableComboBox>(e.EditingElement);
@@ -86,7 +88,7 @@ namespace ExpenseTracker.View.Templates
                     return;
                 }
 
-                comboBox.Focus();
+                comboBox.FocusEditor();
                 comboBox.IsDropDownOpen = true;
             });
         }
