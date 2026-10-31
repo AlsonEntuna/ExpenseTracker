@@ -29,8 +29,17 @@ namespace ExpenseTracker.Data
         public float Savings
         {
             get => _savings;
-            set => SetProperty(ref _savings, value);
+            set
+            {
+                if (SetProperty(ref _savings, value))
+                {
+                    RaisePropertyChanged(nameof(IsOverBudget));
+                }
+            }
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public bool IsOverBudget => Savings < 0;
 
         private float _unpaidAmount;
         public float UnPaidAmount

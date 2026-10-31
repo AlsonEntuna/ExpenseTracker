@@ -136,14 +136,27 @@
                                     Style="{StaticResource TextBlockStyle.Header2.Bold}"
                                     Text="Savings" />
                                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <StackPanel.Resources>
+                                        <Style
+                                            x:Key="SavingsTextStyle"
+                                            BasedOn="{StaticResource TextBlockStyle.Header1}"
+                                            TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Foreground" Value="{StaticResource Brush.Status.Positive}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding CurrentExpenseViewModel.Expense.Report.IsOverBudget}" Value="True">
+                                                    <Setter Property="Foreground" Value="{StaticResource Brush.Status.Negative}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Resources>
                                     <TextBlock
                                         Grid.Column="0"
                                         VerticalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                        Style="{StaticResource SavingsTextStyle}"
                                         Text="{Binding CurrentExpenseViewModel.Expense.CurrencySymbol, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock
                                         VerticalAlignment="Center"
-                                        Style="{StaticResource TextBlockStyle.Header1}"
+                                        Style="{StaticResource SavingsTextStyle}"
                                         Text="{Binding CurrentExpenseViewModel.Expense.Report.Savings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                             </StackPanel>

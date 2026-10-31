@@ -25,6 +25,9 @@
     <Color x:Key="Color.Hover.Active.1">#EE2E4FA8</Color>
     <Color x:Key="Color.Hover.Disabled">#CC696666</Color>
 
+    <Color x:Key="Color.Status.Positive">#2FB565</Color>
+    <Color x:Key="Color.Status.Negative">#E04B4B</Color>
+
     <!--  Brushes  -->
     <SolidColorBrush x:Key="Brush.Main.Background" Color="{StaticResource Color.Main.Background}" />
     <SolidColorBrush x:Key="Brush.Main.Background.Alt" Color="{StaticResource Color.Main.Background.Alt}" />
@@ -50,5 +53,8 @@
     <SolidColorBrush x:Key="Brush.Hover.Active" Color="{StaticResource Color.Hover.Active}" />
     <SolidColorBrush x:Key="Brush.Hover.Active.1" Color="{StaticResource Color.Hover.Active.1}" />
     <SolidColorBrush x:Key="Brush.Hover.Disabled" Color="{StaticResource Color.Hover.Disabled}" />
+
+    <SolidColorBrush x:Key="Brush.Status.Positive" Color="{StaticResource Color.Status.Positive}" />
+    <SolidColorBrush x:Key="Brush.Status.Negative" Color="{StaticResource Color.Status.Negative}" />
 
 </ResourceDictionary>
